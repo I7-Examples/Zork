@@ -1,6 +1,6 @@
 "Zork" by Dean Menezes
 
-Include (- Serial "071003"; -).
+Include (- Serial "071102"; -).
 
 
 Part 1 - New Actions and Concepts
@@ -14,9 +14,17 @@ silently switch score notification off;
 decrease turn count by 1;
 clear the screen;
 say "[line break]".
+
 When play begins: 
 To silently switch score notification off: 
         (- notify_mode = 0; -). 
+
+Instead of throwing something at the player:
+  say "A terrific throw! [The noun] hits you squarely in the head. Normally, this
+wouldn't do much damage, but by incredible mischance, you fall over backwards
+trying to duck, and break your neck, justice being swift and merciful in the
+Great Underground Empire.";
+  end the game in death.
 Wishing is an action applying to nothing. Understand "wish" and "make wish" and "make a wish" as wishing.
 Understand "$VERIFY" as verifying the story file.
 Carry out wishing:  
@@ -591,9 +599,48 @@ end repeat;
 if weight-sum plus the size of the noun is greater than the capacity of the second noun, say "It won't fit." instead.
 Lifting is an action applying to one visible thing. Understand "lift [something]" and "raise [something]" as lifting.
 Check lifting:
-if the noun is not the rug, say "Playing in this way with [a noun] has no effect.";
-else say "The rug is too heavy to lift, but in trying to raise it you
-notice an irregularity beneath it.".
+if the noun is the rug begin;
+say "The rug is too heavy to lift, but in trying to raise it you notice an irregularity beneath it.";
+else if the noun is the basket;
+  if the player is in Lower Shaft begin;
+    say "The basket is raised to the top of the shaft.";
+    move the basket to Shaft Room;
+    move the fbasket to Lower Shaft;
+  else;
+    say "Playing in this way with [a noun] has no effect.";
+  end if;
+else if the noun is the fbasket;
+  if the player is in Shaft Room begin;
+    say "The basket is raised to the top of the shaft.";
+    move the basket to Shaft Room;
+    move the fbasket to Lower Shaft;
+  else;
+    say "The basket is at the other end of the chain.";
+  end if;
+else;
+  say "Playing in this way with [a noun] has no effect.";
+end if.
+Lowering is an action applying to one visible thing. Understand "lower [something]" as lowering.
+Check lowering:
+if the noun is the basket begin;
+  if the player is in Shaft Room begin;
+    say "The basket is lowered to the bottom of the shaft.";
+    move the fbasket to Shaft Room;
+    move the basket to Lower Shaft;
+  else;
+    say "Playing in this way with [a noun] has no effect.";
+  end if;
+else if the noun is the fbasket;
+ if the player is in Lower Shaft begin;
+    say "The basket is lowered to the bottom of the shaft.";
+    move the fbasket to Shaft Room;
+    move the basket to Lower Shaft;
+  else;
+    say "The basket is at the other end of the chain.";
+  end if;
+else;
+  say "Playing in this way with [a noun] has no effect.";
+end if.
 
 Attachment relates things to each other in groups. The verb to be attached to implies the attachment relation. 
 The block tying rule is not listed in any rulebook.
@@ -894,13 +941,30 @@ North of North of House is Forest 4 with printed name "Forest" and description "
 Every turn while in Forest: 
 if a random chance of 1 in 5 succeeds, say "You hear in the distance the chirping of a song bird.".
 Up a Tree is an outdoors room.
+
 A door called the tree is a door. The tree is scenery. The tree is open and not openable.  The tree is up from Forest 4 and down from Up a Tree.
+
+Instead of dropping something while in Up a Tree:
+if the noun is not the jewel-encrusted egg begin;
+  say "[The noun] falls to the ground.";
+  move the noun to Forest 4;
+else if the golden clockwork canary is not in the jewel-encrusted egg;
+  say "The jewel-encrusted egg falls to the ground and is ruined.";
+  move the broken jewel-encrusted egg to Forest 4;
+  remove the broken canary from play;
+  remove the jewel-encrusted egg from play;
+else;
+  say "The jewel-encrusted egg falls to the ground and is ruined.";
+  move the broken jewel-encrusted egg to Forest 4;
+  remove the jewel-encrusted egg from play;
+end if.
+
 The description of Up a Tree is "You are about ten feet above the ground nestled among some large branches. The nearest branch above you is beyond your reach."
 Instead of climbing the tree: try entering the noun instead.
 The capacity of the nest is 20.
 The capacity of the jewel-encrusted egg is 6.
 
-A container called the birds nest is here. "On the branch is a small birds nest.".  A jewel-encrusted egg is here. "In the bird's nest is a large egg encrusted with precious jewels, apparently scavenged somewhere by a childless songbird.  The egg is covered with fine gold inlay and ornamented in lapis lazuli and mother-of-pearl.  Unlike most eggs, this one is hinged and has a delicate looking clasp holding it closed. The egg appears extremely fragile." The egg is in the nest. The description of the egg is "The egg is covered with fine gold inlay and ornamented in lapis lazuli and mother-of-pearl.  Unlike most eggs, this one is hinged and has a delicate looking clasp holding it closed. The egg appears extremely fragile." 
+A container called the birds nest is here. "On the branch is a small birds nest.".  A closed unopenable container called the jewel-encrusted egg is here. "In the bird's nest is a large egg encrusted with precious jewels, apparently scavenged somewhere by a childless songbird.  The egg is covered with fine gold inlay and ornamented in lapis lazuli and mother-of-pearl.  Unlike most eggs, this one is hinged and has a delicate looking clasp holding it closed. The egg appears extremely fragile." The egg is in the nest. The description of the egg is "The egg is covered with fine gold inlay and ornamented in lapis lazuli and mother-of-pearl.  Unlike most eggs, this one is hinged and has a delicate looking clasp holding it closed. The egg appears extremely fragile." 
 The broken jewel-encrusted egg is an open openable container. The broken clockwork canary is inside the broken egg.
 The golden clockwork canary is inside the jewel-encrusted egg.
 Instead of dropping the jewel-encrusted egg when the player's command includes "throw": try destroying the broken egg instead.
@@ -1136,8 +1200,7 @@ Instead of touching, taking, pushing, pulling, or rubbing the south wall: say "A
 A dungeon called North-South Crawlway is north of Studio. "This is a north-south crawlway; a passage also goes to the east. There is a hole above, but it provides no opportunities for climbing." North of North-South Crawlway is north of West of Chasm. East of North-South Crawlway is east of Troll Room.
 Instead of going up from North-South Crawlway: say "Not even a human fly could get up it."
 
-A maze is a kind of dungeon.  A maze usually has printed name "Maze". The description of a maze is usually "This is part of 
-a maze of twisty little passages, all alike."
+A maze is a kind of dungeon.  A maze usually has printed name "Maze". The description of a maze is usually "This is part of a maze of twisty little passages, all alike."
 A dead end is a kind of dungeon. A dead end usually has printed name "Dead End".
 South of Troll Room is west of a maze called Maze 1. North of Maze 1 is Maze 1. East of Maze 1 is north of a maze called Maze 2. South of Maze 1 is south of a maze called Maze 3. North of Maze 3 is Maze 2. East of Maze 3 is a maze called Maze 4. East of Maze 2 is south of a dead end called DE1. North of Maze 4 is west of Maze 2.
 North of a maze called Maze 5 is Maze 4.  A skeleton is here. "A skeleton, probably the remains of a luckless adventurer, is here." An old leather bag of coins is here. "An old leather bag, bulging with coins is here." A burned-out lantern is here. "The deceased adventurer's useless lantern is here." Understand "useless" and "lamp" as the burned-out lantern.  The printed name of the bag of coins is "bag of coins".
@@ -1244,7 +1307,7 @@ The grail is not openable.
 The size of the grail is 10.
 The capacity of the grail is 5.
 Understand "holy grail" as the grail. The case-points of the grail is 5.
-After taking the grail: award 2 points; continue the action.
+After taking the grail for the first time: award 2 points; continue the action.
 East of Grail Room is north of a dungeon called Narrow Crawlway. The description of Narrow Crawlway is  "This is a narrow crawlway.  The crawlway leads from north to south. However, the south passage divides to the south and southwest."
 West of a dungeon called Temple is up from Grail Room. "This is the west end of a large temple.  On the south wall is an ancient inscription, probably a prayer in a long-forgotten language. The north wall is solid granite.  The entrance at the west end of the room is through huge marble pillars." 
 A scenery thing called the inscription is in Temple. Understand "prayer" as the inscription.  The description of the inscription is "The prayer is inscribed in an ancient script which is hardly remembered these days, much less understood.  What little of it can be made out seems to be a diatribe against small insects, absent-mindedness, and the picking up and dropping of small objects.  The final verse seems to consign trespassers to the land of the dead.  All evidence indicates that the beliefs of the ancient Zorkers were obscure."
@@ -1639,7 +1702,7 @@ West of Egyptian Room is nowhere.
 West of Glacier Room is south of a dungeon called Ruby Room.
 The description of Ruby Room is "This is a small chamber behind the remains of the great glacier.  To the south and west are small passageways."
 A moby ruby is in Ruby Room.
-After taking the moby ruby:
+After taking the moby ruby for the first time:
 award 15 points; continue the action.
 The case-points of the moby ruby is 8.
 The initial appearance of the moby ruby is "On the floor lies a moby ruby."
@@ -1673,7 +1736,7 @@ Northwest of Winding Passage is nowhere.
 Instead of going north from Winding Passage: say "You hear the whir from the round room but can find no entrance."
 East of Winding Passage is Mirror Room No 1. The printed name of Mirror Room No 1 is "Mirror Room". The description of Mirror Room No 1 is "This is a large square room with tall ceilings.  On the south wall is an enormous mirror which fills the entire wall.  There are exits on the other three sides of the room."
 An enormous mirror is in Mirror Room No 1.  It is scenery.
-The description of the enormous mirror is "There is an ugly person staring back at you."
+The description of the enormous mirror is "[if the enormous mirror is whole]There is an ugly person staring back at you.[otherwise]The mirror is broken into many pieces.[end if]".
 Instead of touching or rubbing the enormous mirror:
   say "There is a rumble from deep within the earth and the room shakes.";
  move the player to Mirror Room No 2.
@@ -1721,13 +1784,14 @@ unreal.";
   resume the game;
 end if.
 North of Mirror Room No 1 is southwest of Narrow Crawlway. 
-Tiny Cave is a dungeon. "This is a tiny cave with entrances west and north, and a dark, forbidding staircase leading down."
-North of Tiny Cave is Narrow Crawlway. East of Mirror Room is Tiny Cave.
+Cave1 is a dungeon. "This is a tiny cave with entrances west and north, and a dark, forbidding staircase leading down."
+The printed name of Cave1 is "Tiny Cave".
+North of Cave1 is Narrow Crawlway. East of Mirror Room is Cave1.
 Entrance to Hades is a dungeon. The description of Entrance to Hades is
 "You are outside a large gateway, on which is inscribed: [paragraph break]
 [8 spaces]'Abandon every hope, all ye who enter here.'[paragraph break]
 The gate is open; through it you can see a desolation, with a pile of mangled corpses in one corner.  Thousands of voices, lamenting some hideous fate, can be heard."
-Down from Tiny Cave is Entrance to Hades. Land of the Living Dead is a dungeon. East of Entrance to Hades is Land of the Living Dead.
+Down from Cave1 is Entrance to Hades. Land of the Living Dead is a dungeon. East of Entrance to Hades is Land of the Living Dead.
 Dead flag is a number that varies. Dead flag is usually 0.
 
 East of Ravine is a dungeon called Chasm.  The description of Chasm is "A chasm runs southwest to northeast.  You are on the south edge; the path exits to the south and to the east."
@@ -1759,7 +1823,151 @@ North of Ancient Chasm is southeast of a dead end.  West of Ancient Chasm is a d
 
 Mirror Room No 2 is a dungeon. The printed name of Mirror Room No 2 is "Mirror Room". The description of Mirror Room No 2 is "This is a large square room with tall ceilings.  On the south wall is a gigantic mirror which fills the entire wall.  There are exits on the other three sides of the room."
 An gigantic mirror is in Mirror Room No 2.  It is scenery.
-The description of the gigantic mirror is "There is an ugly person staring back at you." 
+The description of the gigantic mirror is "[if the gigantic mirror is whole]There is an ugly person staring back at you.[otherwise]The mirror is broken into many pieces.[end if]".
 Instead of touching or rubbing the gigantic mirror:
   say "There is a rumble from deep within the earth and the room shakes.";
  move the player to Mirror Room No 1.
+West of Mirror Room No 2 is a dungeon called Cold Passage. The description of Cold Passage is "This is a cold and damp corridor where a long east-west passageway intersects with a northward path."
+North of Cold Passage is southwest of a dungeon called Steep Crawlway. The description of Steep Crawlway is "This is a steep and narrow crawlway.  There are two exits nearby to
+the south and southwest."
+South of Steep Crawlway is Mirror Room No 2.
+East of Mirror Room No 2 is north of a dungeon called Cave2. The printed name of Cave2 is "Tiny Cave". The description of Cave2 is "This is a tiny cave with entrances west and north, and a dark, forbidding staircase leading down."
+Down from Cave2 is a dungeon called Atlantis Room.  The description of Atlantis Room is "This is an ancient room, long under water.  There are exits here to the southeast and upward."
+A crystal trident is in Atlantis Room.  The initial appearance of the crystal trident is "On the shore lies Poseidon's own crystal trident." The later appearance of the crystal trident is "Poseidon's own crystal trident is here." The size of the crystal trident is 20.  The case-points of the crystal trident is 11. After taking the crystal trident for the first time: award 4 points; continue the action.
+
+West of Cold Passage is a dungeon called Slide Room.  The description of Slide Room is "This is a small chamber, which appears to have been part of a coal mine. On the south wall of the chamber the letters 'Granite Wall' are etched in the rock. To the east is a long passage and
+there is a steep metal slide twisting downward. To the north is a small opening."
+
+The enormous mirror can be whole or trashed.  The gigantic mirror can be whole or trashed.
+The enormous mirror is whole.  The gigantic mirror is whole.
+Check destroying the enormous mirror:
+  if the enormous mirror is trashed begin;
+    say "It's already broken." instead;
+  else if the gigantic mirror is trashed;
+    say "Haven't you done enough damage already?" instead;
+  else;
+    now the enormous mirror is trashed;
+     say "You have broken the mirror.  I hope you have a seven years supply of
+good luck handy." instead;
+  end if.
+Check destroying the gigantic mirror:
+  if the gigantic mirror is trashed begin;
+    say "It's already broken." instead;
+  else if the enormous mirror is trashed;
+    say "Haven't you done enough damage already?" instead;
+  else;
+    now the gigantic mirror is trashed;
+     say "You have broken the mirror.  I hope you have a seven years supply of
+good luck handy." instead;
+  end if.
+Check taking the enormous mirror:
+  if the enormous mirror is trashed, say "Nobody but a greedy surgeon would allow you to attempt that trick." instead.
+Check taking the gigantic mirror:
+  if the enormous mirror is trashed, say "Nobody but a greedy surgeon would allow you to attempt that trick." instead.
+Down from Slide Room is Cellar.
+
+North of Slide Room is a dungeon called Mine Entrance.  The description of Mine Entrance is "You are standing at the entrance of what might have been a coal
+mine. To the northeast and the northwest are entrances to the mine,
+and there is another exit on the south end of the room."
+Northwest of Mine Entrance is south of a dungeon called Squeaky Room.  The description of Squeaky Room is "You are a small room.  Strange squeaky sounds may be heard coming from
+the passage at the west end.  You may also escape to the south."
+West of Squeaky Room is a dungeon called Bat Room.  The description of Bat Room is "You are in a small room which has only one door, to the east.  In the corner of the room on the ceiling is a large vampire bat who is obviously deranged and holding his nose."
+Instead of going west from Bat Room when dead flag is not 1 and when the player is not holding the garlic: 
+  say "A deranged giant vampire bat (a reject from WUMPUS) swoops down
+from his belfry and lifts you away....";
+  move the player to a random coal mine.
+A coal mine is a kind of dungeon.  A coal mine usually has printed name "Coal Mine".  A coal mine usually has description "This is a non-descript part of a coal mine."
+A deranged giant vampire bat is in Bat Room.  The deranged giant vampire bat is scenery.  Instead of taking the deranged giant vampire bat:
+  say "A deranged giant vampire bat (a reject from WUMPUS) swoops down
+from his belfry and lifts you away....";
+  move the player to a random coal mine.
+Northeast of Mine Entrance is west of a dungeon called Shaft Room.  The description of Shaft Room is "This is a large room, in the middle of which is a small shaft
+descending through the floor into darkness below.  To the west and
+the north are exits from this room.  Constructed over the top of the
+shaft is a metal framework to which a heavy iron chain is attached."
+A container called the basket is in Shaft Room.  The later appearance of the basket is "At the end of the chain is a basket." The capacity of the basket is 50. Understand "dumbwaiter" and "cage" and "tbasket" as the basket. The basket is fixed in place.
+Lower Shaft is a dark room.  The description of Lower Shaft is 
+"This is a small square room which is at the bottom of a long
+shaft. To the east is a passageway and to the northeast a very narrow
+passage. In the shaft can be seen a heavy iron chain."
+A thing called the fbasket is in Lower Shaft.  The fbasket is scenery. Understand "basket" and "dumbwaiter" and "cage" as the fbasket.
+Instead of going down while in Shaft Room: say "You wouldn't fit and would die if you could."
+After deciding the scope of the player when in darkness:
+  if the fbasket is in the location, place the fbasket in scope;
+  if the basket is in the location, place the basket in scope.
+North of Shaft Room is a dungeon called Wooden Tunnel.  The description of Wooden Tunnel is "This is a narrow tunnel with large wooden beams running across
+the ceiling and around the walls.  A path from the south splits into
+paths running west and northeast."
+West of Wooden Tunnel is a dungeon called Smelly Room.  The description of Smelly Room is "This is a small non-descript room.  However, from the direction
+of a small descending staircase a foul odor can be detected.  To the
+east is a narrow path."
+Down from Smelly Room is a dark room called Gas Room.  The description of Gas Room is "This is a small room which smells strongly of coal gas."
+A sapphire bracelet is in Gas Room.  The later appearance of the sapphire bracelet is "There is a sapphire-encrusted bracelet here."
+The sapphire bracelet is wearable. The size of the bracelet is 10.  The case-points of the bracelet is 3.  After taking the bracelet for the first time: award 5 points; continue the action.
+Every turn when the player is in Gas Room and dead flag is not 1:
+  if the player is carrying the ivory torch and the ivory torch is lit begin;
+  say "Oh dear.  It appears that the smell coming from this room was coal gas.  I would have thought twice about carrying a torch in here.";
+  end the game in death;
+end if.
+
+Northwest of Wooden Tunnel is east of a coal mine called Mine1.
+Southwest of Mine1 is south from a coal mine called Mine2.
+Up from Mine2 is west of a coal mine called Mine3.
+Northeast of Mine2 is west of a coal mine called Mine4.
+North of Mine1 is Mine4.
+Northeast of Mine3 is up from a coal mine called Mine5.
+East of Mine3 is south of Mine5.
+West of Mine2 is west of Mine5.
+East of Mine5 is up from Mine4.
+Northeast of Mine4 is southeast of a coal mine called Mine6.
+Up from Mine6 is Mine5.
+North of Mine5 is west of a coal mine called Mine7.
+South of Mine7 is northwest of Mine6.
+East of Mine7 is Mine1.
+Down from Mine7 is a dungeon called Ladder Top.
+The description of Ladder Top is "This is a very small room.  In the corner is a rickety wooden
+ladder, leading downward.  It might be safe to descend.  There is
+also a staircase leading upward."
+Down from Ladder Top is a dungeon called Ladder Bottom.
+The description of Ladder Bottom is "This is a rather wide room.  On one side is the bottom of a narrow wooden ladder.  To the northeast and the south are passages
+leaving the room."
+East of Ladder Bottom is south of a dead end called DE2.  A pile of coal is in DE2. Understand "heap" and "small" as the pile of coal.  The later appearance of the pile of coal is "There is a small heap of coal here."
+South of Ladder Bottom is north of a dark room called Timber Room.  The description of Timber Room is "This is a long and narrow passage, which is cluttered with broken
+timbers.  A wide passage comes from the north and turns at the 
+southwest corner of the room into a very narrow passageway."
+An unevenly shaped thing called a broken timber is in Timber Room.  Understand "pile" and "wooden" as the broken timber.  The size of the broken timber is 50.
+The later appearance of the broken timber is "There is a wooden timber on the ground here."
+The narrow passageway is a door.  Inside from Timber Room is the narrow passageway.  Outside from Lower Shaft is the narrow passageway.
+Instead of going southwest from Timber Room: try going inside instead.
+Instead of going northeast from Lower Shaft: try going outside instead.
+Before of going through the narrow passageway when the player is carrying something: say "You cannot fit through this passage with that load." instead.
+Instead of going up from Lower Shaft: say "The chain is not climbable."
+
+[Include (- 
+
+  Array keyw string "ECOVXRMS"; 
+  Array inw->9;
+  Array outw->9; 
+  Array uinw->9; 
+  Array ukeyw->9; 
+[Encrypt inw outw ichara i j uinws ukeyws usum; 
+  j=1; ichara='A'-1; uinws=0; ukeyws=0;
+  for (i=1; i<=8; i++) { 
+    ukeyw->i = keyw->i - ichara; 
+    if (inw->j<=ichara) j=1; 
+    uinw->i=inw->j-ichara; 
+    ukeyws=ukeyws+ukeyw->i; 
+    uinws=uinws+uinw->i; 
+    j=j+1; 
+  } 
+  usum=(uinws%8)+8*(ukeyws%8); 
+  for (i=1; i<=8; i++) { 
+    j=XOR(uinw->i, XOR(ukeyw->i, usum))%32; 
+    usum=(usum+1)%32; 
+    if (j>26) j=j%26; 
+    outw->i=max(1, j)+ichara; 
+  } 
+]; 
+[ XOR a b; return (a | b) & (~(a & b)); ];        ! Bitwise Exclusive OR
+[ MAX a b; if (a>b) return a; else return b;]; 
+-). ]
