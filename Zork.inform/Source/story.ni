@@ -1,6 +1,6 @@
 "Zork" by Dean Menezes
 
-Include (- Serial "071102"; -).
+Include (- Serial "071103"; -).
 
 
 Part 1 - New Actions and Concepts
@@ -944,6 +944,13 @@ Up a Tree is an outdoors room.
 
 A door called the tree is a door. The tree is scenery. The tree is open and not openable.  The tree is up from Forest 4 and down from Up a Tree.
 
+
+
+The description of Up a Tree is "You are about ten feet above the ground nestled among some large branches. The nearest branch above you is beyond your reach."
+Instead of climbing the tree: try entering the noun instead.
+A container called the birds nest is here. "On the branch is a small birds nest.".  A closed unopenable container called the jewel-encrusted egg is here. "In the bird's nest is a large egg encrusted with precious jewels, apparently scavenged somewhere by a childless songbird.  The egg is covered with fine gold inlay and ornamented in lapis lazuli and mother-of-pearl.  Unlike most eggs, this one is hinged and has a delicate looking clasp holding it closed. The egg appears extremely fragile." The egg is in the nest. The description of the egg is "The egg is covered with fine gold inlay and ornamented in lapis lazuli and mother-of-pearl.  Unlike most eggs, this one is hinged and has a delicate looking clasp holding it closed. The egg appears extremely fragile." 
+The capacity of the nest is 20.
+The capacity of the jewel-encrusted egg is 6.
 Instead of dropping something while in Up a Tree:
 if the noun is not the jewel-encrusted egg begin;
   say "[The noun] falls to the ground.";
@@ -958,13 +965,6 @@ else;
   move the broken jewel-encrusted egg to Forest 4;
   remove the jewel-encrusted egg from play;
 end if.
-
-The description of Up a Tree is "You are about ten feet above the ground nestled among some large branches. The nearest branch above you is beyond your reach."
-Instead of climbing the tree: try entering the noun instead.
-The capacity of the nest is 20.
-The capacity of the jewel-encrusted egg is 6.
-
-A container called the birds nest is here. "On the branch is a small birds nest.".  A closed unopenable container called the jewel-encrusted egg is here. "In the bird's nest is a large egg encrusted with precious jewels, apparently scavenged somewhere by a childless songbird.  The egg is covered with fine gold inlay and ornamented in lapis lazuli and mother-of-pearl.  Unlike most eggs, this one is hinged and has a delicate looking clasp holding it closed. The egg appears extremely fragile." The egg is in the nest. The description of the egg is "The egg is covered with fine gold inlay and ornamented in lapis lazuli and mother-of-pearl.  Unlike most eggs, this one is hinged and has a delicate looking clasp holding it closed. The egg appears extremely fragile." 
 The broken jewel-encrusted egg is an open openable container. The broken clockwork canary is inside the broken egg.
 The golden clockwork canary is inside the jewel-encrusted egg.
 Instead of dropping the jewel-encrusted egg when the player's command includes "throw": try destroying the broken egg instead.
@@ -1971,3 +1971,4 @@ Instead of going up from Lower Shaft: say "The chain is not climbable."
 [ XOR a b; return (a | b) & (~(a & b)); ];        ! Bitwise Exclusive OR
 [ MAX a b; if (a>b) return a; else return b;]; 
 -). ]
+
