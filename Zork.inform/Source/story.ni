@@ -1,6 +1,6 @@
 "Zork" by Dean Menezes
 
-Include (- Serial "071115"; -).
+Include (- Serial "071119"; -).
 
 
 Part 1 - New Actions and Concepts
@@ -9,11 +9,47 @@ The story genre is "Fantasy".
 The story headline is "A Computerized Fantasy Simulation Game".
 Use memory economy.
 When play begins:
-Change the description of yourself to "That's difficult unless your eyes are prehensile.";
-silently switch score notification off;
-decrease turn count by 1;
-clear the screen;
-say "[line break]".
+Change the description of yourself to "That's difficult unless your eyes are prehensile.".
+Launching is an action applying to nothing.  Understand "launch" as launching.
+Check launching:
+  if the player is not in the magic boat, say "You need to be in a vehicle to do that." instead.
+Landing is an action applying to nothing.  Understand "land" as landing.
+Check landing:
+  if the player is not in the magic boat, say "You need to be in a vehicle to do that.".
+Carry out landing:
+  if the player is in the magic boat begin;
+  if the magic boat is in In Stream begin;
+    move the magic boat to Stream View;
+    try looking instead;
+  else if the magic boat is in Reservoir;
+    say "You must specify a direction." instead;
+  else if the magic boat is in River1;
+    move the magic boat to Dam Base;
+    try looking instead;
+  else if the magic boat is in River2;
+     say "The White Cliffs prevent your landing here." instead;
+  else if the magic boat is in River3 or River4;
+    say "You must specify which direction here." instead;  
+end if;
+  end if;
+  say "You cannot land from here." instead.
+Carry out launching:
+  if the player is in the magic boat begin;
+  if the magic boat is in Stream View begin;
+    move the magic boat to In Stream;
+    try looking instead;
+  else if the magic boat is in Reservoir South or Reservoir North and the pdl1 is on-stage;
+    move the magic boat to Reservoir;
+    try looking instead;
+  else if the magic boat is in Rocky Shore or WCLF1;
+    move the magic boat to River3; 
+    try looking instead;
+  else if the magic boat is in WCLF2;
+    move the magic boat to River4; 
+    try looking instead;
+  end if;
+  end if;
+  say "You can't launch from here." instead.
 Deflating is an action applying to one thing.  Understand "deflate [something]" as deflating.  
 Check deflating:
   if the noun is not the boat, say "How to you expect to do that?" instead;
@@ -31,7 +67,8 @@ Check inflating it with:
   if the noun is the dboat, say "This boat will not inflate since some moron put a hole in it." instead;
   if the noun is the boat, say "Inflating it further would probably burst it." instead;
   if the second noun is your lungs, say "You don't have enough lung power to inflate it." instead;
-  if the second noun is not the air-pump, say "You don't have enough lung power to inflate it." instead.
+  if the second noun is not the air-pump, say "You don't have enough lung power to inflate it." instead;
+  if the player is carrying the noun, say "You cannot inflate it while carrying it." instead.
 Inflating is an action applying to one thing.  Understand "pump up [something]" and "inflate [something]" as inflating.
 Check inflating:
   if the player can see the air-pump, try inflating the noun with the air-pump instead;
@@ -44,9 +81,6 @@ say "Well, you seem to have been brushing your teeth with some sort of
 glue. As a result, your mouth gets glued together (with your nose)
 and you die of respiratory failure.";
 end the game in death.
-When play begins: 
-To silently switch score notification off: 
-        (- notify_mode = 0; -). 
 Lubricating it with is an action applying to one thing and one carried thing.  Understand "lubricate [something] with something" as lubricating it with. Understand "oil [something] with something" as lubricating it with. Understand "grease [something] with [something]" as lubricating it with.
 Plugging it with is an action applying to one thing and one carried thing.  Understand "plug [something] with [something]" and "glue [something] with [something]" and "patch [something] with [something]" as plugging it with.
 Check plugging it with:
@@ -85,7 +119,6 @@ First carry out going rule:
 Use the serial comma.
 Include Basic Help Menu by Emily Short.
 Include Punctuation Removal by Emily Short.
-Include Basic Screen Effects by Emily Short.
 Before swearing obscenely:
   say "[one of]Such language in a high-class establishment like this![or]Oh, dear. Such language from a supposedly winning adventurer![or]You ought to be ashamed of yourself.[or]It's not so bad. You could have been killed already.[or]Tough shit, asshole.[at random]" instead.
 After reading a command:
@@ -207,8 +240,7 @@ if the player is not in Altar and dead flag is true, say "Your prayers are not h
 if the player is not in Altar, say "If you pray enough, your prayers may be answered." instead.
 
 Carry out praying:
-if dead flag is true, say "From the distance the sound of a lone trumpet is heard.  The room
-becomes very bright, and you feel disembodied.  In a moment, the brightness fades, and you find yourself rising, as if from a long sleep, deep in the woods.  In the distance you can faintly hear a song bird and the sounds of the forest.";
+if dead flag is true, say "From the distance the sound of a lone trumpet is heard.  The room becomes very bright, and you feel disembodied.  In a moment, the brightness fades, and you find yourself rising, as if from a long sleep, deep in the woods.  In the distance you can faintly hear a song bird and the sounds of the forest.";
 now the player is unlit;
 change exit found to true;
 move the player to Forest 1.
@@ -757,16 +789,18 @@ Rule for writing a paragraph about something (called the thingy):
      say "[line break][The thingy] contains:[line break][stuff in the thingy]";
   end if;
 end if.
-
-Indent is a number that varies. Indent is usually 0.
-To say stuff in (thingy - a thing):
-  increase indent by 2;
-  repeat with item running through visible things which are in the thingy begin;
-      say indent spaces;
-      if something visible is in the item, say "[A item], which contains:[line break][stuff in the item]";
-      else say "[A item][line break]";
-  end repeat;
-  decrease indent by 2.
+To say stuff in (O - an object):
+list the contents of O,
+    with newlines, 
+    indented, 
+    giving inventory information, 
+    as a sentence, 
+    including contents, 
+    including all contents, 
+    tersely, 
+    giving brief inventory information, 
+    not listing concealed items, 
+    and with extra indentation.
 To say (j - a number) spaces:
    (- spaces({j}); -).
 A thing can be untouched or touched. A thing is usually untouched.
@@ -832,8 +866,8 @@ Table of Rainbow Hints
 hint	used
 "You can cross it and get the pot of gold."	a number
 "You do not click your heels together three times while saying 'There's no place like home.' "	--
-"The solution of this puzzle is similar to the solution of the fissure puzzle in ADVENTURE"	--
 "Wave the stick while standing at the end of the rainbow"	--
+"This is similar to the fissure puzzle in ADVENTURE"	--
 
 Table of Barrel Hints
 hint	used
@@ -967,19 +1001,16 @@ Instead of dropping the battery-powered brass lantern when the player's command 
 Instead of switching on or switching off the broken lamp: say "The lamp is broken.  Some idiot must have smashed it."
 A newspaper is here. "There is an issue of US NEWS & DUNGEON REPORT here."
 The description of the newspaper is
-" [masthead]
-Zork (Dungeon) has been ported to Inform 7.
+" [masthead]This is the Inform 7 version of Dungeon (Zork).  For more information on Inform 7, see <http://inform-fiction.org>.  Please report all bugs to Dean Menezes <samanddeanus@yahoo.com>.
 
 Lots and lots and lots and LOTS of bugs have been fixed.
 
-Aspiring adventurers should avail themselves of every opportunity
-to broaden their intellectual horizons and increase their perspicacity.
+Aspiring adventurers should avail themselves of every opportunity to broaden their intellectual horizons and increase their perspicacity.
 
 Fatal events have somewhat more convoluted results than previously."
 To say masthead:
-center "****************************";
-center "*US NEWS AND DUNGEON REPORT*";
-center "****************************";
+center "US NEWS AND DUNGEON REPORT";
+center "2007[12 spaces]Late Dungeon Edition";
 say paragraph break.
 
 Understand "news", "report", and "paper" as the newspaper.
@@ -1107,7 +1138,26 @@ Instead of taking the rug: say "The rug is too heavy to lift."
 After pushing or pulling the rug for the first time: say "With a great effort, the rug is moved to one side of the room. With the rug moved, the dusty cover of a closed trap door appears."; now the trap door is revealed.
 After pushing or pulling the rug: say "Having moved the carpet previously, you find it impossible to move it again."
 
+Southeast of Forest2 is west of a room called Canyon View.  South from Canyon View is east of Forest5.  The description of Canyon View is "You are at the top of the Great Canyon on its south wall.  From here there is a marvelous view of the Canyon and parts of the Frigid River
+upstream.  Across the canyon, the walls of the White Cliffs still
+appear to loom far above.  Following the Canyon upstream (north and
+northwest), Aragain Falls may be seen, complete with rainbow. 
+Fortunately, my vision is better than average and I can discern the
+top of the Flood Control Dam #3 far to the distant north.  To the
+west and south can be seen an immense forest, stretching for miles
+around.  It is possible to climb down into the canyon from here."
 
+Down from Canyon View is a room called Rocky Ledge.  The description of Rocky Ledge is "You are on a ledge about halfway up the wall of the river canyon.
+You can see from here that the main flow from Aragain Falls twists
+along a passage which it is impossible to enter.  Below you is the
+canyon bottom.  Above you is more cliff, which still appears
+climbable."
+
+Down from Rocky Ledge is a room called Canyon Bottom.  The description of Canyon Bottom is "You are beneath the walls of the river canyon which may be climbable
+here.  There is a small stream here, which is the lesser part of the
+runoff of Aragain Falls. To the north is a narrow path."
+
+North of Canyon Bottom is southeast of a room called End of Rainbow.  The description of End of Rainbow is "You are on a small, rocky beach on the continuation of the Frigid River past the Falls.  The beach is narrow due to the presence of the White Cliffs.  The river canyon opens here and sunlight shines in from above. A rainbow crosses over the falls to the west and a narrow path continues to the southeast."
 
 Part 3 - The Dungeon
 
@@ -1774,6 +1824,9 @@ Understand "burned-out" and "burned out" as the ivory torch when the ivory torch
 North of Glacier Room is north of a room called Stream View.
 The description of Stream View is "You are standing on a path beside a gently flowing stream.  The path travels to the north and the east."
 A nondrainable watersource called the pdl2 is in Stream View. 
+A dungeon called In Stream is dark.  The description of In Stream is "You are on the gently flowing stream.  The upstream route is too narrow to  navigate and the downstream route is invisible due to twisting walls.  There is a narrow beach to land on."
+Instead of going up from In Stream, say "The way is too narrow."
+
 A coil of thin shiny wire is in Stream View.
 Understand "fuse" as the coil of wire. 
 The printed name of the coil of thin shiny wire is "wire coil".
@@ -1874,6 +1927,10 @@ Instead of going west from Damp Cave, say "It is too narrow for most insects."
 East of Loud Room is south of a dungeon called Ancient Chasm.  The description of Ancient Chasm is "A chasm, evidently produced by an ancient river, runs through the
 cave here.  Passages lead off in all directions."
 North of Ancient Chasm is southeast of a dead end.  West of Ancient Chasm is a dead end.
+East of Ancient Chasm is a dungeon called Tiny Cave.  The description of Tiny Cave is "This is a small cave whose exits are on the south and northwest."
+A hunk of bat guano is in Ancient Chasm.  Understand "excretement" and "shit" and "crap" and "poop" as the bat guano.
+The size of the bat guano is 20.  
+A shovel is in Ancient Chasm.  The later appearance of the shovel is "There is a large shovel here."  Understand "large shovel" as the shovel.  The size of the shovel is 15.
 
 Mirror Room No 2 is a dungeon. The printed name of Mirror Room No 2 is "Mirror Room". The description of Mirror Room No 2 is "This is a large square room with tall ceilings.  On the south wall is a gigantic mirror which fills the entire wall.  There are exits on the other three sides of the room."
 An gigantic mirror is in Mirror Room No 2.  It is scenery.
@@ -1890,7 +1947,7 @@ Down from Cave2 is a dungeon called Atlantis Room.  The description of Atlantis 
 A crystal trident is in Atlantis Room.  The initial appearance of the crystal trident is "On the shore lies Poseidon's own crystal trident." The later appearance of the crystal trident is "Poseidon's own crystal trident is here." The size of the crystal trident is 20.  The case-points of the crystal trident is 11. After taking the crystal trident for the first time: award 4 points; continue the action.
 
 Southwest of Atlantis Room is a dungeon called Reservoir North.  A drainable watersource called the pdl3 is in Reservoir North. The description of Reservoir North is "[if the pdl3 is on-stage]You are in a large cavernous room, north of a large reservoir.[otherwise]You are in a large cavernous room, the south of which was formerly a reservoir.[end if]  There is a tunnel leaving the room to the north."
-
+A nondrainable watersource called the pdl4 is in Reservoir. Down from In Stream is Reservoir.
 West of Cold Passage is a dungeon called Slide Room.  The description of Slide Room is "This is a small chamber, which appears to have been part of a coal mine. On the south wall of the chamber the letters 'Granite Wall' are etched in the rock. To the east is a long passage and there is a steep metal slide twisting downward. To the north is a small opening."
 
 The enormous mirror can be whole or trashed.  The gigantic mirror can be whole or trashed.
@@ -2174,19 +2231,20 @@ Carry out turning the bolt with the wrench:
     repeat with thingy running through drainable watersources begin;
       remove the thingy from play;
     end repeat;
+    remove the pdl4 from play;
   else;
     say "The sluice gates close and water starts to collect behind the dam.";
     move the pdl1 to Reservoir South;
     move the pdl3 to Reservoir North;
+    move the pdl4 to Reservoir;
   end if.
 North of Reservoir South is a dungeon called Reservoir.  The description of Reservoir is     
 "[if the pdl3 is on-stage]You are on the reservoir.  Beaches can be seen north and south.  Upstream a small stream enters the reservoir through a narrow cleft
 in the rocks.  The dam can be seen downstream.[otherwise]You are on what used to be a large reservoir, but which is now a large mud pile.  There are 'shores' to the north and south.[end if]".
 North of Reservoir is Reservoir North.
-Instead of going north from Reservoir South when the pdl3 is on-stage:
-  say "You are not equipped for swimming."
-Instead of going south from Reservoir North when the pdl3 is on-stage:
-  say "You are not equipped for swimming."
+Instead of going to a room that is not offroad:
+  if the player is not in a vehicle, print the you can't go message instead;
+  else continue the action.
 A hand-held air-pump is in Reservoir.  Understand "pump" and "airpump" as the air-pump.  The later appearance of the air-pump is "There is a small pump here."
 
 Down from Flood Control Dam #3 is a room called Dam Base.  The description of Dam Base is "You are at the base of Flood Control Dam #3, which looms above you
@@ -2203,7 +2261,7 @@ Carry out plugging the dboat with the viscous material:
   move the pile of plastic to the holder of the dboat;
   remove the dboat from play.
 A magic boat is a vehicle.  Understand "plastic" and "raft" and "seaworthy" as the magic boat.  The later appearance of the magic boat is "There is an inflated boat here." The size of the magic boat is 20.  The capacity of the magic boat is 100.
-Carry out inflating the pile of plastic with the air-pump:
+Carry out inflating it with:
   say "The boat inflates and appears seaworthy.";
   now the magic boat is in the holder of the pile of plastic;
   remove the pile of plastic from play.
@@ -2211,6 +2269,51 @@ Instead of entering the boat when the player is carrying the sharp stick:
   say "There is a hissing sound and the boat deflates.";
   move the dboat to the holder of the boat;
   remove the boat from play.
+Definition: a room is offroad if it does not contain a nondrainable watersource. 
+Instead of going by the magic boat when the player is in somewhere offroad: 
+    say "You can't go there in a magic boat."
+A tan label is in the magic boat.  Understand "fine print" and "fineprint" as the tan label.  The description of the tan label is "[tan label text]".
+To say tan label text:
+center "!!!! 	FROBOZZ MAGIC BOAT COMPANY  !!!!";
+say paragraph break;
+say "Hello, Sailor![paragraph break]";
+say "Instructions for use:[paragraph break]";
+say "[four spaces]To get into boat, type 'BOARD BOAT'[line break]";
+say "[four spaces]To leave boat, say 'DISEMBARK'[paragraph break]";
+say "[four spaces]To get into a body of water, say 'LAUNCH'[paragraph break]";
+say "[four spaces]To get to shore, say 'LAND'[paragraph break]";
+say "This boat is guaranteed against all defects in parts and
+workmanship for a period of 76 milliseconds from date of purchase or
+until first used, whichever comes first.[paragraph break]";
+say "WARNING:  This boat is made of plastic.[paragraph break]";
+say "Good Luck!".
+A river is a kind of room. The printed name of a river is usually "Frigid River".  Instead of going up from a river:  say "You cannot go upstream due to strong currents.".
+East of Dam Base is a river called River1.  The description of River1 is "You are on the River Frigid in the vicinity of the Dam.  The river flows quietly here.  There is a landing on the west shore."
+A nondrainable watersource called the pdl5 is in River1.
+Down from River1 is a river called River2.  The description of River2 is "The River turns a corner here making it impossible to see the
+Dam.  The White Cliffs loom on the east bank and large rocks prevent
+landing on the west."
+
+A nondrainable watersource called the pdl6 is in River2.
+Down from River2 is a river called River3.  The description of River3 is "The river descends here into a valley.  There is a narrow beach on
+the east below the cliffs and there is some shore on the west which may be suitable.  In the distance a faint rumbling can be heard."
+A nondrainable watersource called the pdl7 is in River3.
+Down from River3 is a river called River4.  The description of River4 is "The river is running faster here and the sound ahead appears to bethat of rushing water.  On the west shore is a sandy beach.  A small area of beach can also be seen below the Cliffs."
+A nondrainable watersource called the pdl8 is in River4.
+Down from River4 is a river called River5.  The description of River5 is "The sound of rushing water is nearly unbearable here.  On the west
+shore is a large landing area."
+A nondrainable watersource called the pdl9 is in River5.
+Down from River5 is a dungeon called Moby Lossage.
+Instead of looking while in Moby Lossage:  say "Unfortunately, a rubber raft doesn't provide much protection from
+the unfriendly sorts of rocks and boulders one meets at the bottom of many waterfalls.  Including this one."; end the game in death.
+Instead of going east from River2:  say "The White Cliffs prevent your landing here."
+South of Tiny Cave is northwest of a room called Rocky Shore.  The description of Rocky Shore is "You are on the west shore of the river.  An entrance to a cave is
+to the northwest.  The shore is very rocky here."
+East of Rocky Shore is River3.
+WCLF1 is a room.  The description of WCLF1 is "You are on a narrow strip of beach which runs along the base of the White Cliffs. The only path here is a narrow one, heading south
+along the Cliffs."  WCLF1 is west of River3.  The printed name of WCLF1 is "White Cliffs Beach".
+South of WCLF1 is a room called WCLF2. The description of WCLF2 is "You are on a rocky, narrow strip of beach beside the Cliffs.  A narrow path leads north along the shore."
+The printed name of WCLF2 is "White Cliffs Beach".  East of WCLF2 is River4.
 
 [Include (- 
   Array keyw string "ECOVXRMS"; 
