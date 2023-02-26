@@ -29,6 +29,50 @@ The description of Troll Room is &quot;<font color=#000080>This is a small room 
 <br>
 </font><font color=#000080>walls.</font>&quot;
 <br>
+A man called the Troll is in Troll Room.  The initial appearance of the Troll is &quot;<font color=#000080>[if the troll is consious]A nasty-looking troll, brandishing a bloody axe, blocks all passages out of the room.[otherwise]There is an unconsious troll here.[end if]</font>&quot;.
+<br>
+Instead of going when the player can see the consious Troll:
+<br>
+if the noun is not west, say &quot;<font color=#000080>The troll fends you off with a menacing gesture.</font>&quot;;
+<br>
+else continue the action.
+<br>
+Instead of throwing something at the troll:
+<br>
+say &quot;<font color=#000080>The troll, who is remarkably coordinated, catches [the noun] </font>&quot;;
+<br>
+if the noun is a weapon begin;
+<br>
+  say &quot;<font color=#000080>and being for the moment sated, throws it back.  Fortunately, the troll has poor control, and the knife falls on the floor.  He does not look pleased.</font>&quot;;
+<br>
+  move the noun to the location;
+<br>
+else;
+<br>
+  say &quot;<font color=#000080>and not having the most discriminating tastes, gleefully eats it.</font>&quot;;
+<br>
+  remove the noun from play;
+<br>
+end if.
+<br>
+The troll can be consious or unconsious.
+<br>
+Instead of attacking the unconsious troll with something:
+<br>
+say &quot;<font color=#000080>The unconscious troll cannot defend himself:  He dies.</font>&quot;;
+<br>
+say &quot;<font color=#000080>Almost as soon as the troll breathes his last breath, a cloud
+<br>
+</font><font color=#000080>of sinister black fog envelops him, and when the fog lifts, the
+<br>
+</font><font color=#000080>carcass has disappeared.</font>&quot;;
+<br>
+remove the troll from play.
+<br>
+The troll carries a weapon called an axe.
+<br>
+Rule for deciding the concealed possessions of the troll: no.
+<br>
 West of a dungeon called West of Chasm is south of Cellar. &quot;<font color=#000080>You are on the west edge of a chasm, the bottom of which cannot be seen. The east side is sheer rock, providing no exits. A narrow passage goes west.  The path you are on continues to the north and south.</font>&quot;
 <br>
 Instead of going down from West of Chasm: say &quot;<font color=#000080>The chasm probably leads directly to the infernal regions.</font>&quot;
@@ -57,15 +101,107 @@ Instead of destroying the painting:
 <br>
 </font><font color=#000080>artist's masterpieces, you have destroyed one.</font>&quot;; now the player has the worthless piece of canvas; remove the painting from play.
 <br>
-
-<br>
 Instead of destroying the painting with something:
 <br>
     say &quot;<font color=#000080>Congratulations!  Unlike the other vandals, who merely stole the
 <br>
 </font><font color=#000080>artist's masterpieces, you have destroyed one.</font>&quot;; now the player has the worthless piece of canvas; remove the painting from play.
 <br>
-
+To strike a blow at the player:
+<br>
+  let x be a random number between 1 and 6;
+<br>
+    if x is 1 or 2 begin;
+<br>
+      say &quot;<font color=#000080>[one of]The troll swings his axe, but it misses[or]The troll's axe barely misses your ear.[or]The axe sweeps past as you jump aside.[or]The axe crashes against the rock, throwing sparks![at random]</font>&quot;;
+<br>
+   else if x is 3;
+<br>
+      say &quot;<font color=#000080>The troll's axe removes your head.</font>&quot;;
+<br>
+      end the game in death;
+<br>
+   else if x is 4 or 5;
+<br>
+      say &quot;<font color=#000080>[one of]The troll hits you with a glancing blow, and you are momentarily
+<br>
+</font><font color=#000080>stunned.[or]An axe stroke makes a deep wound in your leg.[or]The troll's axe swings down, gashing your shoulder.[at random]</font>&quot;;
+<br>
+      increase the wounds of the player by 1;
+<br>
+   else if x is 6;
+<br>
+     say &quot;<font color=#000080>[one of]You stagger back under a hail of axe strokes.[or]The troll's mighty blow drops you to your knees.[or]The troll swings; the blade turns on your armor but crashes
+<br>
+</font><font color=#000080>broadside into your head.[at random]</font>&quot;;
+<br>
+     increase the wounds of the player by 2;
+<br>
+   end if.
+<br>
+Carry out attacking the troll with something:
+<br>
+  if a random chance of 1 in 2 succeeds begin;
+<br>
+  if the second noun is the sword begin;
+<br>
+    say &quot;<font color=#000080>[one of]Your sword crashes down, knocking the troll into dreamland.[or]The troll is battered into unconsciousness.[or] A furious exchange, and the troll is knocked out![at random]</font>&quot;;
+<br>
+  else;
+<br>
+    say &quot;<font color=#000080>[one of]The haft of your knife knocks out the troll.[or]The troll drops to the floor, unconscious.[or]The troll is knocked out![at random]</font>&quot;;
+<br>
+  end if;
+<br>
+  now the troll is unconsious;
+<br>
+  else if a random chance of 1 in 2 succeeds;
+<br>
+   if the second noun is the sword begin;
+<br>
+     say &quot;<font color=#000080>[one of]The troll receives a deep gash in his side.[or]A savage blow on the thigh!  The troll is stunned but can still fight![or]Slash!  Your blow lands!  That one hit an artery, it could be serious![at random]</font>&quot;;
+<br>
+  else;
+<br>
+  say &quot;<font color=#000080>[one of]The troll receives a deep gash in his side.[or]A savage cut on the leg stuns the troll, but he can still fight![or]Slash!  Your stroke connects!  The troll could be in serious trouble![at random]</font>&quot;;
+<br>
+  increase the wounds of the troll by 2;
+<br>
+  end if;
+<br>
+  else;
+<br>
+    say &quot;<font color=#000080>A good stroke, but it's too slow, the troll dodges.</font>&quot;;
+<br>
+  end if;
+<br>
+  
+<br>
+The troll has a number called wounds.
+<br>
+Every turn when the troll is on-stage:
+<br>
+  if the wounds of the troll is greater than 4 begin;
+<br>
+    say &quot;<font color=#000080>The troll takes a final blow and slumps to the floor, dead.</font>&quot;;
+<br>
+    say &quot;<font color=#000080>Almost as soon as the troll breathes his last breath, a cloud
+<br>
+</font><font color=#000080>of sinister black fog envelops him, and when the fog lifts, the
+<br>
+</font><font color=#000080>carcass has disappeared.</font>&quot;;
+<br>
+  remove the troll from play;
+<br>
+  end if.
+<br>
+Every turn when the player can see the consious troll:
+<br>
+  strike a blow at the player.
+<br>
+Every turn when the troll is unconsious and the troll is on-stage and the player cannot see the troll:
+<br>
+  now the troll is consious.
 <br>
 South of Gallery is northwest of a dungeon called Studio. The description of Studio is &quot;<font color=#000080>This is what appears to have been an artist's studio. The walls and floors are splattered with paints of 69 different colors. Strangely enough, nothing of value is hanging here. At the north and northwest of the room are open doors (also covered with paint). An extremely dark and narrow chimney leads up from a fireplace. Although you might be able to get up the chimney, it seems unlikely that you could get back down.</font>&quot;
 <br>

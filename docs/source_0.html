@@ -43,6 +43,50 @@ if the noun is the ground and the player is not in Sandy Beach, say  &quot;<font
 <br>
 
 <br>
+Playing is an action applying to one carried thing.  
+<br>
+Understand &quot;<font color=#000080>play [something]</font>&quot; as playing.
+<br>
+
+<br>
+Definition: a thing is valuble if the case-points of it is not 0.
+<br>
+After reading a command:
+<br>
+if the player's command includes &quot;<font color=#000080>TREASURE/TREASURES/VALUBLES</font>&quot;, replace the matched text with &quot;<font color=#000080>[list of visible valuble things had by the player]</font>&quot;.
+<br>
+
+<br>
+Check playing:
+<br>
+if the noun is the violin, say &quot;<font color=#000080>An amazing offensive noise issues from the violin.</font>&quot; instead;
+<br>
+say &quot;<font color=#000080>That makes no sense.</font>&quot; instead.
+<br>
+
+<br>
+Before playing a person who is not the player:
+<br>
+  say &quot;<font color=#000080>You are so completely engrossed in the role of [the noun] that you kill yourself, just as he would have done.</font>&quot;;
+<br>
+  end the game in death.
+<br>
+
+<br>
+Playing it with is an action applying to two carried things.  Understand &quot;<font color=#000080>play [something] with [something]</font>&quot; as playing it with.
+<br>
+Check playing it with:
+<br>
+if the noun is not the violin, say &quot;<font color=#000080>That makes no sense.</font>&quot; instead;
+<br>
+if the second noun is not a weapon, say &quot;<font color=#000080>An amazing offensive noise issues from the violin.</font>&quot; instead;
+<br>
+say &quot;<font color=#000080>Very good.  The violin is now worthless.</font>&quot;;
+<br>
+change the case-points of the violin to 0.
+<br>
+
+<br>
 Putting it under is an action applying to one carried thing and one thing.  Understand &quot;<font color=#000080>put [something] under [something]</font>&quot; and &quot;<font color=#000080>place [something] under [something]</font>&quot; and &quot;<font color=#000080>slide [something] under [something]</font>&quot; as putting it under.
 <br>
 
@@ -139,9 +183,9 @@ end the game in death.
 <br>
 The ground is a backdrop. The ground is everywhere. Understand &quot;<font color=#000080>sand</font>&quot; and &quot;<font color=#000080>earth</font>&quot; and &quot;<font color=#000080>here</font>&quot; and &quot;<font color=#000080>hole</font>&quot; as the ground.
 <br>
-When play begins:
+
 <br>
-Change the description of yourself to &quot;<font color=#000080>That's difficult unless your eyes are prehensile.</font>&quot;.
+The description of yourself is &quot;<font color=#000080>That's difficult unless your eyes are prehensile.</font>&quot;.
 <br>
 Launching is an action applying to nothing.  Understand &quot;<font color=#000080>launch</font>&quot; as launching.
 <br>
@@ -1667,7 +1711,7 @@ Rule for writing a paragraph about something (called the thingy):
 <br>
     if the thingy is the trophy case begin;
 <br>
-     say &quot;<font color=#000080>[line break]Your collection of treasures consists of:[line break]</font>&quot;;
+     say &quot;<font color=#000080>[line break]Your collection of treasures consists of:[line break][stuff in the thingy]</font>&quot;;
 <br>
     else if the thingy is the nest and the egg is in the thingy and the egg is untouched;
 <br>
@@ -1955,6 +1999,66 @@ else;
   resume the game;
 <br>
 end if.
+<br>
+The player has a number called fight strength.
+<br>
+The player has a number called wounds.  Wounds is usually 0.
+<br>
+The player has a number called cure wait.  Cure wait is usually 0.
+<br>
+Every turn:
+<br>
+  change the fight strength of the player to (5 * score / 616) + 2;
+<br>
+  if the cure wait of the player is greater than 0, decrease the cure wait of the player by 1;
+<br>
+  if the cure wait of the player is 0, change the wounds of the player to 0;
+<br>
+  if the wounds of the player is greater than 4 begin;
+<br>
+    say &quot;<font color=#000080>It appears that blow was too much for you.  I'm afraid you are dead.</font>&quot;;
+<br>
+    change the wounds of the player to 4;
+<br>
+    end the game in death;
+<br>
+  end if.
+<br>
+Diagnosing is an action applying to nothing.  Understand &quot;<font color=#000080>diagnose</font>&quot; as diagnosing.
+<br>
+Check diagnosing:
+<br>
+  if dead flag is true, say &quot;<font color=#000080>You are dead as a doornail.</font>&quot; instead.
+<br>
+Carry out diagnosing:
+<br>
+  if the wounds of the player is 0 begin;
+<br>
+    say &quot;<font color=#000080>You are in perfect health.  You are strong enough to take several wounds.</font>&quot;;
+<br>
+  else if the wounds of the player is 1;
+<br>
+    say &quot;<font color=#000080>You have a light wound, which will be cured in [cure wait of the player] turn(s).  You can survive one serious wound.</font>&quot;;
+<br>
+  else if the wounds of the player is 2;
+<br>
+    say &quot;<font color=#000080>You have a serious wound, which will be cured in [cure wait of the player] turn(s).  You can be killed by a serious wound.</font>&quot;;
+<br>
+  else if the wounds of the player is 3;
+<br>
+    say &quot;<font color=#000080>You have a several wounds, which will be cured in [cure wait of the player] turn(s).  You can be killed by one more light wound.</font>&quot;;  
+<br>
+  else if the wounds of the player is 4;
+<br>
+    say &quot;<font color=#000080>You have a serious wounds, which will be cured in [cure wait of the player] turn(s).  You are at death's door.</font>&quot;;  
+<br>
+  end if;
+<br>
+  if death count is 1, say &quot;<font color=#000080>You have been killed once.</font>&quot;;
+<br>
+  if death count is 2, say &quot;<font color=#000080>You have been killed twice.</font>&quot;.
+<br>
+ 
 <br>
 
 <br>
