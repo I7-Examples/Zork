@@ -23,7 +23,121 @@ The story headline is &quot;<font color=#000080>A Computerized Fantasy Simulatio
 <br>
 Use memory economy.
 <br>
-Release along with the source text and a website. 
+Release along with the source text and a website.
+<br>
+Digging into it with is an action applying to one thing and one carried thing.
+<br>
+Understand &quot;<font color=#000080>dig into/in [something] with/using [something]</font>&quot; as digging into it with.
+<br>
+Understand &quot;<font color=#000080>dig [something] with/using [something]</font>&quot; as digging into it with.
+<br>
+Understand &quot;<font color=#000080>dig with/using [something] into/in [something]</font>&quot; as digging into it with (with nouns reversed).
+<br>
+Check digging into it with:
+<br>
+if the second noun is not the shovel, say &quot;<font color=#000080>Digging with [the second noun] is slow and tedious.</font>&quot; instead;
+<br>
+if the noun is not the guano and the noun is not the ground, say &quot;<font color=#000080>Digging into [a noun] is silly.</font>&quot; instead;
+<br>
+if the noun is the ground and the player is not in Sandy Beach, say  &quot;<font color=#000080>The ground is too hard for digging here.</font>&quot;.
+<br>
+
+<br>
+Putting it under is an action applying to one carried thing and one thing.  Understand &quot;<font color=#000080>put [something] under [something]</font>&quot; and &quot;<font color=#000080>place [something] under [something]</font>&quot; and &quot;<font color=#000080>slide [something] under [something]</font>&quot; as putting it under.
+<br>
+
+<br>
+Check putting it under:
+<br>
+  if the second noun is not a door, say &quot;<font color=#000080>You can't do that.</font>&quot; instead;
+<br>
+  if the second noun is not the massive wooden door, say &quot;<font color=#000080>There's not enough room under this door.</font>&quot; instead;
+<br>
+  if the noun is the green piece of paper or the noun is the tan label or the noun is the leaflet begin;
+<br>
+    say &quot;<font color=#000080>The paper is very small and vanishes under the door.</font>&quot;;
+<br>
+    move the noun to the other side of the second noun instead;
+<br>
+  end if;
+<br>
+  if the noun is not the mat, say &quot;<font color=#000080>You can't do that.</font>&quot; instead;
+<br>
+  if mat under is true, say &quot;<font color=#000080>Look around.</font>&quot; instead.
+<br>
+Carry out putting it under:
+<br>
+  say &quot;<font color=#000080>The mat fits easily under the door.</font>&quot;;
+<br>
+  move the mat to the location;
+<br>
+  
+<br>
+Geronimoing is an action applying to nothing.  Understand &quot;<font color=#000080>geronimo</font>&quot; as geronimoing.  
+<br>
+Check geronimoing:
+<br>
+if the player is not inside the barrel, say &quot;<font color=#000080>Wasn't he an Indian?</font>&quot;.
+<br>
+Carry out geronimoing:
+<br>
+say &quot;<font color=#000080>I didn't think you would REALLY try to go over the falls in a
+<br>
+</font><font color=#000080>barrel. It seems that some 450 feet below, you were met by a number
+<br>
+</font><font color=#000080>of  unfriendly rocks and boulders, causing your immediate demise.  Is
+<br>
+</font><font color=#000080>this what 'over a barrel' means?</font>&quot;;
+<br>
+end the game in death.
+<br>
+
+<br>
+Instead of digging into the guano with the shovel for the first time:
+<br>
+say &quot;<font color=#000080>You are digging into a pile of bat guano.</font>&quot;
+<br>
+Instead of doing it for the second time:
+<br>
+say &quot;<font color=#000080>You seem to be getting knee deep in guano.</font>&quot;
+<br>
+Instead of doing it for the third time:
+<br>
+say &quot;<font color=#000080>You are covered with bat turds, cretin.</font>&quot;
+<br>
+Instead of doing it more than 3 times:
+<br>
+say &quot;<font color=#000080>This is getting nowhere.</font>&quot;
+<br>
+
+<br>
+Instead of digging into the ground with the shovel when the player is in Sandy Beach for the first time:
+<br>
+say &quot;<font color=#000080>You seem to be digging a hole here.</font>&quot;
+<br>
+Instead of doing it for the second time:
+<br>
+say &quot;<font color=#000080>The hole is getting deeper, but that's about it.</font>&quot;
+<br>
+Instead of doing it for the third time:
+<br>
+say &quot;<font color=#000080>You are surrounded by a wall of sand on all sides.</font>&quot;
+<br>
+Instead of doing it for the fourth time:
+<br>
+say &quot;<font color=#000080>You can see a small statue here in the sand.</font>&quot;;
+<br>
+move the statue to Sandy Beach.
+<br>
+Instead of doing it more than 4 times:
+<br>
+say &quot;<font color=#000080>The hole collapses, smothering you.</font>&quot;;
+<br>
+end the game in death.
+<br>
+
+<br>
+The ground is a backdrop. The ground is everywhere. Understand &quot;<font color=#000080>sand</font>&quot; and &quot;<font color=#000080>earth</font>&quot; and &quot;<font color=#000080>here</font>&quot; and &quot;<font color=#000080>hole</font>&quot; as the ground.
 <br>
 When play begins:
 <br>
@@ -65,9 +179,15 @@ Carry out landing:
 <br>
      say &quot;<font color=#000080>The White Cliffs prevent your landing here.</font>&quot; instead;
 <br>
-  else if the magic boat is in River3 or River4;
+  else if the magic boat is in River3 or the magic boat is in River4;
 <br>
-    say &quot;<font color=#000080>You must specify which direction here.</font>&quot; instead;  
+    say &quot;<font color=#000080>You must specify which direction here.</font>&quot; instead;
+<br>
+  else if the magic boat is in River5;
+<br>
+    move the magic boat to Dam Base;
+<br>
+    try looking instead;
 <br>
 end if;
 <br>
@@ -85,21 +205,33 @@ Carry out launching:
 <br>
     try looking instead;
 <br>
-  else if the magic boat is in Reservoir South or Reservoir North and the pdl1 is on-stage;
+  else if the magic boat is in Dam Base;
+<br>
+    move the magic boat to River1;
+<br>
+    try looking instead;
+<br>
+  else if the magic boat is in Reservoir South or the magic boat is in Reservoir North and the pdl1 is on-stage;
 <br>
     move the magic boat to Reservoir;
 <br>
     try looking instead;
 <br>
-  else if the magic boat is in Rocky Shore or WCLF1;
+  else if the magic boat is in Rocky Shore or the magic boat is in WCLF1;
 <br>
     move the magic boat to River3; 
 <br>
     try looking instead;
 <br>
-  else if the magic boat is in WCLF2;
+  else if the magic boat is in WCLF2 or the magic boat is in Sandy Beach;
 <br>
     move the magic boat to River4; 
+<br>
+    try looking instead;
+<br>
+  else if the magic boat is in Shore;
+<br>
+    move the magic boat to River5;
 <br>
     try looking instead;
 <br>
@@ -869,7 +1001,7 @@ Sending for is an action applying to one visible thing. Understand &quot;<font c
 <br>
 Check sending for:
 <br>
-if the noun is not the obj1234, say &quot;<font color=#000080>Why would you send for that?</font>&quot; instead.
+if the noun is not the obj1234, say &quot;<font color=#000080>That doesn't make sends.</font>&quot; instead.
 <br>
 Carry out sending for the free brochure:
 <br>
@@ -1253,30 +1385,6 @@ say &quot;<font color=#000080>Kicking [a noun] is not notably useful.</font>&quo
 <br>
 
 <br>
-<b>Table of Fancy Status</b>
-<br>
-<table><tr><td halign="left" valign="top"><u>left</u>&nbsp;&nbsp;</td><td halign="left" valign="top"><u> central</u>&nbsp;&nbsp;</td><td halign="left" valign="top"><u> right</u></td></tr>
-<tr><td halign="left" valign="top">&quot;<font color=#000080> [the player's surroundings]</font>&quot;&nbsp;&nbsp;</td><td halign="left" valign="top"> &quot;<font color=#000080></font>&quot;&nbsp;&nbsp;</td><td halign="left" valign="top"> &quot;<font color=#000080>Score: [score]    Moves: [turn count]</font>&quot;</td></tr>
-</table>
-<br>
-When play begins:
-<br>
-if wide enough,  change right alignment depth to 25;
-<br>
-else  change right alignment depth to 10.
-<br>
-Rule for constructing the status line:
-<br>
-     if wide enough, fill status bar with Table of Fancy Status;
-<br>
-    else fill status bar with Table of Ordinary Status;
-<br>
-     rule succeeds.
-<br>
-To decide whether wide enough:
-<br>
-(-(0-&gt;$21&gt;=60)-).
-<br>
 Lamp-power is a number that varies. Lamp-power is usually 130.
 <br>
 Every turn:
@@ -1583,8 +1691,6 @@ list the contents of O,
 <br>
     giving inventory information, 
 <br>
-    as a sentence, 
-<br>
     including contents, 
 <br>
     including all contents, 
@@ -1620,8 +1726,6 @@ To fatally leap:
 <table><tr><td halign="left" valign="top"><u>title</u>&nbsp;&nbsp;</td><td halign="left" valign="top"><u> subtable</u>&nbsp;&nbsp;</td><td halign="left" valign="top"><u> description</u></td></tr>
 <tr><td halign="left" valign="top">&quot;<font color=#000080>InvisiClues Hints</font>&quot;&nbsp;&nbsp;</td><td halign="left" valign="top"> Table of Hints&nbsp;&nbsp;</td><td halign="left" valign="top"> --</td></tr>
 </table>
-<br>
-&quot;<font color=#000080>Basics</font>&quot;
 <br>
 
 <br>

@@ -131,9 +131,21 @@ A nondrainable watersource called the pdl9 is in River5.
 <br>
 Down from River5 is a dungeon called Moby Lossage.
 <br>
-Instead of looking while in Moby Lossage:  say &quot;<font color=#000080>Unfortunately, a rubber raft doesn't provide much protection from
+The rusty iron key is in Moby Lossage.  The initial appearance of the rusty iron key is &quot;<font color=#000080> </font>&quot;.
 <br>
-</font><font color=#000080>the unfriendly sorts of rocks and boulders one meets at the bottom of many waterfalls.  Including this one.</font>&quot;; end the game in death.
+Every turn when the magic boat is in Moby Lossage and the player is in the magic boat:  say &quot;<font color=#000080>Unfortunately, a rubber raft doesn't provide much protection from the unfriendly sorts of rocks and boulders one meets at the bottom of many waterfalls.  Including this one.</font>&quot;; end the game in death; remove the magic boat from play.
+<br>
+
+<br>
+A closed openable container called a red buoy is in River4.  The initial appearance of the red buoy is &quot;<font color=#000080>There is a red buoy here (probably a warning).</font>&quot; 
+<br>
+The capacity of the buoy is 20.  The size of the buoy is 10.
+<br>
+A large emerald is in the buoy.  After taking the emerald: award 5 points; continue the action.
+<br>
+The case-points of the emerald is 10.
+<br>
+
 <br>
 Instead of going east from River2:  say &quot;<font color=#000080>The White Cliffs prevent your landing here.</font>&quot;
 <br>
@@ -150,6 +162,110 @@ WCLF1 is a room.  The description of WCLF1 is &quot;<font color=#000080>You are 
 South of WCLF1 is a room called WCLF2. The description of WCLF2 is &quot;<font color=#000080>You are on a rocky, narrow strip of beach beside the Cliffs.  A narrow path leads north along the shore.</font>&quot;
 <br>
 The printed name of WCLF2 is &quot;<font color=#000080>White Cliffs Beach</font>&quot;.  East of WCLF2 is River4.
+<br>
+
+<br>
+West of River4 is a room called Sandy Beach.  The description of Sandy Beach is &quot;<font color=#000080>You are on a large sandy beach at the shore of the river, which is flowing quickly by.  A path runs beside the river to the south here.</font>&quot;
+<br>
+
+<br>
+South of Sandy Beach is a room called Shore.  The description of Shore is &quot;<font color=#000080>You are on the shore of the River.  The river here seems somewhat treacherous.  A path travels from north to south here, the south end quickly turning around a sharp corner.</font>&quot; East of Shore is River5.
+<br>
+
+<br>
+South of Shore is a room called Aragain Falls.  The description of Aragain Falls is &quot;<font color=#000080>You are at the top of Aragain Falls, an enormous waterfall with a drop of about 450 feet.  The only path here is on the north end.[if rainbow flag is true]A solid rainbow spans the falls.[otherwise]A beautiful rainbow can be seen over the falls and to the east.[end if]</font>&quot;.
+<br>
+
+<br>
+Rainbow Room is a room.  The description of Rainbow Room is &quot;<font color=#000080>You are on top of a rainbow (I bet you never thought you would walk on a rainbow), with a magnificent view of the Falls.  The rainbow travels east-west here.  There is an NBC Commissary here.</font>&quot;
+<br>
+
+<br>
+Rainbow flag is a truth state that varies.  Rainbow flag is usually false.
+<br>
+
+<br>
+Instead of waving the stick:
+<br>
+  if the player is in Aragain Falls or the player is in End of Rainbow begin;
+<br>
+   if rainbow flag is true begin;
+<br>
+   say &quot;<font color=#000080>The rainbow seems to have become somewhat run-of-the-mill.</font>&quot;;
+<br>
+   change the east exit of Aragain Falls to nowhere;
+<br>
+   change the west exit of Rainbow Room to nowhere;
+<br>
+   change the west exit of End of Rainbow to nowhere;
+<br>
+   change the east exit of Rainbow Room to nowhere;
+<br>
+   change rainbow flag to false;
+<br>
+   else;
+<br>
+   say &quot;<font color=#000080>Suddenly, the rainbow appears to become solid and, I venture,
+<br>
+</font><font color=#000080>walkable (I think the giveaway was the stairs and bannister).</font>&quot;;
+<br>
+   if the pot of gold is untouched, move the pot of gold to End of Rainbow;
+<br>
+   change the east exit of Aragain Falls to Rainbow Room;
+<br>
+   change the west exit of Rainbow Room to Aragain Falls;
+<br>
+   change the west exit of End of Rainbow to Rainbow Room;
+<br>
+   change the east exit of Rainbow Room to End of Rainbow;
+<br>
+   change rainbow flag to true;
+<br>
+   end if;
+<br>
+ else if the player is in Rainbow Room;
+<br>
+    say &quot;<font color=#000080>The structural integrity of the rainbow seems to have left it,
+<br>
+</font><font color=#000080>leaving you about 450 feet in the air, supported by water vapor.</font>&quot;;
+<br>
+   end the game in death;
+<br>
+ else;
+<br>
+   say &quot;<font color=#000080>Very good.</font>&quot;;
+<br>
+ end if.
+<br>
+
+<br>
+A pot of gold is a thing.  The initial appearance of the pot of gold is &quot;<font color=#000080>At the end of the rainbow is a pot of gold.</font>&quot; The later appearance of the pot of gold is &quot;<font color=#000080>There is a pot of gold here.</font>&quot; The size of the pot of gold is 15. The case-points of the pot of gold is 10.  After taking the pot of gold:  award 10 points; continue the action.
+<br>
+A statue is a thing.
+<br>
+Understand &quot;<font color=#000080>beautiful</font>&quot; and &quot;<font color=#000080>sculpture</font>&quot; and &quot;<font color=#000080>rock</font>&quot; as the statue.
+<br>
+The size of the statue is 8.
+<br>
+After taking the statue: award 10 points; continue the action.
+<br>
+The case-points of the statue is 13.
+<br>
+Every turn while in Rainbow Room:  change exit found to true.
+<br>
+
+<br>
+After taking the buoy for the first time:
+<br>
+  say &quot;<font color=#000080>Something seems funny about the feel of the buoy.</font>&quot;.
+<br>
+
+<br>
+An open unopenable enterable container called a man-sized wooden barrel is in Aragain Falls.  The printed name of the man-sized wooden barrel is &quot;<font color=#000080>wooden barrel</font>&quot;.  The later appearance of the man-sized wooden barrel is &quot;<font color=#000080>There is a man-sized barrel here which you might be able to enter.</font>&quot;  The barrel is fixed in place.  The capacity of the man-sized wooden barrel is 100.
+<br>
+Instead of looking when the player is inside the barrel: say &quot;<font color=#000080>You are inside a barrel.  Congratulations.  Etched into the side of the barrel is the word 'Geronimo!'.  From your position, you cannot see the falls.</font>&quot;
+<br>
+After entering the barrel: try looking.
 <br>
 
 <br>

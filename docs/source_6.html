@@ -17,6 +17,180 @@
 <br>
 
 <br>
+Mirror Room No 2 is a dungeon. The printed name of Mirror Room No 2 is &quot;<font color=#000080>Mirror Room</font>&quot;. The description of Mirror Room No 2 is &quot;<font color=#000080>This is a large square room with tall ceilings.  On the south wall is a gigantic mirror which fills the entire wall.  There are exits on the other three sides of the room.</font>&quot;
+<br>
+An gigantic mirror is in Mirror Room No 2.  It is scenery.
+<br>
+The description of the gigantic mirror is &quot;<font color=#000080>[if the gigantic mirror is whole]There is an ugly person staring back at you.[otherwise]The mirror is broken into many pieces.[end if]</font>&quot;.
+<br>
+Instead of touching or rubbing the gigantic mirror:
+<br>
+  say &quot;<font color=#000080>There is a rumble from deep within the earth and the room shakes.</font>&quot;;
+<br>
+ move the player to Mirror Room No 1.
+<br>
+West of Mirror Room No 2 is a dungeon called Cold Passage. The description of Cold Passage is &quot;<font color=#000080>This is a cold and damp corridor where a long east-west passageway intersects with a northward path.</font>&quot;
+<br>
+North of Cold Passage is southwest of a dungeon called Steep Crawlway. The description of Steep Crawlway is &quot;<font color=#000080>This is a steep and narrow crawlway.  There are two exits nearby to
+<br>
+</font><font color=#000080>the south and southwest.</font>&quot;
+<br>
+South of Steep Crawlway is Mirror Room No 2.
+<br>
+East of Mirror Room No 2 is north of a dungeon called Cave2. The printed name of Cave2 is &quot;<font color=#000080>Tiny Cave</font>&quot;. The description of Cave2 is &quot;<font color=#000080>This is a tiny cave with entrances west and north, and a dark, forbidding staircase leading down.</font>&quot;
+<br>
+Down from Cave2 is a dungeon called Atlantis Room.  The description of Atlantis Room is &quot;<font color=#000080>This is an ancient room, long under water.  There are exits here to the southeast and upward.</font>&quot;
+<br>
+A crystal trident is in Atlantis Room.  The initial appearance of the crystal trident is &quot;<font color=#000080>On the shore lies Poseidon's own crystal trident.</font>&quot; The later appearance of the crystal trident is &quot;<font color=#000080>Poseidon's own crystal trident is here.</font>&quot; The size of the crystal trident is 20.  The case-points of the crystal trident is 11. After taking the crystal trident for the first time: award 4 points; continue the action.
+<br>
+
+<br>
+Southwest of Atlantis Room is a dungeon called Reservoir North.  A drainable watersource called the pdl3 is in Reservoir North. The description of Reservoir North is &quot;<font color=#000080>[if the pdl3 is on-stage]You are in a large cavernous room, north of a large reservoir.[otherwise]You are in a large cavernous room, the south of which was formerly a reservoir.[end if]  There is a tunnel leaving the room to the north.</font>&quot;
+<br>
+A nondrainable watersource called the pdl4 is in Reservoir. Down from In Stream is Reservoir.
+<br>
+West of Cold Passage is a dungeon called Slide Room.  The description of Slide Room is &quot;<font color=#000080>This is a small chamber, which appears to have been part of a coal mine. On the south wall of the chamber the letters 'Granite Wall' are etched in the rock. To the east is a long passage and there is a steep metal slide twisting downward. To the north is a small opening.</font>&quot;
+<br>
+
+<br>
+The enormous mirror can be whole or trashed.  The gigantic mirror can be whole or trashed.
+<br>
+The enormous mirror is whole.  The gigantic mirror is whole.
+<br>
+Check destroying the enormous mirror:
+<br>
+  if the enormous mirror is trashed begin;
+<br>
+    say &quot;<font color=#000080>It's already broken.</font>&quot; instead;
+<br>
+  else if the gigantic mirror is trashed;
+<br>
+    say &quot;<font color=#000080>Haven't you done enough damage already?</font>&quot; instead;
+<br>
+  else;
+<br>
+    now the enormous mirror is trashed;
+<br>
+     say &quot;<font color=#000080>You have broken the mirror.  I hope you have a seven years supply of
+<br>
+</font><font color=#000080>good luck handy.</font>&quot; instead;
+<br>
+  end if.
+<br>
+Check destroying the gigantic mirror:
+<br>
+  if the gigantic mirror is trashed begin;
+<br>
+    say &quot;<font color=#000080>It's already broken.</font>&quot; instead;
+<br>
+  else if the enormous mirror is trashed;
+<br>
+    say &quot;<font color=#000080>Haven't you done enough damage already?</font>&quot; instead;
+<br>
+  else;
+<br>
+    now the gigantic mirror is trashed;
+<br>
+     say &quot;<font color=#000080>You have broken the mirror.  I hope you have a seven years supply of
+<br>
+</font><font color=#000080>good luck handy.</font>&quot; instead;
+<br>
+  end if.
+<br>
+Check taking the enormous mirror:
+<br>
+  if the enormous mirror is trashed, say &quot;<font color=#000080>Nobody but a greedy surgeon would allow you to attempt that trick.</font>&quot; instead.
+<br>
+Check taking the gigantic mirror:
+<br>
+  if the enormous mirror is trashed, say &quot;<font color=#000080>Nobody but a greedy surgeon would allow you to attempt that trick.</font>&quot; instead.
+<br>
+The long slide is a door. The long slide is down from Slide Room.  The long slide is scenery.  Through the long slide is Cellar.
+<br>
+
+<br>
+Before going through the long slide:
+<br>
+if the rope is attached to the coffin or the rope is attached to the timber and the rope is in Slide Room, move the player to Slide1.
+<br>
+
+<br>
+Before climbing the rope:
+<br>
+if the rope is attached to the coffin or the rope is attached to the timber and the rope is in Slide Room, try going down instead.
+<br>
+
+<br>
+Sllide1 is a dark room.  The printed name of Slide1 is &quot;<font color=#000080>Slide</font>&quot;.  The description of Slide1 is &quot;<font color=#000080>This is an uncomfortable spot within the coal chute.  The rope to which you are clinging can be seen rising into the darkness above. There is more rope dangling below you.</font>&quot;
+<br>
+
+<br>
+Up from Slide1 is Slide Room.
+<br>
+Down from Slide1 is a dark room called Slide2.  The printed name of Slide2 is &quot;<font color=#000080>Slide</font>&quot;.  The description of Slide2 is &quot;<font color=#000080>This is another spot within the coal chute.  Above you the rope
+<br>
+</font><font color=#000080>climbs into darkness and the end of the rope is dangling five feet beneath you.</font>&quot;
+<br>
+
+<br>
+Down from Slide2 is a dark room called Slide3.  The printed name of Slide3 is &quot;<font color=#000080>Slide</font>&quot;. The description of Slide3 is &quot;<font color=#000080>You have reached the end of your rope.  Below you is darkness as
+<br>
+</font><font color=#000080>the chute makes a sharp turn.  On the east here is a small ledge which you might be able to stand on.</font>&quot;
+<br>
+
+<br>
+Down from Slide3 is Cellar.
+<br>
+East of Slide3 is a dark room called Slide Ledge.  The description of Slide Ledge is &quot;<font color=#000080>This is a narrow ledge abutting the coal chute, in which a rope can be seen passing downward.  Behind you, to the south, is a small room.</font>&quot;
+<br>
+West of Slide Ledge is nowhere.  
+<br>
+
+<br>
+South of Slide Ledge is a dark room called Sooty Room.  The description of Sooty Room is &quot;<font color=#000080>This is a small room with rough walls, and a ceiling which is steeply
+<br>
+</font><font color=#000080>sloping from north to south. There is coal dust covering almost
+<br>
+</font><font color=#000080>everything, and little bits of coal are scattered around the only exit
+<br>
+</font><font color=#000080>(which is a narrow passage to the north). In one corner of the room is
+<br>
+</font><font color=#000080>an old coal stove which lights the room with a cheery red glow.  There
+<br>
+</font><font color=#000080>is a very narrow crack in the north wall.</font>&quot;
+<br>
+
+<br>
+A red crystal sphere is in Sooty Room.  The initial appearance of the crystal sphere is &quot;<font color=#000080>On the floor sits a red crystal sphere.</font>&quot; The later appearance of the crystal sphere is &quot;<font color=#000080>There is red crystal sphere here.</font>&quot; 
+<br>
+Understand &quot;<font color=#000080>PALANTHIR</font>&quot; and &quot;<font color=#000080>STONE</font>&quot; and &quot;<font color=#000080>SEEING</font>&quot; and &quot;<font color=#000080>GLASS</font>&quot; and &quot;<font color=#000080>BALL</font>&quot; as the white crystal sphere.
+<br>
+The case-points of the red crystal sphere is 10.  After taking the red crystal sphere: award 5 points; continue the action.
+<br>
+
+<br>
+The description of the red crystal sphere is &quot;<font color=#000080>[red sphere text]</font>&quot;.
+<br>
+To say red sphere text:
+<br>
+if the white crystal sphere is in something which is closed and opaque begin;
+<br>
+  say &quot;<font color=#000080>You see only darkness.</font>&quot;;
+<br>
+else;
+<br>
+  say &quot;<font color=#000080>As you peer into the sphere, a strange vision takes shape of
+<br>
+</font><font color=#000080>a distant room, which can be described clearly....[paragraph break]</font>&quot;;
+<br>
+  say &quot;<font color=#000080>[description of the location of the white crystal sphere][paragraph break]</font>&quot;;
+<br>
+  say &quot;<font color=#000080>The vision fades, revealing only an ordinary crystal sphere.</font>&quot;;
+<br>
+end if.
+<br>
+Instead of searching the blue crystal sphere:  try examining the noun instead.
+<br>
 North of Slide Room is a dungeon called Mine Entrance.  The description of Mine Entrance is &quot;<font color=#000080>You are standing at the entrance of what might have been a coal
 <br>
 </font><font color=#000080>mine. To the northeast and the northwest are entrances to the mine,

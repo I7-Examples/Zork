@@ -21,13 +21,15 @@ West of Deep Ravine is west of a dungeon called Rocky Crawl.
 <br>
 The description of Rocky Crawl is &quot;<font color=#000080>This is a crawlway with a three-foot high ceiling.  Your footing is very unsure here due to the assortment of rocks underfoot.  Passages can be seen in the east, west, and northwest corners of the passage.</font>&quot;
 <br>
-East of a dungeon called Dome Room is east of Low Crawl. &quot;<font color=#000080>You are at the periphery of a large dome, which forms the ceiling of another room below.  Protecting you from a precipitous drop is a wooden railing which circles the dome.</font>&quot;
+East of a dungeon called Dome Room is east of Rocky Crawl. &quot;<font color=#000080>You are at the periphery of a large dome, which forms the ceiling of another room below.  Protecting you from a precipitous drop is a wooden railing which circles the dome.</font>&quot;
 <br>
 Instead of jumping while in Dome Room:
 <br>
 fatally leap.
 <br>
 A dungeon called Torch Room is down from Dome Room. &quot;<font color=#000080>This is a large room with a prominent doorway leading to a down staircase. To the west is a narrow twisting tunnel, covered with a thin layer of dust.  Above you is a large dome painted with scenes depicting elfin hacking rites. Up around the edge of the dome (20 feet up) is a wooden railing. In the center of the room there is a white marble pedestal.</font>&quot;
+<br>
+The railing is unevenly shaped.
 <br>
 The railing is a thing in Dome Room. After tying the rope to the railing: say &quot;<font color=#000080>The rope drops over the side and comes within ten feet of the floor.</font>&quot;; try silently dropping the coil of rope.
 <br>
@@ -45,7 +47,7 @@ Up from Torch Room is nowhere.
 <br>
 Instead of going up from Torch Room: say &quot;<font color=#000080>You cannot reach the rope.</font>&quot;
 <br>
-An ivory torch is here.  &quot;<font color=#000080>Sitting on the pedestal is a flaming torch, made of ivory.</font>&quot;
+An ivory torch is in Torch Room.  The initial appearance of the ivory torch is &quot;<font color=#000080>Sitting on the pedestal is a flaming torch, made of ivory.</font>&quot;
 <br>
 The size of the ivory torch is 20.
 <br>
@@ -72,6 +74,122 @@ else;
  say &quot;<font color=#000080>There is [a coil] here[if the coil is attached to a visible nonrope thing], tied to [the list of nonrope visible things which are attached to the coil][end if].</font>&quot;;
 <br>
 end if.
+<br>
+West of Torch Room is a dungeon called Tiny Room.  The description of Tiny Room is &quot;<font color=#000080>This is a tiny room, which has an exit to the east.</font>&quot;
+<br>
+
+<br>
+The initial appearance of the massive wooden door is  &quot;<font color=#000080>On the [way through the massive wooden door] side of the room is a massive wooden door, near the top of which, in the center, is a window barred with iron.  A formidable bolt lock is set within the door frame.  A keyhole lies within the lock[if the keyhole is closed]covered by a thin metal lid lies within the lock.[otherwise].[end if]</font>&quot;
+<br>
+
+<br>
+A container called a keyhole is a thing. The keyhole is closed and openable. 
+<br>
+When play begins:
+<br>
+now the keyhole is part of the massive wooden door.
+<br>
+To decide what direction is the way through (frame - a door): 
+<br>
+    let far side be the other side of frame; 
+<br>
+    let way be the best route from the location to the far side, using even locked doors; 
+<br>
+    if way is a direction, decide on the way; 
+<br>
+    decide on inside. 
+<br>
+Understand &quot;<font color=#000080>lid</font>&quot; as the keyhole.
+<br>
+Report closing the keyhole:
+<br>
+say &quot;<font color=#000080>The lid falls to cover the keyhole.</font>&quot;
+<br>
+Report opening the keyhole:
+<br>
+say &quot;<font color=#000080>The lid opens.</font>&quot;
+<br>
+Instead of inserting something into the keyhole when something is in the keyhole:
+<br>
+  say &quot;<font color=#000080>The keyhole is occupied.</font>&quot;
+<br>
+Before locking or unlocking the massive wooden door with something:
+<br>
+if something is in the keyhole, say &quot;<font color=#000080>The keyhole is blocked.</font>&quot; instead.
+<br>
+The capacity of the keyhole is 12.
+<br>
+A rusty iron key is a thing. The rusty iron key unlocks the massive door.
+<br>
+Before turning the rusty iron key:
+<br>
+if the iron key is in the massive door, try unlocking the massive door with the iron key instead.
+<br>
+Instead of going inside while in Tiny Room: try going north instead.
+<br>
+Instead of going outside while in Dreary Room:  try going south instead.
+<br>
+After inserting something into the keyhole:
+<br>
+if the noun is the stick or the noun is the screwdriver or the noun is the set of keys and the rusty key is in Moby Lossage begin;
+<br>
+  say &quot;<font color=#000080>There is a faint noise from behind the door and a small cloud of
+<br>
+</font><font color=#000080>dust rises from beneath it.</font>&quot;;
+<br>
+  now the rusty iron key is on the mat;
+<br>
+  now the rusty iron key is touched;
+<br>
+else;
+<br>
+continue the action;
+<br>
+end if.
+<br>
+
+<br>
+The massive wooden door is a door.  North of Tiny Room is the massive wooden door.  North of the massive wooden door is a dungeon called Dreary Room.  The description of Dreary Room is  &quot;<font color=#000080>This is a small and rather dreary room, which is eerily illuminated
+<br>
+</font><font color=#000080>by a red glow emanating from a crack in one of the walls.  The light 
+<br>
+</font><font color=#000080>appears to focus on a dusty wooden table in the center of the room.</font>&quot;
+<br>
+The massive wooden door is closed,openable, locked, and lockable.
+<br>
+
+<br>
+A blue crystal sphere is a thing in Dreary Room.
+<br>
+The description of the blue crystal sphere is &quot;<font color=#000080>[blue sphere text]</font>&quot;.
+<br>
+To say blue sphere text:
+<br>
+if the red crystal sphere is in something which is closed and opaque begin;
+<br>
+  say &quot;<font color=#000080>You see only darkness.</font>&quot;;
+<br>
+else;
+<br>
+  say &quot;<font color=#000080>As you peer into the sphere, a strange vision takes shape of
+<br>
+</font><font color=#000080>a distant room, which can be described clearly....[paragraph break]</font>&quot;;
+<br>
+  say &quot;<font color=#000080>[description of the location of the red crystal sphere][paragraph break]</font>&quot;;
+<br>
+  say &quot;<font color=#000080>The vision fades, revealing only an ordinary crystal sphere.</font>&quot;;
+<br>
+end if.
+<br>
+Understand &quot;<font color=#000080>PALANTHIR</font>&quot; and &quot;<font color=#000080>STONE</font>&quot; and &quot;<font color=#000080>SEEING</font>&quot; and &quot;<font color=#000080>GLASS</font>&quot; and &quot;<font color=#000080>BALL</font>&quot; as the white crystal sphere.
+<br>
+After reading a command:
+<br>
+  if the player's command includes &quot;<font color=#000080>BALLS/PALANTHIRI/PALANTHIRS/SPHERES</font>&quot;, replace the matched text with &quot;<font color=#000080>BOTH SPHERE</font>&quot;.
+<br>
+
+<br>
+
 <br>
 Northwest of Low Crawl is east of a dungeon called Egyptian Room.
 <br>
@@ -302,98 +420,6 @@ A hunk of bat guano is in Ancient Chasm.  Understand &quot;<font color=#000080>e
 The size of the bat guano is 20.  
 <br>
 A shovel is in Ancient Chasm.  The later appearance of the shovel is &quot;<font color=#000080>There is a large shovel here.</font>&quot;  Understand &quot;<font color=#000080>large shovel</font>&quot; as the shovel.  The size of the shovel is 15.
-<br>
-
-<br>
-Mirror Room No 2 is a dungeon. The printed name of Mirror Room No 2 is &quot;<font color=#000080>Mirror Room</font>&quot;. The description of Mirror Room No 2 is &quot;<font color=#000080>This is a large square room with tall ceilings.  On the south wall is a gigantic mirror which fills the entire wall.  There are exits on the other three sides of the room.</font>&quot;
-<br>
-An gigantic mirror is in Mirror Room No 2.  It is scenery.
-<br>
-The description of the gigantic mirror is &quot;<font color=#000080>[if the gigantic mirror is whole]There is an ugly person staring back at you.[otherwise]The mirror is broken into many pieces.[end if]</font>&quot;.
-<br>
-Instead of touching or rubbing the gigantic mirror:
-<br>
-  say &quot;<font color=#000080>There is a rumble from deep within the earth and the room shakes.</font>&quot;;
-<br>
- move the player to Mirror Room No 1.
-<br>
-West of Mirror Room No 2 is a dungeon called Cold Passage. The description of Cold Passage is &quot;<font color=#000080>This is a cold and damp corridor where a long east-west passageway intersects with a northward path.</font>&quot;
-<br>
-North of Cold Passage is southwest of a dungeon called Steep Crawlway. The description of Steep Crawlway is &quot;<font color=#000080>This is a steep and narrow crawlway.  There are two exits nearby to
-<br>
-</font><font color=#000080>the south and southwest.</font>&quot;
-<br>
-South of Steep Crawlway is Mirror Room No 2.
-<br>
-East of Mirror Room No 2 is north of a dungeon called Cave2. The printed name of Cave2 is &quot;<font color=#000080>Tiny Cave</font>&quot;. The description of Cave2 is &quot;<font color=#000080>This is a tiny cave with entrances west and north, and a dark, forbidding staircase leading down.</font>&quot;
-<br>
-Down from Cave2 is a dungeon called Atlantis Room.  The description of Atlantis Room is &quot;<font color=#000080>This is an ancient room, long under water.  There are exits here to the southeast and upward.</font>&quot;
-<br>
-A crystal trident is in Atlantis Room.  The initial appearance of the crystal trident is &quot;<font color=#000080>On the shore lies Poseidon's own crystal trident.</font>&quot; The later appearance of the crystal trident is &quot;<font color=#000080>Poseidon's own crystal trident is here.</font>&quot; The size of the crystal trident is 20.  The case-points of the crystal trident is 11. After taking the crystal trident for the first time: award 4 points; continue the action.
-<br>
-
-<br>
-Southwest of Atlantis Room is a dungeon called Reservoir North.  A drainable watersource called the pdl3 is in Reservoir North. The description of Reservoir North is &quot;<font color=#000080>[if the pdl3 is on-stage]You are in a large cavernous room, north of a large reservoir.[otherwise]You are in a large cavernous room, the south of which was formerly a reservoir.[end if]  There is a tunnel leaving the room to the north.</font>&quot;
-<br>
-A nondrainable watersource called the pdl4 is in Reservoir. Down from In Stream is Reservoir.
-<br>
-West of Cold Passage is a dungeon called Slide Room.  The description of Slide Room is &quot;<font color=#000080>This is a small chamber, which appears to have been part of a coal mine. On the south wall of the chamber the letters 'Granite Wall' are etched in the rock. To the east is a long passage and there is a steep metal slide twisting downward. To the north is a small opening.</font>&quot;
-<br>
-
-<br>
-The enormous mirror can be whole or trashed.  The gigantic mirror can be whole or trashed.
-<br>
-The enormous mirror is whole.  The gigantic mirror is whole.
-<br>
-Check destroying the enormous mirror:
-<br>
-  if the enormous mirror is trashed begin;
-<br>
-    say &quot;<font color=#000080>It's already broken.</font>&quot; instead;
-<br>
-  else if the gigantic mirror is trashed;
-<br>
-    say &quot;<font color=#000080>Haven't you done enough damage already?</font>&quot; instead;
-<br>
-  else;
-<br>
-    now the enormous mirror is trashed;
-<br>
-     say &quot;<font color=#000080>You have broken the mirror.  I hope you have a seven years supply of
-<br>
-</font><font color=#000080>good luck handy.</font>&quot; instead;
-<br>
-  end if.
-<br>
-Check destroying the gigantic mirror:
-<br>
-  if the gigantic mirror is trashed begin;
-<br>
-    say &quot;<font color=#000080>It's already broken.</font>&quot; instead;
-<br>
-  else if the enormous mirror is trashed;
-<br>
-    say &quot;<font color=#000080>Haven't you done enough damage already?</font>&quot; instead;
-<br>
-  else;
-<br>
-    now the gigantic mirror is trashed;
-<br>
-     say &quot;<font color=#000080>You have broken the mirror.  I hope you have a seven years supply of
-<br>
-</font><font color=#000080>good luck handy.</font>&quot; instead;
-<br>
-  end if.
-<br>
-Check taking the enormous mirror:
-<br>
-  if the enormous mirror is trashed, say &quot;<font color=#000080>Nobody but a greedy surgeon would allow you to attempt that trick.</font>&quot; instead.
-<br>
-Check taking the gigantic mirror:
-<br>
-  if the enormous mirror is trashed, say &quot;<font color=#000080>Nobody but a greedy surgeon would allow you to attempt that trick.</font>&quot; instead.
-<br>
-Down from Slide Room is Cellar.
 <br>
 
 <br>

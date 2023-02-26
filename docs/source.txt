@@ -1,6 +1,6 @@
 "Zork" by Dean Menezes
 
-Include (- Serial "071120"; -).
+Include (- Serial "071123"; -).
 
 
 Part 1 - New Actions and Concepts
@@ -8,7 +8,64 @@ Part 1 - New Actions and Concepts
 The story genre is "Fantasy". 
 The story headline is "A Computerized Fantasy Simulation Game".
 Use memory economy.
-Release along with the source text and a website. 
+Release along with the source text and a website.
+Digging into it with is an action applying to one thing and one carried thing.
+Understand "dig into/in [something] with/using [something]" as digging into it with.
+Understand "dig [something] with/using [something]" as digging into it with.
+Understand "dig with/using [something] into/in [something]" as digging into it with (with nouns reversed).
+Check digging into it with:
+if the second noun is not the shovel, say "Digging with [the second noun] is slow and tedious." instead;
+if the noun is not the guano and the noun is not the ground, say "Digging into [a noun] is silly." instead;
+if the noun is the ground and the player is not in Sandy Beach, say  "The ground is too hard for digging here.".
+
+Putting it under is an action applying to one carried thing and one thing.  Understand "put [something] under [something]" and "place [something] under [something]" and "slide [something] under [something]" as putting it under.
+
+Check putting it under:
+  if the second noun is not a door, say "You can't do that." instead;
+  if the second noun is not the massive wooden door, say "There's not enough room under this door." instead;
+  if the noun is the green piece of paper or the noun is the tan label or the noun is the leaflet begin;
+    say "The paper is very small and vanishes under the door.";
+    move the noun to the other side of the second noun instead;
+  end if;
+  if the noun is not the mat, say "You can't do that." instead;
+  if mat under is true, say "Look around." instead.
+Carry out putting it under:
+  say "The mat fits easily under the door.";
+  move the mat to the location;
+  
+Geronimoing is an action applying to nothing.  Understand "geronimo" as geronimoing.  
+Check geronimoing:
+if the player is not inside the barrel, say "Wasn't he an Indian?".
+Carry out geronimoing:
+say "I didn't think you would REALLY try to go over the falls in a
+barrel. It seems that some 450 feet below, you were met by a number
+of  unfriendly rocks and boulders, causing your immediate demise.  Is
+this what 'over a barrel' means?";
+end the game in death.
+
+Instead of digging into the guano with the shovel for the first time:
+say "You are digging into a pile of bat guano."
+Instead of doing it for the second time:
+say "You seem to be getting knee deep in guano."
+Instead of doing it for the third time:
+say "You are covered with bat turds, cretin."
+Instead of doing it more than 3 times:
+say "This is getting nowhere."
+
+Instead of digging into the ground with the shovel when the player is in Sandy Beach for the first time:
+say "You seem to be digging a hole here."
+Instead of doing it for the second time:
+say "The hole is getting deeper, but that's about it."
+Instead of doing it for the third time:
+say "You are surrounded by a wall of sand on all sides."
+Instead of doing it for the fourth time:
+say "You can see a small statue here in the sand.";
+move the statue to Sandy Beach.
+Instead of doing it more than 4 times:
+say "The hole collapses, smothering you.";
+end the game in death.
+
+The ground is a backdrop. The ground is everywhere. Understand "sand" and "earth" and "here" and "hole" as the ground.
 When play begins:
 Change the description of yourself to "That's difficult unless your eyes are prehensile.".
 Launching is an action applying to nothing.  Understand "launch" as launching.
@@ -29,8 +86,11 @@ Carry out landing:
     try looking instead;
   else if the magic boat is in River2;
      say "The White Cliffs prevent your landing here." instead;
-  else if the magic boat is in River3 or River4;
-    say "You must specify which direction here." instead;  
+  else if the magic boat is in River3 or the magic boat is in River4;
+    say "You must specify which direction here." instead;
+  else if the magic boat is in River5;
+    move the magic boat to Dam Base;
+    try looking instead;
 end if;
   end if;
   say "You cannot land from here." instead.
@@ -39,14 +99,20 @@ Carry out launching:
   if the magic boat is in Stream View begin;
     move the magic boat to In Stream;
     try looking instead;
-  else if the magic boat is in Reservoir South or Reservoir North and the pdl1 is on-stage;
+  else if the magic boat is in Dam Base;
+    move the magic boat to River1;
+    try looking instead;
+  else if the magic boat is in Reservoir South or the magic boat is in Reservoir North and the pdl1 is on-stage;
     move the magic boat to Reservoir;
     try looking instead;
-  else if the magic boat is in Rocky Shore or WCLF1;
+  else if the magic boat is in Rocky Shore or the magic boat is in WCLF1;
     move the magic boat to River3; 
     try looking instead;
-  else if the magic boat is in WCLF2;
+  else if the magic boat is in WCLF2 or the magic boat is in Sandy Beach;
     move the magic boat to River4; 
+    try looking instead;
+  else if the magic boat is in Shore;
+    move the magic boat to River5;
     try looking instead;
   end if;
   end if;
@@ -431,7 +497,7 @@ The aviator is a backdrop. The aviator is everywhere. Understand "flyer" as the 
 Brochure flag is a number that varies. Brochure flag is usually 0.
 Sending for is an action applying to one visible thing. Understand "send for [something]" as sending for. Understand "send [something]" as sending for.
 Check sending for:
-if the noun is not the obj1234, say "Why would you send for that?" instead.
+if the noun is not the obj1234, say "That doesn't make sends." instead.
 Carry out sending for the free brochure:
 if brochure flag is 0 begin;
   say "OK, but you know the postal service...";
@@ -629,19 +695,6 @@ Kicking is an action applying to one visible thing. Understand "kick [something]
 Carry out kicking: if dead flag is true, say "All such attacks are vain in your position." instead;
 say "Kicking [a noun] is not notably useful."
 
-Table of Fancy Status
-left				central	right
-" [the player's surroundings]"	""	"Score: [score]    Moves: [turn count]"
-
-When play begins:
-if wide enough,  change right alignment depth to 25;
-else  change right alignment depth to 10.
-Rule for constructing the status line:
-     if wide enough, fill status bar with Table of Fancy Status;
-    else fill status bar with Table of Ordinary Status;
-     rule succeeds.
-To decide whether wide enough:
-(-(0->$21>=60)-).
 Lamp-power is a number that varies. Lamp-power is usually 130.
 Every turn:
   if the battery-powered brass lantern is switched on begin;
@@ -795,7 +848,6 @@ list the contents of O,
     with newlines, 
     indented, 
     giving inventory information, 
-    as a sentence, 
     including contents, 
     including all contents, 
     tersely, 
@@ -815,7 +867,6 @@ Table of Basic Help Options (continued)
 title	subtable		description
 "InvisiClues Hints"		Table of Hints	--
 
-"Basics"
 
 Table of Hints
 title	subtable	description	toggle
@@ -985,6 +1036,20 @@ An electric lamp is a kind of device. Carry out switching on an electric lamp: n
 
 A portable supporter called a rubber welcome mat is here. "A rubber mat saying 'Welcome to Zork' lies by the door." The description of the mat is "The mat says 'Welcome to Zork'."
 The size of the rubber welcome mat is 12.
+
+Mat under is a truth state that varies. Mat under is usually false.
+After taking, pushing, or pulling the rubber welcome mat:
+  if something (called the thingy) is on the mat begin;
+    say "As the mat is moved, [a thingy] falls from it and onto the floor.";
+    move the thingy to the location;
+    change mat under to false;
+  else;
+     change mat under to false;
+     continue the action;
+  end if.
+Instead of removing something from the mat when mat under is true:
+  print the you can't see message instead.
+
 An outdoors room called North of House is north of West of House.  "You are facing the north side of a white house.  There is no door here, and all the windows are barred." South of North of House is nowhere.  West of North of House is West of House. 
 
 An outdoors room called South of House is south of West of House.  "You are facing the south side of a white house.  There is no door here, and all the windows are barred."  North of South of House is nowhere. West of South of House is West of House.
@@ -1759,7 +1824,19 @@ center "FROBOZZ";
 center "Magic Alarm Company";
 center "(Hello, footpad!)".
 A white crystal sphere is in Dingy Closet. 
+Instead of searching the blue crystal sphere:  try examining the noun instead.
 The later appearance of the white crystal sphere is "There is a beautiful white crystal sphere here."
+The description of the white crystal sphere is "[white sphere text]".
+To say white sphere text:
+if the blue crystal sphere is in something which is closed and opaque begin;
+  say "You see only darkness.";
+else;
+  say "As you peer into the sphere, a strange vision takes shape of
+a distant room, which can be described clearly....[paragraph break]";
+  say "[description of the location of the blue crystal sphere][paragraph break]";
+  say "The vision fades, revealing only an ordinary crystal sphere.";
+end if.
+Instead of searching the blue crystal sphere:  try examining the noun instead.
 Understand "PALANTHIR" and "STONE" and "SEEING" and "GLASS" and "BALL" as the white crystal sphere.
 The size of the white crystal sphere is 10.
 After taking the white crystal sphere for the first time: award 6 points; continue the action.
@@ -1802,10 +1879,11 @@ Part 6 -  Deep Ravine, Rocky Crawl, Egyptian Area
 
 West of Deep Ravine is west of a dungeon called Rocky Crawl.
 The description of Rocky Crawl is "This is a crawlway with a three-foot high ceiling.  Your footing is very unsure here due to the assortment of rocks underfoot.  Passages can be seen in the east, west, and northwest corners of the passage."
-East of a dungeon called Dome Room is east of Low Crawl. "You are at the periphery of a large dome, which forms the ceiling of another room below.  Protecting you from a precipitous drop is a wooden railing which circles the dome."
+East of a dungeon called Dome Room is east of Rocky Crawl. "You are at the periphery of a large dome, which forms the ceiling of another room below.  Protecting you from a precipitous drop is a wooden railing which circles the dome."
 Instead of jumping while in Dome Room:
 fatally leap.
 A dungeon called Torch Room is down from Dome Room. "This is a large room with a prominent doorway leading to a down staircase. To the west is a narrow twisting tunnel, covered with a thin layer of dust.  Above you is a large dome painted with scenes depicting elfin hacking rites. Up around the edge of the dome (20 feet up) is a wooden railing. In the center of the room there is a white marble pedestal."
+The railing is unevenly shaped.
 The railing is a thing in Dome Room. After tying the rope to the railing: say "The rope drops over the side and comes within ten feet of the floor."; try silently dropping the coil of rope.
 Instead of climbing the rope when the coil of rope is attached to the railing:
 try going down instead.
@@ -1814,7 +1892,7 @@ Instead of going down from Dome Room when the rope is not attached to the railin
 say "You cannot go down without breaking many bones."
 Up from Torch Room is nowhere.
 Instead of going up from Torch Room: say "You cannot reach the rope."
-An ivory torch is here.  "Sitting on the pedestal is a flaming torch, made of ivory."
+An ivory torch is in Torch Room.  The initial appearance of the ivory torch is "Sitting on the pedestal is a flaming torch, made of ivory."
 The size of the ivory torch is 20.
 The case-points of the ivory torch is 14.
 After taking the ivory torch for the first time:
@@ -1828,6 +1906,64 @@ Rule for writing a paragraph about a rope (called the coil) when the coil is att
 else;
  say "There is [a coil] here[if the coil is attached to a visible nonrope thing], tied to [the list of nonrope visible things which are attached to the coil][end if].";
 end if.
+West of Torch Room is a dungeon called Tiny Room.  The description of Tiny Room is "This is a tiny room, which has an exit to the east."
+
+The initial appearance of the massive wooden door is  "On the [way through the massive wooden door] side of the room is a massive wooden door, near the top of which, in the center, is a window barred with iron.  A formidable bolt lock is set within the door frame.  A keyhole lies within the lock[if the keyhole is closed]covered by a thin metal lid lies within the lock.[otherwise].[end if]"
+
+A container called a keyhole is a thing. The keyhole is closed and openable. 
+When play begins:
+now the keyhole is part of the massive wooden door.
+To decide what direction is the way through (frame - a door): 
+    let far side be the other side of frame; 
+    let way be the best route from the location to the far side, using even locked doors; 
+    if way is a direction, decide on the way; 
+    decide on inside. 
+Understand "lid" as the keyhole.
+Report closing the keyhole:
+say "The lid falls to cover the keyhole."
+Report opening the keyhole:
+say "The lid opens."
+Instead of inserting something into the keyhole when something is in the keyhole:
+  say "The keyhole is occupied."
+Before locking or unlocking the massive wooden door with something:
+if something is in the keyhole, say "The keyhole is blocked." instead.
+The capacity of the keyhole is 12.
+A rusty iron key is a thing. The rusty iron key unlocks the massive door.
+Before turning the rusty iron key:
+if the iron key is in the massive door, try unlocking the massive door with the iron key instead.
+Instead of going inside while in Tiny Room: try going north instead.
+Instead of going outside while in Dreary Room:  try going south instead.
+After inserting something into the keyhole:
+if the noun is the stick or the noun is the screwdriver or the noun is the set of keys and the rusty key is in Moby Lossage begin;
+  say "There is a faint noise from behind the door and a small cloud of
+dust rises from beneath it.";
+  now the rusty iron key is on the mat;
+  now the rusty iron key is touched;
+else;
+continue the action;
+end if.
+
+The massive wooden door is a door.  North of Tiny Room is the massive wooden door.  North of the massive wooden door is a dungeon called Dreary Room.  The description of Dreary Room is  "This is a small and rather dreary room, which is eerily illuminated
+by a red glow emanating from a crack in one of the walls.  The light 
+appears to focus on a dusty wooden table in the center of the room."
+The massive wooden door is closed,openable, locked, and lockable.
+
+A blue crystal sphere is a thing in Dreary Room.
+The description of the blue crystal sphere is "[blue sphere text]".
+To say blue sphere text:
+if the red crystal sphere is in something which is closed and opaque begin;
+  say "You see only darkness.";
+else;
+  say "As you peer into the sphere, a strange vision takes shape of
+a distant room, which can be described clearly....[paragraph break]";
+  say "[description of the location of the red crystal sphere][paragraph break]";
+  say "The vision fades, revealing only an ordinary crystal sphere.";
+end if.
+Understand "PALANTHIR" and "STONE" and "SEEING" and "GLASS" and "BALL" as the white crystal sphere.
+After reading a command:
+  if the player's command includes "BALLS/PALANTHIRI/PALANTHIRS/SPHERES", replace the matched text with "BOTH SPHERE".
+
+
 Northwest of Low Crawl is east of a dungeon called Egyptian Room.
 The description of Egyptian Room is "This is a room which looks like an Egyptian tomb.  There is an ascending staircase in the room as well as doors east and south."
 A closed openable container called a gold coffin is here.
@@ -1944,6 +2080,8 @@ A hunk of bat guano is in Ancient Chasm.  Understand "excretement" and "shit" an
 The size of the bat guano is 20.  
 A shovel is in Ancient Chasm.  The later appearance of the shovel is "There is a large shovel here."  Understand "large shovel" as the shovel.  The size of the shovel is 15.
 
+Part 7 - Coal Mine Area
+
 Mirror Room No 2 is a dungeon. The printed name of Mirror Room No 2 is "Mirror Room". The description of Mirror Room No 2 is "This is a large square room with tall ceilings.  On the south wall is a gigantic mirror which fills the entire wall.  There are exits on the other three sides of the room."
 An gigantic mirror is in Mirror Room No 2.  It is scenery.
 The description of the gigantic mirror is "[if the gigantic mirror is whole]There is an ugly person staring back at you.[otherwise]The mirror is broken into many pieces.[end if]".
@@ -1988,10 +2126,49 @@ Check taking the enormous mirror:
   if the enormous mirror is trashed, say "Nobody but a greedy surgeon would allow you to attempt that trick." instead.
 Check taking the gigantic mirror:
   if the enormous mirror is trashed, say "Nobody but a greedy surgeon would allow you to attempt that trick." instead.
-Down from Slide Room is Cellar.
+The long slide is a door. The long slide is down from Slide Room.  The long slide is scenery.  Through the long slide is Cellar.
 
-Part 7 - Coal Mine Area
+Before going through the long slide:
+if the rope is attached to the coffin or the rope is attached to the timber and the rope is in Slide Room, move the player to Slide1.
 
+Before climbing the rope:
+if the rope is attached to the coffin or the rope is attached to the timber and the rope is in Slide Room, try going down instead.
+
+Sllide1 is a dark room.  The printed name of Slide1 is "Slide".  The description of Slide1 is "This is an uncomfortable spot within the coal chute.  The rope to which you are clinging can be seen rising into the darkness above. There is more rope dangling below you."
+
+Up from Slide1 is Slide Room.
+Down from Slide1 is a dark room called Slide2.  The printed name of Slide2 is "Slide".  The description of Slide2 is "This is another spot within the coal chute.  Above you the rope
+climbs into darkness and the end of the rope is dangling five feet beneath you."
+
+Down from Slide2 is a dark room called Slide3.  The printed name of Slide3 is "Slide". The description of Slide3 is "You have reached the end of your rope.  Below you is darkness as
+the chute makes a sharp turn.  On the east here is a small ledge which you might be able to stand on."
+
+Down from Slide3 is Cellar.
+East of Slide3 is a dark room called Slide Ledge.  The description of Slide Ledge is "This is a narrow ledge abutting the coal chute, in which a rope can be seen passing downward.  Behind you, to the south, is a small room."
+West of Slide Ledge is nowhere.  
+
+South of Slide Ledge is a dark room called Sooty Room.  The description of Sooty Room is "This is a small room with rough walls, and a ceiling which is steeply
+sloping from north to south. There is coal dust covering almost
+everything, and little bits of coal are scattered around the only exit
+(which is a narrow passage to the north). In one corner of the room is
+an old coal stove which lights the room with a cheery red glow.  There
+is a very narrow crack in the north wall."
+
+A red crystal sphere is in Sooty Room.  The initial appearance of the crystal sphere is "On the floor sits a red crystal sphere." The later appearance of the crystal sphere is "There is red crystal sphere here." 
+Understand "PALANTHIR" and "STONE" and "SEEING" and "GLASS" and "BALL" as the white crystal sphere.
+The case-points of the red crystal sphere is 10.  After taking the red crystal sphere: award 5 points; continue the action.
+
+The description of the red crystal sphere is "[red sphere text]".
+To say red sphere text:
+if the white crystal sphere is in something which is closed and opaque begin;
+  say "You see only darkness.";
+else;
+  say "As you peer into the sphere, a strange vision takes shape of
+a distant room, which can be described clearly....[paragraph break]";
+  say "[description of the location of the white crystal sphere][paragraph break]";
+  say "The vision fades, revealing only an ordinary crystal sphere.";
+end if.
+Instead of searching the blue crystal sphere:  try examining the noun instead.
 North of Slide Room is a dungeon called Mine Entrance.  The description of Mine Entrance is "You are standing at the entrance of what might have been a coal
 mine. To the northeast and the northwest are entrances to the mine,
 and there is another exit on the south end of the room."
@@ -2178,7 +2355,7 @@ A closed openable container called a tube is in Maintenance Room.  The later app
 Understand "tube of toothpaste" as the tube.  The capacity of the tube is 7.  The size of the tube is 10.  The description of the tube is "Frobozz Magic Gunk Company:  All Purpose Gunk".
 Some viscous material is in the tube. Understand "gunk" and "glue" as the viscous material.  The later appearance of the viscous material is "There is some gunk here.".
 Instead of inserting something into the tube:  say "The tube refuses to accept anything."
-Report taking the viscous material from the tube:
+After taking the viscous material from the tube:
 say "The viscous material oozes into your hand."
 After reading a command:
   if the player's command includes "squeeze [tube]", replace the matched text with "get all from [tube]".
@@ -2322,8 +2499,14 @@ Down from River4 is a river called River5.  The description of River5 is "The so
 shore is a large landing area."
 A nondrainable watersource called the pdl9 is in River5.
 Down from River5 is a dungeon called Moby Lossage.
-Instead of looking while in Moby Lossage:  say "Unfortunately, a rubber raft doesn't provide much protection from
-the unfriendly sorts of rocks and boulders one meets at the bottom of many waterfalls.  Including this one."; end the game in death.
+The rusty iron key is in Moby Lossage.  The initial appearance of the rusty iron key is " ".
+Every turn when the magic boat is in Moby Lossage and the player is in the magic boat:  say "Unfortunately, a rubber raft doesn't provide much protection from the unfriendly sorts of rocks and boulders one meets at the bottom of many waterfalls.  Including this one."; end the game in death; remove the magic boat from play.
+
+A closed openable container called a red buoy is in River4.  The initial appearance of the red buoy is "There is a red buoy here (probably a warning)." 
+The capacity of the buoy is 20.  The size of the buoy is 10.
+A large emerald is in the buoy.  After taking the emerald: award 5 points; continue the action.
+The case-points of the emerald is 10.
+
 Instead of going east from River2:  say "The White Cliffs prevent your landing here."
 South of Tiny Cave is northwest of a room called Rocky Shore.  The description of Rocky Shore is "You are on the west shore of the river.  An entrance to a cave is
 to the northwest.  The shore is very rocky here."
@@ -2332,6 +2515,58 @@ WCLF1 is a room.  The description of WCLF1 is "You are on a narrow strip of beac
 along the Cliffs."  WCLF1 is west of River3.  The printed name of WCLF1 is "White Cliffs Beach".
 South of WCLF1 is a room called WCLF2. The description of WCLF2 is "You are on a rocky, narrow strip of beach beside the Cliffs.  A narrow path leads north along the shore."
 The printed name of WCLF2 is "White Cliffs Beach".  East of WCLF2 is River4.
+
+West of River4 is a room called Sandy Beach.  The description of Sandy Beach is "You are on a large sandy beach at the shore of the river, which is flowing quickly by.  A path runs beside the river to the south here."
+
+South of Sandy Beach is a room called Shore.  The description of Shore is "You are on the shore of the River.  The river here seems somewhat treacherous.  A path travels from north to south here, the south end quickly turning around a sharp corner." East of Shore is River5.
+
+South of Shore is a room called Aragain Falls.  The description of Aragain Falls is "You are at the top of Aragain Falls, an enormous waterfall with a drop of about 450 feet.  The only path here is on the north end.[if rainbow flag is true]A solid rainbow spans the falls.[otherwise]A beautiful rainbow can be seen over the falls and to the east.[end if]".
+
+Rainbow Room is a room.  The description of Rainbow Room is "You are on top of a rainbow (I bet you never thought you would walk on a rainbow), with a magnificent view of the Falls.  The rainbow travels east-west here.  There is an NBC Commissary here."
+
+Rainbow flag is a truth state that varies.  Rainbow flag is usually false.
+
+Instead of waving the stick:
+  if the player is in Aragain Falls or the player is in End of Rainbow begin;
+   if rainbow flag is true begin;
+   say "The rainbow seems to have become somewhat run-of-the-mill.";
+   change the east exit of Aragain Falls to nowhere;
+   change the west exit of Rainbow Room to nowhere;
+   change the west exit of End of Rainbow to nowhere;
+   change the east exit of Rainbow Room to nowhere;
+   change rainbow flag to false;
+   else;
+   say "Suddenly, the rainbow appears to become solid and, I venture,
+walkable (I think the giveaway was the stairs and bannister).";
+   if the pot of gold is untouched, move the pot of gold to End of Rainbow;
+   change the east exit of Aragain Falls to Rainbow Room;
+   change the west exit of Rainbow Room to Aragain Falls;
+   change the west exit of End of Rainbow to Rainbow Room;
+   change the east exit of Rainbow Room to End of Rainbow;
+   change rainbow flag to true;
+   end if;
+ else if the player is in Rainbow Room;
+    say "The structural integrity of the rainbow seems to have left it,
+leaving you about 450 feet in the air, supported by water vapor.";
+   end the game in death;
+ else;
+   say "Very good.";
+ end if.
+
+A pot of gold is a thing.  The initial appearance of the pot of gold is "At the end of the rainbow is a pot of gold." The later appearance of the pot of gold is "There is a pot of gold here." The size of the pot of gold is 15. The case-points of the pot of gold is 10.  After taking the pot of gold:  award 10 points; continue the action.
+A statue is a thing.
+Understand "beautiful" and "sculpture" and "rock" as the statue.
+The size of the statue is 8.
+After taking the statue: award 10 points; continue the action.
+The case-points of the statue is 13.
+Every turn while in Rainbow Room:  change exit found to true.
+
+After taking the buoy for the first time:
+  say "Something seems funny about the feel of the buoy.".
+
+An open unopenable enterable container called a man-sized wooden barrel is in Aragain Falls.  The printed name of the man-sized wooden barrel is "wooden barrel".  The later appearance of the man-sized wooden barrel is "There is a man-sized barrel here which you might be able to enter."  The barrel is fixed in place.  The capacity of the man-sized wooden barrel is 100.
+Instead of looking when the player is inside the barrel: say "You are inside a barrel.  Congratulations.  Etched into the side of the barrel is the word 'Geronimo!'.  From your position, you cannot see the falls."
+After entering the barrel: try looking.
 
 [Include (- 
   Array keyw string "ECOVXRMS"; 
