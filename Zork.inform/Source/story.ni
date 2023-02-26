@@ -1,6 +1,6 @@
 "Zork" by Dean Menezes
 
-Include (- Serial "071114"; -).
+Include (- Serial "071115"; -).
 
 
 Part 1 - New Actions and Concepts
@@ -14,8 +14,28 @@ silently switch score notification off;
 decrease turn count by 1;
 clear the screen;
 say "[line break]".
+Deflating is an action applying to one thing.  Understand "deflate [something]" as deflating.  
+Check deflating:
+  if the noun is not the boat, say "How to you expect to do that?" instead;
+  if the player is in the boat, say "You can't deflate the boat while you're in it." instead;
+  if the player is carrying the boat, say "The boat must be on the ground to be deflated." instead.
+Carry out deflating the boat:
+say "The boat deflates.";
+move the pile of plastic to the holder of the boat;
+remove the boat from play.
 Understand "brush teeth" as a mistake ("Dental hygiene is highly recommended, but I'm not sure what you want to brush them with.").
-
+Inflating it with is an action applying to one thing and one carried thing.  Understand "inflate [something] with/using [something]" and "pump up [something] with/using [something]" as inflating it with.
+Your lungs are a part of the player. Understand "mouth" and "breath" as your lungs.
+Check inflating it with:
+  if the noun is not the dboat and the noun is not the pile of plastic and the noun is not the boat, say "How can you inflate that?";
+  if the noun is the dboat, say "This boat will not inflate since some moron put a hole in it." instead;
+  if the noun is the boat, say "Inflating it further would probably burst it." instead;
+  if the second noun is your lungs, say "You don't have enough lung power to inflate it." instead;
+  if the second noun is not the air-pump, say "You don't have enough lung power to inflate it." instead.
+Inflating is an action applying to one thing.  Understand "pump up [something]" and "inflate [something]" as inflating.
+Check inflating:
+  if the player can see the air-pump, try inflating the noun with the air-pump instead;
+  else say "I don't really see how."
 Brushing is an action applying to one carried thing.  Understand "brush teeth with [something]" as brushing.
 Check brushing:
   if the noun is not the viscous material, say "Nice try, but with [a noun]?" instead.
@@ -31,7 +51,7 @@ Lubricating it with is an action applying to one thing and one carried thing.  U
 Plugging it with is an action applying to one thing and one carried thing.  Understand "plug [something] with [something]" and "glue [something] with [something]" and "patch [something] with [something]" as plugging it with.
 Check plugging it with:
   if the second noun is not the viscous material, say "That makes no sense." instead;
-  if the noun is not the leak2, say "That makes no sense." instead.
+  if the noun is not the leak2 and the noun is not the dboat, say "That makes no sense." instead.
 Check lubricating it with:
   if the second noun is not the viscous material, say "You probably put spinach in your gas tank, too." instead;
   if the noun is not the bolt, say "That's not very useful." instead.
@@ -304,7 +324,8 @@ After going:
 To set off the grues:
 say "Oh no! You walked directly into the slavering fangs of a lurking grue!";
 end the game in death.
-
+Procedural rule when inflating something that is part of the player:
+ignore the carrying requirements rule.
 A weapon is a kind of thing.
 Understand the command "swing" as something new.
 Swinging it is an action applying to one carried thing.  Understand "swing [something]" as swinging it.
@@ -312,9 +333,9 @@ Carry out swinging it:
 if dead flag is true, say "All such attacks are vain in your position." instead;
 if the player can see a person (called the villain) who is not the player, try attacking the villain with the noun instead;
 say "Please specify at what do you wish to swing the [noun]."
-Procedural rule while attacking something with your bare hands: ignore the carrying requirements rule. 
-Procedural rule while brushing your bare hands: ignore the carrying requirements rule. 
-Procedural rule while destroying something with your bare hands: ignore the carrying requirements rule.
+Procedural rule while attacking something that is part of the player: ignore the carrying requirements rule. 
+Procedural rule while brushing something which is part of the player: ignore the carrying requirements rule. 
+Procedural rule while destroying something with something which is part of the player: ignore the carrying requirements rule.
 Attacking it with is an action applying to one visible thing and one carried thing.
 Understand "attack [something] with [something]" as attacking it with.
 Understand "attack [something] using [something]" as attacking it with.
@@ -1093,6 +1114,9 @@ Part 3 - The Dungeon
 A dungeon is a kind of room. A dungeon is usually dark.
 The Cellar is a dungeon. The Cellar is west of a dungeon called Troll Room.  "You are in a dark and damp cellar with a narrow passageway leading east, and a crawlway to the south.  On the west is the bottom of a steep metal ramp which is unclimbable."
 Instead of going west from Cellar: say "You attempt to climb the ramp, but it is too slippery, and you slide back down."
+The description of Troll Room is "This is a small room with passages off in all directions. 
+Bloodstains and deep scratches (perhaps made by an axe) mar the
+walls."
 West of a dungeon called West of Chasm is south of Cellar. "You are on the west edge of a chasm, the bottom of which cannot be seen. The east side is sheer rock, providing no exits. A narrow passage goes west.  The path you are on continues to the north and south."
 Instead of going down from West of Chasm: say "The chasm probably leads directly to the infernal regions."
 Instead of jumping while in West of Chasm: fatally leap.
@@ -2164,6 +2188,30 @@ Instead of going north from Reservoir South when the pdl3 is on-stage:
 Instead of going south from Reservoir North when the pdl3 is on-stage:
   say "You are not equipped for swimming."
 A hand-held air-pump is in Reservoir.  Understand "pump" and "airpump" as the air-pump.  The later appearance of the air-pump is "There is a small pump here."
+
+Down from Flood Control Dam #3 is a room called Dam Base.  The description of Dam Base is "You are at the base of Flood Control Dam #3, which looms above you
+and to the north.  The river Frigid is flowing by here.  Across the river are the White Cliffs which seem to form a giant wall stretching from north to south along the east shore of the river as it winds its way downstream."
+
+A broken sharp stick is in Dam Base.  The initial appearance of the broken sharp stick is "A sharp stick, which appears to have been broken at one end, is here."
+The later appearance of the broken sharp stick is "There is a broken sharp stick here."
+The size of the broken sharp stick is 3.
+A pile of plastic is here.  The later appearance of the pile of plastic is "There is a folded pile of plastic here which has a small valve
+attached."  The size of the pile of plastic is 20.  Understand "boat" as the pile of plastic.
+A dboat is a thing.  The printed name of the dboat is "plastic boat (with hole)".  Understand "pile" and "boat" and "plastic" as the dboat.
+Carry out plugging the dboat with the viscous material:
+  say "Well done.  The boat is repaired.";
+  move the pile of plastic to the holder of the dboat;
+  remove the dboat from play.
+A magic boat is a vehicle.  Understand "plastic" and "raft" and "seaworthy" as the magic boat.  The later appearance of the magic boat is "There is an inflated boat here." The size of the magic boat is 20.  The capacity of the magic boat is 100.
+Carry out inflating the pile of plastic with the air-pump:
+  say "The boat inflates and appears seaworthy.";
+  now the magic boat is in the holder of the pile of plastic;
+  remove the pile of plastic from play.
+Instead of entering the boat when the player is carrying the sharp stick:
+  say "There is a hissing sound and the boat deflates.";
+  move the dboat to the holder of the boat;
+  remove the boat from play.
+
 [Include (- 
   Array keyw string "ECOVXRMS"; 
   Array inw->9;
@@ -2191,3 +2239,4 @@ A hand-held air-pump is in Reservoir.  Understand "pump" and "airpump" as the ai
 [ XOR a b; return (a | b) & (~(a & b)); ];        ! Bitwise Exclusive OR
 [ MAX a b; if (a>b) return a; else return b;]; 
 -). ]
+
