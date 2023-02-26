@@ -1,6 +1,6 @@
 "Zork" by Dean Menezes
 
-Include (- Serial "071123"; -).
+Include (- Serial "071125"; -).
 
 
 Part 1 - New Actions and Concepts
@@ -17,6 +17,28 @@ Check digging into it with:
 if the second noun is not the shovel, say "Digging with [the second noun] is slow and tedious." instead;
 if the noun is not the guano and the noun is not the ground, say "Digging into [a noun] is silly." instead;
 if the noun is the ground and the player is not in Sandy Beach, say  "The ground is too hard for digging here.".
+
+Playing is an action applying to one carried thing.  
+Understand "play [something]" as playing.
+
+Definition: a thing is valuble if the case-points of it is not 0.
+After reading a command:
+if the player's command includes "TREASURE/TREASURES/VALUBLES", replace the matched text with "[list of visible valuble things had by the player]".
+
+Check playing:
+if the noun is the violin, say "An amazing offensive noise issues from the violin." instead;
+say "That makes no sense." instead.
+
+Before playing a person who is not the player:
+  say "You are so completely engrossed in the role of [the noun] that you kill yourself, just as he would have done.";
+  end the game in death.
+
+Playing it with is an action applying to two carried things.  Understand "play [something] with [something]" as playing it with.
+Check playing it with:
+if the noun is not the violin, say "That makes no sense." instead;
+if the second noun is not a weapon, say "An amazing offensive noise issues from the violin." instead;
+say "Very good.  The violin is now worthless.";
+change the case-points of the violin to 0.
 
 Putting it under is an action applying to one carried thing and one thing.  Understand "put [something] under [something]" and "place [something] under [something]" and "slide [something] under [something]" as putting it under.
 
@@ -66,8 +88,8 @@ say "The hole collapses, smothering you.";
 end the game in death.
 
 The ground is a backdrop. The ground is everywhere. Understand "sand" and "earth" and "here" and "hole" as the ground.
-When play begins:
-Change the description of yourself to "That's difficult unless your eyes are prehensile.".
+
+The description of yourself is "That's difficult unless your eyes are prehensile.".
 Launching is an action applying to nothing.  Understand "launch" as launching.
 Check launching:
   if the player is not in the magic boat, say "You need to be in a vehicle to do that." instead.
@@ -836,7 +858,7 @@ Rule for writing a paragraph about something (called the thingy):
   end if;
   if something visible is in the thingy begin;
     if the thingy is the trophy case begin;
-     say "[line break]Your collection of treasures consists of:[line break]";
+     say "[line break]Your collection of treasures consists of:[line break][stuff in the thingy]";
     else if the thingy is the nest and the egg is in the thingy and the egg is untouched;
       say "[initial appearance of the egg]";
     else;
@@ -1011,6 +1033,36 @@ unreal.";
   move the player to Entrance to Hades;
   resume the game;
 end if.
+The player has a number called fight strength.
+The player has a number called wounds.  Wounds is usually 0.
+The player has a number called cure wait.  Cure wait is usually 0.
+Every turn:
+  change the fight strength of the player to (5 * score / 616) + 2;
+  if the cure wait of the player is greater than 0, decrease the cure wait of the player by 1;
+  if the cure wait of the player is 0, change the wounds of the player to 0;
+  if the wounds of the player is greater than 4 begin;
+    say "It appears that blow was too much for you.  I'm afraid you are dead.";
+    change the wounds of the player to 4;
+    end the game in death;
+  end if.
+Diagnosing is an action applying to nothing.  Understand "diagnose" as diagnosing.
+Check diagnosing:
+  if dead flag is true, say "You are dead as a doornail." instead.
+Carry out diagnosing:
+  if the wounds of the player is 0 begin;
+    say "You are in perfect health.  You are strong enough to take several wounds.";
+  else if the wounds of the player is 1;
+    say "You have a light wound, which will be cured in [cure wait of the player] turn(s).  You can survive one serious wound.";
+  else if the wounds of the player is 2;
+    say "You have a serious wound, which will be cured in [cure wait of the player] turn(s).  You can be killed by a serious wound.";
+  else if the wounds of the player is 3;
+    say "You have a several wounds, which will be cured in [cure wait of the player] turn(s).  You can be killed by one more light wound.";  
+  else if the wounds of the player is 4;
+    say "You have a serious wounds, which will be cured in [cure wait of the player] turn(s).  You are at death's door.";  
+  end if;
+  if death count is 1, say "You have been killed once.";
+  if death count is 2, say "You have been killed twice.".
+ 
 
 Part 2 - Above Ground Stuff
 
@@ -1095,7 +1147,7 @@ Instead of taking the case: say "The trophy case is securely fastened to the wal
 A weapon called an elvish sword is here.  "On hooks above the mantelpiece hangs an elvish sword of great antiquity."
 Understand "glamdring" and "orcrist" as the elvish sword.
 Understand "lamp" as the battery-powered brass lantern.
-
+The capacity of the trophy case is 32767.
 The size of the sword is 30.
 An electric lamp called a battery-powered brass lantern is here.  "A battery powered brass lantern is on the trophy case." 
 The size of the battery-powered brass lantern is 15.
@@ -1277,6 +1329,28 @@ Instead of going west from Cellar: say "You attempt to climb the ramp, but it is
 The description of Troll Room is "This is a small room with passages off in all directions. 
 Bloodstains and deep scratches (perhaps made by an axe) mar the
 walls."
+A man called the Troll is in Troll Room.  The initial appearance of the Troll is "[if the troll is consious]A nasty-looking troll, brandishing a bloody axe, blocks all passages out of the room.[otherwise]There is an unconsious troll here.[end if]".
+Instead of going when the player can see the consious Troll:
+if the noun is not west, say "The troll fends you off with a menacing gesture.";
+else continue the action.
+Instead of throwing something at the troll:
+say "The troll, who is remarkably coordinated, catches [the noun] ";
+if the noun is a weapon begin;
+  say "and being for the moment sated, throws it back.  Fortunately, the troll has poor control, and the knife falls on the floor.  He does not look pleased.";
+  move the noun to the location;
+else;
+  say "and not having the most discriminating tastes, gleefully eats it.";
+  remove the noun from play;
+end if.
+The troll can be consious or unconsious.
+Instead of attacking the unconsious troll with something:
+say "The unconscious troll cannot defend himself:  He dies.";
+say "Almost as soon as the troll breathes his last breath, a cloud
+of sinister black fog envelops him, and when the fog lifts, the
+carcass has disappeared.";
+remove the troll from play.
+The troll carries a weapon called an axe.
+Rule for deciding the concealed possessions of the troll: no.
 West of a dungeon called West of Chasm is south of Cellar. "You are on the west edge of a chasm, the bottom of which cannot be seen. The east side is sheer rock, providing no exits. A narrow passage goes west.  The path you are on continues to the north and south."
 Instead of going down from West of Chasm: say "The chasm probably leads directly to the infernal regions."
 Instead of jumping while in West of Chasm: fatally leap.
@@ -1291,11 +1365,57 @@ A worthless piece of canvas is a thing.
 Instead of destroying the painting:
     say "Congratulations!  Unlike the other vandals, who merely stole the
 artist's masterpieces, you have destroyed one."; now the player has the worthless piece of canvas; remove the painting from play.
-
 Instead of destroying the painting with something:
     say "Congratulations!  Unlike the other vandals, who merely stole the
 artist's masterpieces, you have destroyed one."; now the player has the worthless piece of canvas; remove the painting from play.
-
+To strike a blow at the player:
+  let x be a random number between 1 and 6;
+    if x is 1 or 2 begin;
+      say "[one of]The troll swings his axe, but it misses[or]The troll's axe barely misses your ear.[or]The axe sweeps past as you jump aside.[or]The axe crashes against the rock, throwing sparks![at random]";
+   else if x is 3;
+      say "The troll's axe removes your head.";
+      end the game in death;
+   else if x is 4 or 5;
+      say "[one of]The troll hits you with a glancing blow, and you are momentarily
+stunned.[or]An axe stroke makes a deep wound in your leg.[or]The troll's axe swings down, gashing your shoulder.[at random]";
+      increase the wounds of the player by 1;
+   else if x is 6;
+     say "[one of]You stagger back under a hail of axe strokes.[or]The troll's mighty blow drops you to your knees.[or]The troll swings; the blade turns on your armor but crashes
+broadside into your head.[at random]";
+     increase the wounds of the player by 2;
+   end if.
+Carry out attacking the troll with something:
+  if a random chance of 1 in 2 succeeds begin;
+  if the second noun is the sword begin;
+    say "[one of]Your sword crashes down, knocking the troll into dreamland.[or]The troll is battered into unconsciousness.[or] A furious exchange, and the troll is knocked out![at random]";
+  else;
+    say "[one of]The haft of your knife knocks out the troll.[or]The troll drops to the floor, unconscious.[or]The troll is knocked out![at random]";
+  end if;
+  now the troll is unconsious;
+  else if a random chance of 1 in 2 succeeds;
+   if the second noun is the sword begin;
+     say "[one of]The troll receives a deep gash in his side.[or]A savage blow on the thigh!  The troll is stunned but can still fight![or]Slash!  Your blow lands!  That one hit an artery, it could be serious![at random]";
+  else;
+  say "[one of]The troll receives a deep gash in his side.[or]A savage cut on the leg stuns the troll, but he can still fight![or]Slash!  Your stroke connects!  The troll could be in serious trouble![at random]";
+  increase the wounds of the troll by 2;
+  end if;
+  else;
+    say "A good stroke, but it's too slow, the troll dodges.";
+  end if;
+  
+The troll has a number called wounds.
+Every turn when the troll is on-stage:
+  if the wounds of the troll is greater than 4 begin;
+    say "The troll takes a final blow and slumps to the floor, dead.";
+    say "Almost as soon as the troll breathes his last breath, a cloud
+of sinister black fog envelops him, and when the fog lifts, the
+carcass has disappeared.";
+  remove the troll from play;
+  end if.
+Every turn when the player can see the consious troll:
+  strike a blow at the player.
+Every turn when the troll is unconsious and the troll is on-stage and the player cannot see the troll:
+  now the troll is consious.
 South of Gallery is northwest of a dungeon called Studio. The description of Studio is "This is what appears to have been an artist's studio. The walls and floors are splattered with paints of 69 different colors. Strangely enough, nothing of value is hanging here. At the north and northwest of the room are open doors (also covered with paint). An extremely dark and narrow chimney leads up from a fireplace. Although you might be able to get up the chimney, it seems unlikely that you could get back down."
 
 The chimney is a door.  The chimney is open and not openable.  Instead of climbing the chimney: try entering the noun instead. The chimney is scenery.  The chimney is up from Studio and down from Kitchen.
@@ -2424,12 +2544,10 @@ Carry out turning the bolt with the wrench:
     repeat with thingy running through drainable watersources begin;
       remove the thingy from play;
     end repeat;
-    remove the pdl4 from play;
   else;
     say "The sluice gates close and water starts to collect behind the dam.";
     move the pdl1 to Reservoir South;
     move the pdl3 to Reservoir North;
-    move the pdl4 to Reservoir;
   end if.
 North of Reservoir South is a dungeon called Reservoir.  The description of Reservoir is     
 "[if the pdl3 is on-stage]You are on the reservoir.  Beaches can be seen north and south.  Upstream a small stream enters the reservoir through a narrow cleft
@@ -2568,6 +2686,8 @@ An open unopenable enterable container called a man-sized wooden barrel is in Ar
 Instead of looking when the player is inside the barrel: say "You are inside a barrel.  Congratulations.  Etched into the side of the barrel is the word 'Geronimo!'.  From your position, you cannot see the falls."
 After entering the barrel: try looking.
 
+Instead of exiting when the player is in a river:
+  say "You realize, just in time, that disembarking here would probably be fatal."
 [Include (- 
   Array keyw string "ECOVXRMS"; 
   Array inw->9;
