@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=utf-8">
+		<meta name="generator" content="Adobe GoLive">
+		<title>Zork - Source Text</title>
+	</head>
+
+	<body bgcolor="#ffffff">
+		<table border="0" cellpadding="2"><tr><td align="left" valign="top"><font face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"></font></td><td align="left" valign="top">
+					<h3><font color="#0000cc" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif">Zork</font></h3>
+					<h3><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif">An interactive fiction by Dean Menezes (2023) - the Inform 7 source text</font></h3>
+				</td></tr>
+		<tr align="left" valign="top"><td align="left" valign="top"><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"><a href="index.html">Home page</a><br><br><a href="source.html">Contents</a><br><a href="source_1.html">Previous</a><br><a href="source_3.html">Next</a><br><br><a href="source.txt">Complete text</a></font></td><td align="left" valign="top"><font face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"><b>Part 3 - Cellar Area and Bank of Zork</b>
+<br>
+
+<br>
+A dungeon is a kind of room. A dungeon is usually dark.
+<br>
+The Cellar is a dungeon. The Cellar is west of a dungeon called Troll Room.  &quot;<font color=#000080>You are in a dark and damp cellar with a narrow passageway leading east, and a crawlway to the south.  On the west is the bottom of a steep metal ramp which is unclimbable.</font>&quot;
+<br>
+Instead of going west from Cellar: say &quot;<font color=#000080>You attempt to climb the ramp, but it is too slippery, and you slide back down.</font>&quot;
+<br>
+The description of Troll Room is &quot;<font color=#000080>This is a small room with passages off in all directions. 
+<br>
+</font><font color=#000080>Bloodstains and deep scratches (perhaps made by an axe) mar the
+<br>
+</font><font color=#000080>walls.</font>&quot;
+<br>
+West of a dungeon called West of Chasm is south of Cellar. &quot;<font color=#000080>You are on the west edge of a chasm, the bottom of which cannot be seen. The east side is sheer rock, providing no exits. A narrow passage goes west.  The path you are on continues to the north and south.</font>&quot;
+<br>
+Instead of going down from West of Chasm: say &quot;<font color=#000080>The chasm probably leads directly to the infernal regions.</font>&quot;
+<br>
+Instead of jumping while in West of Chasm: fatally leap.
+<br>
+A dungeon called Gallery is south of West of Chasm. &quot;<font color=#000080>This is an art gallery. Most of the paintings which were here have been stolen by vandals with exceptional taste. The vandals left through the north, south, or west exits.</font>&quot;
+<br>
+A painting is here. &quot;<font color=#000080>Fortunately, there is still one chance for you to be a vandal, for on the far wall is a work of unparalleled beauty.</font>&quot;
+<br>
+The printed name of the painting is &quot;<font color=#000080>masterpiece by a neglected genius</font>&quot;.
+<br>
+The inventory listing of the painting is &quot;<font color=#000080>a painting</font>&quot;. Understand &quot;<font color=#000080>masterpiece</font>&quot; as the painting.
+<br>
+After taking the painting for the first time: award 4 points; continue the action. 
+<br>
+The painting has case-points 7.
+<br>
+The size of the painting is 15.
+<br>
+A worthless piece of canvas is a thing.
+<br>
+Instead of destroying the painting:
+<br>
+    say &quot;<font color=#000080>Congratulations!  Unlike the other vandals, who merely stole the
+<br>
+</font><font color=#000080>artist's masterpieces, you have destroyed one.</font>&quot;; now the player has the worthless piece of canvas; remove the painting from play.
+<br>
+
+<br>
+Instead of destroying the painting with something:
+<br>
+    say &quot;<font color=#000080>Congratulations!  Unlike the other vandals, who merely stole the
+<br>
+</font><font color=#000080>artist's masterpieces, you have destroyed one.</font>&quot;; now the player has the worthless piece of canvas; remove the painting from play.
+<br>
+
+<br>
+South of Gallery is northwest of a dungeon called Studio. The description of Studio is &quot;<font color=#000080>This is what appears to have been an artist's studio. The walls and floors are splattered with paints of 69 different colors. Strangely enough, nothing of value is hanging here. At the north and northwest of the room are open doors (also covered with paint). An extremely dark and narrow chimney leads up from a fireplace. Although you might be able to get up the chimney, it seems unlikely that you could get back down.</font>&quot;
+<br>
+
+<br>
+The chimney is a door.  The chimney is open and not openable.  Instead of climbing the chimney: try entering the noun instead. The chimney is scenery.  The chimney is up from Studio and down from Kitchen.
+<br>
+Instead of going through the chimney when the player is carrying more than 2 things:
+<br>
+    say &quot;<font color=#000080>The chimney is too narrow for you and your baggage.</font>&quot;
+<br>
+Instead of going through the chimney while in Kitchen:
+<br>
+    say &quot;<font color=#000080>Only Santa Claus climbs down chimneys.</font>&quot;
+<br>
+Instead of going through the chimney when the player is not carrying anything:
+<br>
+    say &quot;<font color=#000080>Going up empty-handed is a bad idea.</font>&quot;
+<br>
+
+<br>
+South of a dungeon called Bank Entrance is west of Gallery. 
+<br>
+&quot;<font color=#000080>This is the large entrance hall of the Bank of Zork, the largest banking institution of the Great Underground Empire. A partial account of its history is in 'The Lives of the Twelve Flatheads' with the chapter on J. Pierpont Flathead. A more detailed history (albeit less objective) may be found in Flathead's outrageous autobiography 'I'm Rich and You Aren't -- So There!'
+<br>
+</font><font color=#000080>Most of the furniture has been ravaged by passing scavengers. All that
+<br>
+</font><font color=#000080>remains are two signs at the northwest and northeast corners of the room, which say
+<br>
+</font><font color=#000080>[paragraph break]
+<br>
+</font><font color=#000080>[fixed letter spacing]
+<br>
+</font><font color=#000080>    &lt;-- WEST VIEWING ROOM    EAST VIEWING ROOM --&gt;
+<br>
+</font><font color=#000080>[variable letter spacing]</font>&quot;.
+<br>
+Northwest of Bank Entrance is south of a dungeon called West Teller's Room. The description of West Teller's Room is &quot;<font color=#000080>This is a small square room, which was used by a bank officer whose job it was to retrieve safety deposit boxes for the customer. On the north side of the room is a sign which reads 'Viewing Room'. On the west side of the room, above an open door, is a sign reading [paragraph break]
+<br>
+</font><font color=#000080>[fixed letter spacing]
+<br>
+</font><font color=#000080>            BANK PERSONNEL ONLY [variable letter spacing]</font>&quot;.
+<br>
+Northeast of Bank Entrance is south of a dungeon called East Teller's Room. The description of East Teller's Room is &quot;<font color=#000080>This is a small square room, which was used by a bank officer whose job it was to retrieve safety deposit boxes for the customer. On the north side of the room is a sign which reads 'Viewing Room'. On the east side of the room, above an open door, is a sign reading [paragraph break]
+<br>
+</font><font color=#000080>[fixed letter spacing]
+<br>
+</font><font color=#000080>            BANK PERSONNEL ONLY [variable letter spacing]</font>&quot;.
+<br>
+North of West Teller's Room is a dungeon called Viewing Room. The description of Viewing Room is &quot;<font color=#000080>This is a room used by holders of safety deposit boxes to view their contents. On the north side of the room is a sign which says [paragraph break][sign text]</font>&quot;.
+<br>
+
+<br>
+To say sign text:
+<br>
+center &quot;<font color=#000080>REMAIN HERE WHILE THE BANK OFFICER RETRIEVES YOUR DEPOSIT BOX</font>&quot;;
+<br>
+center &quot;<font color=#000080>WHEN YOU ARE FINISHED, LEAVE THE BOX, AND EXIT TO THE SOUTH</font>&quot;;
+<br>
+center &quot;<font color=#000080>AN ADVANCED PROTECTIVE DEVICE PREVENTS ALL CUSTOMERS FROM</font>&quot;;
+<br>
+center &quot;<font color=#000080>REMOVING ANY SAFETY DEPOSIT BOX FROM THIS VIEWING AREA!</font>&quot;;
+<br>
+center &quot;<font color=#000080>Thank you for banking at the Zork!</font>&quot;.
+<br>
+South of Viewing Room is Bank Entrance.
+<br>
+North of East Teller's Room is Viewing Room.
+<br>
+North of Bank Entrance is nowhere.
+<br>
+East of East Teller's Room is a east of a lighted dungeon called Safety Depository. 
+<br>
+West of West Teller's Room is a west of Safety Depository.
+<br>
+The description of Safety Depository is &quot;<font color=#000080>This is a large rectangular room. The east and west walls here were used for storing safety deposit boxes. As might be expected, all have been carefully removed by evil persons. The northern 'wall' of the room is a shimmering curtain of light. To the east, west, and south of the room are large doorways.</font>&quot;
+<br>
+A large stone cube is here. &quot;<font color=#000080>In the center of the room is a large stone cube, about 10 feet on a side. Engraved on the side of the cube is some lettering.</font>&quot; Understand &quot;<font color=#000080>vault</font>&quot; as the cube. The cube is fixed in place.
+<br>
+A dungeon called Chairman's Office is south of Safety Depository. &quot;<font color=#000080>This room was the office of the Chairman of the Bank of Zork. Like the other rooms here, it has been extensively vandalized. The lone exit is to the north.</font>&quot;
+<br>
+A portrait is here. &quot;<font color=#000080>A portrait of J. Pierpont Flathead hangs on the wall.</font>&quot; Understand &quot;<font color=#000080>painting</font>&quot; as the portrait. The printed name of the portrait is &quot;<font color=#000080>portrait of J. Pierpont Flathead</font>&quot;.
+<br>
+The description of the portrait is &quot;<font color=#000080>[flathead]</font>&quot;.
+<br>
+Gnome flag is a truth state that varies. Gnome flag is usually true.
+<br>
+The curtain of light is a thing in the Safety Depository.  The curtain is scenery. Understand &quot;<font color=#000080>north</font>&quot; and &quot;<font color=#000080>wall</font>&quot; as the curtain.
+<br>
+Small Room is a dark room.  The description of Small Room is &quot;<font color=#000080>This is a small bare room with no distinguishing features. There are no exits from this room.</font>&quot;
+<br>
+Vault is a dark room. The description of Vault is &quot;<font color=#000080>This is the Vault of the Bank of Zork, in which there are no doors.</font>&quot;
+<br>
+A stack of zorkmid bills is here. &quot;<font color=#000080>On the floor sit 200 neatly stacked zorkmid bills.</font>&quot; Understand &quot;<font color=#000080>notes</font>&quot; or &quot;<font color=#000080>banknotes</font>&quot; or &quot;<font color=#000080>bank notes</font>&quot; as the bills. The description of the bills is &quot;<font color=#000080>[banknotes]</font>&quot;.
+<br>
+After taking the portrait for the first time: award 10 points; continue the action.
+<br>
+After taking the bills for the first time: award 10 points; continue the action.
+<br>
+The case-points of the portrait is 5.
+<br>
+The case-points of the bills is 15.
+<br>
+The size of the bills is 10.
+<br>
+The size of the portrait is 25.
+<br>
+
+<br>
+Instead of going east when the player is in Safety Depository and the player has the portrait: say &quot;<font color=#000080>The alarm sounds briefly, and an invisible force prevents your from leaving.</font>&quot;
+<br>
+Instead of going west when the player is in Safety Depository and the player has the portrait: say &quot;<font color=#000080>The alarm sounds briefly, and an invisible force prevents your from leaving.</font>&quot;
+<br>
+Instead of going east when the player is in Safety Depository and the player has the bills: say &quot;<font color=#000080>The alarm sounds briefly, and an invisible force prevents your from leaving.</font>&quot;
+<br>
+Instead of going west when the player is in Safety Depository and the player has the bills: say &quot;<font color=#000080>The alarm sounds briefly, and an invisible force prevents your from leaving.</font>&quot;
+<br>
+Instead of touching, taking, pushing, pulling, or rubbing the curtain: say &quot;<font color=#000080>As you attempt this feat, your hand goes through the curtain.</font>&quot;
+<br>
+Instead of entering the curtain: 
+<br>
+say &quot;<font color=#000080>You feel somewhat disoriented as you pass through.</font>&quot;;
+<br>
+if the former location is West Teller's Room, move the player to Viewing Room;
+<br>
+if the former location is East Teller's Room, move the player to Viewing Room;
+<br>
+if the former location is Small Room, move the player to Vault;
+<br>
+if the former location is Vault or the former location is Chairman's Office, move the player to Small Room.
+<br>
+Understand &quot;<font color=#000080>NORTH WALL</font>&quot; and &quot;<font color=#000080>NORTHERN WALL</font>&quot; as the curtain.
+<br>
+
+<br>
+
+<br>
+The Gnome of Zurich is a man. The description of the Gnome of Zurich is &quot;<font color=#000080>This is an epicene Gnome of Zurich, wearing a three-piece suit and carrying a safety deposit box.</font>&quot;
+<br>
+Giving something to the Gnome of Zurich is paying the gnome. Throwing something at the Gnome of Zurich is paying the gnome.
+<br>
+Instead of paying the gnome:
+<br>
+if the case-points of the noun is not 0 begin;
+<br>
+   say &quot;<font color=#000080>The gnome carefully places the [noun] in the deposit box.  'Let me show you the way out,' he says, making it clear that he will be pleased to see the last of you. Then, you are momentarily disoriented, and when you recover, you are back at the Bank Entrance.</font>&quot;;
+<br>
+  remove the noun from play;
+<br>
+  remove the Gnome of Zurich from play;
+<br>
+  move the player to Bank Entrance;
+<br>
+else;
+<br>
+  say &quot;<font color=#000080>'I wouldn't put THAT in a safety deposit box,' remarks the gnome with disdain, tossing it over his shoulder, where it disappears with an understated 'pop'.</font>&quot;;
+<br>
+  remove the noun from play;
+<br>
+end if.
+<br>
+
+<br>
+Instead of attacking the Gnome of Zurich: say &quot;<font color=#000080>The gnome says, 'Well, I never!' and disappears with a snap of his fingers, leaving you alone.</font>&quot;
+<br>
+Instead of attacking the Gnome of Zurich with something: say &quot;<font color=#000080>The gnome says, 'Well, I never!' and disappears with a snap of his fingers, leaving you alone.</font>&quot;
+<br>
+Every turn: if gnome flag is true and the player has been in Small Room for exactly 4 turns begin; say &quot;<font color=#000080>An epicene Gnome of Zurich, wearing a three-piece suit and carrying a
+<br>
+</font><font color=#000080> safety deposit box, materializes in the room.  'You seem to have
+<br>
+</font><font color=#000080> forgotten to deposit your valuables,' he says, tapping the lid of the
+<br>
+</font><font color=#000080> box impatiently.  'We don't usually allow customers to use the boxes
+<br>
+</font><font color=#000080> here, but we can make this ONE exception, I suppose...'  He looks
+<br>
+</font><font color=#000080> askance at you over his wire-rimmed bifocals.</font>&quot;; move the Gnome of Zurich to Small Room; change gnome flag to false; end if.
+<br>
+Instead of throwing something at the curtain: 
+<br>
+say &quot;<font color=#000080>The curtain dims slightly as the [noun] passes through it.</font>&quot;;
+<br>
+if the former location is West Teller's Room, move the player to Viewing Room;
+<br>
+if the former location is East Teller's Room, move the player to Viewing Room;
+<br>
+if the former location is Small Room, move the noun to Vault;
+<br>
+if the former location is Vault, move the noun to Small Room;
+<br>
+if the former location is Chairman's Office, move the noun to Small Room.
+<br>
+The south wall is a thing in Small Room.  The south wall is scenery.
+<br>
+Instead of entering the south wall: say &quot;<font color=#000080>You feel somewhat disoriented as you pass through.</font>&quot;; change the former location to the location; move the player to Safety Depository.
+<br>
+Understand &quot;<font color=#000080>southern wall</font>&quot; as the south wall.
+<br>
+The north wall is a thing in Vault.  The north wall is scenery.
+<br>
+Instead of entering the north wall: say &quot;<font color=#000080>You feel somewhat disoriented as you pass through.</font>&quot;; change the former location to the location; move the player to Safety Depository.
+<br>
+
+<br>
+Every turn:
+<br>
+if the player has been in Vault for exactly 4 turns begin; say &quot;<font color=#000080>A metallic voice says, 'Hello, Intruder!  Your unauthorized presence in the vault area of the Bank of Zork has set off all sorts of nasty surprises, several of which seem to have been fatal.  This message brought to you by the Frobozz Magic Alarm Company.'</font>&quot;; end the game in death; end if.
+<br>
+Instead of throwing something at the north wall: 
+<br>
+say &quot;<font color=#000080>The [noun] goes through.</font>&quot;
+<br>
+Instead of throwing something at the south wall: 
+<br>
+say &quot;<font color=#000080>The [noun] goes through.</font>&quot;
+<br>
+Understand &quot;<font color=#000080>NORTHERN WALL</font>&quot; as the north wall.
+<br>
+Does the player mean doing something to the curtain: it is very likely.
+<br>
+Does the player mean doing something to the north wall: it is very likely.
+<br>
+Does the player mean doing something to the south wall: it is very likely.
+<br>
+Instead of touching, taking, pushing, pulling, or rubbing the north wall: say &quot;<font color=#000080>As you attempt this feat, your hand goes through the wall.</font>&quot;
+<br>
+Instead of touching, taking, pushing, pulling, or rubbing the south wall: say &quot;<font color=#000080>As you attempt this feat, your hand goes through the wall.</font>&quot;
+<br>
+A dungeon called North-South Crawlway is north of Studio. &quot;<font color=#000080>This is a north-south crawlway; a passage also goes to the east. There is a hole above, but it provides no opportunities for climbing.</font>&quot; North of North-South Crawlway is north of West of Chasm. East of North-South Crawlway is east of Troll Room.
+<br>
+Instead of going up from North-South Crawlway: say &quot;<font color=#000080>Not even a human fly could get up it.</font>&quot;
+<br>
+
+<br>
+</font>
+					<p><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"></font></p>
+					<p></p>
+				</td></tr></table>
+	</body>
+
+</html>

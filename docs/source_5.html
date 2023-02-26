@@ -1,0 +1,406 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=utf-8">
+		<meta name="generator" content="Adobe GoLive">
+		<title>Zork - Source Text</title>
+	</head>
+
+	<body bgcolor="#ffffff">
+		<table border="0" cellpadding="2"><tr><td align="left" valign="top"><font face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"></font></td><td align="left" valign="top">
+					<h3><font color="#0000cc" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif">Zork</font></h3>
+					<h3><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif">An interactive fiction by Dean Menezes (2023) - the Inform 7 source text</font></h3>
+				</td></tr>
+		<tr align="left" valign="top"><td align="left" valign="top"><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"><a href="index.html">Home page</a><br><br><a href="source.html">Contents</a><br><a href="source_4.html">Previous</a><br><a href="source_6.html">Next</a><br><br><a href="source.txt">Complete text</a></font></td><td align="left" valign="top"><font face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"><b>Part 6 -  Deep Ravine, Rocky Crawl, Egyptian Area</b>
+<br>
+
+<br>
+West of Deep Ravine is west of a dungeon called Rocky Crawl.
+<br>
+The description of Rocky Crawl is &quot;<font color=#000080>This is a crawlway with a three-foot high ceiling.  Your footing is very unsure here due to the assortment of rocks underfoot.  Passages can be seen in the east, west, and northwest corners of the passage.</font>&quot;
+<br>
+East of a dungeon called Dome Room is east of Low Crawl. &quot;<font color=#000080>You are at the periphery of a large dome, which forms the ceiling of another room below.  Protecting you from a precipitous drop is a wooden railing which circles the dome.</font>&quot;
+<br>
+Instead of jumping while in Dome Room:
+<br>
+fatally leap.
+<br>
+A dungeon called Torch Room is down from Dome Room. &quot;<font color=#000080>This is a large room with a prominent doorway leading to a down staircase. To the west is a narrow twisting tunnel, covered with a thin layer of dust.  Above you is a large dome painted with scenes depicting elfin hacking rites. Up around the edge of the dome (20 feet up) is a wooden railing. In the center of the room there is a white marble pedestal.</font>&quot;
+<br>
+The railing is a thing in Dome Room. After tying the rope to the railing: say &quot;<font color=#000080>The rope drops over the side and comes within ten feet of the floor.</font>&quot;; try silently dropping the coil of rope.
+<br>
+Instead of climbing the rope when the coil of rope is attached to the railing:
+<br>
+try going down instead.
+<br>
+The railing is scenery. 
+<br>
+Instead of going down from Dome Room when the rope is not attached to the railing:
+<br>
+say &quot;<font color=#000080>You cannot go down without breaking many bones.</font>&quot;
+<br>
+Up from Torch Room is nowhere.
+<br>
+Instead of going up from Torch Room: say &quot;<font color=#000080>You cannot reach the rope.</font>&quot;
+<br>
+An ivory torch is here.  &quot;<font color=#000080>Sitting on the pedestal is a flaming torch, made of ivory.</font>&quot;
+<br>
+The size of the ivory torch is 20.
+<br>
+The case-points of the ivory torch is 14.
+<br>
+After taking the ivory torch for the first time:
+<br>
+  award 6 points; continue the action.
+<br>
+The ivory torch is lit.
+<br>
+Down from Torch Room is North-South Crawlway. Up from North-South Crawlway is nowhere.
+<br>
+Up from Torch Room is nowhere.
+<br>
+Rule for writing a paragraph about a rope (called the coil) when the coil is attached to something:
+<br>
+ if the coil is attached to the railing begin;
+<br>
+  say &quot;<font color=#000080>Hanging down from the railing is a rope which ends about ten feet from the floor below.</font>&quot;;
+<br>
+else;
+<br>
+ say &quot;<font color=#000080>There is [a coil] here[if the coil is attached to a visible nonrope thing], tied to [the list of nonrope visible things which are attached to the coil][end if].</font>&quot;;
+<br>
+end if.
+<br>
+Northwest of Low Crawl is east of a dungeon called Egyptian Room.
+<br>
+The description of Egyptian Room is &quot;<font color=#000080>This is a room which looks like an Egyptian tomb.  There is an ascending staircase in the room as well as doors east and south.</font>&quot;
+<br>
+A closed openable container called a gold coffin is here.
+<br>
+The later appearance of the gold coffin is &quot;<font color=#000080>The solid-gold coffin used for the burial of Ramses II is here.</font>&quot;
+<br>
+The size of the coffin is 55. The capacity of the coffin is 35.
+<br>
+After taking the coffin for the first time: award 3 points.
+<br>
+The case-points of the coffin is 7.
+<br>
+Instead of going east from Egyptian Room when the player is carrying the coffin:
+<br>
+say &quot;<font color=#000080>The passage is too narrow to accomodate coffins.</font>&quot;
+<br>
+Instead of going northwest from Rocky Crawl when the player is carrying the coffin:
+<br>
+say &quot;<font color=#000080>The passage is too narrow to accomodate coffins.</font>&quot;
+<br>
+Instead of going south from Reservoir South when the player is carrying the coffin:
+<br>
+say &quot;<font color=#000080>The coffin will not fit through this passage.</font>&quot;
+<br>
+East of a dungeon called Volcano View is south of Egyptian Room. &quot;<font color=#000080>You are on a ledge in the middle of a large volcano.  Below you the volcano bottom can be seen and above is the rim of the volcano. A couple of ledges can be seen on the other side of the volcano;
+<br>
+</font><font color=#000080>it appears that this ledge is intermediate in elevation between those on the other side.  The exit from this room is to the east.</font>&quot;
+<br>
+Instead of going down from Volcano View:
+<br>
+say &quot;<font color=#000080>I wouldn't try that.</font>&quot;
+<br>
+Instead of jumping while in Volcano View:
+<br>
+fatally leap.
+<br>
+The ascending staircase is a door. The ascending staircase is up from Egyptian Room. Through the ascending staircase is Glacier Room.
+<br>
+The ascending staircase is open and not openable. Instead of climbing the ascending staircase:
+<br>
+try entering the noun instead.
+<br>
+The ascending staircase is scenery.
+<br>
+Glacier Room is a dungeon. The description of Glacier Room is &quot;<font color=#000080>This is a large room with giant icicles hanging from the walls and ceiling.  There are passages to the north and east.</font>&quot;
+<br>
+East of Glacier Room is Egyptian Room.
+<br>
+The mass of ice is a thing in Glacier Room. The mass of ice is fixed in place. Understand &quot;<font color=#000080>glacier</font>&quot; as the mass of ice.
+<br>
+The initial appearance of the mass of ice is &quot;<font color=#000080>A mass of ice fills the western half of the room.[if the mass of ice is off-stage]  There is a large passageway leading westward.[end if]</font>&quot;.
+<br>
+West of Egyptian Room is nowhere.
+<br>
+West of Glacier Room is south of a dungeon called Ruby Room.
+<br>
+The description of Ruby Room is &quot;<font color=#000080>This is a small chamber behind the remains of the great glacier.  To the south and west are small passageways.</font>&quot;
+<br>
+A moby ruby is in Ruby Room.
+<br>
+After taking the moby ruby for the first time:
+<br>
+award 15 points; continue the action.
+<br>
+The case-points of the moby ruby is 8.
+<br>
+The initial appearance of the moby ruby is &quot;<font color=#000080>On the floor lies a moby ruby.</font>&quot;
+<br>
+The later appearance of the moby ruby is  &quot;<font color=#000080>There is a moby ruby lying here.</font>&quot;
+<br>
+Instead of going west from Glacier Room when the player can see the glacier:
+<br>
+say &quot;<font color=#000080>A mass of ice fills the western half of the room.</font>&quot;
+<br>
+Instead of throwing the torch at the mass of ice:
+<br>
+say &quot;<font color=#000080>The torch hits the glacier and explodes into a great ball of flame, devouring the glacier.  The water from the melting glacier rushes downstream, carrying the torch with it.  In place of the glacier, there is a passageway leading west.</font>&quot;;
+<br>
+remove the mass of ice from play;
+<br>
+change the printed name of the ivory torch to &quot;<font color=#000080>burned-out ivory torch</font>&quot;;
+<br>
+now the torch is not lit.
+<br>
+Before dropping the torch when the player's command includes &quot;<font color=#000080>throw</font>&quot;:
+<br>
+try throwing the torch at the mass of ice instead.
+<br>
+Understand &quot;<font color=#000080>burned-out</font>&quot; and &quot;<font color=#000080>burned out</font>&quot; as the ivory torch when the ivory torch is not lit.
+<br>
+North of Glacier Room is north of a room called Stream View.
+<br>
+The description of Stream View is &quot;<font color=#000080>You are standing on a path beside a gently flowing stream.  The path travels to the north and the east.</font>&quot;
+<br>
+A nondrainable watersource called the pdl2 is in Stream View. 
+<br>
+A dungeon called In Stream is dark.  The description of In Stream is &quot;<font color=#000080>You are on the gently flowing stream.  The upstream route is too narrow to  navigate and the downstream route is invisible due to twisting walls.  There is a narrow beach to land on.</font>&quot;
+<br>
+Instead of going up from In Stream, say &quot;<font color=#000080>The way is too narrow.</font>&quot;
+<br>
+
+<br>
+A coil of thin shiny wire is in Stream View.
+<br>
+Understand &quot;<font color=#000080>fuse</font>&quot; as the coil of wire. 
+<br>
+The printed name of the coil of thin shiny wire is &quot;<font color=#000080>wire coil</font>&quot;.
+<br>
+The later appearance of the coil of wire is &quot;<font color=#000080>There is a coil of thin shiny wire here.</font>&quot;
+<br>
+East of Stream View is Reservoir South.
+<br>
+Up from Reservoir South is northwest of a dungeon called Deep Canyon. 
+<br>
+South of Deep Canyon is northwest of Round Room. &quot;<font color=#000080>You are on the south edge of a deep canyon.  Passages lead off to the east, south, and northwest.  You can hear the sound of flowing water below.</font>&quot;
+<br>
+Instead of going northwest from Deep Canyon when the player is carrying the coffin:
+<br>
+  say &quot;<font color=#000080>The passage is too steep for carrying the coffin.</font>&quot;
+<br>
+Instead of going up from Deep Canyon when the player is carrying the coffin:
+<br>
+  say &quot;<font color=#000080>The stairs are too steep for carrying the coffin.</font>&quot;
+<br>
+Southeast of Round Room is a dungeon called Winding Passage. The description of Winding Passage is &quot;<font color=#000080>This is a winding passage.  It seems that there is only an exit on the east end, although the whirring from the round room can be heard faintly to the north.</font>&quot;
+<br>
+Northwest of Winding Passage is nowhere.
+<br>
+Instead of going north from Winding Passage: say &quot;<font color=#000080>You hear the whir from the round room but can find no entrance.</font>&quot;
+<br>
+East of Winding Passage is Mirror Room No 1. The printed name of Mirror Room No 1 is &quot;<font color=#000080>Mirror Room</font>&quot;. The description of Mirror Room No 1 is &quot;<font color=#000080>This is a large square room with tall ceilings.  On the south wall is an enormous mirror which fills the entire wall.  There are exits on the other three sides of the room.</font>&quot;
+<br>
+An enormous mirror is in Mirror Room No 1.  It is scenery.
+<br>
+The description of the enormous mirror is &quot;<font color=#000080>[if the enormous mirror is whole]There is an ugly person staring back at you.[otherwise]The mirror is broken into many pieces.[end if]</font>&quot;.
+<br>
+Instead of touching or rubbing the enormous mirror:
+<br>
+  say &quot;<font color=#000080>There is a rumble from deep within the earth and the room shakes.</font>&quot;;
+<br>
+ move the player to Mirror Room No 2.
+<br>
+
+<br>
+  
+<br>
+North of Mirror Room No 1 is southwest of Narrow Crawlway. 
+<br>
+Cave1 is a dungeon. &quot;<font color=#000080>This is a tiny cave with entrances west and north, and a dark, forbidding staircase leading down.</font>&quot;
+<br>
+The printed name of Cave1 is &quot;<font color=#000080>Tiny Cave</font>&quot;.
+<br>
+North of Cave1 is Narrow Crawlway. East of Mirror Room is Cave1.
+<br>
+Entrance to Hades is a dungeon. The description of Entrance to Hades is
+<br>
+&quot;<font color=#000080>You are outside a large gateway, on which is inscribed: [paragraph break]
+<br>
+</font><font color=#000080>[8 spaces]'Abandon every hope, all ye who enter here.'[paragraph break]
+<br>
+</font><font color=#000080>The gate is open; through it you can see a desolation, with a pile of mangled corpses in one corner.  Thousands of voices, lamenting some hideous fate, can be heard.</font>&quot;
+<br>
+Down from Cave1 is Entrance to Hades. Land of the Living Dead is a dungeon. East of Entrance to Hades is Land of the Living Dead.
+<br>
+Dead flag is a truth state variable. Dead flag is usually false.
+<br>
+
+<br>
+East of Ravine is a dungeon called Chasm.  The description of Chasm is &quot;<font color=#000080>A chasm runs southwest to northeast.  You are on the south edge; the path exits to the south and to the east.</font>&quot;
+<br>
+Instead of going down from Chasm:
+<br>
+  say &quot;<font color=#000080>Are you out of your mind?</font>&quot;
+<br>
+Instead of jumping while in Chasm: fatally leap.
+<br>
+
+<br>
+Northeast of Round Room is south of a dungeon called North-South Passage.  The description of North-South Passage is &quot;<font color=#000080>This is a high north-south passage, which forks to the northeast.</font>&quot;
+<br>
+North of North-South Passage is east of Chasm. Northeast of North-South Passage is west of a dungeon called Loud Room. The description of Loud Room is &quot;<font color=#000080>This is a large room with a ceiling which cannot be detected from the ground. There is a narrow passage from east to west and a stone stairway leading upward.  The room is extremely noisy.  In fact, it is difficult to hear yourself think.</font>&quot;
+<br>
+
+<br>
+Echo flag is a truth state variable.  Echo flag is usually false.
+<br>
+After reading a command while in Loud Room:
+<br>
+if the player's command does not include &quot;<font color=#000080>[direction]</font>&quot; and the player's command does not match &quot;<font color=#000080>ECHO</font>&quot; and echo flag is false begin;
+<br>
+say &quot;<font color=#000080>[player's command]</font>&quot;;
+<br>
+reject the player's command;
+<br>
+else if the player's command matches &quot;<font color=#000080>ECHO</font>&quot; and echo flag is false;
+<br>
+  change echo flag to true;
+<br>
+  say &quot;<font color=#000080>The acoustics of the room change subtly.</font>&quot;;
+<br>
+  reject the player's command;
+<br>
+end if.
+<br>
+A large platinum bar is in Loud Room.  The printed name of the large platinum bar is &quot;<font color=#000080>platinum bar</font>&quot;.  The later appearance of the large platinum bar is &quot;<font color=#000080>There is a large platinum bar here.</font>&quot;  The size of the platinum bar is 20.  The case-points of the platinum bar is 10. 
+<br>
+After taking the platinum bar for the first time:
+<br>
+  award 12 points; continue the action.
+<br>
+Up from Loud Room is south of a dungeon called Damp Cave. The description of Damp Cave is &quot;<font color=#000080>This is a cave.  Passages exit to the south and to the east, but the cave narrows to a crack to the west.  The earth is particularly damp here.</font>&quot;
+<br>
+Instead of going west from Damp Cave, say &quot;<font color=#000080>It is too narrow for most insects.</font>&quot;
+<br>
+East of Loud Room is south of a dungeon called Ancient Chasm.  The description of Ancient Chasm is &quot;<font color=#000080>A chasm, evidently produced by an ancient river, runs through the
+<br>
+</font><font color=#000080>cave here.  Passages lead off in all directions.</font>&quot;
+<br>
+North of Ancient Chasm is southeast of a dead end.  West of Ancient Chasm is a dead end.
+<br>
+East of Ancient Chasm is a dungeon called Tiny Cave.  The description of Tiny Cave is &quot;<font color=#000080>This is a small cave whose exits are on the south and northwest.</font>&quot;
+<br>
+A hunk of bat guano is in Ancient Chasm.  Understand &quot;<font color=#000080>excretement</font>&quot; and &quot;<font color=#000080>shit</font>&quot; and &quot;<font color=#000080>crap</font>&quot; and &quot;<font color=#000080>poop</font>&quot; as the bat guano.
+<br>
+The size of the bat guano is 20.  
+<br>
+A shovel is in Ancient Chasm.  The later appearance of the shovel is &quot;<font color=#000080>There is a large shovel here.</font>&quot;  Understand &quot;<font color=#000080>large shovel</font>&quot; as the shovel.  The size of the shovel is 15.
+<br>
+
+<br>
+Mirror Room No 2 is a dungeon. The printed name of Mirror Room No 2 is &quot;<font color=#000080>Mirror Room</font>&quot;. The description of Mirror Room No 2 is &quot;<font color=#000080>This is a large square room with tall ceilings.  On the south wall is a gigantic mirror which fills the entire wall.  There are exits on the other three sides of the room.</font>&quot;
+<br>
+An gigantic mirror is in Mirror Room No 2.  It is scenery.
+<br>
+The description of the gigantic mirror is &quot;<font color=#000080>[if the gigantic mirror is whole]There is an ugly person staring back at you.[otherwise]The mirror is broken into many pieces.[end if]</font>&quot;.
+<br>
+Instead of touching or rubbing the gigantic mirror:
+<br>
+  say &quot;<font color=#000080>There is a rumble from deep within the earth and the room shakes.</font>&quot;;
+<br>
+ move the player to Mirror Room No 1.
+<br>
+West of Mirror Room No 2 is a dungeon called Cold Passage. The description of Cold Passage is &quot;<font color=#000080>This is a cold and damp corridor where a long east-west passageway intersects with a northward path.</font>&quot;
+<br>
+North of Cold Passage is southwest of a dungeon called Steep Crawlway. The description of Steep Crawlway is &quot;<font color=#000080>This is a steep and narrow crawlway.  There are two exits nearby to
+<br>
+</font><font color=#000080>the south and southwest.</font>&quot;
+<br>
+South of Steep Crawlway is Mirror Room No 2.
+<br>
+East of Mirror Room No 2 is north of a dungeon called Cave2. The printed name of Cave2 is &quot;<font color=#000080>Tiny Cave</font>&quot;. The description of Cave2 is &quot;<font color=#000080>This is a tiny cave with entrances west and north, and a dark, forbidding staircase leading down.</font>&quot;
+<br>
+Down from Cave2 is a dungeon called Atlantis Room.  The description of Atlantis Room is &quot;<font color=#000080>This is an ancient room, long under water.  There are exits here to the southeast and upward.</font>&quot;
+<br>
+A crystal trident is in Atlantis Room.  The initial appearance of the crystal trident is &quot;<font color=#000080>On the shore lies Poseidon's own crystal trident.</font>&quot; The later appearance of the crystal trident is &quot;<font color=#000080>Poseidon's own crystal trident is here.</font>&quot; The size of the crystal trident is 20.  The case-points of the crystal trident is 11. After taking the crystal trident for the first time: award 4 points; continue the action.
+<br>
+
+<br>
+Southwest of Atlantis Room is a dungeon called Reservoir North.  A drainable watersource called the pdl3 is in Reservoir North. The description of Reservoir North is &quot;<font color=#000080>[if the pdl3 is on-stage]You are in a large cavernous room, north of a large reservoir.[otherwise]You are in a large cavernous room, the south of which was formerly a reservoir.[end if]  There is a tunnel leaving the room to the north.</font>&quot;
+<br>
+A nondrainable watersource called the pdl4 is in Reservoir. Down from In Stream is Reservoir.
+<br>
+West of Cold Passage is a dungeon called Slide Room.  The description of Slide Room is &quot;<font color=#000080>This is a small chamber, which appears to have been part of a coal mine. On the south wall of the chamber the letters 'Granite Wall' are etched in the rock. To the east is a long passage and there is a steep metal slide twisting downward. To the north is a small opening.</font>&quot;
+<br>
+
+<br>
+The enormous mirror can be whole or trashed.  The gigantic mirror can be whole or trashed.
+<br>
+The enormous mirror is whole.  The gigantic mirror is whole.
+<br>
+Check destroying the enormous mirror:
+<br>
+  if the enormous mirror is trashed begin;
+<br>
+    say &quot;<font color=#000080>It's already broken.</font>&quot; instead;
+<br>
+  else if the gigantic mirror is trashed;
+<br>
+    say &quot;<font color=#000080>Haven't you done enough damage already?</font>&quot; instead;
+<br>
+  else;
+<br>
+    now the enormous mirror is trashed;
+<br>
+     say &quot;<font color=#000080>You have broken the mirror.  I hope you have a seven years supply of
+<br>
+</font><font color=#000080>good luck handy.</font>&quot; instead;
+<br>
+  end if.
+<br>
+Check destroying the gigantic mirror:
+<br>
+  if the gigantic mirror is trashed begin;
+<br>
+    say &quot;<font color=#000080>It's already broken.</font>&quot; instead;
+<br>
+  else if the enormous mirror is trashed;
+<br>
+    say &quot;<font color=#000080>Haven't you done enough damage already?</font>&quot; instead;
+<br>
+  else;
+<br>
+    now the gigantic mirror is trashed;
+<br>
+     say &quot;<font color=#000080>You have broken the mirror.  I hope you have a seven years supply of
+<br>
+</font><font color=#000080>good luck handy.</font>&quot; instead;
+<br>
+  end if.
+<br>
+Check taking the enormous mirror:
+<br>
+  if the enormous mirror is trashed, say &quot;<font color=#000080>Nobody but a greedy surgeon would allow you to attempt that trick.</font>&quot; instead.
+<br>
+Check taking the gigantic mirror:
+<br>
+  if the enormous mirror is trashed, say &quot;<font color=#000080>Nobody but a greedy surgeon would allow you to attempt that trick.</font>&quot; instead.
+<br>
+Down from Slide Room is Cellar.
+<br>
+
+<br>
+</font>
+					<p><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"></font></p>
+					<p></p>
+				</td></tr></table>
+	</body>
+
+</html>
