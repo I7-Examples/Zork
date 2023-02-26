@@ -1,6 +1,6 @@
 "Zork" by Dean Menezes
 
-Include (- Serial "071119"; -).
+Include (- Serial "071120"; -).
 
 
 Part 1 - New Actions and Concepts
@@ -8,6 +8,7 @@ Part 1 - New Actions and Concepts
 The story genre is "Fantasy". 
 The story headline is "A Computerized Fantasy Simulation Game".
 Use memory economy.
+Release along with the source text and a website. 
 When play begins:
 Change the description of yourself to "That's difficult unless your eyes are prehensile.".
 Launching is an action applying to nothing.  Understand "launch" as launching.
@@ -918,11 +919,55 @@ if dead flag is true, say "Even such a simple action is beyond your capabilities
 Before saying:
 if dead flag is true, say "No one hears you." instead.
 
+Death count is a number that varies.
+When play ends when the game ended in death:
+increase death count by 1;
+award -10 points;
+if death count is 3 begin;
+  say "You clearly are a suicidal maniac.  We don't allow psychotics in the
+dungeon, since they may harm other adventurers.  Your remains will be
+installed in the Land of the Living Dead, where your fellow adventurers
+may gloat over them.";
+else if Altar is unvisited;
+  say "Shall I patch you up? ";
+  if the player consents begin;
+    say "Now, let me see...[line break]Well, we weren't quite able to restore your state.  You can't have everything.";
+    if the player is carrying the battery-powered brass lantern begin;
+      move the battery-powered brass lantern to Living Room;
+      now the battery-powered brass lantern is switched off;
+    end if;
+    repeat with item running through things had by the player begin; 
+      move the item to a random visited room; 
+    end repeat; 
+    move the player to Forest 1;
+    resume the game;
+  else;
+    say "What?  You don't trust me?  Why, only last week I patched a running
+ITS and it survived for over 30 seconds.  Oh, well.";
+  end if;
+else;
+  say "As you take your last breath, you feel relieved of your burdens.  The feeling passes as you find yourself before the gates of Hell, where the spirits jeer at you and deny you entry.  Your senses are disturbed.  The objects in the dungeon appear indistinct, bleached of color, even
+unreal.";
+  if the player is carrying the battery-powered brass lantern begin;
+      move the battery-powered brass lantern to Living Room;
+      now the battery-powered brass lantern is switched off;
+  end if;
+  repeat with item running through things had by the player begin; 
+    move the item to a random visited room; 
+  end repeat; 
+  change dead flag to true;
+  now the player is lit;
+  move the player to Entrance to Hades;
+  resume the game;
+end if.
+
 Part 2 - Above Ground Stuff
 
 A room called West of House is an outdoors room. "You are in an open field on the west side of a white house with a boarded front door."
 
 The small mailbox is a container in West of House. The mailbox is fixed in place, closed, and openable. 
+Understand "box" and "mail box" and "mail-box" as the mailbox.
+
 The size of the leaflet is 2.
 The capacity of the mailbox is 10.
 A leaflet is in the mailbox. The description of the leaflet is "[leaflet text]".
@@ -1138,7 +1183,7 @@ Instead of taking the rug: say "The rug is too heavy to lift."
 After pushing or pulling the rug for the first time: say "With a great effort, the rug is moved to one side of the room. With the rug moved, the dusty cover of a closed trap door appears."; now the trap door is revealed.
 After pushing or pulling the rug: say "Having moved the carpet previously, you find it impossible to move it again."
 
-Southeast of Forest2 is west of a room called Canyon View.  South from Canyon View is east of Forest5.  The description of Canyon View is "You are at the top of the Great Canyon on its south wall.  From here there is a marvelous view of the Canyon and parts of the Frigid River
+Southeast of Forest 2 is west of a room called Canyon View.  South from Canyon View is east of Forest 5.  The description of Canyon View is "You are at the top of the Great Canyon on its south wall.  From here there is a marvelous view of the Canyon and parts of the Frigid River
 upstream.  Across the canyon, the walls of the White Cliffs still
 appear to loom far above.  Following the Canyon upstream (north and
 northwest), Aragain Falls may be seen, complete with rainbow. 
@@ -1159,7 +1204,7 @@ runoff of Aragain Falls. To the north is a narrow path."
 
 North of Canyon Bottom is southeast of a room called End of Rainbow.  The description of End of Rainbow is "You are on a small, rocky beach on the continuation of the Frigid River past the Falls.  The beach is narrow due to the presence of the White Cliffs.  The river canyon opens here and sunlight shines in from above. A rainbow crosses over the falls to the west and a narrow path continues to the southeast."
 
-Part 3 - The Dungeon
+Part 3 - Cellar Area and Bank of Zork
 
 A dungeon is a kind of room. A dungeon is usually dark.
 The Cellar is a dungeon. The Cellar is west of a dungeon called Troll Room.  "You are in a dark and damp cellar with a narrow passageway leading east, and a crawlway to the south.  On the west is the bottom of a steep metal ramp which is unclimbable."
@@ -1303,6 +1348,8 @@ Instead of touching, taking, pushing, pulling, or rubbing the south wall: say "A
 A dungeon called North-South Crawlway is north of Studio. "This is a north-south crawlway; a passage also goes to the east. There is a hole above, but it provides no opportunities for climbing." North of North-South Crawlway is north of West of Chasm. East of North-South Crawlway is east of Troll Room.
 Instead of going up from North-South Crawlway: say "Not even a human fly could get up it."
 
+Part 4 - The Maze
+
 A maze is a kind of dungeon.  A maze usually has printed name "Maze". The description of a maze is usually "This is part of a maze of twisty little passages, all alike."
 A dead end is a kind of dungeon. A dead end usually has printed name "Dead End".
 South of Troll Room is west of a maze called Maze 1. North of Maze 1 is Maze 1. East of Maze 1 is north of a maze called Maze 2. South of Maze 1 is south of a maze called Maze 3. North of Maze 3 is Maze 2. East of Maze 3 is a maze called Maze 4. East of Maze 2 is south of a dead end called DE1. North of Maze 4 is west of Maze 2.
@@ -1388,6 +1435,9 @@ Instead of giving the garlic to the cyclops when the cyclops is not gone: say "T
 Instead of giving the lunch to the cyclops when the cyclops is not gone: say "The cyclops says, 'Mmm mmm!  I love hot peppers!  But oh, could I use a drink.  Perhaps I could drink the blood of that thing.' From the gleam in his eye, it could be surmised that you are 'that thing'."; now the cyclops is thirsty; remove the bottle from play.
 The description of Strange Passage is "This is a long passage.  To the south is one entrance.  On the east there is an old wooden door with a large hole in it (about
 cyclops sized)."
+
+Part 5 - The Round Room, Temple, and Alice Area
+
 West of a dungeon called East-West Passage is north of Troll Room. "This is a narrow east-west passageway.  There is a narrow stairway leading down at the north end of the room."
 After going north from Troll Room for the first time: award 5 points; continue the action.
 North of East-West Passage is a dungeon called Deep Ravine. Down from  East-West Passage is Deep Ravine. 
@@ -1747,6 +1797,9 @@ if the player has been in Cage for the tenth turn begin;
  end the game in death;
 end if.
 The mangled steel cage is a thing. The size of the mangled steel cage is 60.
+
+Part 6 -  Deep Ravine, Rocky Crawl, Egyptian Area
+
 West of Deep Ravine is west of a dungeon called Rocky Crawl.
 The description of Rocky Crawl is "This is a crawlway with a three-foot high ceiling.  Your footing is very unsure here due to the assortment of rocks underfoot.  Passages can be seen in the east, west, and northwest corners of the passage."
 East of a dungeon called Dome Room is east of Low Crawl. "You are at the periphery of a large dome, which forms the ceiling of another room below.  Protecting you from a precipitous drop is a wooden railing which circles the dome."
@@ -1849,47 +1902,6 @@ Instead of touching or rubbing the enormous mirror:
  move the player to Mirror Room No 2.
 
   
-Death count is a number that varies.
-When play ends when the game ended in death:
-increase death count by 1;
-award -10 points;
-if death count is 3 begin;
-  say "You clearly are a suicidal maniac.  We don't allow psychotics in the
-dungeon, since they may harm other adventurers.  Your remains will be
-installed in the Land of the Living Dead, where your fellow adventurers
-may gloat over them.";
-else if Altar is unvisited;
-  say "Shall I patch you up? ";
-  if the player consents begin;
-    say "Now, let me see...[line break]Well, we weren't quite able to restore your state.  You can't have everything.";
-    if the player is carrying the battery-powered brass lantern begin;
-      move the battery-powered brass lantern to Living Room;
-      now the battery-powered brass lantern is switched off;
-    end if;
-    repeat with item running through things had by the player begin; 
-      move the item to a random visited room; 
-    end repeat; 
-    move the player to Forest 1;
-    resume the game;
-  else;
-    say "What?  You don't trust me?  Why, only last week I patched a running
-ITS and it survived for over 30 seconds.  Oh, well.";
-  end if;
-else;
-  say "As you take your last breath, you feel relieved of your burdens.  The feeling passes as you find yourself before the gates of Hell, where the spirits jeer at you and deny you entry.  Your senses are disturbed.  The objects in the dungeon appear indistinct, bleached of color, even
-unreal.";
-  if the player is carrying the battery-powered brass lantern begin;
-      move the battery-powered brass lantern to Living Room;
-      now the battery-powered brass lantern is switched off;
-  end if;
-  repeat with item running through things had by the player begin; 
-    move the item to a random visited room; 
-  end repeat; 
-  change dead flag to true;
-  now the player is lit;
-  move the player to Entrance to Hades;
-  resume the game;
-end if.
 North of Mirror Room No 1 is southwest of Narrow Crawlway. 
 Cave1 is a dungeon. "This is a tiny cave with entrances west and north, and a dark, forbidding staircase leading down."
 The printed name of Cave1 is "Tiny Cave".
@@ -1977,6 +1989,8 @@ Check taking the enormous mirror:
 Check taking the gigantic mirror:
   if the enormous mirror is trashed, say "Nobody but a greedy surgeon would allow you to attempt that trick." instead.
 Down from Slide Room is Cellar.
+
+Part 7 - Coal Mine Area
 
 North of Slide Room is a dungeon called Mine Entrance.  The description of Mine Entrance is "You are standing at the entrance of what might have been a coal
 mine. To the northeast and the northwest are entrances to the mine,
@@ -2093,6 +2107,8 @@ After taking the huge diamond for the first time:
 Instead of taking the slag:  say "The slag turns out to be rather insubstantial, and crumbles into dust at your touch.  It must not have been very valuable."
 The capacity of the PDP-10 is 50.
 A screwdriver is a thing.
+
+Part 8 - The Reservoir
 
 East of Deep Canyon is south of a dungeon called Flood Control Dam #3.  The description of Flood Control Dam #3 is "You are standing on the top of the Flood Control Dam #3, which was quite a tourist attraction in times far distant.  There are paths to the north, south, east, and down.  There is a control panel here.  There is a large metal bolt on the panel. Above the bolt is a small green plastic bubble.  [if gate flag is true]The green bubble is glowing.[end if]".
 East of Flood Control Dam #3 is east of Damp Cave.
@@ -2247,6 +2263,8 @@ Instead of going to a room that is not offroad:
   else continue the action.
 A hand-held air-pump is in Reservoir.  Understand "pump" and "airpump" as the air-pump.  The later appearance of the air-pump is "There is a small pump here."
 
+Part 9 - Old Man River, That Old Man River
+
 Down from Flood Control Dam #3 is a room called Dam Base.  The description of Dam Base is "You are at the base of Flood Control Dam #3, which looms above you
 and to the north.  The river Frigid is flowing by here.  Across the river are the White Cliffs which seem to form a giant wall stretching from north to south along the east shore of the river as it winds its way downstream."
 
@@ -2342,4 +2360,5 @@ The printed name of WCLF2 is "White Cliffs Beach".  East of WCLF2 is River4.
 [ XOR a b; return (a | b) & (~(a & b)); ];        ! Bitwise Exclusive OR
 [ MAX a b; if (a>b) return a; else return b;]; 
 -). ]
+
 
