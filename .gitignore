@@ -1,0 +1,6 @@
+*.inform/manifest.plist
+*.inform/Metadata.iFiction
+*.inform/Release.blurb
+*.inform/Settings.plist
+*.inform/Skein.skein
+* Materials
