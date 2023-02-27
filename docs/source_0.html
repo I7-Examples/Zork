@@ -307,13 +307,15 @@ else if the player is in the basket;
 <br>
     try looking instead;
 <br>
-  else if the player is in Volcano Near Viewing Ledge;
+  else if the basket is in Volcano Near Viewing Ledge;
 <br>
     say &quot;<font color=#000080>The ledge is too narrow to land on.</font>&quot; instead;
 <br>
-  else if the player is in Volcano Near WideLedge;
+  else if the basket is in Volcano Near WideLedge;
 <br>
     move the basket to Wide Ledge;
+<br>
+    try looking instead;
 <br>
   end if;
 <br>
@@ -1525,11 +1527,17 @@ try exiting.
 <tr><td halign="left" valign="top">554&nbsp;&nbsp;</td><td halign="left" valign="top"> &quot;<font color=#000080>Master</font>&quot;</td></tr>
 <tr><td halign="left" valign="top">585&nbsp;&nbsp;</td><td halign="left" valign="top"> &quot;<font color=#000080>Wizard</font>&quot;</td></tr>
 <tr><td halign="left" valign="top">616&nbsp;&nbsp;</td><td halign="left" valign="top"> &quot;<font color=#000080>Cheater</font>&quot;</td></tr>
-<tr><td halign="left" valign="top">641&nbsp;&nbsp;</td><td halign="left" valign="top"> &quot;<font color=#000080>Advanced Cheater</font>&quot;</td></tr>
-<tr><td halign="left" valign="top">666&nbsp;&nbsp;</td><td halign="left" valign="top"> &quot;<font color=#000080>Master Cheater</font>&quot;</td></tr>
-<tr><td halign="left" valign="top">691&nbsp;&nbsp;</td><td halign="left" valign="top"> &quot;<font color=#000080>Super Cheater</font>&quot;</td></tr>
-<tr><td halign="left" valign="top">716&nbsp;&nbsp;</td><td halign="left" valign="top"> &quot;<font color=#000080>Dungeon Master</font>&quot;</td></tr>
 </table>
+<br>
+<font color=#404040>[641 &quot;Advanced Cheater&quot;
+<br>
+</font><font color=#404040>666 &quot;Master Cheater&quot;
+<br>
+</font><font color=#404040>691 &quot;Super Cheater&quot;
+<br>
+</font><font color=#404040>716 &quot;Dungeon Master&quot;</font>]
+<br>
+
 <br>
 Kicking is an action applying to one visible thing. Understand &quot;<font color=#000080>kick [something]</font>&quot; as kicking.
 <br>
@@ -1704,6 +1712,8 @@ A thing can be round or unevenly shaped. A thing is usually round.
 Check tying:
 <br>
 if the noun is the second noun, say &quot;<font color=#000080>There is nothing it can be tied to.</font>&quot; instead;
+<br>
+if the noun is the rope and the second noun is the braided wire, say &quot;<font color=#000080>There is nothing it can be tied to.</font>&quot; instead;
 <br>
 if the second noun is a rope, try tying the second noun to the noun instead;
 <br>
@@ -2060,7 +2070,7 @@ increase death count by 1;
 <br>
 award -10 points;
 <br>
-if endgame flag is true begin;
+if <font color=#404040>[endgame flag is true</font>] no begin;
 <br>
   say &quot;<font color=#000080>Normally, I would attempt to rectify your condition, but I'm ashamed
 <br>
@@ -2232,8 +2242,6 @@ Match tick is a number that varies.  Match tick is usually -1.
 <br>
 Carry out burning:
 <br>
- try silently taking the noun;
-<br>
  say &quot;<font color=#000080>One of the matches starts to burn.</font>&quot;;
 <br>
  change match tick to 2;
@@ -2264,7 +2272,7 @@ Every turn:
 <br>
 now every thing which is flaming is lit;
 <br>
-if something inflammable is non-flaming, now the noun is unlit;
+if something inflammable (called the thingy) is non-flaming, now the thingy is unlit;
 <br>
 if the matchbook is non-flaming, now the matchbook is unlit;
 <br>
@@ -2279,8 +2287,6 @@ if match tick is 0 begin;
   change match tick to -1;
 <br>
 end if.
-<br>
-
 <br>
 
 <br>
@@ -2370,6 +2376,14 @@ end if;
 <br>
 now the candles are flaming;
 <br>
+else if the noun is in the receptacle;
+<br>
+  now the noun is flaming;
+<br>
+  say &quot;<font color=#000080>[The noun] burns inside the receptacle.</font>&quot;;
+<br>
+  change burn interrupt to 20 * the size of the noun;
+<br>
 else if the noun is the pile of leaves;
 <br>
   now the grating is revealed;
@@ -2424,6 +2438,24 @@ else;
 <br>
 end if.
 <br>
+Every turn:
+<br>
+if burn interrupt is 0 begin;
+<br>
+  if something visible is in the receptacle, say &quot;<font color=#000080>You notice that the [list of flaming things in the receptacle] has burned out, and that the cloth bag starts to deflate.</font>&quot;;
+<br>
+  let the thingy be a random flaming  thing in the receptacle;
+<br>
+  now the thingy is not flaming;
+<br>
+  remove the thingy from play;
+<br>
+end if;
+<br>
+decrease burn interrupt by 1.
+<br>
+
+<br>
 Wire clock is a number that varies.  Wire clock is usually -1.
 <br>
 Every turn:
@@ -2444,9 +2476,19 @@ if wire clock is 0 begin;
 <br>
    say &quot;<font color=#000080>There is an explosion nearby.</font>&quot;;
 <br>
-   
+   if the brick is in the oblong hole begin;
 <br>
-   if the brick is in Dusty Room begin;
+       change ledge clock to 5;
+<br>
+       now the rusty box is open;
+<br>
+       move the crown to Dusty Room;
+<br>
+       move the note card to Dusty Room;
+<br>
+    else if the brick is in Dusty Room;
+<br>
+       change ledge clock to 5;
 <br>
    else;
 <br>
@@ -2463,6 +2505,60 @@ if wire clock is 0 begin;
 end if;
 <br>
 decrease wire clock by 1.
+<br>
+Ledge clock is a number that varies.  Ledge clock is usually -1.
+<br>
+Every turn:
+<br>
+decrease ledge clock by 1;
+<br>
+if ledge clock is 3, say &quot;<font color=#000080>You may recall your recent explosion.  Well, probably as a result of that, you hear an ominous rumbling, as if one of the rooms in the
+<br>
+</font><font color=#000080>dungeon has collapsed.</font>&quot;;
+<br>
+if ledge clock is 0 begin;
+<br>
+  if the player is in the basket and the basket is in Wide Ledge begin;
+<br>
+    if the braided wire is attached to the tiny hook begin;
+<br>
+      say &quot;<font color=#000080>The ledge collapses, probably as a result of the explosion.  A large
+<br>
+</font><font color=#000080>chunk of it, which is attached to the hook, drags you down to the
+<br>
+</font><font color=#000080>ground.  Fatally.</font>&quot;;
+<br>
+      end the game in death;
+<br>
+    else;
+<br>
+       say &quot;<font color=#000080>The ledge collapses, leaving you with no place to land.</font>&quot;;
+<br>
+       move the basket to Volcano Near WideLedge;
+<br>
+       try looking;
+<br>
+    end if;
+<br>
+  else if the player is in Wide Ledge or the player is in Dusty Room;
+<br>
+    say &quot;<font color=#000080>The force of the explosion has caused the ledge to collapse
+<br>
+</font><font color=#000080>belatedly.</font>&quot;;
+<br>
+    end the game in death;
+<br>
+  else;
+<br>
+    say &quot;<font color=#000080>The ledge collapses, giving you a narrow escape.</font>&quot;;
+<br>
+  end if;
+<br>
+end if.
+<br>
+
+<br>
+Burn interrupt is a number that varies.  Burn interrupt is usually -1.
 <br>
 After dropping the candles:
 <br>
@@ -2532,7 +2628,7 @@ move the player to the former location.
 <br>
 
 <br>
-
+Every turn: if the score is 616, end the game in victory.
 <br>
 
 <br>
@@ -2541,7 +2637,7 @@ move the player to the former location.
 <A name="note1"><font color=#404040>[1]. According to THE ELEMENTS OF STYLE --  FLAMMABLE: An oddity, chiefly useful in saving lives. The common word meaning "combustible" is inflammable. But some people are thrown off by the in- and think inflammable means "not combustible." For this reason, trucks carrying gasoline or explosives are now marked FLAMMABLE. Unless you are operating such a truck and hence are concerned with the safety of children and illiterates, use inflammable.</font><p>
 <A name="note2"><font color=#404040>[2].  It is absurd that the adventurer would be able to count so many leaves with such precision, especially in the minute or so time that a normal turn supposedly takes.</font><p>
 <A name="note3"><font color=#404040>[3].  Decimal 69 is equal to octal 105, and hexadecimal 69 is equal to decimal 105.</font><p>
-<A name="note4"><font color=#404040>[4].  Mind! I donâ€™t mean to say that I know, of my own knowledge, what there is particularly dead about a doorâ€“nail. I might have been inclined, myself, to regard a coffinâ€“nail as the deadest piece of ironmongery in the trade. But the wisdom of our ancestors is in the simile; and my unhallowed hands shall not disturb it, or the Countryâ€™s done for. You will therefore permit me to repeat, emphatically, that Marley was as dead as a doorâ€“nail. --Charles Dickens</font><p>
+<A name="note4"><font color=#404040>[4].  Mind! I donÃ¢â‚¬â„¢t mean to say that I know, of my own knowledge, what there is particularly dead about a doorÃ¢â‚¬â€œnail. I might have been inclined, myself, to regard a coffinÃ¢â‚¬â€œnail as the deadest piece of ironmongery in the trade. But the wisdom of our ancestors is in the simile; and my unhallowed hands shall not disturb it, or the CountryÃ¢â‚¬â„¢s done for. You will therefore permit me to repeat, emphatically, that Marley was as dead as a doorÃ¢â‚¬â€œnail. --Charles Dickens</font><p>
 <A name="note5"><font color=#404040>[5].  OK, this sort of doesn't make sense if the player is outside</font><p>
 </font></p>
 					<p></p>

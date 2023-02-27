@@ -1,6 +1,6 @@
 "Zork" by Dean Menezes
 
-Include (- Serial "080121"; -).
+Include (- Serial "080127"; -).
 
 
 Part 1 - New Actions and Concepts
@@ -150,10 +150,11 @@ else if the player is in the basket;
   if the basket is in Volcano Near Small Ledge begin;
     move the basket to Narrow Ledge;
     try looking instead;
-  else if the player is in Volcano Near Viewing Ledge;
+  else if the basket is in Volcano Near Viewing Ledge;
     say "The ledge is too narrow to land on." instead;
-  else if the player is in Volcano Near WideLedge;
+  else if the basket is in Volcano Near WideLedge;
     move the basket to Wide Ledge;
+    try looking instead;
   end if;
 end if;
 say "You cannot land from here." instead.
@@ -765,10 +766,11 @@ Score	Rank
 554	"Master"
 585	"Wizard"
 616	"Cheater"
-641	"Advanced Cheater"
+
+[641	"Advanced Cheater"
 666	"Master Cheater"
 691	"Super Cheater"
-716	"Dungeon Master"
+716	"Dungeon Master"]
 
 Kicking is an action applying to one visible thing. Understand "kick [something]" as kicking.
 Carry out kicking: if dead flag is true, say "All such attacks are vain in your position." instead;
@@ -857,6 +859,7 @@ A rope is a kind of thing. Definition: a thing is nonrope if it is not a rope.
 A thing can be round or unevenly shaped. A thing is usually round.
 Check tying:
 if the noun is the second noun, say "There is nothing it can be tied to." instead;
+if the noun is the rope and the second noun is the braided wire, say "There is nothing it can be tied to." instead;
 if the second noun is a rope, try tying the second noun to the noun instead;
 if the noun is not a rope, say "You can't tie stuff with that." instead;
 if the noun is attached to a nonrope thing (called the item), say "[The noun] is already attached to [the item]." instead;
@@ -1065,7 +1068,7 @@ Death count is a number that varies.
 When play ends when the game ended in death:
 increase death count by 1;
 award -10 points;
-if endgame flag is true begin;
+if [endgame flag is true] no begin;
   say "Normally, I would attempt to rectify your condition, but I'm ashamed
 to say my abilities are not equal to dealing with your present state
 of disrepair.  Please let me express my profoundest regrets.";
@@ -1119,7 +1122,7 @@ Every turn:
 Diagnosing is an action applying to nothing.  Understand "diagnose" as diagnosing.
 Check diagnosing:
   if dead flag is true, say "You are dead as a doornail." instead.
-[* Mind! I donâ€™t mean to say that I know, of my own knowledge, what there is particularly dead about a doorâ€“nail. I might have been inclined, myself, to regard a coffinâ€“nail as the deadest piece of ironmongery in the trade. But the wisdom of our ancestors is in the simile; and my unhallowed hands shall not disturb it, or the Countryâ€™s done for. You will therefore permit me to repeat, emphatically, that Marley was as dead as a doorâ€“nail. --Charles Dickens]
+[* Mind! I donÃ¢â‚¬â„¢t mean to say that I know, of my own knowledge, what there is particularly dead about a doorÃ¢â‚¬â€œnail. I might have been inclined, myself, to regard a coffinÃ¢â‚¬â€œnail as the deadest piece of ironmongery in the trade. But the wisdom of our ancestors is in the simile; and my unhallowed hands shall not disturb it, or the CountryÃ¢â‚¬â„¢s done for. You will therefore permit me to repeat, emphatically, that Marley was as dead as a doorÃ¢â‚¬â€œnail. --Charles Dickens]
 Carry out diagnosing:
   if the wounds of the player is 0 begin;
     say "You are in perfect health.  You are strong enough to take several wounds.";
@@ -1151,7 +1154,6 @@ Check burning (this is the new burning rule):
   end if.  
 Match tick is a number that varies.  Match tick is usually -1.
 Carry out burning:
- try silently taking the noun;
  say "One of the matches starts to burn.";
  change match tick to 2;
  now the matchbook is flaming.
@@ -1167,7 +1169,7 @@ Instead of switching off something which is flaming:
   end if.
 Every turn:
 now every thing which is flaming is lit;
-if something inflammable is non-flaming, now the noun is unlit;
+if something inflammable (called the thingy) is non-flaming, now the thingy is unlit;
 if the matchbook is non-flaming, now the matchbook is unlit;
 if the pair of candles is non-flaming, now the pair of candles is unlit;
 if match tick is greater than 0, decrease match tick by 1;
@@ -1175,7 +1177,6 @@ if match tick is 0 begin;
   say "The match has gone out.";
   change match tick to -1;
 end if.
-
 
 The new burning rule is listed instead of the block burning rule in the check burning rulebook.
 
@@ -1220,6 +1221,10 @@ change exorcism flag to 0;
 end if;
 end if;
 now the candles are flaming;
+else if the noun is in the receptacle;
+  now the noun is flaming;
+  say "[The noun] burns inside the receptacle.";
+  change burn interrupt to 20 * the size of the noun;
 else if the noun is the pile of leaves;
   now the grating is revealed;
   if the player is carrying the noun begin;
@@ -1247,6 +1252,15 @@ else;
     say "[The noun] catches fire and is consumed.";
   end if;
 end if.
+Every turn:
+if burn interrupt is 0 begin;
+  if something visible is in the receptacle, say "You notice that the [list of flaming things in the receptacle] has burned out, and that the cloth bag starts to deflate.";
+  let the thingy be a random flaming  thing in the receptacle;
+  now the thingy is not flaming;
+  remove the thingy from play;
+end if;
+decrease burn interrupt by 1.
+
 Wire clock is a number that varies.  Wire clock is usually -1.
 Every turn:
 if wire clock is 0 begin;
@@ -1257,8 +1271,13 @@ than weight, namely the ability to blow you to smithereens.";
   end the game in death;
   else;
    say "There is an explosion nearby.";
-   
-   if the brick is in Dusty Room begin;
+   if the brick is in the oblong hole begin;
+       change ledge clock to 5;
+       now the rusty box is open;
+       move the crown to Dusty Room;
+       move the note card to Dusty Room;
+    else if the brick is in Dusty Room;
+       change ledge clock to 5;
    else;
      change squish clock to 2;
      change the bad place to the location of the brick;
@@ -1267,6 +1286,33 @@ than weight, namely the ability to blow you to smithereens.";
  end if;
 end if;
 decrease wire clock by 1.
+Ledge clock is a number that varies.  Ledge clock is usually -1.
+Every turn:
+decrease ledge clock by 1;
+if ledge clock is 3, say "You may recall your recent explosion.  Well, probably as a result of that, you hear an ominous rumbling, as if one of the rooms in the
+dungeon has collapsed.";
+if ledge clock is 0 begin;
+  if the player is in the basket and the basket is in Wide Ledge begin;
+    if the braided wire is attached to the tiny hook begin;
+      say "The ledge collapses, probably as a result of the explosion.  A large
+chunk of it, which is attached to the hook, drags you down to the
+ground.  Fatally.";
+      end the game in death;
+    else;
+       say "The ledge collapses, leaving you with no place to land.";
+       move the basket to Volcano Near WideLedge;
+       try looking;
+    end if;
+  else if the player is in Wide Ledge or the player is in Dusty Room;
+    say "The force of the explosion has caused the ledge to collapse
+belatedly.";
+    end the game in death;
+  else;
+    say "The ledge collapses, giving you a narrow escape.";
+  end if;
+end if.
+
+Burn interrupt is a number that varies.  Burn interrupt is usually -1.
 After dropping the candles:
 if the candles are flaming, now the candles are non-flaming;
 continue the action.
@@ -1301,7 +1347,7 @@ To say pizza:
 say "Your way is blocked by debris from an explosion.";
 move the player to the former location.
 
-
+Every turn: if the score is 616, end the game in victory.
 
 Part 2 - Above Ground Stuff
 
@@ -2724,6 +2770,16 @@ say "The coffin will not fit through this passage."
 
 Part 7 - Volcano Area
 
+A note card is a thing.  The description of the note card is "[agrippa text]".
+The later appearance of the note card is "There is a card with writing on it here."
+Understand "notecard" and "note-card" and "plain" as the note card.
+To say agrippa text:
+say "Warning:[line break]";
+say "[4 spaces]This room was constructed over very weak rock strata.  Detonation of explosives in this room is strictly prohibited![line break]";
+say "[24 spaces]Frobozz Magic Cave Company[line break]";
+say "[24 spaces] per M. Agrippa, foreman[line break]";
+
+A gaudy crown is a thing. The later appearance of the crown is "The excessively gaudy crown of Lord Dimwit Flathead is here."  The crown is wearable.  The size of the crown is 10.  After taking the crown: award 15 points; continue the action.  The case-points of the crown is 10.
 East of a dungeon called Volcano View is south of Egyptian Room. "You are on a ledge in the middle of a large volcano.  Below you the volcano bottom can be seen and above is the rim of the volcano. A couple of ledges can be seen on the other side of the volcano;
 it appears that this ledge is intermediate in elevation between those on the other side.  The exit from this room is to the east."
 Instead of going down from Volcano View:
@@ -2854,10 +2910,12 @@ A tiny hook is in Wide Ledge.  The tiny hook is fixed in place.  The tiny hook i
 South of Wide Ledge is a VolcanoLedge called Dusty Room.  The description of Dusty Room is "You are in a dusty old room which is virtually featureless, except
 for an exit on the north side."
 
-A closed unopenable container called a rusty old box is here.  The rusty old box is fixed in place. The initial appearance of the rusty old box is "[if the box is closed]Embedded in the far wall, there is a rusty old box.  It appears that the box is somewhat damaged, since an oblong hole has been chipped out of the front of it.[otherwise]On the far wall is a rusty box, whose door has been blown off.[end if]".
+A closed unopenable container called a rusty old box is in Dusty Room.  The rusty old box is fixed in place. The initial appearance of the rusty old box is "[if closed]Embedded in the far wall, there is a rusty old box.  It appears that the box is somewhat damaged, since an oblong hole has been chipped out of the front of it.[otherwise]On the far wall is a rusty box, whose door has been blown off.[end if]".
+
 An open unopenable container called an oblong hole is part of the rusty old box.
+The capacity of the oblong hole is 15. The carrying capacity of the oblong hole is 1.
 
-
+Does the player mean inserting the brick into the oblong hole:  it is very likely.
 After taking the moby ruby for the first time:
 award 15 points; continue the action.
 The case-points of the moby ruby is 8.
@@ -2911,6 +2969,70 @@ Instead of touching or rubbing the enormous mirror:
   say "There is a rumble from deep within the earth and the room shakes.";
  move the player to Mirror Room No 2.
 
+Every turn when the player is not in the basket:
+if the basket is in a VolcanoLedge and the braided wire has not been attached to a nonrope thing begin;
+  say "The balloon floats away.  It seems to be ascending, due to its light load.";
+  remove the basket from play;
+end if.
+
+Every turn when the player is in the basket and the player's command does not include "launch":
+  if something flaming is in the receptacle begin;
+    if the receptacle is open begin;
+    if the basket is in Volcano Near WideLedge begin;
+      say "Your balloon has hit the rim of the volcano, ripping the cloth and
+causing you a 500 foot drop.  Did you get your flight insurance?";
+      end the game in death;
+    else if the basket is in Volcano Near Viewing Ledge;
+      move the basket to Volcano Near  WideLedge;
+      try looking;
+    else if the basket is in Volcano Near Small Ledge;
+      move the basket to Volcano Near Viewing Ledge;
+      try looking; 
+    else if the basket is in Volcano Core;
+      move the basket to Volcano Near Small Ledge;
+      try looking;
+    else if the basket is in Volcano Bottom;
+      move the basket to Volcano Core;
+      try looking;
+    end if;
+    else;
+    if the basket is in Volcano Near WideLedge begin;
+      move the basket to Volcano Near Viewing Ledge;
+      try looking;
+    else if the basket is in Volcano Near Viewing Ledge;
+      move the basket to Volcano Near Small Ledge;
+      try looking;
+    else if the basket is in Volcano Near Small Ledge;
+      move the basket to Volcano Core;
+      try looking; 
+    else if the basket is in Volcano Core;
+      say "The balloon has landed.";
+      move the basket to Volcano Bottom;
+      try looking;
+    end if;
+    end if;
+  else;
+    if the basket is in Volcano Near WideLedge begin;
+      move the basket to Volcano Near Viewing Ledge;
+      try looking;
+    else if the basket is in Volcano Near Viewing Ledge;
+      move the basket to Volcano Near Small Ledge;
+      try looking;
+    else if the basket is in Volcano Near Small Ledge;
+      move the basket to Volcano Core;
+      try looking; 
+    else if the basket is in Volcano Core;
+      say "You have landed, but the balloon did not survive.";
+      remove the basket from play;
+    end if;
+ end if;
+ if the basket has been in Wide Ledge for at least 2 turns and the braided wire is not attached to a nonrope thing begin;
+   say "The balloon leaves the ledge.";
+   move the basket to Volcano Near WideLedge;
+else if the basket has been in Narrow Ledge for at least 2 turns and the braided wire is not attached to a nonrope thing;
+    say "The balloon leaves the ledge.";
+   move the basket to Volcano Near Small Ledge;
+end if.
 
 Part 8 - Exorcism Stuff
 
@@ -3581,7 +3703,7 @@ An open unopenable enterable container called a man-sized wooden barrel is in Ar
 Instead of looking when the player is inside the barrel: say "You are inside a barrel.  Congratulations.  Etched into the side of the barrel is the word 'Geronimo!'.  From your position, you cannot see the falls."
 After entering the barrel: try looking.
 
-Part 12 - The End Game
+[Part 12 - The End Game
 
 To decide what indexed text is the encryption of (x - an indexed text):
 let keyw be {5, 3, 15, 22, 24, 18, 13, 19};
@@ -3743,7 +3865,8 @@ Instead of taking the beam of light:
 Mirror open is a truth state that varies.
 Check saving the game when endgame flag is true: say "Saves are not permitted during the end game." instead. 
 
-Include (- [ XOR a b; return (a | b) & (~(a & b)); ];  -). [* Inform does not have a bitwise exclusive or built in, so we make one]
+Include (- [ XOR a b; return (a | b) & (~(a & b)); ];  -). [* Inform does not have a bitwise exclusive or built in, so we make one]]
+
 
 
 

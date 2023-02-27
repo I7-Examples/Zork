@@ -17,6 +17,26 @@
 <br>
 
 <br>
+A note card is a thing.  The description of the note card is &quot;<font color=#000080>[agrippa text]</font>&quot;.
+<br>
+The later appearance of the note card is &quot;<font color=#000080>There is a card with writing on it here.</font>&quot;
+<br>
+Understand &quot;<font color=#000080>notecard</font>&quot; and &quot;<font color=#000080>note-card</font>&quot; and &quot;<font color=#000080>plain</font>&quot; as the note card.
+<br>
+To say agrippa text:
+<br>
+say &quot;<font color=#000080>Warning:[line break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>[4 spaces]This room was constructed over very weak rock strata.  Detonation of explosives in this room is strictly prohibited![line break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>[24 spaces]Frobozz Magic Cave Company[line break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>[24 spaces] per M. Agrippa, foreman[line break]</font>&quot;;
+<br>
+
+<br>
+A gaudy crown is a thing. The later appearance of the crown is &quot;<font color=#000080>The excessively gaudy crown of Lord Dimwit Flathead is here.</font>&quot;  The crown is wearable.  The size of the crown is 10.  After taking the crown: award 15 points; continue the action.  The case-points of the crown is 10.
+<br>
 East of a dungeon called Volcano View is south of Egyptian Room. &quot;<font color=#000080>You are on a ledge in the middle of a large volcano.  Below you the volcano bottom can be seen and above is the rim of the volcano. A couple of ledges can be seen on the other side of the volcano;
 <br>
 </font><font color=#000080>it appears that this ledge is intermediate in elevation between those on the other side.  The exit from this room is to the east.</font>&quot;
@@ -277,13 +297,17 @@ South of Wide Ledge is a VolcanoLedge called Dusty Room.  The description of Dus
 <br>
 
 <br>
-A closed unopenable container called a rusty old box is here.  The rusty old box is fixed in place. The initial appearance of the rusty old box is &quot;<font color=#000080>[if the box is closed]Embedded in the far wall, there is a rusty old box.  It appears that the box is somewhat damaged, since an oblong hole has been chipped out of the front of it.[otherwise]On the far wall is a rusty box, whose door has been blown off.[end if]</font>&quot;.
+A closed unopenable container called a rusty old box is in Dusty Room.  The rusty old box is fixed in place. The initial appearance of the rusty old box is &quot;<font color=#000080>[if closed]Embedded in the far wall, there is a rusty old box.  It appears that the box is somewhat damaged, since an oblong hole has been chipped out of the front of it.[otherwise]On the far wall is a rusty box, whose door has been blown off.[end if]</font>&quot;.
+<br>
+
 <br>
 An open unopenable container called an oblong hole is part of the rusty old box.
 <br>
-
+The capacity of the oblong hole is 15. The carrying capacity of the oblong hole is 1.
 <br>
 
+<br>
+Does the player mean inserting the brick into the oblong hole:  it is very likely.
 <br>
 After taking the moby ruby for the first time:
 <br>
@@ -390,6 +414,134 @@ Instead of touching or rubbing the enormous mirror:
  move the player to Mirror Room No 2.
 <br>
 
+<br>
+Every turn when the player is not in the basket:
+<br>
+if the basket is in a VolcanoLedge and the braided wire has not been attached to a nonrope thing begin;
+<br>
+  say &quot;<font color=#000080>The balloon floats away.  It seems to be ascending, due to its light load.</font>&quot;;
+<br>
+  remove the basket from play;
+<br>
+end if.
+<br>
+
+<br>
+Every turn when the player is in the basket and the player's command does not include &quot;<font color=#000080>launch</font>&quot;:
+<br>
+  if something flaming is in the receptacle begin;
+<br>
+    if the receptacle is open begin;
+<br>
+    if the basket is in Volcano Near WideLedge begin;
+<br>
+      say &quot;<font color=#000080>Your balloon has hit the rim of the volcano, ripping the cloth and
+<br>
+</font><font color=#000080>causing you a 500 foot drop.  Did you get your flight insurance?</font>&quot;;
+<br>
+      end the game in death;
+<br>
+    else if the basket is in Volcano Near Viewing Ledge;
+<br>
+      move the basket to Volcano Near  WideLedge;
+<br>
+      try looking;
+<br>
+    else if the basket is in Volcano Near Small Ledge;
+<br>
+      move the basket to Volcano Near Viewing Ledge;
+<br>
+      try looking; 
+<br>
+    else if the basket is in Volcano Core;
+<br>
+      move the basket to Volcano Near Small Ledge;
+<br>
+      try looking;
+<br>
+    else if the basket is in Volcano Bottom;
+<br>
+      move the basket to Volcano Core;
+<br>
+      try looking;
+<br>
+    end if;
+<br>
+    else;
+<br>
+    if the basket is in Volcano Near WideLedge begin;
+<br>
+      move the basket to Volcano Near Viewing Ledge;
+<br>
+      try looking;
+<br>
+    else if the basket is in Volcano Near Viewing Ledge;
+<br>
+      move the basket to Volcano Near Small Ledge;
+<br>
+      try looking;
+<br>
+    else if the basket is in Volcano Near Small Ledge;
+<br>
+      move the basket to Volcano Core;
+<br>
+      try looking; 
+<br>
+    else if the basket is in Volcano Core;
+<br>
+      say &quot;<font color=#000080>The balloon has landed.</font>&quot;;
+<br>
+      move the basket to Volcano Bottom;
+<br>
+      try looking;
+<br>
+    end if;
+<br>
+    end if;
+<br>
+  else;
+<br>
+    if the basket is in Volcano Near WideLedge begin;
+<br>
+      move the basket to Volcano Near Viewing Ledge;
+<br>
+      try looking;
+<br>
+    else if the basket is in Volcano Near Viewing Ledge;
+<br>
+      move the basket to Volcano Near Small Ledge;
+<br>
+      try looking;
+<br>
+    else if the basket is in Volcano Near Small Ledge;
+<br>
+      move the basket to Volcano Core;
+<br>
+      try looking; 
+<br>
+    else if the basket is in Volcano Core;
+<br>
+      say &quot;<font color=#000080>You have landed, but the balloon did not survive.</font>&quot;;
+<br>
+      remove the basket from play;
+<br>
+    end if;
+<br>
+ end if;
+<br>
+ if the basket has been in Wide Ledge for at least 2 turns and the braided wire is not attached to a nonrope thing begin;
+<br>
+   say &quot;<font color=#000080>The balloon leaves the ledge.</font>&quot;;
+<br>
+   move the basket to Volcano Near WideLedge;
+<br>
+else if the basket has been in Narrow Ledge for at least 2 turns and the braided wire is not attached to a nonrope thing;
+<br>
+    say &quot;<font color=#000080>The balloon leaves the ledge.</font>&quot;;
+<br>
+   move the basket to Volcano Near Small Ledge;
+<br>
+end if.
 <br>
 
 <br>

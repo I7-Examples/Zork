@@ -13,7 +13,7 @@
 					<h3><font color="#0000cc" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif">Zork</font></h3>
 					<h3><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif">An interactive fiction by Dean Menezes (2023) - the Inform 7 source text</font></h3>
 				</td></tr>
-		<tr align="left" valign="top"><td align="left" valign="top"><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"><a href="index.html">Home page</a><br><br><a href="source.html">Contents</a><br><a href="source_9.html">Previous</a><br><a href="source_11.html">Next</a><br><br><a href="source.txt">Complete text</a></font></td><td align="left" valign="top"><font face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"><b>Part 11 - Old Man River, That Old Man River</b>
+		<tr align="left" valign="top"><td align="left" valign="top"><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"><a href="index.html">Home page</a><br><br><a href="source.html">Contents</a><br><a href="source_9.html">Previous</a><br><br><a href="source.txt">Complete text</a></font></td><td align="left" valign="top"><font face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"><b>Part 11 - Old Man River, That Old Man River</b>
 <br>
 
 <br>
@@ -273,8 +273,344 @@ After entering the barrel: try looking.
 <br>
 
 <br>
-</font>
-					<p><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"></font></p>
+<font color=#404040>[Part 12 - The End Game
+<br>
+</font><font color=#404040>
+<br>
+</font><font color=#404040>To decide what indexed text is the encryption of (x - an indexed text):
+<br>
+</font><font color=#404040>let keyw be {5, 3, 15, 22, 24, 18, 13, 19};
+<br>
+</font><font color=#404040>let outw be an indexed text;
+<br>
+</font><font color=#404040>let uinws be 0;
+<br>
+</font><font color=#404040>let usum be 0;
+<br>
+</font><font color=#404040>let inw be a list of numbers;
+<br>
+</font><font color=#404040>let i be 1;
+<br>
+</font><font color=#404040>let j be 1;
+<br>
+</font><font color=#404040>change outw to &quot;<font color=#404040>[8 spaces</font>]&quot;<font color=#000080>;
+<br>
+</font><font color=#000080>let len be the number of characters in x;
+<br>
+</font><font color=#000080>while i is at most 8 begin;
+<br>
+</font><font color=#000080>  if j is greater than len, change j to 1;
+<br>
+</font><font color=#000080>  let a be character number j in x;
+<br>
+</font><font color=#000080>  if a matches the regular expression </font>&quot;&lt;^A-Z&gt;&quot;<font color=#000080>, change j to 1;
+<br>
+</font><font color=#000080>  let a be character number j in x;
+<br>
+</font><font color=#000080>  let b be the alphabet position of a;
+<br>
+</font><font color=#000080>  add b to inw;
+<br>
+</font><font color=#000080>  increase uinws by b;
+<br>
+</font><font color=#000080>  increase i by 1;
+<br>
+</font><font color=#000080>  increase j by 1;
+<br>
+</font><font color=#000080>end while;
+<br>
+</font><font color=#000080>change usum to (the remainder after dividing uinws by 8) + 56;
+<br>
+</font><font color=#000080>change i to 1;
+<br>
+</font><font color=#000080>while i is at most 8 begin;
+<br>
+</font><font color=#000080>  let c be entry i of inw;
+<br>
+</font><font color=#000080>  let b be entry i of keyw;
+<br>
+</font><font color=#000080>  change j to the twiddle of c and b and usum;
+<br>
+</font><font color=#000080>  change j to the remainder after dividing j by 32;
+<br>
+</font><font color=#000080>  if j is greater than 26, change j to the remainder after dividing j by 26;
+<br>
+</font><font color=#000080>  change a to character number j in the alphabet;
+<br>
+</font><font color=#000080>  replace character number i in outw with a;
+<br>
+</font><font color=#000080>  change usum to the remainder after dividing (usum + 1) by 32;
+<br>
+</font><font color=#000080>  increase i by 1;
+<br>
+</font><font color=#000080>end while;
+<br>
+</font><font color=#000080>decide on outw.
+<br>
+</font><font color=#000080>
+<br>
+</font><font color=#000080>To decide what number is the twiddle of (a - a number) and (b - a number) and (c - a number):
+<br>
+</font><font color=#000080>  (- xor(xor({a},{b}),{c}) -).
+<br>
+</font><font color=#000080>
+<br>
+</font><font color=#000080>To decide which number is the alphabet position of (n - an indexed text):
+<br>
+</font><font color=#000080>if n is </font>&quot;A&quot;<font color=#000080>, decide on 1;
+<br>
+</font><font color=#000080>if n is </font>&quot;B&quot;<font color=#000080>, decide on 2;
+<br>
+</font><font color=#000080>if n is </font>&quot;C&quot;<font color=#000080>, decide on 3;
+<br>
+</font><font color=#000080>if n is </font>&quot;D&quot;<font color=#000080>, decide on 4;
+<br>
+</font><font color=#000080>if n is </font>&quot;E&quot;<font color=#000080>, decide on 5;
+<br>
+</font><font color=#000080>if n is </font>&quot;F&quot;<font color=#000080>, decide on 6;
+<br>
+</font><font color=#000080>if n is </font>&quot;G&quot;<font color=#000080>, decide on 7;
+<br>
+</font><font color=#000080>if n is </font>&quot;H&quot;<font color=#000080>, decide on 8;
+<br>
+</font><font color=#000080>if n is </font>&quot;I&quot;<font color=#000080>, decide on 9;
+<br>
+</font><font color=#000080>if n is </font>&quot;J&quot;<font color=#000080>, decide on 10;
+<br>
+</font><font color=#000080>if n is </font>&quot;K&quot;<font color=#000080>, decide on 11;
+<br>
+</font><font color=#000080>if n is </font>&quot;L&quot;<font color=#000080>, decide on 12;
+<br>
+</font><font color=#000080>if n is </font>&quot;M&quot;<font color=#000080>, decide on 13;
+<br>
+</font><font color=#000080>if n is </font>&quot;N&quot;<font color=#000080>, decide on 14;
+<br>
+</font><font color=#000080>if n is </font>&quot;O&quot;<font color=#000080>, decide on 15;
+<br>
+</font><font color=#000080>if n is </font>&quot;P&quot;<font color=#000080>, decide on 16;
+<br>
+</font><font color=#000080>if n is </font>&quot;Q&quot;<font color=#000080>, decide on 17;
+<br>
+</font><font color=#000080>if n is </font>&quot;R&quot;<font color=#000080>, decide on 18;
+<br>
+</font><font color=#000080>if n is </font>&quot;S&quot;<font color=#000080>, decide on 19;
+<br>
+</font><font color=#000080>if n is </font>&quot;T&quot;<font color=#000080>, decide on 20;
+<br>
+</font><font color=#000080>if n is </font>&quot;U&quot;<font color=#000080>, decide on 21;
+<br>
+</font><font color=#000080>if n is </font>&quot;V&quot;<font color=#000080>, decide on 22;
+<br>
+</font><font color=#000080>if n is </font>&quot;W&quot;<font color=#000080>, decide on 23;
+<br>
+</font><font color=#000080>if n is </font>&quot;X&quot;<font color=#000080>, decide on 24;
+<br>
+</font><font color=#000080>if n is </font>&quot;Y&quot;<font color=#000080>, decide on 25;
+<br>
+</font><font color=#000080>if n is </font>&quot;Z&quot;<font color=#000080>, decide on 26.
+<br>
+</font><font color=#000080>The alphabet is an indexed text variable.  The alphabet is always </font>&quot;ABCDEFGHIJKLMNOPQRSTVWXYZ&quot;<font color=#000080>.
+<br>
+</font><font color=#000080>Instead of exiting when the player is in a river:
+<br>
+</font><font color=#000080>  say </font>&quot;You realize, just in time, that disembarking here would probably be fatal.&quot;<font color=#000080>
+<br>
+</font><font color=#000080>Incanting is an action applying to one topic.  Understand </font>&quot;incant <font color=#404040>[text</font>]&quot;<font color=#000080> as incanting.
+<br>
+</font><font color=#000080>Check incanting:
+<br>
+</font><font color=#000080>if endgame flag is true, say </font>&quot;<font color=#404040>[one of</font>]Sorry, only one incantation to a customer.<font color=#404040>[or</font>]Incantations are useless once you have gotten this far<font color=#404040>[at random</font>]&quot;<font color=#000080> instead.
+<br>
+</font><font color=#000080>
+<br>
+</font><font color=#000080>Carry out incanting:
+<br>
+</font><font color=#000080>let i be the number of words in the topic understood;
+<br>
+</font><font color=#000080>  let a be word number one in the topic understood;
+<br>
+</font><font color=#000080>  change a to </font>&quot;<font color=#404040>[a in upper case</font>]&quot;<font color=#000080>;
+<br>
+</font><font color=#000080>  let b be word number two in the topic understood;
+<br>
+</font><font color=#000080>  change b to </font>&quot;<font color=#404040>[b in upper case</font>]&quot;<font color=#000080>;
+<br>
+</font><font color=#000080>if i is 1 begin;
+<br>
+</font><font color=#000080>  if the player is not in Crypt of the Implementors, say </font>&quot;That spell has no obvious effect.&quot;<font color=#000080> instead;
+<br>
+</font><font color=#000080>  if not in darkness, say  </font>&quot;That spell has no obvious effect.&quot;<font color=#000080> instead;
+<br>
+</font><font color=#000080>  if the player is carrying something lit, say </font>&quot;That spell has no obvious effect.&quot;<font color=#000080> instead;
+<br>
+</font><font color=#000080>  let b be character number 1 in a;
+<br>
+</font><font color=#000080>  if b matches the regular expression </font>&quot;&lt;^A-Z&gt;&quot;<font color=#000080>, say </font>&quot;Sorry, your secret word must begin with a letter.&quot;<font color=#000080> instead;
+<br>
+</font><font color=#000080>  say </font>&quot;A hollow voice replies '<font color=#404040>[encryption of a</font>]'&quot;<font color=#000080>;
+<br>
+</font><font color=#000080>  change the score to 621;
+<br>
+</font><font color=#000080>  change endgame flag to true;
+<br>
+</font><font color=#000080>  move the battery-powered brass lantern to the player;
+<br>
+</font><font color=#000080>  move the sword to the player;
+<br>
+</font><font color=#000080>  move the player to Top of Stairs.
+<br>
+</font><font color=#000080>else if i is 2;
+<br>
+</font><font color=#000080> let c be character number one in a;
+<br>
+</font><font color=#000080>  let d be character number one in b;
+<br>
+</font><font color=#000080> if c matches the regular expression </font>&quot;&lt;^A-Z&gt;&quot;<font color=#000080>, say </font>&quot;That spell has no obvious effect.&quot;<font color=#000080> instead;
+<br>
+</font><font color=#000080>  if d matches the regular expression </font>&quot;&lt;^A-Z&gt;&quot;<font color=#000080>, say </font>&quot;That spell has no obvious effect.&quot;<font color=#000080>;
+<br>
+</font><font color=#000080>  let e be the encryption of a;
+<br>
+</font><font color=#000080>  let f be the encryption of b;
+<br>
+</font><font color=#000080>  if e is b, skip to the endgame instead;
+<br>
+</font><font color=#000080>  if f is a, skip to the endgame instead;
+<br>
+</font><font color=#000080>  say </font>&quot;That spell has no obvious effect.&quot;<font color=#000080>;
+<br>
+</font><font color=#000080>else;
+<br>
+</font><font color=#000080>  say </font>&quot;That spell has no obvious effect.&quot;<font color=#000080>;
+<br>
+</font><font color=#000080>end if.
+<br>
+</font><font color=#000080>To skip to the endgame:
+<br>
+</font><font color=#000080>say </font>&quot;As the last syllable of your spell fades into silence, darkness
+<br>
+envelops you, and the earth shakes briefly.  Then all is quiet.&quot;<font color=#000080>;
+<br>
+</font><font color=#000080>change the score to 621;
+<br>
+</font><font color=#000080>change endgame flag to true;
+<br>
+</font><font color=#000080>move the battery-powered brass lantern to the player;
+<br>
+</font><font color=#000080>move the sword to the player;
+<br>
+</font><font color=#000080>move the player to Top of Stairs.
+<br>
+</font><font color=#000080>
+<br>
+</font><font color=#000080>Endgame flag is a truth state that varies.  Endgame flag is false.
+<br>
+</font><font color=#000080>
+<br>
+</font><font color=#000080>Top of Stairs is a room.  The description of Top of Stairs is </font>&quot;You are standing at the top of a flight of stairs that lead down to a passage below.  Dim light, as from torches, can be seen in the passage.  Behind you the stairs lead into untouched rock.&quot;<font color=#000080>
+<br>
+</font><font color=#000080>After looking while in Top of Stairs for the first time: award 10 points.
+<br>
+</font><font color=#000080>Instead of going south from Top of Stairs:  say </font>&quot;The wall is solid rock.&quot;<font color=#000080>
+<br>
+</font><font color=#000080>North of Top of Stairs is Stone Room.  Down from Top of Stairs is Stone Room.
+<br>
+</font><font color=#000080>The description of Stone Room is </font>&quot;You are standing near one end of a long, dimly lit hall.  At the south stone stairs ascend.  To the north the corridor is illuminated
+<br>
+by torches set high in the walls, out of reach.  On one wall is a red
+<br>
+button.&quot;<font color=#000080> A thing called a redbutton is here.  Understand </font>&quot;red&quot;<font color=#000080> and </font>&quot;button&quot;<font color=#000080> and </font>&quot;switch&quot;<font color=#000080> as the red button. The redbutton is scenery.  The printed name of the redbutton is </font>&quot;red button&quot;<font color=#000080>.
+<br>
+</font><font color=#000080>The redbutton has a truth state called depressed. Depressed is false.
+<br>
+</font><font color=#000080>Beam stopped is a truth state that varies.  Beam stopped is false.
+<br>
+</font><font color=#000080>Mrint is a number that varies.  Mrint is -1.
+<br>
+</font><font color=#000080>Instead of pushing the redbutton:
+<br>
+</font><font color=#000080>  if the depressed of the button is true begin;
+<br>
+</font><font color=#000080>    say </font>&quot;The button is already depressed.&quot;<font color=#000080>;
+<br>
+</font><font color=#000080>  else;
+<br>
+</font><font color=#000080>    say </font>&quot;The button becomes depressed.&quot;<font color=#000080>;
+<br>
+</font><font color=#000080>    if beam stopped is false begin;
+<br>
+</font><font color=#000080>      say </font>&quot;The button pops back out.&quot;<font color=#000080>;
+<br>
+</font><font color=#000080>    else;
+<br>
+</font><font color=#000080>      change mrint to 7;
+<br>
+</font><font color=#000080>      change mirror open to true;
+<br>
+</font><font color=#000080>    end if;
+<br>
+</font><font color=#000080> end if.
+<br>
+</font><font color=#000080>Every turn:
+<br>
+</font><font color=#000080>  decrease mrint by 1;
+<br>
+</font><font color=#000080>  if mrint is 0 begin;
+<br>
+</font><font color=#000080>    if the player can see the redbutton, say </font>&quot;The button pops back to its original position.&quot;<font color=#000080>;
+<br>
+</font><font color=#000080>   change mirror open to false;
+<br>
+</font><font color=#000080>   change the depressed of the button to false;
+<br>
+</font><font color=#000080>  end if.
+<br>
+</font><font color=#000080>North of Stone Room is a room called Small Room.  The description of Small Room is </font>&quot;You are in a small room, with narrow passages exiting to the north
+<br>
+and south.  A narrow red beam of light crosses the room at the north
+<br>
+end, inches above the floor.<font color=#404040>[if beam stopped is true</font>]The beam is stopped halfway across the room by a sword lying on the floor.<font color=#404040>[end if</font>]&quot;<font color=#000080>.
+<br>
+</font><font color=#000080>A red beam of light is in Small Room.  The red beam of light is scenery.
+<br>
+</font><font color=#000080>Instead of destroying the beam of light with something:
+<br>
+</font><font color=#000080>try dropping the second noun instead.
+<br>
+</font><font color=#000080>After dropping the sword when beam stopped is false and the player can see the beam of light:
+<br>
+</font><font color=#000080>  say </font>&quot;The beam is now blocked by a sword lying on the floor.&quot;<font color=#000080>;
+<br>
+</font><font color=#000080>  change beam stopped to true.
+<br>
+</font><font color=#000080>After taking the sword when beam stopped is true and the player can see the beam of light:
+<br>
+</font><font color=#000080>  change beam stopped to false.
+<br>
+</font><font color=#000080>Instead of taking the beam of light:
+<br>
+</font><font color=#000080>  say </font>&quot;No doubt you have a bottle of moonbeams as well.&quot;<font color=#000080>
+<br>
+</font><font color=#000080>Mirror open is a truth state that varies.
+<br>
+</font><font color=#000080>Check saving the game when endgame flag is true: say </font>&quot;Saves are not permitted during the end game.&quot;<font color=#000080> instead. 
+<br>
+</font><font color=#000080>
+<br>
+</font><font color=#000080>Include (- [ XOR a b; return (a | b) &amp; (~(a &amp; b)); ];  -). <font color=#404040><sup><a href="#note1">[1]</a></sup></font>]
+<br>
+</font><font color=#000080>
+<br>
+</font><font color=#000080>
+<br>
+</font><font color=#000080>
+<br>
+</font><font color=#000080>
+<br>
+</font><font color=#000080></font>
+					<p><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"><p><i>Note</i><p>
+<A name="note1"><font color=#404040>[1].  Inform does not have a bitwise exclusive or built in, so we make one</font><p>
+</font></p>
 					<p></p>
 				</td></tr></table>
 	</body>
