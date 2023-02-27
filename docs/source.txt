@@ -1,6 +1,6 @@
 "Zork" by Dean Menezes
 
-Include (- Serial "080106"; -).
+Include (- Serial "080121"; -).
 
 
 Part 1 - New Actions and Concepts
@@ -9,9 +9,7 @@ The story genre is "Fantasy".
 The story headline is "A Computerized Fantasy Simulation Game".
 Use memory economy.
 A thing can be non-flaming or flaming.  A thing is usually non-flaming. A thing can be non-inflammable or inflammable. A thing is usually non-inflammable.
-[* According to THE ELEMENTS OF STYLE: 
-FLAMMABLE:
-An oddity, chiefly useful in saving lives. The common word meaning "combustible" is inflammable. But some people are thrown off by the in- and think inflammable means "not combustible." For this reason, trucks carrying gasoline or explosives are now marked FLAMMABLE. Unless you are operating such a truck and hence are concerned with the safety of children and illiterates, use inflammable.]
+[*According to THE ELEMENTS OF STYLE --  FLAMMABLE: An oddity, chiefly useful in saving lives. The common word meaning "combustible" is inflammable. But some people are thrown off by the in- and think inflammable means "not combustible." For this reason, trucks carrying gasoline or explosives are now marked FLAMMABLE. Unless you are operating such a truck and hence are concerned with the safety of children and illiterates, use inflammable.]
 
 Release along with the source text and a website.
 Digging into it with is an action applying to one thing and one carried thing.
@@ -126,10 +124,10 @@ The ground is a backdrop. The ground is everywhere. Understand "sand" and "earth
 The description of yourself is "That's difficult unless your eyes are prehensile.".
 Launching is an action applying to nothing.  Understand "launch" as launching.
 Check launching:
-  if the player is not in the magic boat, say "You need to be in a vehicle to do that." instead.
+  if the player is not in the magic boat and the player is not in the basket, say "You need to be in a vehicle to do that." instead.
 Landing is an action applying to nothing.  Understand "land" as landing.
 Check landing:
-  if the player is not in the magic boat, say "You need to be in a vehicle to do that.".
+  if the player is not in the magic boat and the player is not in the basket, say "You need to be in a vehicle to do that.".
 Carry out landing:
   if the player is in the magic boat begin;
   if the magic boat is in In Stream begin;
@@ -147,9 +145,18 @@ Carry out landing:
   else if the magic boat is in River5;
     move the magic boat to Dam Base;
     try looking instead;
-end if;
   end if;
-  say "You cannot land from here." instead.
+else if the player is in the basket;
+  if the basket is in Volcano Near Small Ledge begin;
+    move the basket to Narrow Ledge;
+    try looking instead;
+  else if the player is in Volcano Near Viewing Ledge;
+    say "The ledge is too narrow to land on." instead;
+  else if the player is in Volcano Near WideLedge;
+    move the basket to Wide Ledge;
+  end if;
+end if;
+say "You cannot land from here." instead.
 Carry out launching:
   if the player is in the magic boat begin;
   if the magic boat is in Stream View begin;
@@ -171,6 +178,15 @@ Carry out launching:
     move the magic boat to River5;
     try looking instead;
   end if;
+  else if the player is in the basket;
+     if the braided wire is attached to a nonrope thing (called the tied object), now the braided wire is not attached to the tied object; 
+    if the basket is in Narrow Ledge begin;
+      move the basket to Volcano Near Small Ledge;
+      try looking instead;
+    else if the basket is in Wide Ledge;
+      move the basket to Volcano Near WideLedge;
+      try looking instead;
+    end if;
   end if;
   say "You can't launch from here." instead.
 Deflating is an action applying to one thing.  Understand "deflate [something]" as deflating.  
@@ -842,6 +858,7 @@ A thing can be round or unevenly shaped. A thing is usually round.
 Check tying:
 if the noun is the second noun, say "There is nothing it can be tied to." instead;
 if the second noun is a rope, try tying the second noun to the noun instead;
+if the noun is not a rope, say "You can't tie stuff with that." instead;
 if the noun is attached to a nonrope thing (called the item), say "[The noun] is already attached to [the item]." instead;
 if the player is carrying the second noun, say "It is too clumsy when you are carrying it." instead;
 if the second noun is round, say "There is nothing it can be tied to." instead.
@@ -1089,11 +1106,9 @@ unreal.";
   move the player to Entrance to Hades;
   resume the game;
 end if.
-The player has a number called fight strength.
 The player has a number called wounds.  Wounds is usually 0.
 The player has a number called cure wait.  Cure wait is usually 0.
 Every turn:
-  change the fight strength of the player to (5 * score / 616) + 2;
   if the cure wait of the player is greater than 0, decrease the cure wait of the player by 1;
   if the cure wait of the player is 0, change the wounds of the player to 0;
   if the wounds of the player is greater than 4 begin;
@@ -1104,6 +1119,7 @@ Every turn:
 Diagnosing is an action applying to nothing.  Understand "diagnose" as diagnosing.
 Check diagnosing:
   if dead flag is true, say "You are dead as a doornail." instead.
+[* Mind! I donâ€™t mean to say that I know, of my own knowledge, what there is particularly dead about a doorâ€“nail. I might have been inclined, myself, to regard a coffinâ€“nail as the deadest piece of ironmongery in the trade. But the wisdom of our ancestors is in the simile; and my unhallowed hands shall not disturb it, or the Countryâ€™s done for. You will therefore permit me to repeat, emphatically, that Marley was as dead as a doorâ€“nail. --Charles Dickens]
 Carry out diagnosing:
   if the wounds of the player is 0 begin;
     say "You are in perfect health.  You are strong enough to take several wounds.";
@@ -1130,14 +1146,16 @@ Check burning (this is the new burning rule):
     say "It's not clear what you want to burn [the noun] with." instead;
   else if the matchbook is flaming;
     say "The match is already lit." instead;
-  else;
+  else if match count is less than 1;
     say "I'm afraid you have run out of matches." instead;
   end if.  
 Match tick is a number that varies.  Match tick is usually -1.
 Carry out burning:
+ try silently taking the noun;
  say "One of the matches starts to burn.";
  change match tick to 2;
  now the matchbook is flaming.
+
 Instead of switching off something which is flaming:
   if the noun is the matchbook begin;
     say "The match is out.";
@@ -1149,14 +1167,15 @@ Instead of switching off something which is flaming:
   end if.
 Every turn:
 now every thing which is flaming is lit;
+if something inflammable is non-flaming, now the noun is unlit;
 if the matchbook is non-flaming, now the matchbook is unlit;
 if the pair of candles is non-flaming, now the pair of candles is unlit;
 if match tick is greater than 0, decrease match tick by 1;
 if match tick is 0 begin;
   say "The match has gone out.";
   change match tick to -1;
-end if;
-now the matchbook is not flaming.
+end if.
+
 
 The new burning rule is listed instead of the block burning rule in the check burning rulebook.
 
@@ -1168,7 +1187,13 @@ Check burning it with:
   end if;
   if the noun is the barrel, say "The barrel is damp and cannot be burned." instead;
   if the noun is flaming, say "[The noun] is already burning." instead;
-  if the noun is not the candles and the noun is not inflammable, say "I don't think you can burn [a noun]." instead.
+  if the noun is not the candles and the noun is not inflammable, say "I don't think you can burn [a noun]." instead;
+  if the noun is the brick begin;
+  say "Now you've done it.  It seems that the brick has other properties
+than weight, namely the ability to blow you to smithereens.";
+  remove the brick from play;
+  end the game in death instead;
+  end if.
 
 Candle tick is a number that varies.  Candle tick is usually 40.
 Carry out burning it with:
@@ -1205,13 +1230,14 @@ else if the noun is the pile of leaves;
      say "The leaves burn and the neighbors start to complain.";
      remove the pile of leaves from play;
    end if;
-else if the noun is the brick;
-  say "It turns out the brick has other properties besides mass.  Namely, the power to blow you to smithereens";
-  remove the brick from play;
-  end the game in death instead;
 else if the noun is the coil of wire;
+  if the coil of wire is not part of the brick begin;
   say "The wire rapidly burns to nothingness.";
   remove the coil of wire from play;
+  else;
+    say "The wire starts to burn.";
+    change wire clock to 1;
+  end if;
 else;
   if the noun is the bills, say "Nothing like having money to burn!";
   if the player is carrying the noun begin;
@@ -1221,6 +1247,26 @@ else;
     say "[The noun] catches fire and is consumed.";
   end if;
 end if.
+Wire clock is a number that varies.  Wire clock is usually -1.
+Every turn:
+if wire clock is 0 begin;
+  if the player can see the brick begin;
+      say "Now you've done it.  It seems that the brick has other properties
+than weight, namely the ability to blow you to smithereens.";
+  remove the brick from play;
+  end the game in death;
+  else;
+   say "There is an explosion nearby.";
+   
+   if the brick is in Dusty Room begin;
+   else;
+     change squish clock to 2;
+     change the bad place to the location of the brick;
+   end if;
+   remove the brick from play;
+ end if;
+end if;
+decrease wire clock by 1.
 After dropping the candles:
 if the candles are flaming, now the candles are non-flaming;
 continue the action.
@@ -1232,6 +1278,30 @@ Every turn when the candles are flaming and the candles are touched:
  else if candle tick is 20 or candle tick is 10 or candle tick is 5;
     say "The candles grow shorter.";
  end if.
+The bad place is a room that varies.
+Squish clock is a number variable.  Squish clock is usually -1.
+Every turn:
+if squish clock is 0 begin;
+change the description of the bad place to "[pizza]";
+if the player is in the bad place begin;
+  say "The room trembles and 50,000 pounds of rock fall on you, turning you into a pancake.  [if the player is outside]Meteors, no doubt.[end if]";
+  end the game in death;
+else;
+  say "You may recall your recent explosion.  Well, probably as a result of
+that, you hear an ominous rumbling, as if one of the rooms in the
+dungeon has collapsed.";
+   [* OK, this sort of doesn't make sense if the player is outside]
+end if;
+end if;
+decrease squish clock by 1.
+Every turn:
+if the location is the bad place and the brick is off-stage, foo;
+if the number of moves from the location to the bad place is 1 and the brick is off-stage, foo;
+To say pizza:
+say "Your way is blocked by debris from an explosion.";
+move the player to the former location.
+
+
 
 Part 2 - Above Ground Stuff
 
@@ -2650,6 +2720,10 @@ Instead of going northwest from Rocky Crawl when the player is carrying the coff
 say "The passage is too narrow to accomodate coffins."
 Instead of going south from Reservoir South when the player is carrying the coffin:
 say "The coffin will not fit through this passage."
+
+
+Part 7 - Volcano Area
+
 East of a dungeon called Volcano View is south of Egyptian Room. "You are on a ledge in the middle of a large volcano.  Below you the volcano bottom can be seen and above is the rim of the volcano. A couple of ledges can be seen on the other side of the volcano;
 it appears that this ledge is intermediate in elevation between those on the other side.  The exit from this room is to the east."
 Instead of going down from Volcano View:
@@ -2668,6 +2742,122 @@ West of Egyptian Room is nowhere.
 West of Glacier Room is south of a dungeon called Ruby Room.
 The description of Ruby Room is "This is a small chamber behind the remains of the great glacier.  To the south and west are small passageways."
 A moby ruby is in Ruby Room.
+East of Ruby Room is east of a dungeon called Lava Room.  The description of Lava Room is "This is a small room, whose walls are formed by an old lava flow.
+There are exits here to the west and the south."
+South of Lava Room is a dungeon called Volcano Bottom.  The description of Volcano Bottom is "You are at the bottom of a large dormant volcano.  High above you
+light may be seen entering from the cone of the volcano.  The only
+exit here is to the north."
+In Volcano Bottom is an enterable open unopenable container called a basket.  The later appearance of the basket is "There is a very large and extremely heavy wicker basket with a cloth bag here. Inside the basket is a metal receptacle of some kind. 
+Attached to the basket on the outside is a piece of wire." Understand "balloon" and "basket" and "wicker" as the basket.  The capacity of the basket is 100. The size of the basket is 100. A metal receptacle is part of the basket.  The metal receptacle is a container.  It is closed and openable.  The carrying capacity of the receptacle is 1. The capacity of the receptacle is 100.
+
+A rope called a piece braided wire is part of the basket.
+Volcano Core is a dungeon.  The description of Volcano Core is "You are about one hundred feet above the bottom of the volcano.  The top of the volcano is clearly visible here."
+
+A VolcanoLedge is a kind of dungeon.
+
+Volcano Near Small Ledge is a dungeon. The description of Volcano Near Small Ledge is "You are about two hundred feet above the volcano floor.  Looming
+above is the rim of the volcano.  There is a small ledge on the west
+side."
+
+Volcano Near Viewing Ledge is a dungeon.  The description of Volcano Near Viewing Ledge  is "You are high above the floor of the volcano.  From here the rim of
+the volcano looks very narrow and you are very near it.  To the 
+east is what appears to be a viewing ledge, too thin to land on."
+
+Volcano Near WideLedge is a dungeon.  The description of Volcano Near WideLedge is "You are near the rim of the volcano which is only about 15 feet
+across.  To the west, there is a place to land on a wide ledge."  The printed name of Volcano Near WideLedge is "Volcano Near Wide Ledge".
+
+Narrow Ledge is a  VolcanoLedge.  The description of Narrow Ledge is "You are on a narrow ledge overlooking the inside of an old dormant volcano.  This ledge appears to be about in the middle between the floor below and the rim above. There is an exit here to the south."
+A small hook is in Narrow Ledge.  The small hook is fixed in place.  The small hook is unevenly shaped.
+
+
+South of Narrow Ledge is a  VolcanoLedge called Library.  The description of Library is "This is a room which must have been a large library, probably for the royal family.  All of the shelves appear to have been gnawed to pieces by unfriendly gnomes.  To the north is an exit."
+
+A priceless zorkmid is in Narrow Ledge.  The initial appearance of the priceless zorkmid is "On the floor is a gold zorkmid coin (a valuable collector's item)."
+The later appearance of the priceless zorkmid is "There is an engraved zorkmid coin here."
+Understand "gold" and "engraved" and "coin" as the zorkmid.
+The size of the zorkmid is 10.
+After taking the zorkmid for the first time:
+award 10 points; continue the action.
+The case-points of the zorkmid is 12.
+The description of the priceless zorkmid is "[zorkmid text]".
+To say zorkmid text:
+say fixed letter spacing;
+say line break;
+say "               --------------------------[line break]";
+say "              /      Gold Zorkmid        \\[line break]";
+say "             /  T e n   T h o u s a n d   \\[line break]";
+say "            /        Z O R K M I D S       \\[line break]";
+say "           /                                \\[line break]";
+say "          /        ||||||||||||||||||        \\[line break]";
+say "         /        !||||          ||||!        \\[line break]";
+say "        |          |||   ^^  ^^   |||          |[line break]";
+say "        |          |||   OO  OO   |||          |[line break]";
+say "        | In Frobs  |||    <<    |||  We Trust |[line break]";
+say "        |            || (______) ||            |[line break]";
+say "        |             |          |             |[line break]";
+say "        |             |__________|             |[line break]";
+say "         \\                                   /[line break]";
+say "          \\    -- Lord Dimwit Flathead --    /[line break]";
+say "           \\    -- Beloved of Zorkers --    /[line break]";
+say "            \\                             /[line break]";
+say "             \\      * 722 G.U.E. *       /[line break]";
+say "              \\                         /[line break]";
+say "               --------------------------[line break]";
+say variable letter spacing.
+
+In Library is a closed openable container called a blue book. The later appearance of the blue book is "There is a blue book here." The description of the blue book is "This book is written in a tongue with which I am unfamiliar." The blue book is inflammable.
+The capacity of the blue book is 2.  The size of the blue book is 10.
+
+In Library is a closed openable  container called a green book. The later appearance of the green book is "There is a green book here." The description of the green book is "This book is written in a tongue with which I am unfamiliar." The green book is inflammable.
+The capacity of the green book is 2.  The size of the green book is 10.
+
+In Library is a closed openable container called a white book. The later appearance of the white book is "There is a white book here." The description of the white book is "This book is written in a tongue with which I am unfamiliar." The white book is inflammable.
+The capacity of the white book is 2.  The size of the white book is 10.
+
+In Library is a closed openable container called a purple book. The later appearance of the purple book is "There is a purple book here." The description of the purple book is "This book is written in a tongue with which I am unfamiliar." The purple book is inflammable.
+The capacity of the purple book is 2.  The size of the purple book is 10.
+
+In the purple book is a Flathead stamp.  The description of the stamp is "[flathead text]".
+The size of the Flathead stamp is 1.
+After taking the Flathead stamp:
+  award 4 points.
+The case-points of the Flathead stamp is 10.
+To say flathead text:
+say fixed letter spacing;
+say "---v----v----v----v----v----v----v----v---[line break]";
+say "|                                        |[line break]";
+say "|          ||||||||||        LORD        |[line break]";
+say ">         !||||      |      DIMWIT       <[line break]";
+say "|         ||||    ---|     FLATHEAD      |[line break]";
+say "|         |||C     CC \\                 |[line break]";
+say ">          ||||       _\\                <[line break]";
+say "|           ||| (____|                   |[line break]";
+say "|            ||      |                   |[line break]";
+say ">             |______|       Our         <[line break]";
+say "|               /   \\    Excessive      |[line break]";
+say "|              /     \\     Leader       |[line break]";
+say ">             |       |                  <[line break]";
+say "|             |       |                  |[line break]";
+say "|                                        |[line break]";
+say ">    G.U.E. POSTAGE        3 Zorkmids    <[line break]";
+say "|                                        |[line break]";
+say "---^----^----^----^----^----^----^----^---[line break]";
+say variable letter spacing.
+
+Wide Ledge is a VolcanoLedge.  The description of Wide Ledge is "You are on a wide ledge high into the volcano.  The rim of the volcano is about 200 feet above and there is a precipitous drop below to the bottom."
+
+Instead of jumping while in Wide Ledge:  fatally leap.
+Instead of jumping while in Narrow ledge: fatally leap.
+
+A tiny hook is in Wide Ledge.  The tiny hook is fixed in place.  The tiny hook is unevenly shaped.
+
+South of Wide Ledge is a VolcanoLedge called Dusty Room.  The description of Dusty Room is "You are in a dusty old room which is virtually featureless, except
+for an exit on the north side."
+
+A closed unopenable container called a rusty old box is here.  The rusty old box is fixed in place. The initial appearance of the rusty old box is "[if the box is closed]Embedded in the far wall, there is a rusty old box.  It appears that the box is somewhat damaged, since an oblong hole has been chipped out of the front of it.[otherwise]On the far wall is a rusty box, whose door has been blown off.[end if]".
+An open unopenable container called an oblong hole is part of the rusty old box.
+
+
 After taking the moby ruby for the first time:
 award 15 points; continue the action.
 The case-points of the moby ruby is 8.
@@ -2691,9 +2881,18 @@ A dungeon called In Stream is dark.  The description of In Stream is "You are on
 Instead of going up from In Stream, say "The way is too narrow."
 
 A coil of thin shiny wire is in Stream View.
-Understand "fuse" as the coil of wire. 
+Understand "fuse" as the coil of wire. Understand "string" as the coil of wire.
 The printed name of the coil of thin shiny wire is "wire coil".
 The wire coil is inflammable.
+The size of the wire coil is 1.
+Instead of inserting the coil of wire into the brick:
+say "You insert the fuse into the brick.";
+now the coil of wire is part of the brick.
+Procedural rule when taking the coil of wire:
+        ignore the can't take component parts rule.
+Instead of putting the coil of wire on the brick:
+say "You insert the fuse into the brick.";
+now the coil of wire is part of the brick.
 The later appearance of the coil of wire is "There is a coil of thin shiny wire here."
 East of Stream View is Reservoir South.
 Up from Reservoir South is northwest of a dungeon called Deep Canyon. 
@@ -2712,7 +2911,9 @@ Instead of touching or rubbing the enormous mirror:
   say "There is a rumble from deep within the earth and the room shakes.";
  move the player to Mirror Room No 2.
 
-  
+
+Part 8 - Exorcism Stuff
+
 North of Mirror Room No 1 is southwest of Narrow Crawlway. 
 Cave1 is a dungeon. "This is a tiny cave with entrances west and north, and a dark, forbidding staircase leading down."
 The printed name of Cave1 is "Tiny Cave".
@@ -2888,7 +3089,7 @@ A hunk of bat guano is in Ancient Chasm.  Understand "excretement" and "shit" an
 The size of the bat guano is 20.  
 A shovel is in Ancient Chasm.  The later appearance of the shovel is "There is a large shovel here."  Understand "large shovel" as the shovel.  The size of the shovel is 15.
 
-Part 7 - Coal Mine Area
+Part 9 - Coal Mine Area
 
 Mirror Room No 2 is a dungeon. The printed name of Mirror Room No 2 is "Mirror Room". The description of Mirror Room No 2 is "This is a large square room with tall ceilings.  On the south wall is a gigantic mirror which fills the entire wall.  There are exits on the other three sides of the room."
 An gigantic mirror is in Mirror Room No 2.  It is scenery.
@@ -3094,7 +3295,7 @@ Instead of taking the slag:  say "The slag turns out to be rather insubstantial,
 The capacity of the PDP-10 is 50.
 A screwdriver is a thing.
 
-Part 8 - The Reservoir
+Part 10 - The Reservoir
 
 East of Deep Canyon is south of a dungeon called Flood Control Dam #3.  The description of Flood Control Dam #3 is "You are standing on the top of the Flood Control Dam #3, which was quite a tourist attraction in times far distant.  There are paths to the north, south, east, and down.  There is a control panel here.  There is a large metal bolt on the panel. Above the bolt is a small green plastic bubble.  [if gate flag is true]The green bubble is glowing.[end if]".
 East of Flood Control Dam #3 is east of Damp Cave.
@@ -3250,7 +3451,7 @@ Instead of going to a room that is not offroad:
   else continue the action.
 A hand-held air-pump is in Reservoir.  Understand "pump" and "airpump" as the air-pump.  The later appearance of the air-pump is "There is a small pump here."
 
-Part 9 - Old Man River, That Old Man River
+Part 11 - Old Man River, That Old Man River
 
 Down from Flood Control Dam #3 is a room called Dam Base.  The description of Dam Base is "You are at the base of Flood Control Dam #3, which looms above you
 and to the north.  The river Frigid is flowing by here.  Across the river are the White Cliffs which seem to form a giant wall stretching from north to south along the east shore of the river as it winds its way downstream."
@@ -3380,7 +3581,7 @@ An open unopenable enterable container called a man-sized wooden barrel is in Ar
 Instead of looking when the player is inside the barrel: say "You are inside a barrel.  Congratulations.  Etched into the side of the barrel is the word 'Geronimo!'.  From your position, you cannot see the falls."
 After entering the barrel: try looking.
 
-Part 10 - The End Game
+Part 12 - The End Game
 
 To decide what indexed text is the encryption of (x - an indexed text):
 let keyw be {5, 3, 15, 22, 24, 18, 13, 19};

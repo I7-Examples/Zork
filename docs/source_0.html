@@ -25,11 +25,7 @@ Use memory economy.
 <br>
 A thing can be non-flaming or flaming.  A thing is usually non-flaming. A thing can be non-inflammable or inflammable. A thing is usually non-inflammable.
 <br>
-<font color=#404040><sup><a href="#note1">[1]</a></sup></font>A thing is usually non-flaming. A thing can be non-inflammable or inflammable. A thing is usually non-inflammable.
-<br>
-FLAMMABLE:
-<br>
-An oddity, chiefly useful in saving lives. The common word meaning &quot;<font color=#000080>combustible</font>&quot; is inflammable. But some people are thrown off by the in- and think inflammable means &quot;<font color=#000080>not combustible.</font>&quot; For this reason, trucks carrying gasoline or explosives are now marked FLAMMABLE. Unless you are operating such a truck and hence are concerned with the safety of children and illiterates, use inflammable.]
+<font color=#404040><sup><a href="#note1">[1]</a></sup></font>
 <br>
 
 <br>
@@ -259,13 +255,13 @@ Launching is an action applying to nothing.  Understand &quot;<font color=#00008
 <br>
 Check launching:
 <br>
-  if the player is not in the magic boat, say &quot;<font color=#000080>You need to be in a vehicle to do that.</font>&quot; instead.
+  if the player is not in the magic boat and the player is not in the basket, say &quot;<font color=#000080>You need to be in a vehicle to do that.</font>&quot; instead.
 <br>
 Landing is an action applying to nothing.  Understand &quot;<font color=#000080>land</font>&quot; as landing.
 <br>
 Check landing:
 <br>
-  if the player is not in the magic boat, say &quot;<font color=#000080>You need to be in a vehicle to do that.</font>&quot;.
+  if the player is not in the magic boat and the player is not in the basket, say &quot;<font color=#000080>You need to be in a vehicle to do that.</font>&quot;.
 <br>
 Carry out landing:
 <br>
@@ -301,11 +297,29 @@ Carry out landing:
 <br>
     try looking instead;
 <br>
-end if;
+  end if;
+<br>
+else if the player is in the basket;
+<br>
+  if the basket is in Volcano Near Small Ledge begin;
+<br>
+    move the basket to Narrow Ledge;
+<br>
+    try looking instead;
+<br>
+  else if the player is in Volcano Near Viewing Ledge;
+<br>
+    say &quot;<font color=#000080>The ledge is too narrow to land on.</font>&quot; instead;
+<br>
+  else if the player is in Volcano Near WideLedge;
+<br>
+    move the basket to Wide Ledge;
 <br>
   end if;
 <br>
-  say &quot;<font color=#000080>You cannot land from here.</font>&quot; instead.
+end if;
+<br>
+say &quot;<font color=#000080>You cannot land from here.</font>&quot; instead.
 <br>
 Carry out launching:
 <br>
@@ -348,6 +362,24 @@ Carry out launching:
     try looking instead;
 <br>
   end if;
+<br>
+  else if the player is in the basket;
+<br>
+     if the braided wire is attached to a nonrope thing (called the tied object), now the braided wire is not attached to the tied object; 
+<br>
+    if the basket is in Narrow Ledge begin;
+<br>
+      move the basket to Volcano Near Small Ledge;
+<br>
+      try looking instead;
+<br>
+    else if the basket is in Wide Ledge;
+<br>
+      move the basket to Volcano Near WideLedge;
+<br>
+      try looking instead;
+<br>
+    end if;
 <br>
   end if;
 <br>
@@ -1675,6 +1707,8 @@ if the noun is the second noun, say &quot;<font color=#000080>There is nothing i
 <br>
 if the second noun is a rope, try tying the second noun to the noun instead;
 <br>
+if the noun is not a rope, say &quot;<font color=#000080>You can't tie stuff with that.</font>&quot; instead;
+<br>
 if the noun is attached to a nonrope thing (called the item), say &quot;<font color=#000080>[The noun] is already attached to [the item].</font>&quot; instead;
 <br>
 if the player is carrying the second noun, say &quot;<font color=#000080>It is too clumsy when you are carrying it.</font>&quot; instead;
@@ -2108,15 +2142,11 @@ else;
 <br>
 end if.
 <br>
-The player has a number called fight strength.
-<br>
 The player has a number called wounds.  Wounds is usually 0.
 <br>
 The player has a number called cure wait.  Cure wait is usually 0.
 <br>
 Every turn:
-<br>
-  change the fight strength of the player to (5 * score / 616) + 2;
 <br>
   if the cure wait of the player is greater than 0, decrease the cure wait of the player by 1;
 <br>
@@ -2137,6 +2167,8 @@ Diagnosing is an action applying to nothing.  Understand &quot;<font color=#0000
 Check diagnosing:
 <br>
   if dead flag is true, say &quot;<font color=#000080>You are dead as a doornail.</font>&quot; instead.
+<br>
+<font color=#404040><sup><a href="#note4">[4]</a></sup></font>
 <br>
 Carry out diagnosing:
 <br>
@@ -2190,7 +2222,7 @@ Check burning (this is the new burning rule):
 <br>
     say &quot;<font color=#000080>The match is already lit.</font>&quot; instead;
 <br>
-  else;
+  else if match count is less than 1;
 <br>
     say &quot;<font color=#000080>I'm afraid you have run out of matches.</font>&quot; instead;
 <br>
@@ -2200,11 +2232,15 @@ Match tick is a number that varies.  Match tick is usually -1.
 <br>
 Carry out burning:
 <br>
+ try silently taking the noun;
+<br>
  say &quot;<font color=#000080>One of the matches starts to burn.</font>&quot;;
 <br>
  change match tick to 2;
 <br>
  now the matchbook is flaming.
+<br>
+
 <br>
 Instead of switching off something which is flaming:
 <br>
@@ -2228,6 +2264,8 @@ Every turn:
 <br>
 now every thing which is flaming is lit;
 <br>
+if something inflammable is non-flaming, now the noun is unlit;
+<br>
 if the matchbook is non-flaming, now the matchbook is unlit;
 <br>
 if the pair of candles is non-flaming, now the pair of candles is unlit;
@@ -2240,9 +2278,9 @@ if match tick is 0 begin;
 <br>
   change match tick to -1;
 <br>
-end if;
+end if.
 <br>
-now the matchbook is not flaming.
+
 <br>
 
 <br>
@@ -2266,7 +2304,19 @@ Check burning it with:
 <br>
   if the noun is flaming, say &quot;<font color=#000080>[The noun] is already burning.</font>&quot; instead;
 <br>
-  if the noun is not the candles and the noun is not inflammable, say &quot;<font color=#000080>I don't think you can burn [a noun].</font>&quot; instead.
+  if the noun is not the candles and the noun is not inflammable, say &quot;<font color=#000080>I don't think you can burn [a noun].</font>&quot; instead;
+<br>
+  if the noun is the brick begin;
+<br>
+  say &quot;<font color=#000080>Now you've done it.  It seems that the brick has other properties
+<br>
+</font><font color=#000080>than weight, namely the ability to blow you to smithereens.</font>&quot;;
+<br>
+  remove the brick from play;
+<br>
+  end the game in death instead;
+<br>
+  end if.
 <br>
 
 <br>
@@ -2340,19 +2390,21 @@ else if the noun is the pile of leaves;
 <br>
    end if;
 <br>
-else if the noun is the brick;
-<br>
-  say &quot;<font color=#000080>It turns out the brick has other properties besides mass.  Namely, the power to blow you to smithereens</font>&quot;;
-<br>
-  remove the brick from play;
-<br>
-  end the game in death instead;
-<br>
 else if the noun is the coil of wire;
+<br>
+  if the coil of wire is not part of the brick begin;
 <br>
   say &quot;<font color=#000080>The wire rapidly burns to nothingness.</font>&quot;;
 <br>
   remove the coil of wire from play;
+<br>
+  else;
+<br>
+    say &quot;<font color=#000080>The wire starts to burn.</font>&quot;;
+<br>
+    change wire clock to 1;
+<br>
+  end if;
 <br>
 else;
 <br>
@@ -2371,6 +2423,46 @@ else;
   end if;
 <br>
 end if.
+<br>
+Wire clock is a number that varies.  Wire clock is usually -1.
+<br>
+Every turn:
+<br>
+if wire clock is 0 begin;
+<br>
+  if the player can see the brick begin;
+<br>
+      say &quot;<font color=#000080>Now you've done it.  It seems that the brick has other properties
+<br>
+</font><font color=#000080>than weight, namely the ability to blow you to smithereens.</font>&quot;;
+<br>
+  remove the brick from play;
+<br>
+  end the game in death;
+<br>
+  else;
+<br>
+   say &quot;<font color=#000080>There is an explosion nearby.</font>&quot;;
+<br>
+   
+<br>
+   if the brick is in Dusty Room begin;
+<br>
+   else;
+<br>
+     change squish clock to 2;
+<br>
+     change the bad place to the location of the brick;
+<br>
+   end if;
+<br>
+   remove the brick from play;
+<br>
+ end if;
+<br>
+end if;
+<br>
+decrease wire clock by 1.
 <br>
 After dropping the candles:
 <br>
@@ -2394,13 +2486,63 @@ Every turn when the candles are flaming and the candles are touched:
 <br>
  end if.
 <br>
+The bad place is a room that varies.
+<br>
+Squish clock is a number variable.  Squish clock is usually -1.
+<br>
+Every turn:
+<br>
+if squish clock is 0 begin;
+<br>
+change the description of the bad place to &quot;<font color=#000080>[pizza]</font>&quot;;
+<br>
+if the player is in the bad place begin;
+<br>
+  say &quot;<font color=#000080>The room trembles and 50,000 pounds of rock fall on you, turning you into a pancake.  [if the player is outside]Meteors, no doubt.[end if]</font>&quot;;
+<br>
+  end the game in death;
+<br>
+else;
+<br>
+  say &quot;<font color=#000080>You may recall your recent explosion.  Well, probably as a result of
+<br>
+</font><font color=#000080>that, you hear an ominous rumbling, as if one of the rooms in the
+<br>
+</font><font color=#000080>dungeon has collapsed.</font>&quot;;
+<br>
+   <font color=#404040><sup><a href="#note5">[5]</a></sup></font>
+<br>
+end if;
+<br>
+end if;
+<br>
+decrease squish clock by 1.
+<br>
+Every turn:
+<br>
+if the location is the bad place and the brick is off-stage, foo;
+<br>
+if the number of moves from the location to the bad place is 1 and the brick is off-stage, foo;
+<br>
+To say pizza:
+<br>
+say &quot;<font color=#000080>Your way is blocked by debris from an explosion.</font>&quot;;
+<br>
+move the player to the former location.
+<br>
+
+<br>
+
+<br>
 
 <br>
 </font>
 					<p><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"><p><i>Notes</i><p>
-<A name="note1"><font color=#404040>[1].  According to THE ELEMENTS OF STYLE: </font><p>
+<A name="note1"><font color=#404040>[1]. According to THE ELEMENTS OF STYLE --  FLAMMABLE: An oddity, chiefly useful in saving lives. The common word meaning "combustible" is inflammable. But some people are thrown off by the in- and think inflammable means "not combustible." For this reason, trucks carrying gasoline or explosives are now marked FLAMMABLE. Unless you are operating such a truck and hence are concerned with the safety of children and illiterates, use inflammable.</font><p>
 <A name="note2"><font color=#404040>[2].  It is absurd that the adventurer would be able to count so many leaves with such precision, especially in the minute or so time that a normal turn supposedly takes.</font><p>
 <A name="note3"><font color=#404040>[3].  Decimal 69 is equal to octal 105, and hexadecimal 69 is equal to decimal 105.</font><p>
+<A name="note4"><font color=#404040>[4].  Mind! I donâ€™t mean to say that I know, of my own knowledge, what there is particularly dead about a doorâ€“nail. I might have been inclined, myself, to regard a coffinâ€“nail as the deadest piece of ironmongery in the trade. But the wisdom of our ancestors is in the simile; and my unhallowed hands shall not disturb it, or the Countryâ€™s done for. You will therefore permit me to repeat, emphatically, that Marley was as dead as a doorâ€“nail. --Charles Dickens</font><p>
+<A name="note5"><font color=#404040>[5].  OK, this sort of doesn't make sense if the player is outside</font><p>
 </font></p>
 					<p></p>
 				</td></tr></table>
