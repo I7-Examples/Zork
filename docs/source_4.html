@@ -291,11 +291,11 @@ The printed name of the red cake is &quot;<font color=#000080>piece of cake with
 <br>
 An orange cake is in Tea Room.
 <br>
-The printed name of the orange cake is &quot;<font color=#000080>piece of cake with orange icing</font>&quot;. Understand &quot;<font color=#000080>piece of cake</font>&quot; and &quot;<font color=#000080>piece of cake with orange icing</font>&quot; and &quot;<font color=#000080>piece of orange cake</font>&quot; as the orange cake.The inventory listing of the orange cake is &quot;<font color=#000080>piece of cake with orange icing</font>&quot;.
+The printed name of the orange cake is &quot;<font color=#000080>piece of cake with orange icing</font>&quot;. Understand &quot;<font color=#000080>piece of cake</font>&quot; and &quot;<font color=#000080>piece of cake with orange icing</font>&quot; and &quot;<font color=#000080>piece of orange cake</font>&quot; as the orange cake.
 <br>
 A blue cake is in Tea Room.
 <br>
-The printed name of the blue cake is &quot;<font color=#000080>piece of cake with blue (ecch) icing</font>&quot;. Understand &quot;<font color=#000080>piece of cake</font>&quot; and &quot;<font color=#000080>piece of cake with blue icing</font>&quot; and &quot;<font color=#000080>piece of blue cake</font>&quot; as the blue cake.The inventory listing of the blue cake is &quot;<font color=#000080>piece of cake with blue icing</font>&quot;.
+The printed name of the blue cake is &quot;<font color=#000080>piece of cake with blue (ecch) icing</font>&quot;. Understand &quot;<font color=#000080>piece of cake</font>&quot; and &quot;<font color=#000080>piece of cake with blue icing</font>&quot; and &quot;<font color=#000080>piece of blue cake</font>&quot; as the blue cake.
 <br>
 The red cake, the blue cake, and the eat-me cake are edible.
 <br>
@@ -309,9 +309,17 @@ After reading a command:
 <br>
   if the player's command includes &quot;<font color=#000080>cakes</font>&quot;, replace the matched text with &quot;<font color=#000080>both cake</font>&quot;. 
 <br>
-After eating the orange cake when the player is in Tea Room or Pool Room or Posts Room:
+After eating the orange cake:
 <br>
-say &quot;<font color=#000080>You have been blasted to smithereens (whatever they are).</font>&quot;; end the game in death.
+if the player is in Tea Room or the player is in Pool Room or the player is Posts Room begin;
+<br>
+say &quot;<font color=#000080>You have been blasted to smithereens (whatever they are).</font>&quot;; end the game in death;
+<br>
+else;
+<br>
+continue the action;
+<br>
+end if.
 <br>
 Check eating the blue cake when the player is in Tea Room or the player is in Pool Room:
 <br>
@@ -361,11 +369,19 @@ say &quot;<font color=#000080> At your service!</font>&quot;.
 <br>
 The description of the eat-me cake is &quot;<font color=#000080>The icing spells out Eat Me.</font>&quot;
 <br>
-After eating the red cake when the player is in Tea Room or Pool Room or Posts Room:
+After eating the red cake:
+<br>
+if the player is in Tea Room or the player is in Pool Room or the player is Posts Room begin;
 <br>
   say &quot;<font color=#000080>That was delicious, but your dying memory is of feeling horribly dehydrated and thirsty.</font>&quot;;
 <br>
-  end the game in death.
+  end the game in death;
+<br>
+else;
+<br>
+  continue the action;
+<br>
+end if;
 <br>
 A persuasion rule for asking the robot to try doing something: 
 <br>
@@ -415,17 +431,33 @@ Check attacking the robot with something:
 <br>
 try attacking the noun instead.
 <br>
-Check dropping the orange cake when the player's command includes &quot;<font color=#000080>throw</font>&quot; and the player is in Pool Room or Tea Room or Posts Room:
+Check dropping the orange cake:
+<br>
+if  the player's command includes &quot;<font color=#000080>throw</font>&quot; and the player is in Tea Room or the player is in Pool Room or the player is Posts Room begin;
 <br>
   say &quot;<font color=#000080>You have been blasted to smithereens (whatever they are).</font>&quot;;
 <br>
-  end the game in death instead.
+  end the game in death instead;
 <br>
-Check throwing the orange cake at something when the player is in Pool Room or Tea Room or Posts Room:
+else;
+<br>
+  continue the action;
+<br>
+end if.
+<br>
+Check throwing the orange cake at something:
+<br>
+if the player is in Tea Room or the player is in Pool Room or the player is Posts Room begin;
 <br>
   say &quot;<font color=#000080>You have been blasted to smithereens (whatever they are).</font>&quot;;
 <br>
-  end the game in death instead.
+  end the game in death instead;
+<br>
+else;
+<br>
+  continue the action;
+<br>
+end if.
 <br>
 Check answering the robot that something: say &quot;<font color=#000080>'I am only a stupid robot and cannot perform that command.'</font>&quot; instead.
 <br>
@@ -667,7 +699,7 @@ The description of the white crystal sphere is &quot;<font color=#000080>[white 
 <br>
 To say white sphere text:
 <br>
-if the blue crystal sphere is in something which is closed and opaque begin;
+if the blue crystal sphere is in something which is hiding begin;
 <br>
   say &quot;<font color=#000080>You see only darkness.</font>&quot;;
 <br>

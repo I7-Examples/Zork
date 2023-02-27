@@ -197,7 +197,7 @@ if i is 1 begin;
 <br>
   move the sword to the player;
 <br>
-  move the player to Top of Stairs.
+  move the player to Top of Stairs;
 <br>
 else if i is 2;
 <br>
@@ -823,11 +823,11 @@ Instead of answering the dungeon master that something:
 <br>
   else;
 <br>
-    try saying the topic understood instead;
+    try speaking &quot;<font color=#000080>[the topic understood]</font>&quot;;
 <br>
   end if.
 <br>
-Instead of saying when question number is 1:
+Instead of speaking when question number is 1:
 <br>
 if the topic understood matches the text &quot;<font color=#000080>temple</font>&quot; begin;
 <br>
@@ -861,7 +861,7 @@ else;
 <br>
 end if.
 <br>
-Instead of saying when question number is 2:
+Instead of speaking when question number is 2:
 <br>
 if the topic understood matches the text &quot;<font color=#000080>forest</font>&quot; begin;
 <br>
@@ -895,7 +895,7 @@ else;
 <br>
 end if.
 <br>
-Instead of saying when question number is 3:
+Instead of speaking when question number is 3:
 <br>
 if the topic understood matches the text &quot;<font color=#000080>touch</font>&quot; or the topic understood matches the text &quot;<font color=#000080>rub</font>&quot; begin;
 <br>
@@ -1444,6 +1444,10 @@ end repeat;
 Check going inside while in Hallway4: try entering the large wooden door instead.
 <br>
 Include (- <font color=#404040>[ XOR a b; return (a | b) &amp; (~(a &amp; b)); </font>];  -). <font color=#404040><sup><a href="#note2">[2]</a></sup></font>
+<br>
+
+<br>
+
 <br>
 
 <br>

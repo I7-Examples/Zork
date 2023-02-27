@@ -19,7 +19,7 @@
 <br>
 A room has a number called rval. The rval of a room is usually 0.
 <br>
-When play begins, seed the random-number generator with 1234. 
+Use MAX_STATIC_DATA of 1000000.
 <br>
 The story genre is &quot;<font color=#000080>Fantasy</font>&quot;. 
 <br>
@@ -567,9 +567,13 @@ else if the second noun is not transparent and the second noun is not the flask;
 <br>
     say &quot;<font color=#000080>How does one look through [a second noun]?</font>&quot; instead;
 <br>
-else if the second noun is the bottle and the noun is the red cake or the blue cake or the orange cake;
+else if the second noun is the bottle;
+<br>
+  if the noun is the red cake or the noun is the blue cake or the noun is the orange cake begin;
 <br>
    say &quot;<font color=#000080>The letters appear larger but are still too small to read.</font>&quot;;
+<br>
+  end if;
 <br>
 else;
 <br>
@@ -1135,9 +1139,9 @@ Temple-travelling is an action applying to nothing. Understand &quot;<font color
 <br>
 Carry out temple-travelling: move the player to Temple.
 <br>
-Hi-saying is an action applying to one visible thing. Understand &quot;<font color=#000080>hello [something]</font>&quot; and &quot;<font color=#000080>hi [something]</font>&quot; as hi-saying.
+Hi-speaking is an action applying to one visible thing. Understand &quot;<font color=#000080>hello [something]</font>&quot; and &quot;<font color=#000080>hi [something]</font>&quot; as hi-speaking.
 <br>
-Check hi-saying:
+Check hi-speaking:
 <br>
 if the noun is the sailor, say &quot;<font color=#000080>Nothing happens here.</font>&quot; instead;
 <br>
@@ -1145,11 +1149,11 @@ if the noun is the aviator, say &quot;<font color=#000080>Here, nothing happens.
 <br>
 if the noun is not a person, say &quot;<font color=#000080>I think that only schizophrenics say 'Hello' to [a noun].</font>&quot; instead.
 <br>
-Carry out hi-saying:
+Carry out hi-speaking:
 <br>
 say &quot;<font color=#000080>[The noun] bows his head to you in greeting.</font>&quot;
 <br>
-Check asking someone to try greeting: try hi-saying the noun instead.
+Check asking someone to try greeting: try hi-speaking the noun instead.
 <br>
 The sailor is a backdrop. The sailor is everywhere. 
 <br>
@@ -1283,11 +1287,11 @@ The size of the free brochure is 30.
 <br>
 The size of the Don Woods stamp is 1.
 <br>
-Check hi-saying the sailor for the tenth time:
+Check hi-speaking the sailor for the tenth time:
 <br>
 say &quot;<font color=#000080>I think that phrase is getting a bit worn out.</font>&quot; instead.
 <br>
-Check hi-saying the sailor for the 20th time:
+Check hi-speaking the sailor for the 20th time:
 <br>
 say &quot;<font color=#000080>You seem to be repeating yourself.</font>&quot; instead.
 <br>
@@ -1489,15 +1493,15 @@ Understand the command &quot;<font color=#000080>answer</font>&quot; as somethin
 <br>
 Understand the command &quot;<font color=#000080>say</font>&quot; as something new.
 <br>
-Saying is an action applying to one topic. Understand &quot;<font color=#000080>answer [text]</font>&quot; as saying.
+speaking is an action applying to one topic. Understand &quot;<font color=#000080>answer [text]</font>&quot; as speaking.
 <br>
-Understand &quot;<font color=#000080>say [text]</font>&quot; as saying.
+Understand &quot;<font color=#000080>say [text]</font>&quot; as speaking.
 <br>
-Check saying:
+Check speaking:
 <br>
 if the player is not in Riddle Room or the topic understood does not include &quot;<font color=#000080>well</font>&quot; or the great door is open, say &quot;<font color=#000080>No one seems to be listening.</font>&quot; instead.
 <br>
-Carry out saying:
+Carry out speaking:
 <br>
 say &quot;<font color=#000080>There is a clap of thunder and the east door opens.</font>&quot;;
 <br>
@@ -1787,7 +1791,7 @@ Carry out untying it from:
 <br>
 Report untying it from: 
 <br>
-    say &quot;<font color=#000080>The rope is now untied.</font>&quot; 
+    say &quot;<font color=#000080>The rope is now untied.</font>&quot;.
 <br>
 Definition: a thing is secondary if it is not the noun. 
 <br>
@@ -1931,7 +1935,7 @@ To fatally leap:
 <br>
 <table><tr><td halign="left" valign="top"><u>hint</u>&nbsp;&nbsp;</td><td halign="left" valign="top"><u> used</u></td></tr>
 <tr><td halign="left" valign="top">&quot;<font color=#000080>You can cross it and get the pot of gold.</font>&quot;&nbsp;&nbsp;</td><td halign="left" valign="top"> a number</td></tr>
-<tr><td halign="left" valign="top">&quot;<font color=#000080>You do not click your heels together three times while saying 'There's no place like home.' </font>&quot;&nbsp;&nbsp;</td><td halign="left" valign="top"> --</td></tr>
+<tr><td halign="left" valign="top">&quot;<font color=#000080>You do not click your heels together three times while speaking 'There's no place like home.' </font>&quot;&nbsp;&nbsp;</td><td halign="left" valign="top"> --</td></tr>
 <tr><td halign="left" valign="top">&quot;<font color=#000080>Wave the stick while standing at the end of the rainbow</font>&quot;&nbsp;&nbsp;</td><td halign="left" valign="top"> --</td></tr>
 <tr><td halign="left" valign="top">&quot;<font color=#000080>This is similar to the fissure puzzle in ADVENTURE</font>&quot;&nbsp;&nbsp;</td><td halign="left" valign="top"> --</td></tr>
 </table>
@@ -2012,7 +2016,7 @@ Before untying:
 <br>
 if dead flag is true, say &quot;<font color=#000080>Even such a simple action is beyond your capabilities</font>&quot; instead.
 <br>
-Before saying:
+Before speaking:
 <br>
 if dead flag is true, say &quot;<font color=#000080>No one hears you.</font>&quot; instead.
 <br>
@@ -2044,7 +2048,7 @@ increase death count by 1;
 <br>
 award -10 points;
 <br>
-if <font color=#404040>[endgame flag is true</font>] no begin;
+if endgame flag is true begin;
 <br>
   say &quot;<font color=#000080>Normally, I would attempt to rectify your condition, but I'm ashamed
 <br>

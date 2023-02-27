@@ -1,6 +1,6 @@
 "Zork" by Infocom -- Ported by Dean Menezes
 
-Include (- Serial "080316"; -).
+Include (- Serial "080504"; -).
 
 
 [Copyright (c) 2008 Dean Menezes
@@ -30,7 +30,7 @@ OTHER DEALINGS IN THE SOFTWARE.]
 Part 1 - New Actions and Concepts
 
 A room has a number called rval. The rval of a room is usually 0.
-When play begins, seed the random-number generator with 1234. 
+Use MAX_STATIC_DATA of 1000000.
 The story genre is "Fantasy". 
 The story headline is "A Computerized Fantasy Simulation Game".
 The release number is 3.
@@ -304,8 +304,10 @@ else if the second noun is the flask and the noun is the orange cake;
   say "The icing, now visible, says 'Explode'.";
 else if the second noun is not transparent and the second noun is not the flask;
     say "How does one look through [a second noun]?" instead;
-else if the second noun is the bottle and the noun is the red cake or the blue cake or the orange cake;
+else if the second noun is the bottle;
+  if the noun is the red cake or the noun is the blue cake or the noun is the orange cake begin;
    say "The letters appear larger but are still too small to read.";
+  end if;
 else;
    try examining the noun instead;
   end if.
@@ -588,14 +590,14 @@ Treasure-travelling is an action applying to nothing. Understand "$treasure$" as
 Carry out treasure-travelling: move the player to Treasure Room.
 Temple-travelling is an action applying to nothing. Understand "temple" as temple-travelling. Check temple-travelling: if the player is not in Treasure Room, say "Nothing happens." instead.
 Carry out temple-travelling: move the player to Temple.
-Hi-saying is an action applying to one visible thing. Understand "hello [something]" and "hi [something]" as hi-saying.
-Check hi-saying:
+Hi-speaking is an action applying to one visible thing. Understand "hello [something]" and "hi [something]" as hi-speaking.
+Check hi-speaking:
 if the noun is the sailor, say "Nothing happens here." instead;
 if the noun is the aviator, say "Here, nothing happens." instead;
 if the noun is not a person, say "I think that only schizophrenics say 'Hello' to [a noun]." instead.
-Carry out hi-saying:
+Carry out hi-speaking:
 say "[The noun] bows his head to you in greeting."
-Check asking someone to try greeting: try hi-saying the noun instead.
+Check asking someone to try greeting: try hi-speaking the noun instead.
 The sailor is a backdrop. The sailor is everywhere. 
 The aviator is a backdrop. The aviator is everywhere. Understand "flyer" as the aviator.
 Brochure flag is a number that varies. Brochure flag is usually 0.
@@ -662,9 +664,9 @@ say variable letter spacing.
 The case-points of the Don Woods stamp is 1.
 The size of the free brochure is 30.
 The size of the Don Woods stamp is 1.
-Check hi-saying the sailor for the tenth time:
+Check hi-speaking the sailor for the tenth time:
 say "I think that phrase is getting a bit worn out." instead.
-Check hi-saying the sailor for the 20th time:
+Check hi-speaking the sailor for the 20th time:
 say "You seem to be repeating yourself." instead.
 Understand "pour [something] in/into/on/onto [something]" as inserting it into.
 Understand "fill [something] with [something]" as inserting it into (with nouns reversed).
@@ -765,11 +767,11 @@ Winding is an action applying to one carried thing. Understand "wind [something]
 Check winding: if the noun is not the golden clockwork canary and the noun is not the broken canary, say "You cannot wind up [a noun]." instead.
 Understand the command "answer" as something new.
 Understand the command "say" as something new.
-Saying is an action applying to one topic. Understand "answer [text]" as saying.
-Understand "say [text]" as saying.
-Check saying:
+speaking is an action applying to one topic. Understand "answer [text]" as speaking.
+Understand "say [text]" as speaking.
+Check speaking:
 if the player is not in Riddle Room or the topic understood does not include "well" or the great door is open, say "No one seems to be listening." instead.
-Carry out saying:
+Carry out speaking:
 say "There is a clap of thunder and the east door opens.";
 now the great door is open;
 now the great door is openable.
@@ -922,7 +924,7 @@ if the noun is not a rope, try untying the second noun from the noun instead.
 Carry out untying it from: 
     now the noun is not attached to the second noun. 
 Report untying it from: 
-    say "The rope is now untied." 
+    say "The rope is now untied.".
 Definition: a thing is secondary if it is not the noun. 
 A thing has a text called the later appearance. The later appearance of something is usually "".
 Rule for writing a paragraph about something (called the thingy):
@@ -1013,7 +1015,7 @@ hint	used
 Table of Rainbow Hints
 hint	used
 "You can cross it and get the pot of gold."	a number
-"You do not click your heels together three times while saying 'There's no place like home.' "	--
+"You do not click your heels together three times while speaking 'There's no place like home.' "	--
 "Wave the stick while standing at the end of the rainbow"	--
 "This is similar to the fissure puzzle in ADVENTURE"	--
 
@@ -1065,7 +1067,7 @@ Before burning something:
 if dead flag is true, say "Even such a simple action is beyond your capabilities" instead.
 Before untying:
 if dead flag is true, say "Even such a simple action is beyond your capabilities" instead.
-Before saying:
+Before speaking:
 if dead flag is true, say "No one hears you." instead.
 Before switching on something:
 if dead flag is true, say "You need no light to guide you." instead.
@@ -1081,7 +1083,7 @@ Death count is a number that varies.
 When play ends when the game ended in death:
 increase death count by 1;
 award -10 points;
-if [endgame flag is true] no begin;
+if endgame flag is true begin;
   say "Normally, I would attempt to rectify your condition, but I'm ashamed
 to say my abilities are not equal to dealing with your present state
 of disrepair.  Please let me express my profoundest regrets.";
@@ -1598,7 +1600,7 @@ Check jumping while in West of Chasm: fatally leap instead.
 A dungeon called Gallery is south of West of Chasm. "This is an art gallery. Most of the paintings which were here have been stolen by vandals with exceptional taste. The vandals left through the north, south, or west exits."
 A painting is here. "Fortunately, there is still one chance for you to be a vandal, for on the far wall is a work of unparalleled beauty."
 The printed name of the painting is "masterpiece by a neglected genius".
-The inventory listing of the painting is "a painting". Understand "masterpiece" as the painting. The painting is inflammable.
+Understand "masterpiece" as the painting. The painting is inflammable.
 After taking the painting for the first time: award 4 points; continue the action. 
 The painting has case-points 7.
 The size of the painting is 15.
@@ -1611,12 +1613,12 @@ Check destroying the painting with something:
 artist's masterpieces, you have destroyed one."; now the player has the worthless piece of canvas; remove the painting from play instead.
 To strike a blow at the player:
   let x be a random number between 1 and 6;
-    if x is 1 or 2 begin;
+    if x is 1 or x is 2 begin;
       say "[one of]The troll swings his axe, but it misses.[or]The troll's axe barely misses your ear.[or]The axe sweeps past as you jump aside.[or]The axe crashes against the rock, throwing sparks![at random]";
    else if x is 3;
       say "The troll's axe removes your head.";
       end the game in death;
-   else if x is 4 or 5;
+   else if x is 4 or x is 5;
       say "[one of]The troll hits you with a glancing blow, and you are momentarily
 stunned.[or]An axe stroke makes a deep wound in your leg.[or]The troll's axe swings down, gashing your shoulder.[at random]";
       increase the wounds of the player by 1;
@@ -1890,7 +1892,7 @@ Every turn when the thief is unconsious and the thief is on-stage and the player
 
 To strike a blow from the thief:
   let x be a random number between 1 and 6;
-    if x is 1 or 2 begin;
+    if x is 1 or x is 2 begin;
       say "[one of]The thief stabs nonchalantly with his stiletto and misses.[or]You dodge as the thief comes in low.[or]You parry a lightning thrust, and the thief salutes you with
 a grim nod.[or]The thief tries to sneak past your guard, but you twist away.[at random]";
    else if x is 3;
@@ -1898,7 +1900,7 @@ a grim nod.[or]The thief tries to sneak past your guard, but you twist away.[at 
 into your ribs.[or]The thief bows formally, raises his stiletto, and with a wry grin,
 ends the battle and your life.[at random]";
       end the game in death;
-   else if x is 4 or 5;
+   else if x is 4 or x is 5;
       say "[one of]A quick thrust pinks your left arm, and blood starts to
 trickle down.[or]The thief draws blood, raking his stiletto across your arm.[or]The stiletto flashes faster than you can follow, and blood wells
 from your leg.[at random]";
@@ -2350,17 +2352,21 @@ The size of the red cake is 4.
 A red cake is in Tea Room.
 The printed name of the red cake is "piece of cake with red icing". Understand "piece of cake" and "piece of cake with red icing" and "piece of red cake" as the red cake.
 An orange cake is in Tea Room.
-The printed name of the orange cake is "piece of cake with orange icing". Understand "piece of cake" and "piece of cake with orange icing" and "piece of orange cake" as the orange cake.The inventory listing of the orange cake is "piece of cake with orange icing".
+The printed name of the orange cake is "piece of cake with orange icing". Understand "piece of cake" and "piece of cake with orange icing" and "piece of orange cake" as the orange cake.
 A blue cake is in Tea Room.
-The printed name of the blue cake is "piece of cake with blue (ecch) icing". Understand "piece of cake" and "piece of cake with blue icing" and "piece of blue cake" as the blue cake.The inventory listing of the blue cake is "piece of cake with blue icing".
+The printed name of the blue cake is "piece of cake with blue (ecch) icing". Understand "piece of cake" and "piece of cake with blue icing" and "piece of blue cake" as the blue cake.
 The red cake, the blue cake, and the eat-me cake are edible.
 The description of the red cake is "The only writing visible is a capital E.  The rest is too small to be clearly visible."
 The description of the orange cake is "The only writing visible is a capital E.  The rest is too small to be clearly visible."
 The description of the blue cake is "The only writing visible is a capital E.  The rest is too small to be clearly visible."
 After reading a command: 
   if the player's command includes "cakes", replace the matched text with "both cake". 
-After eating the orange cake when the player is in Tea Room or Pool Room or Posts Room:
-say "You have been blasted to smithereens (whatever they are)."; end the game in death.
+After eating the orange cake:
+if the player is in Tea Room or the player is in Pool Room or the player is Posts Room begin;
+say "You have been blasted to smithereens (whatever they are)."; end the game in death;
+else;
+continue the action;
+end if.
 Check eating the blue cake when the player is in Tea Room or the player is in Pool Room:
   say "The room around you seems to be getting smaller.[line break]The room seems to have become too small to hold you.  It seems that the walls are not as compressible as your body, which is more or less demolished.";
 end the game in death instead.
@@ -2385,9 +2391,13 @@ say "Warranty:[paragraph break]";
 say "    No warranty is expressed or implied.[paragraph break]";
 say " At your service!".
 The description of the eat-me cake is "The icing spells out Eat Me."
-After eating the red cake when the player is in Tea Room or Pool Room or Posts Room:
+After eating the red cake:
+if the player is in Tea Room or the player is in Pool Room or the player is Posts Room begin;
   say "That was delicious, but your dying memory is of feeling horribly dehydrated and thirsty.";
-  end the game in death.
+  end the game in death;
+else;
+  continue the action;
+end if;
 A persuasion rule for asking the robot to try doing something: 
     persuasion succeeds. 
 Instead of asking the robot to try eating or drinking something: 
@@ -2412,12 +2422,20 @@ Check attacking the robot:
   remove the robot from play instead.
 Check attacking the robot with something:
 try attacking the noun instead.
-Check dropping the orange cake when the player's command includes "throw" and the player is in Pool Room or Tea Room or Posts Room:
+Check dropping the orange cake:
+if  the player's command includes "throw" and the player is in Tea Room or the player is in Pool Room or the player is Posts Room begin;
   say "You have been blasted to smithereens (whatever they are).";
-  end the game in death instead.
-Check throwing the orange cake at something when the player is in Pool Room or Tea Room or Posts Room:
+  end the game in death instead;
+else;
+  continue the action;
+end if.
+Check throwing the orange cake at something:
+if the player is in Tea Room or the player is in Pool Room or the player is Posts Room begin;
   say "You have been blasted to smithereens (whatever they are).";
-  end the game in death instead.
+  end the game in death instead;
+else;
+  continue the action;
+end if.
 Check answering the robot that something: say "'I am only a stupid robot and cannot perform that command.'" instead.
 Instead of asking the robot to try doing something other than going, taking, dropping, inserting it into, pushing, turning, giving, or lifting:
   say "'I am only a stupid robot and cannot perform that command.'".
@@ -2538,7 +2556,7 @@ Check searching the blue crystal sphere:  try examining the noun instead.
 The later appearance of the white crystal sphere is "There is a beautiful white crystal sphere here."
 The description of the white crystal sphere is "[white sphere text]".
 To say white sphere text:
-if the blue crystal sphere is in something which is closed and opaque begin;
+if the blue crystal sphere is in something which is hiding begin;
   say "You see only darkness.";
 else;
   say "As you peer into the sphere, a strange vision takes shape of
@@ -2660,8 +2678,9 @@ The description of the blue crystal sphere is "[blue sphere text]".
 The case-points of the blue crystal sphere is 10.
 After taking the blue crystal sphere for the first time:
 award 5 points; continue the action.
+Definition: a thing is hiding if it is closed and it is opaque.
 To say blue sphere text:
-if the red crystal sphere is in something which is closed and opaque begin;
+if the red crystal sphere is in something which is hiding begin;
   say "You see only darkness.";
 else;
   say "As you peer into the sphere, a strange vision takes shape of
@@ -3215,7 +3234,7 @@ The case-points of the red crystal sphere is 10.  After taking the red crystal s
 
 The description of the red crystal sphere is "[red sphere text]".
 To say red sphere text:
-if the white crystal sphere is in something which is closed and opaque begin;
+if the white crystal sphere is in something which is hiding begin;
   say "You see only darkness.";
 else;
   say "As you peer into the sphere, a strange vision takes shape of
@@ -3721,7 +3740,7 @@ if i is 1 begin;
   change endgame flag to true;
   move the battery-powered brass lantern to the player;
   move the sword to the player;
-  move the player to Top of Stairs.
+  move the player to Top of Stairs;
 else if i is 2;
  let c be character number one in a;
   let d be character number one in b;
@@ -4034,9 +4053,9 @@ Instead of answering the dungeon master that something:
     say "The dungeon master says, 'I will stay.'";
     change follow to false;
   else;
-    try saying the topic understood instead;
+    try speaking "[the topic understood]";
   end if.
-Instead of saying when question number is 1:
+Instead of speaking when question number is 1:
 if the topic understood matches the text "temple" begin;
   say "The dungeon master says, 'Excellent.'";
   change question number to 2;
@@ -4053,7 +4072,7 @@ else;
   say "The dungeon master says, 'You are wrong.  You have [tries left in words] more chances.'";
   decrease tries left by 1;
 end if.
-Instead of saying when question number is 2:
+Instead of speaking when question number is 2:
 if the topic understood matches the text "forest" begin;
   say "The dungeon master says, 'Excellent.'";
   change question number to 3;
@@ -4070,7 +4089,7 @@ else;
   say "The dungeon master says, 'You are wrong.  You have [tries left in words] more chances.'";
   decrease tries left by 1;
 end if.
-Instead of saying when question number is 3:
+Instead of speaking when question number is 3:
 if the topic understood matches the text "touch" or the topic understood matches the text "rub" begin;
 say "The dungeon master, obviously pleased, says 'You are indeed a
 master of lore. I am proud to be at your service.'  The massive
@@ -4345,5 +4364,7 @@ end repeat;
  rule succeeds.
 Check going inside while in Hallway4: try entering the large wooden door instead.
 Include (- [ XOR a b; return (a | b) & (~(a & b)); ];  -). [* Inform does not have a bitwise exclusive or built in, so we make one]
+
+
 
 
