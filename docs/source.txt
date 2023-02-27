@@ -1,6 +1,6 @@
 "Zork" by Dean Menezes
 
-Include (- Serial "071125"; -).
+Include (- Serial "071128"; -).
 
 
 Part 1 - New Actions and Concepts
@@ -520,7 +520,7 @@ Brochure flag is a number that varies. Brochure flag is usually 0.
 Sending for is an action applying to one visible thing. Understand "send for [something]" as sending for. Understand "send [something]" as sending for.
 Check sending for:
 if the noun is not the obj1234, say "That doesn't make sends." instead.
-Carry out sending for the free brochure:
+Carry out sending for the obj1234:
 if brochure flag is 0 begin;
   say "OK, but you know the postal service...";
   change brochure flag to 1;
@@ -534,7 +534,7 @@ The obj1234 is a backdrop. The obj1234 is everywhere. Understand "brochure" and 
 Instead of doing something other than sending for to the obj1234: print the you can't see message instead.
 The description of the brochure is "[brochure text]".
 Does the player mean sending for the obj1234: it is very likely.
-Does the player mean doing something to the free brochure: it is very likely.
+Does the player mean doing something other than sending for to the free brochure: it is very likely.
 To say brochure text:
 say "The mailing label on this glossy brochure from MIT Tech reads [paragraph break]";
 say "               Intrepid Adventurer[line break]";
