@@ -73,7 +73,7 @@ The description of Cyclops Room is &quot;<font color=#000080>This is a room with
 <br>
 A man called the Cyclops is here. &quot;<font color=#000080>[cyclops text].</font>&quot;
 <br>
-Cyclops flag is a number that varies.
+Cyclops flag is a number that varies.  Understand &quot;<font color=#000080>Polyphemus</font>&quot; as the cyclops.
 <br>
 Every turn:
 <br>
@@ -131,11 +131,39 @@ continue the action.
 <br>
 Treasure Room is a dungeon. The description of Treasure Room is &quot;<font color=#000080>This is a large room, whose north wall is solid granite.  A number of discarded bags, which crumble at your touch, are scattered about on the floor.  There is an exit down and what appears to be a newly created passage to the east.</font>&quot;
 <br>
-The thief is a man in Treasure Room.  Understand &quot;<font color=#000080>shady/suspicious</font>&quot; and &quot;<font color=#000080>ROBBER/CROOK/CRIMINAL/BANDIT</font>&quot; and  &quot;<font color=#000080>MODO/MANU</font>&quot; and &quot;<font color=#000080>GENT/GENTLEMAN/MAN/INDIVIDUAL</font>&quot; as the thief.  The later appearance of the thief is &quot;<font color=#000080>There is a suspicious-looking individual, holding a bag, leaning against one wall.  He is armed with a vicious-looking stiletto.</font>&quot;
+The thief is a man. Understand &quot;<font color=#000080>shady/suspicious</font>&quot; and &quot;<font color=#000080>ROBBER/CROOK/CRIMINAL/BANDIT</font>&quot; and  &quot;<font color=#000080>MODO/MANU</font>&quot; and &quot;<font color=#000080>GENT/GENTLEMAN/MAN/INDIVIDUAL</font>&quot; as the thief.  The later appearance of the thief is &quot;<font color=#000080>There is a suspicious-looking individual, holding a bag, leaning against one wall.  He is armed with a vicious-looking stiletto.</font>&quot;
+<br>
+After giving something to the thief:
+<br>
+  say &quot;<font color=#000080>The thief is taken aback by your unexpected generosity but accepts [the noun] and stops to admire its beauty.</font>&quot;; change the engrossed of the thief to true.
+<br>
+The thief has a truth state called engrossed. 
+<br>
+Instead of attacking the unconsious thief with something:
+<br>
+say &quot;<font color=#000080>The unconsious thief cannot defend himself; he dies.</font>&quot;;
+<br>
+say  &quot;<font color=#000080>Almost as soon as the hief breathes his last breath, a cloud
+<br>
+</font><font color=#000080>of sinister black fog envelops him, and when the fog lifts, the
+<br>
+</font><font color=#000080>carcass has disappeared.</font>&quot;;
+<br>
+  remove the thief from play;
+<br>
+  if the number of valuble things had by the thief is greater than 0 begin;
+<br>
+  say &quot;<font color=#000080>His booty remains:  [a list of valuble things carried by the thief]</font>&quot;;
+<br>
+  now every thing carried by the thief is in the location;
+<br>
+end if.
 <br>
 Escaping is an action applying to nothing. 
 <br>
-
+The thief carries a chalice.  The case-points of the chalice is 10.  After taking the chalice for the first time:  award 10 points; continue the action.  The size of the chalice is 10.
+<br>
+The thief carries a stiletto.
 <br>
 Carry out someone escaping: 
 <br>
@@ -146,6 +174,18 @@ Carry out someone escaping:
     move the person asked to the space.
 <br>
 Every turn:
+<br>
+if the thief is carrying the jewel-encrusted egg, now the jewel-encrusted egg is open;
+<br>
+if the player is in Treasure Room and the thief is not in Treasure Room begin;
+<br>
+  say &quot;<font color=#000080>You hear a scream of anguish as you violate the robber's hideaway.  Using passages unknown to you, he rushes to its defense.</font>&quot;;
+<br>
+  move the thief to Treasure Room;
+<br>
+end if;
+<br>
+if the thief is on-stage begin;
 <br>
 if the thief cannot see the player, try the thief escaping;
 <br>
@@ -169,7 +209,7 @@ end if;
 <br>
 end if;
 <br>
-if the thief can see something portable begin;
+if the thief can see something portable and the holder of the thief is visited begin;
 <br>
  let the thingy be a random portable nonrope thing that is not attached to a rope;
 <br>
@@ -182,6 +222,130 @@ else;
   move a random thing that is not valuble held by the thief to the holder of the thief;
 <br>
 end if;
+<br>
+end if.
+<br>
+Carry out attacking the thief with something:
+<br>
+  if a random chance of 1 in 2 succeeds begin;
+<br>
+  if the second noun is the sword begin;
+<br>
+    say &quot;<font color=#000080>[one of]Your sword crashes down, knocking the thief into dreamland.[or]The thief is battered into unconsciousness.[or] A furious exchange, and the thief is knocked out![at random]</font>&quot;;
+<br>
+  else;
+<br>
+    say &quot;<font color=#000080>[one of]The haft of your knife knocks out the thief.[or]The thief drops to the floor, unconscious.[or]The thief is knocked out![at random]</font>&quot;;
+<br>
+  end if;
+<br>
+  now the thief is unconsious;
+<br>
+  else if a random chance of 1 in 2 succeeds;
+<br>
+   if the second noun is the sword begin;
+<br>
+     say &quot;<font color=#000080>[one of]The thief receives a deep gash in his side.[or]A savage blow on the thigh!  The thiefl is stunned but can still fight![or]Slash!  Your blow lands!  That one hit an artery, it could be serious![at random]</font>&quot;;
+<br>
+  else;
+<br>
+  say &quot;<font color=#000080>[one of]The thief receives a deep gash in his side.[or]A savage cut on the leg stuns the thief, but he can still fight![or]Slash!  Your stroke connects!  The thief could be in serious trouble![at random]</font>&quot;;
+<br>
+  increase the wounds of the thief by 2;
+<br>
+  end if;
+<br>
+  else;
+<br>
+    say &quot;<font color=#000080>A good stroke, but it's too slow, the thief dodges.</font>&quot;;
+<br>
+  end if;
+<br>
+  change the engrossed of the thief to false.
+<br>
+The thief can be consious or unconsious.
+<br>
+The thief has a number called wounds.
+<br>
+Every turn when the thief is on-stage:
+<br>
+  if the wounds of the thief is greater than 4 begin;
+<br>
+    say &quot;<font color=#000080>The thief takes a final blow and slumps to the floor, dead.</font>&quot;;
+<br>
+    say &quot;<font color=#000080>Almost as soon as the thief breathes his last breath, a cloud
+<br>
+</font><font color=#000080>of sinister black fog envelops him, and when the fog lifts, the
+<br>
+</font><font color=#000080>carcass has disappeared.</font>&quot;;
+<br>
+  remove the thief from play;
+<br>
+  if the number of valuble things had by the thief is greater than 0 begin;
+<br>
+  say &quot;<font color=#000080>His booty remains:  [a list of valuble things carried by the thief]</font>&quot;;
+<br>
+  now every thing carried by the thief is in the location;
+<br>
+  end if;
+<br>
+end if.
+<br>
+Every turn when the player can see the consious thief:
+<br>
+  if the engrossed of the thief is false, strike a blow from the thief.
+<br>
+Every turn when the thief is unconsious and the thief is on-stage and the player can not see the thief:
+<br>
+  now the thief is consious.
+<br>
+Every turn:
+<br>
+ if the thief has been unconsious for four turns and the player can see the thief, say &quot;<font color=#000080>The thief returns to consiousness.</font>&quot;;
+<br>
+if the engrossed of the thief has been true for two turn, change the engrossed of the thief to false.
+<br>
+To strike a blow from the thief:
+<br>
+  let x be a random number between 1 and 6;
+<br>
+    if x is 1 or 2 begin;
+<br>
+      say &quot;<font color=#000080>[one of]The thief stabs nonchalantly with his stiletto and misses.[or]You dodge as the thief comes in low.[or]You parry a lightning thrust, and the thief salutes you with
+<br>
+</font><font color=#000080>a grim nod.[or]The thief tries to sneak past your guard, but you twist away.[at random]</font>&quot;;
+<br>
+   else if x is 3;
+<br>
+      say &quot;<font color=#000080>[one of]The stiletto severs your jugular.  It looks like the end.[or]The thief comes in from the side, feints, and inserts the blade
+<br>
+</font><font color=#000080>into your ribs.[or]The thief bows formally, raises his stiletto, and with a wry grin,
+<br>
+</font><font color=#000080>ends the battle and your life.[at random]</font>&quot;;
+<br>
+      end the game in death;
+<br>
+   else if x is 4 or 5;
+<br>
+      say &quot;<font color=#000080>[one of]A quick thrust pinks your left arm, and blood starts to
+<br>
+</font><font color=#000080>trickle down.[or]The thief draws blood, raking his stiletto across your arm.[or]The stiletto flashes faster than you can follow, and blood wells
+<br>
+</font><font color=#000080>from your leg.[at random]</font>&quot;;
+<br>
+      increase the wounds of the player by 1;
+<br>
+   else if x is 6;
+<br>
+     say &quot;<font color=#000080>[one of]The butt of his stiletto cracks you on the skull, and you stagger
+<br>
+</font><font color=#000080>back.[or]The thief attacks, and you fall back desperately.[or]The thief rams the haft of his blade into your stomach, leaving
+<br>
+</font><font color=#000080>you out of breath.[at random]</font>&quot;;
+<br>
+     increase the wounds of the player by 2;
+<br>
+   end if.
 <br>
 
 <br>

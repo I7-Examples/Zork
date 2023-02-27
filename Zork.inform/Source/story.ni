@@ -1,6 +1,6 @@
 "Zork" by Dean Menezes
 
-Include (- Serial "071217"; -).
+Include (- Serial "071219"; -).
 
 
 Part 1 - New Actions and Concepts
@@ -266,6 +266,7 @@ Check poking:
 if the noun is not the Cyclops, try attacking the noun instead.
 Carry out poking: say "'Do you think I'm as stupid as my father?' he says, dodging."
 When play begins:
+move the thief to Round Room;
 choose row 1 in Table of Basic Help Options;
 change description entry to "Welcome to Zork![paragraph break]   You are near a large dungeon, which is reputed to contain vast quantities of treasure.  Naturally, you wish to acquire some of it.  In order to do so, you must of course remove it from the dungeon. To receive full credit for it, you must deposit it safely in the trophy case in the living room of the house.[paragraph break]   In addition to valuables, the dungeon contains various objects which may or may not be useful in your attempt to get rich.  You may need sources of light, since dungeons are often dark, and weapons, since dungeons often have unfriendly things wandering about.  Reading material is scattered around the dungeon as well;  some of it
 is rumored to be useful.[paragraph break]   To determine how successful you have been, a score is kept. When you find a valuable object and pick it up, you receive a certain number of points, which depends on the difficulty of finding the object.  You receive extra points for transporting the treasure
@@ -1334,8 +1335,7 @@ Part 3 - Cellar Area and Bank of Zork
 A dungeon is a kind of room. A dungeon is usually dark.
 The Cellar is a dungeon. The Cellar is west of a dungeon called Troll Room.  "You are in a dark and damp cellar with a narrow passageway leading east, and a crawlway to the south.  On the west is the bottom of a steep metal ramp which is unclimbable."
 Instead of going west from Cellar: say "You attempt to climb the ramp, but it is too slippery, and you slide back down."
-The description of Troll Room is "This is a small room with passages off in all directions. 
-Bloodstains and deep scratches (perhaps made by an axe) mar the
+The description of Troll Room is "This is a small room with passages off in all directions. Bloodstains and deep scratches (perhaps made by an axe) mar the
 walls."
 A man called the Troll is in Troll Room.  The initial appearance of the Troll is "[if the troll is consious]A nasty-looking troll, brandishing a bloody axe, blocks all passages out of the room.[otherwise]There is an unconsious troll here.[end if]".
 Instead of going when the player can see the consious Troll:
@@ -1571,7 +1571,7 @@ The size of the coins is 15.
 Southwest of Maze 5 is down from a maze called Maze 6. East of Maze 5 is a dead end.  West of Maze 6 is Maze 6. Up from Maze 6 is north of a maze called Maze 7. Northwest of Maze 7 is Maze 7. Southeast of Maze 7 is a east of a maze called Maze 8. West of Maze 8 is north of a maze called Maze 9. East of Maze 9 is south of Maze 7. Down from Maze 9 is east of a maze called Maze 10.  North from Maze 10 is a dead end. West of Maze 10 is Maze 5. Southwest from Maze 10 is a southwest of maze called Maze 11.  Northeast of Maze 11 is west of Maze 9. Down from Maze 11 is Maze 8. East of Maze 7 is Maze 11. West of Maze 11 is nowhere. Northwest of Maze 11 is Grating Room. The description of Grating Room is "This is a small room near the maze.  There are twisty passages in the immediate vicinity. Above you is a [if the grating is open]open[end if]grating[if the grating is locked] locked with a skull-and-crossbones lock[end if][if the grating is open] with sunlight poring in[end if]." Understand "grate" as the grating. The set of keys unlocks the grating. After going through the grating: now exit found is true; continue the action. West from Maze 7 is up from Maze 10. East of Maze 6 is a maze called Maze 12. Northeast of Maze 12 is DE1. Southwest of DE1 is nowhere. East of Maze 12 is northeast of a maze called Maze 13.  Southeast of Maze 12 is north of a dead end. West of Maze 13 is Maze 13. Up from Maze 12 is a northeast of a maze called Maze 14. Northwest of Maze 14 is Maze 14. South of Maze 14 is Maze 14. West of Maze 14 is west of a maze called Maze 15. South of Maze 12 is south of Maze 15. Northeast of Maze 15 is east of a dungeon called Cyclops Room. North of Cyclops Room is Strange Passage.
 The description of Cyclops Room is "This is a room with an exit on the west side, and a staircase leading up."
 A man called the Cyclops is here. "[cyclops text]."
-Cyclops flag is a number that varies.
+Cyclops flag is a number that varies.  Understand "Polyphemus" as the cyclops.
 Every turn:
 if the player has been in Cyclops Room for at most 1 turn and the Cyclops is not gone, now the Cyclops is basic;
 if the player can see the basic Cyclops for the fifth turn, now the Cyclops is hungry;
@@ -1600,14 +1600,34 @@ After entering the staircase for the first time:
 award 25 points;
 continue the action.
 Treasure Room is a dungeon. The description of Treasure Room is "This is a large room, whose north wall is solid granite.  A number of discarded bags, which crumble at your touch, are scattered about on the floor.  There is an exit down and what appears to be a newly created passage to the east."
-The thief is a man in Treasure Room.  Understand "shady/suspicious" and "ROBBER/CROOK/CRIMINAL/BANDIT" and  "MODO/MANU" and "GENT/GENTLEMAN/MAN/INDIVIDUAL" as the thief.  The later appearance of the thief is "There is a suspicious-looking individual, holding a bag, leaning against one wall.  He is armed with a vicious-looking stiletto."
+The thief is a man. Understand "shady/suspicious" and "ROBBER/CROOK/CRIMINAL/BANDIT" and  "MODO/MANU" and "GENT/GENTLEMAN/MAN/INDIVIDUAL" as the thief.  The later appearance of the thief is "There is a suspicious-looking individual, holding a bag, leaning against one wall.  He is armed with a vicious-looking stiletto."
+After giving something to the thief:
+  say "The thief is taken aback by your unexpected generosity but accepts [the noun] and stops to admire its beauty."; change the engrossed of the thief to true.
+The thief has a truth state called engrossed. 
+Instead of attacking the unconsious thief with something:
+say "The unconsious thief cannot defend himself; he dies.";
+say  "Almost as soon as the hief breathes his last breath, a cloud
+of sinister black fog envelops him, and when the fog lifts, the
+carcass has disappeared.";
+  remove the thief from play;
+  if the number of valuble things had by the thief is greater than 0 begin;
+  say "His booty remains:  [a list of valuble things carried by the thief]";
+  now every thing carried by the thief is in the location;
+end if.
 Escaping is an action applying to nothing. 
-
+The thief carries a chalice.  The case-points of the chalice is 10.  After taking the chalice for the first time:  award 10 points; continue the action.  The size of the chalice is 10.
+The thief carries a stiletto.
 Carry out someone escaping: 
     let space be the holder of the person asked; 
     let place be a random dungeon which is adjacent to the space; 
     move the person asked to the space.
 Every turn:
+if the thief is carrying the jewel-encrusted egg, now the jewel-encrusted egg is open;
+if the player is in Treasure Room and the thief is not in Treasure Room begin;
+  say "You hear a scream of anguish as you violate the robber's hideaway.  Using passages unknown to you, he rushes to its defense.";
+  move the thief to Treasure Room;
+end if;
+if the thief is on-stage begin;
 if the thief cannot see the player, try the thief escaping;
 if the thief is not in Treasure Room and the player can see the thief begin;
 if the thief can see something visible begin;
@@ -1619,13 +1639,75 @@ else;
 end if;
   try the thief escaping;
 end if;
-if the thief can see something portable begin;
+if the thief can see something portable and the holder of the thief is visited begin;
  let the thingy be a random portable nonrope thing that is not attached to a rope;
  move the thingy to the thief;
  if the thief is in a maze and the player is in a maze, say "You hear, off in the distance, someone saying 'My, I wonder what this fine [thingy] is doing here.";
 else;
   move a random thing that is not valuble held by the thief to the holder of the thief;
 end if;
+end if.
+Carry out attacking the thief with something:
+  if a random chance of 1 in 2 succeeds begin;
+  if the second noun is the sword begin;
+    say "[one of]Your sword crashes down, knocking the thief into dreamland.[or]The thief is battered into unconsciousness.[or] A furious exchange, and the thief is knocked out![at random]";
+  else;
+    say "[one of]The haft of your knife knocks out the thief.[or]The thief drops to the floor, unconscious.[or]The thief is knocked out![at random]";
+  end if;
+  now the thief is unconsious;
+  else if a random chance of 1 in 2 succeeds;
+   if the second noun is the sword begin;
+     say "[one of]The thief receives a deep gash in his side.[or]A savage blow on the thigh!  The thiefl is stunned but can still fight![or]Slash!  Your blow lands!  That one hit an artery, it could be serious![at random]";
+  else;
+  say "[one of]The thief receives a deep gash in his side.[or]A savage cut on the leg stuns the thief, but he can still fight![or]Slash!  Your stroke connects!  The thief could be in serious trouble![at random]";
+  increase the wounds of the thief by 2;
+  end if;
+  else;
+    say "A good stroke, but it's too slow, the thief dodges.";
+  end if;
+  change the engrossed of the thief to false.
+The thief can be consious or unconsious.
+The thief has a number called wounds.
+Every turn when the thief is on-stage:
+  if the wounds of the thief is greater than 4 begin;
+    say "The thief takes a final blow and slumps to the floor, dead.";
+    say "Almost as soon as the thief breathes his last breath, a cloud
+of sinister black fog envelops him, and when the fog lifts, the
+carcass has disappeared.";
+  remove the thief from play;
+  if the number of valuble things had by the thief is greater than 0 begin;
+  say "His booty remains:  [a list of valuble things carried by the thief]";
+  now every thing carried by the thief is in the location;
+  end if;
+end if.
+Every turn when the player can see the consious thief:
+  if the engrossed of the thief is false, strike a blow from the thief.
+Every turn when the thief is unconsious and the thief is on-stage and the player can not see the thief:
+  now the thief is consious.
+Every turn:
+ if the thief has been unconsious for four turns and the player can see the thief, say "The thief returns to consiousness.";
+if the engrossed of the thief has been true for two turn, change the engrossed of the thief to false.
+To strike a blow from the thief:
+  let x be a random number between 1 and 6;
+    if x is 1 or 2 begin;
+      say "[one of]The thief stabs nonchalantly with his stiletto and misses.[or]You dodge as the thief comes in low.[or]You parry a lightning thrust, and the thief salutes you with
+a grim nod.[or]The thief tries to sneak past your guard, but you twist away.[at random]";
+   else if x is 3;
+      say "[one of]The stiletto severs your jugular.  It looks like the end.[or]The thief comes in from the side, feints, and inserts the blade
+into your ribs.[or]The thief bows formally, raises his stiletto, and with a wry grin,
+ends the battle and your life.[at random]";
+      end the game in death;
+   else if x is 4 or 5;
+      say "[one of]A quick thrust pinks your left arm, and blood starts to
+trickle down.[or]The thief draws blood, raking his stiletto across your arm.[or]The stiletto flashes faster than you can follow, and blood wells
+from your leg.[at random]";
+      increase the wounds of the player by 1;
+   else if x is 6;
+     say "[one of]The butt of his stiletto cracks you on the skull, and you stagger
+back.[or]The thief attacks, and you fall back desperately.[or]The thief rams the haft of his blade into your stomach, leaving
+you out of breath.[at random]";
+     increase the wounds of the player by 2;
+   end if.
 
 
 Down from Treasure Room is the staircase.
@@ -2868,6 +2950,7 @@ After taking the sword when beam stopped is true and the player can see the beam
 Instead of taking the beam of light:
   say "No doubt you have a bottle of moonbeams as well."
 Mirror open is a truth state that varies.
+Check saving the game when endgame flag is true: say "Saves are not permitted during the end game." instead. 
 
 Include (- [ XOR a b; return (a | b) & (~(a & b)); ];  -).
 
