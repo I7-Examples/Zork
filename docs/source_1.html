@@ -89,7 +89,7 @@ After taking, pushing, or pulling the rubber welcome mat:
 <br>
   end if.
 <br>
-Instead of removing something from the mat when mat under is true:
+Check removing something from the mat when mat under is true:
 <br>
   print the you can't see message instead.
 <br>
@@ -115,21 +115,21 @@ The white house is a backdrop.  The white house is in West of House and North of
 <br>
 The front door is scenery in West of House.
 <br>
-Instead of entering the front door: say &quot;<font color=#000080>The door is locked, and there is evidently no key.</font>&quot;
+Check entering the front door: say &quot;<font color=#000080>The door is locked, and there is evidently no key.</font>&quot; instead.
 <br>
-Instead of going east from West of House: say &quot;<font color=#000080>The door is locked, and there is evidently no key.</font>&quot;
+Check going east from West of House: say &quot;<font color=#000080>The door is locked, and there is evidently no key.</font>&quot; instead.
 <br>
 Check opening the front door: say &quot;<font color=#000080>The door cannot be opened.</font>&quot; instead.
 <br>
-Instead of unlocking the front door with something: say &quot;<font color=#000080>It doesn't seem to work.</font>&quot;
+Check unlocking the front door with something: say &quot;<font color=#000080>It doesn't seem to work.</font>&quot; instead.
 <br>
 
 <br>
 The window is a door.  The window is west of Behind House and east of Kitchen. The window is closed and openable. The window is scenery.
 <br>
-Instead of climbing the window: try entering the noun instead.
+Check climbing the window: try entering the noun instead.
 <br>
-Instead of going inside while in Behind House: try entering the window instead. Instead of going outside while in Kitchen:  try entering the window instead.
+Check going inside while in Behind House: try entering the window instead. Check exiting while in Kitchen:  try entering the window instead.
 <br>
 Report opening the window: say &quot;<font color=#000080>With great effort, you open the window far enough to allow entry.</font>&quot; instead.
 <br>
@@ -151,23 +151,23 @@ Report eating something: say &quot;<font color=#000080>Thank you very much.  Tha
 <br>
 A closed openable transparent container called a bottle is in Kitchen. &quot;<font color=#000080>Sitting on the table is a small bottle.</font>&quot; 
 <br>
-Instead of destroying the bottle:
+Check destroying the bottle:
 <br>
   say &quot;<font color=#000080>A brilliant maneuver destroys the bottle.</font>&quot;;
 <br>
-  remove the bottle from play.
+  remove the bottle from play instead.
 <br>
 The capacity of the bottle is 4.
 <br>
-Instead of dropping the bottle when the player's command includes &quot;<font color=#000080>throw</font>&quot;:
+Check dropping the bottle when the player's command includes &quot;<font color=#000080>throw</font>&quot;:
 <br>
   try throwing the noun at the player instead.
 <br>
-Instead of throwing the bottle at something:
+Check throwing the bottle at something:
 <br>
   say &quot;<font color=#000080>The bottle hits the far wall and shatters.</font>&quot;;
 <br>
-  remove the bottle from play.
+  remove the bottle from play instead.
 <br>
 Understand &quot;<font color=#000080>bottle of [something related by containment]</font>&quot; as the bottle.
 <br>
@@ -179,7 +179,7 @@ An oriental rug is here. &quot;<font color=#000080>In center of the room is [if 
 <br>
 A closed openable transparent container called a trophy case is here.
 <br>
-Instead of taking the case: say &quot;<font color=#000080>The trophy case is securely fastened to the wall (perhaps to foil any attempt by robbers to remove it).</font>&quot;
+Check  taking the case: say &quot;<font color=#000080>The trophy case is securely fastened to the wall (perhaps to foil any attempt by robbers to remove it).</font>&quot; instead.
 <br>
 A weapon called an elvish sword is here.  &quot;<font color=#000080>On hooks above the mantelpiece hangs an elvish sword of great antiquity.</font>&quot;
 <br>
@@ -197,23 +197,23 @@ The size of the battery-powered brass lantern is 15.
 <br>
 A broken lamp is a thing. Understand &quot;<font color=#000080>lantern</font>&quot; and &quot;<font color=#000080>brass</font>&quot; as the broken lamp.
 <br>
-Instead of throwing the lamp at something:
+Check throwing the lamp at something:
 <br>
   say &quot;<font color=#000080>The lamp smashes into the ground and is ruined.</font>&quot;;
 <br>
   remove the battery-powered brass lantern from play;
 <br>
-  now the broken lamp is in the location.
+  now the broken lamp is in the location instead.
 <br>
-Instead of dropping the battery-powered brass lantern when the player's command includes &quot;<font color=#000080>throw</font>&quot;:
+Check dropping the battery-powered brass lantern when the player's command includes &quot;<font color=#000080>throw</font>&quot;:
 <br>
   say &quot;<font color=#000080>The lamp smashes into the ground and is ruined.</font>&quot;;
 <br>
   remove the battery-powered brass lantern from play;
 <br>
-  now the broken lamp is in the location.
+  now the broken lamp is in the location instead.
 <br>
-Instead of switching on or switching off the broken lamp: say &quot;<font color=#000080>The lamp is broken.  Some idiot must have smashed it.</font>&quot;
+Instead of switching on or switching off the broken lamp: say &quot;<font color=#000080>The lamp is broken.  Some idiot must have smashed it.</font>&quot;.
 <br>
 A newspaper is here. &quot;<font color=#000080>There is an issue of US NEWS &amp; DUNGEON REPORT here.</font>&quot;
 <br>
@@ -273,7 +273,7 @@ A door called the tree is a door. The tree is scenery. The tree is open and not 
 <br>
 The description of Up a Tree is &quot;<font color=#000080>You are about ten feet above the ground nestled among some large branches. The nearest branch above you is beyond your reach.</font>&quot;
 <br>
-Instead of climbing the tree: try entering the noun instead.
+Check climbing the tree: try entering the noun instead.
 <br>
 A container called a birds nest is here. &quot;<font color=#000080>On the branch is a small birds nest.  </font>&quot;.  A closed unopenable container called a jewel-encrusted egg is in the nest. The initial appearance of the jewel-encrusted egg is &quot;<font color=#000080>In the bird's nest is a large egg encrusted with precious jewels, apparently scavenged somewhere by a childless songbird.  The egg is covered with fine gold inlay and ornamented in lapis lazuli and mother-of-pearl.  Unlike most eggs, this one is hinged and has a delicate looking clasp holding it closed. The egg appears extremely fragile.</font>&quot; The description of the egg is &quot;<font color=#000080>The egg is covered with fine gold inlay and ornamented in lapis lazuli and mother-of-pearl.  Unlike most eggs, this one is hinged and has a delicate looking clasp holding it closed. The egg appears extremely fragile.</font>&quot;
 <br>
@@ -285,13 +285,13 @@ The capacity of the nest is 20.
 <br>
 The capacity of the jewel-encrusted egg is 6.
 <br>
-Instead of dropping something while in Up a Tree:
+Check dropping something while in Up a Tree:
 <br>
 if the noun is not the jewel-encrusted egg begin;
 <br>
   say &quot;<font color=#000080>[The noun] falls to the ground.</font>&quot;;
 <br>
-  move the noun to Forest 4;
+  move the noun to Forest 4 instead;
 <br>
 else if the golden clockwork canary is not in the jewel-encrusted egg;
 <br>
@@ -301,7 +301,7 @@ else if the golden clockwork canary is not in the jewel-encrusted egg;
 <br>
   remove the broken canary from play;
 <br>
-  remove the jewel-encrusted egg from play;
+  remove the jewel-encrusted egg from play instead;
 <br>
 else;
 <br>
@@ -309,7 +309,7 @@ else;
 <br>
   move the broken jewel-encrusted egg to Forest 4;
 <br>
-  remove the jewel-encrusted egg from play;
+  remove the jewel-encrusted egg from play instead;
 <br>
 end if.
 <br>
@@ -317,13 +317,13 @@ The broken jewel-encrusted egg is an open openable container. The broken clockwo
 <br>
 The golden clockwork canary is inside the jewel-encrusted egg.
 <br>
-Instead of dropping the jewel-encrusted egg when the player's command includes &quot;<font color=#000080>throw</font>&quot;: try destroying the broken egg instead.
+Check dropping the jewel-encrusted egg when the player's command includes &quot;<font color=#000080>throw</font>&quot;: try destroying the broken egg instead.
 <br>
-Instead of throwing the jewel-encrusted egg at something:
+Check throwing the jewel-encrusted egg at something:
 <br>
 try destroying the jewel-encrusted egg instead.
 <br>
-Instead of destroying the jewel-encrusted egg when the jewel-encrusted egg is not openable:
+Check destroying the jewel-encrusted egg when the jewel-encrusted egg is not openable:
 <br>
    say &quot;<font color=#000080>Your rather indelicate handling of the egg has caused it some damage.[line break]The egg is now open.</font>&quot;;
 <br>
@@ -331,7 +331,7 @@ Instead of destroying the jewel-encrusted egg when the jewel-encrusted egg is no
 <br>
    remove the jewel-encrusted egg from play;
 <br>
-     say &quot;<font color=#000080>There is a golden clockwork canary nestled in the egg.  It seems to have recently had a bad experience.  The mountings for its jewel-like eyes are empty, and its silver beak is crumpled.  Through a cracked crystal window below its left wing you can see the remains of intricate machinery.  It is not clear what result winding it would have, as the mainspring appears sprung.</font>&quot;.
+     say &quot;<font color=#000080>There is a golden clockwork canary nestled in the egg.  It seems to have recently had a bad experience.  The mountings for its jewel-like eyes are empty, and its silver beak is crumpled.  Through a cracked crystal window below its left wing you can see the remains of intricate machinery.  It is not clear what result winding it would have, as the mainspring appears sprung.</font>&quot; instead.
 <br>
 Carry out winding the broken canary:
 <br>
@@ -343,7 +343,7 @@ The description of the broken canary is &quot;<font color=#000080>There is a gol
 <br>
 The description of the golden clockwork canary is &quot;<font color=#000080>This is a golden clockwork canary.  It has ruby eyes and a silver beak.  Through a crystal window below its left wing you can see intricate machinery inside.  It appears to have wound down.</font>&quot;
 <br>
-Instead of destroying the jewel-encrusted egg with something:
+Check destroying the jewel-encrusted egg with something:
 <br>
 try destroying the jewel-encrusted egg instead.
 <br>
@@ -399,7 +399,7 @@ Forest 3 is an outdoors room.
 <br>
 South of Clearing is Forest 3.  North of Forest 3 is South of House. East of Forest 3 is Clearing.  &quot;<font color=#000080>This is a dimly lit forest, with large trees all around.  To the east, there appears to be sunlight.</font>&quot; The printed name of Forest 3 is &quot;<font color=#000080>Forest</font>&quot;.
 <br>
-West of Forest 4 is North of House. Clearing is south of Forest 4. North of Forest 4 is Forest 3. South of Forest 3 is Forest 5. Forest 5 has printed name &quot;<font color=#000080>Forest</font>&quot; . Forest 5 has description &quot;<font color=#000080>This is a large forest, with trees obstructing all views except to the east, where a small clearing may be seen through the trees.</font>&quot; North of Forest 5 is Forest 2. The description of Forest 2 is &quot;<font color=#000080>This is a forest with trees in all directions around you.</font>&quot; The printed name of Forest 2 is &quot;<font color=#000080>Forest</font>&quot;. South of Forest 5 is Forest 5. West of Forest 5 is Forest 3.  North of Forest 2 is Forest 2. West of Forest 2 is Forest 3. Southeast of Clearing is Forest 2. Northwest of Forest 2 is nowhere.
+West of Forest 4 is North of House. Clearing is south of Forest 4. North of Forest 4 is Forest 3. South of Forest 3 is Forest 5. Forest 5 has printed name &quot;<font color=#000080>Forest</font>&quot; . Forest 5 has description &quot;<font color=#000080>This is a large forest, with trees obstructing all views except to the east, where a small clearing may be seen through the trees.</font>&quot; North of Forest 5 is Forest 2. The description of Forest 2 is &quot;<font color=#000080>This is a forest with trees in all directions around you.</font>&quot; The printed name of Forest 2 is &quot;<font color=#000080>Forest</font>&quot;. South of Forest 5 is Forest 5. West of Forest 5 is Forest 3.  North of Forest 2 is Forest 2. West of Forest 2 is Forest 3. Southeast of Clearing is Forest 2. Northwest of Forest 2 is nowhere. South of Forest 1 is west of Forest 3.
 <br>
 West of West of House is Forest 1. East of Forest 1 is Forest 4. North of Forest 1 is Forest 1. West of Forest 1 is Forest 1. The printed name of Forest 1 is &quot;<font color=#000080>Forest</font>&quot;. The description of Forest 1 is &quot;<font color=#000080>This is a forest with trees in all directions around you.</font>&quot;
 <br>
@@ -421,8 +421,6 @@ say &quot;<font color=#000080>Moving the pile of leaves reveals a grating.</font
 <br>
 now the grating is revealed.
 <br>
-Every turn: if the player is in Grating Room, now the grating is revealed.
-<br>
 The attic stairs is a door. The attic stairs are open and not openable.The attic stairs is scenery.
 <br>
 A dark room called the Attic is up from the attic stairs. &quot;<font color=#000080>This is the Attic.  The only exit is stairs that lead down.</font>&quot;
@@ -443,7 +441,7 @@ A weapon called a nasty-looking knife is here. &quot;<font color=#000080>On a ta
 <br>
 Understand &quot;<font color=#000080>nasty knife</font>&quot; as the nasty-looking knife.
 <br>
-Down from the attic stairs is the Kitchen. Instead of climbing the attic stairs: try entering the noun.
+Down from the attic stairs is the Kitchen. Check climbing the attic stairs: try entering the noun instead.
 <br>
 The wooden door is a door.  The wooden door is scenery.  The wooden door is west of Living Room and east of Strange Passage.  The wooden door is closed and not openable.
 <br>
@@ -459,19 +457,19 @@ say &quot;<font color=#000080>[if the trap door is open]an open[otherwise]a clos
 <br>
 The trap door is up from the Cellar. Understand &quot;<font color=#000080>trapdoor</font>&quot; and &quot;<font color=#000080>trap-door</font>&quot; as the trap door.
 <br>
-Report opening the trap door:
+After opening the trap door:
 <br>
 say &quot;<font color=#000080>The door reluctantly opens to reveal a rickety staircase descending into darkness.</font>&quot;
 <br>
-Report closing the trap door:
+After closing the trap door:
 <br>
 say &quot;<font color=#000080>The door swings shut and closes.</font>&quot;
 <br>
 Exit found is a truth state variable.  Exit found is false.
 <br>
-Before going through the trap door for the first time: 
+The rval of Cellar is 25.
 <br>
-award 25 points.
+
 <br>
 After going through the trap door:
 <br>
@@ -485,15 +483,15 @@ say &quot;<font color=#000080>The trap door crashes shut, and you hear someone b
 <br>
 now the trap door is closed. 
 <br>
-Instead of opening the trap door when the player is in the Cellar and exit found is false:
+Check opening the trap door when the player is in the Cellar and exit found is false:
 <br>
- say &quot;<font color=#000080>The trap door is locked from above.</font>&quot;
+ say &quot;<font color=#000080>The trap door is locked from above.</font>&quot; instead.
 <br>
-Instead of looking under the rug: say &quot;<font color=#000080>There's a trap door under the rug.</font>&quot;
+Check looking under the rug: say &quot;<font color=#000080>There's a trap door under the rug.</font>&quot; instead.
 <br>
-Instead of going through the closed trap door: say &quot;<font color=#000080>The trap door is closed.</font>&quot;
+Check going through the closed trap door: say &quot;<font color=#000080>The trap door is closed.</font>&quot; instead.
 <br>
-Instead of taking the rug: say &quot;<font color=#000080>The rug is too heavy to lift.</font>&quot;
+Check taking the rug: say &quot;<font color=#000080>The rug is too heavy to lift.</font>&quot; instead.
 <br>
 After pushing or pulling the rug for the first time: say &quot;<font color=#000080>With a great effort, the rug is moved to one side of the room. With the rug moved, the dusty cover of a closed trap door appears.</font>&quot;; now the trap door is revealed.
 <br>

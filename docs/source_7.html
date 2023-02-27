@@ -47,13 +47,13 @@ East of the Land of the Living Dead is a dungeon called Tomb of the Unknown Impl
 <br>
 </font><font color=#000080>In the north wall of the room is the Crypt of the Implementers.  It is made of the finest marble, and apparently large enough for four headless corpses.  The crypt is [if the crypt is open]open[otherwise]closed[end if].  Above the entrance is the cryptic instruction: 'Feel Free'.</font>&quot;.
 <br>
-
+Check going inside while in Tomb of the Unknown Implementor: try entering the crypt door instead.
 <br>
 
 <br>
 The crypt door is a door.  The crypt door is closed.  The crypt door is north of the Tomb of the Unknown Implementor.  The Crypt of the Implementors is a dark room. The Crypt of the Implementors is north of the crypt door.  The description of the Crypt of the Implementors is &quot;<font color=#000080>Though large and aesthetically pleasing the marble crypt is empty; the sarcophagi, bodies, and rich treasure to be expected in a tomb of this magnificence are missing. Inscribed on one wall is the motto of the implementers, 'Feel Free'.  There is a door leading out of the crypt to the south.  The door is [if the crypt is open]open[otherwise]closed[end if].</font>&quot;.
 <br>
-Instead of opening the crypt door when the score is less than 616:
+Check opening the crypt door when the score is less than 616:
 <br>
 say &quot;<font color=#000080>Although the implementers are dead, they foresaw that some cretin
 <br>
@@ -67,7 +67,7 @@ say &quot;<font color=#000080>Unfortunately, we've run out of poles.  Therefore,
 <br>
 </font><font color=#000080>and of your life.</font>&quot;;
 <br>
-end the game in death.
+end the game in death instead.
 <br>
 Every turn when the player is in Crypt of the Implementors:
 <br>
@@ -99,11 +99,11 @@ end if.
 <br>
 Exorcism flag is a number that varies.
 <br>
-Instead of going east from Entrance to Hades when exorcism flag is not -1:
+Check going east from Entrance to Hades when exorcism flag is not -1:
 <br>
-  say &quot;<font color=#000080>Some invisible force prevents you from passing through the gate.</font>&quot;
+  say &quot;<font color=#000080>Some invisible force prevents you from passing through the gate.</font>&quot; instead.
 <br>
-Instead of ringing the bell while in Entrance to Hades:
+Check ringing the bell while in Entrance to Hades:
 <br>
 if exorcism flag is 0 begin;
 <br>
@@ -127,7 +127,7 @@ end if;
 <br>
 move the brass bell to the location;
 <br>
-change exorcism flag to 1;
+change exorcism flag to 1 instead;
 <br>
 else if exorcism flag is -1;
 <br>
@@ -139,7 +139,7 @@ say &quot;<font color=#000080>The tension of this ceremony is broken, and the wr
 <br>
 </font><font color=#000080>shaken at your clumsy attempt, resume their hideous jeering.</font>&quot;;
 <br>
-change exorcism flag to 0;
+change exorcism flag to 0 instead;
 <br>
 end if.
 <br>
@@ -147,7 +147,7 @@ end if.
 <br>
 
 <br>
-Instead of examining the black book while in Entrance to Hades:
+Check examining the black book while in Entrance to Hades:
 <br>
   if exorcism flag is 2 begin;
 <br>
@@ -161,7 +161,7 @@ Instead of examining the black book while in Entrance to Hades:
 <br>
 </font><font color=#000080>and the spirits, sensing a greater power, flee through the walls.</font>&quot;;
 <br>
-    change exorcism flag to -1;
+    change exorcism flag to -1 instead;
 <br>
   else if exorcism flag is 1;
 <br>
@@ -173,7 +173,7 @@ Instead of examining the black book while in Entrance to Hades:
 <br>
     say &quot;<font color=#000080>The tension of this ceremony is broken, and the wraiths, amused but
 <br>
-</font><font color=#000080>shaken at your clumsy attempt, resume their hideous jeering.</font>&quot;;
+</font><font color=#000080>shaken at your clumsy attempt, resume their hideous jeering.</font>&quot; instead;
 <br>
   end if.
 <br>
@@ -197,7 +197,7 @@ say &quot;<font color=#000080>Unfortunately, we've run out of poles.  Therefore,
 <br>
 end the game in death.
 <br>
-Instead of destroying the set of poled heads with something:
+Check destroying the set of poled heads with something:
 <br>
 say &quot;<font color=#000080>Although the implementers are dead, they foresaw that some cretin
 <br>
@@ -211,13 +211,13 @@ say &quot;<font color=#000080>Unfortunately, we've run out of poles.  Therefore,
 <br>
 </font><font color=#000080>and of your life.</font>&quot;;
 <br>
-end the game in death.
+end the game in death instead.
 <br>
-Instead of attacking the set of poled heads with something:
+Check attacking the set of poled heads with something:
 <br>
 try destroying the set of poled heads with the second noun instead.
 <br>
-After looking while in Land of the Living Dead for the first time: award 30 points; continue the action.
+The rval of Land of the Living Dead is 30.
 <br>
 
 <br>
@@ -251,7 +251,7 @@ The later appearance of the stack of listings is &quot;<font color=#000080>There
 <br>
 The listings are inflammable.
 <br>
-Instead of destroying the bunch of Coke bottles:
+Check destroying the bunch of Coke bottles:
 <br>
 say &quot;<font color=#000080>Congratulations!  You've managed to break all those bottles.
 <br>
@@ -259,23 +259,9 @@ say &quot;<font color=#000080>Congratulations!  You've managed to break all thos
 <br>
 </font><font color=#000080>immediately.</font>&quot;;
 <br>
-remove the bunch of Coke bottles from play.
+remove the bunch of Coke bottles from play instead.
 <br>
-Instead of destroying the bunch of Coke bottles with something:
-<br>
-say &quot;<font color=#000080>Congratulations!  You've managed to break all those bottles.
-<br>
-</font><font color=#000080>Fortunately for your feet, they were made of magic glass and disappear
-<br>
-</font><font color=#000080>immediately.</font>&quot;;
-<br>
-remove the bunch of Coke bottles from play;
-<br>
-say &quot;<font color=#000080>Somehow, [the second noun] managed to disappear as well.</font>&quot;;
-<br>
-remove the second noun from play.
-<br>
-Instead of throwing the bunch of Coke bottles at something:
+Check destroying the bunch of Coke bottles with something:
 <br>
 say &quot;<font color=#000080>Congratulations!  You've managed to break all those bottles.
 <br>
@@ -287,9 +273,23 @@ remove the bunch of Coke bottles from play;
 <br>
 say &quot;<font color=#000080>Somehow, [the second noun] managed to disappear as well.</font>&quot;;
 <br>
-remove the second noun from play.
+remove the second noun from play instead.
 <br>
-Instead of dropping bunch of Coke bottles when the player's command includes &quot;<font color=#000080>throw</font>&quot;:
+Check throwing the bunch of Coke bottles at something:
+<br>
+say &quot;<font color=#000080>Congratulations!  You've managed to break all those bottles.
+<br>
+</font><font color=#000080>Fortunately for your feet, they were made of magic glass and disappear
+<br>
+</font><font color=#000080>immediately.</font>&quot;;
+<br>
+remove the bunch of Coke bottles from play;
+<br>
+say &quot;<font color=#000080>Somehow, [the second noun] managed to disappear as well.</font>&quot;;
+<br>
+remove the second noun from play instead.
+<br>
+Check dropping bunch of Coke bottles when the player's command includes &quot;<font color=#000080>throw</font>&quot;:
 <br>
  say &quot;<font color=#000080>Congratulations!  You've managed to break all those bottles.
 <br>
@@ -297,7 +297,7 @@ Instead of dropping bunch of Coke bottles when the player's command includes &qu
 <br>
 </font><font color=#000080>immediately.</font>&quot;;
 <br>
-remove the bunch of Coke bottles from play.
+remove the bunch of Coke bottles from play instead.
 <br>
 
 <br>
@@ -307,11 +307,11 @@ Dead flag is a truth state variable. Dead flag is usually false.
 <br>
 East of Ravine is a dungeon called Chasm.  The description of Chasm is &quot;<font color=#000080>A chasm runs southwest to northeast.  You are on the south edge; the path exits to the south and to the east.</font>&quot;
 <br>
-Instead of going down from Chasm:
+Check going down from Chasm:
 <br>
-  say &quot;<font color=#000080>Are you out of your mind?</font>&quot;
+  say &quot;<font color=#000080>Are you out of your mind?</font>&quot; instead.
 <br>
-Instead of jumping while in Chasm: fatally leap.
+Check jumping while in Chasm: fatally leap instead.
 <br>
 
 <br>
@@ -349,7 +349,7 @@ After taking the platinum bar for the first time:
 <br>
 Up from Loud Room is south of a dungeon called Damp Cave. The description of Damp Cave is &quot;<font color=#000080>This is a cave.  Passages exit to the south and to the east, but the cave narrows to a crack to the west.  The earth is particularly damp here.</font>&quot;
 <br>
-Instead of going west from Damp Cave, say &quot;<font color=#000080>It is too narrow for most insects.</font>&quot;
+Check going west from Damp Cave: say &quot;<font color=#000080>It is too narrow for most insects.</font>&quot; instead.
 <br>
 East of Loud Room is south of a dungeon called Ancient Chasm.  The description of Ancient Chasm is &quot;<font color=#000080>A chasm, evidently produced by an ancient river, runs through the
 <br>
@@ -357,13 +357,13 @@ East of Loud Room is south of a dungeon called Ancient Chasm.  The description o
 <br>
 North of Ancient Chasm is southeast of a dead end.  West of Ancient Chasm is a dead end.
 <br>
-East of Ancient Chasm is a dungeon called Tiny Cave.  The description of Tiny Cave is &quot;<font color=#000080>This is a small cave whose exits are on the south and northwest.</font>&quot;
+East of Ancient Chasm is northwest of a dungeon called Tiny Cave.  The description of Tiny Cave is &quot;<font color=#000080>This is a small cave whose exits are on the south and northwest.</font>&quot;
 <br>
-A hunk of bat guano is in Ancient Chasm.  Understand &quot;<font color=#000080>excretement</font>&quot; and &quot;<font color=#000080>shit</font>&quot; and &quot;<font color=#000080>crap</font>&quot; and &quot;<font color=#000080>poop</font>&quot; as the bat guano.
+A hunk of bat guano is in Tiny Cave.  Understand &quot;<font color=#000080>excretement</font>&quot; and &quot;<font color=#000080>shit</font>&quot; and &quot;<font color=#000080>crap</font>&quot; and &quot;<font color=#000080>poop</font>&quot; as the bat guano.
 <br>
 The size of the bat guano is 20.  
 <br>
-A shovel is in Ancient Chasm.  The later appearance of the shovel is &quot;<font color=#000080>There is a large shovel here.</font>&quot;  Understand &quot;<font color=#000080>large shovel</font>&quot; as the shovel.  The size of the shovel is 15.
+A shovel is in Tiny Cave.  The later appearance of the shovel is &quot;<font color=#000080>There is a large shovel here.</font>&quot;  Understand &quot;<font color=#000080>large shovel</font>&quot; as the shovel.  The size of the shovel is 15.
 <br>
 
 <br>

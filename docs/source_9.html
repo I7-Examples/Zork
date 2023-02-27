@@ -81,7 +81,7 @@ Match count is a number that varies.  Match count is usually 5.
 <br>
 A matchbook is in Dam Lobby.  Understand &quot;<font color=#000080>matches</font>&quot; and &quot;<font color=#000080>match</font>&quot; and &quot;<font color=#000080>flint</font>&quot; as the matchbook.  The later appearance of the matchbook is &quot;<font color=#000080>There is a matchbook whose cover says 'Visit Beautiful FCD#3' here.</font>&quot;
 <br>
-Instead of opening the matchbook: try counting the matchbook instead.
+Check opening the matchbook: try counting the matchbook instead.
 <br>
 The description of the matchbook is &quot;<font color=#000080>[matchbook text]</font>&quot;.
 <br>
@@ -135,19 +135,19 @@ A thing called a screwdriver is in Maintenance Room.  A thing called a wrench is
 <br>
 A red button, a yellow button, a blue button, and a brown button are in Maintenance Room.  The red button, the blue button, the brown button, and the yellow button are scenery.  
 <br>
-Instead of pushing the red button:
+Check pushing the red button:
 <br>
   if Maintenance Room is not lit begin;
 <br>
     say &quot;<font color=#000080>The lights within the room come on.</font>&quot;;
 <br>
-    now Maintenance Room is lit;
+    now Maintenance Room is lit instead;
 <br>
   else;
 <br>
     say &quot;<font color=#000080>The lights within the room shut off.</font>&quot;;
 <br>
-    now Maintenance Room is dark;
+    now Maintenance Room is dark instead;
 <br>
   end if.
 <br>
@@ -189,11 +189,11 @@ Water level is a number that varies.  Water level is usually 0.
 <br>
 Understand &quot;<font color=#000080>putty</font>&quot; and &quot;<font color=#000080>toothpaste</font>&quot; as the viscous material.
 <br>
-Instead of pushing the blue button:
+Check pushing the blue button:
 <br>
   if water level is not zero begin;
 <br>
-    say &quot;<font color=#000080>The blue button appears to be jammed.</font>&quot;;
+    say &quot;<font color=#000080>The blue button appears to be jammed.</font>&quot; instead;
 <br>
   else;
 <br>
@@ -201,7 +201,7 @@ Instead of pushing the blue button:
 <br>
     change water level to 1;
 <br>
-    move the leak2 to Maintenance Room;
+    move the leak2 to Maintenance Room instead;
 <br>
  end if.
 <br>
@@ -253,17 +253,17 @@ stop the action.
 <br>
 
 <br>
-Instead of pushing the brown button:
+Check pushing the brown button:
 <br>
   change gate flag to false;
 <br>
-  say &quot;<font color=#000080>Click.</font>&quot;
+  say &quot;<font color=#000080>Click.</font>&quot; instead.
 <br>
-Instead of pushing the yellow button:
+Check pushing the yellow button:
 <br>
   change gate flag to true;
 <br>
-  say &quot;<font color=#000080>Click.</font>&quot;
+  say &quot;<font color=#000080>Click.</font>&quot; instead.
 <br>
 Check turning the bolt with something:
 <br>
@@ -305,7 +305,11 @@ North of Reservoir South is a dungeon called Reservoir.  The description of Rese
 <br>
 North of Reservoir is Reservoir North.
 <br>
-Instead of going to a room that is not offroad:
+Check going north from Reservoir:
+<br>
+move the player to Reservoir North instead.
+<br>
+Check going to a room that is not offroad:
 <br>
   if the player is not in a vehicle, print the you can't go message instead;
 <br>
@@ -315,7 +319,7 @@ A hand-held air-pump is in Reservoir North.  Understand &quot;<font color=#00008
 <br>
 
 <br>
-A trunk of jewels is in Reservoir.  Understand &quot;<font color=#000080>chest</font>&quot; as the trunk.  The size of the trunk is 38.  The case-points of the trunk is 8.  After taking the trunk: award 15 points; continue the action.
+A trunk of jewels is in Reservoir.  Understand &quot;<font color=#000080>chest</font>&quot; as the trunk.  The size of the trunk is 35.  The case-points of the trunk is 8.  After taking the trunk: award 15 points; continue the action. The initial appearance of the trunk of jewels is &quot;<font color=#000080>Lying half buried in the mud is an old trunk, bulging with jewels.</font>&quot; The later appearance of the trunk of jewels is &quot;<font color=#000080>There is an old trunk here, bulging with assorted jewels.</font>&quot;
 <br>
 
 <br>

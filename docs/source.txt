@@ -1,6 +1,6 @@
 "Zork" by Infocom -- Ported by Dean Menezes
 
-Include (- Serial "080217"; -).
+Include (- Serial "080316"; -).
 
 
 [Copyright (c) 2008 Dean Menezes
@@ -29,11 +29,13 @@ OTHER DEALINGS IN THE SOFTWARE.]
 
 Part 1 - New Actions and Concepts
 
+A room has a number called rval. The rval of a room is usually 0.
+When play begins, seed the random-number generator with 1234. 
 The story genre is "Fantasy". 
 The story headline is "A Computerized Fantasy Simulation Game".
-The release number is 2.
+The release number is 3.
 The story creation year is 1979.
-Use memory economy.
+Use the serial comma. 
 A thing can be non-flaming or flaming.  A thing is usually non-flaming. A thing can be non-inflammable or inflammable. A thing is usually non-inflammable.
 [*According to THE ELEMENTS OF STYLE --  FLAMMABLE: An oddity, chiefly useful in saving lives. The common word meaning "combustible" is inflammable. But some people are thrown off by the in- and think inflammable means "not combustible." For this reason, trucks carrying gasoline or explosives are now marked FLAMMABLE. Unless you are operating such a truck and hence are concerned with the safety of children and illiterates, use inflammable.]
 
@@ -61,7 +63,7 @@ end if.
 Carry out counting:
 say "You have lost your mind."
 Understand "count blessings" as a mistake ("Well, for one, you are playing Zork....").
-Understand  "$COUNTREASURE" as a mistake ("Your adventure has netted [number of valuble things in the trophy case] treasure(s).  You are carrying [number of valuble things had by the player] valuble(s).")
+Understand  "$COUNTREASURE" as a mistake ("Your adventure has netted [number of valuble things in the trophy case] treasure[s].  You are carrying [number of valuble things had by the player] valuble[s].")
 
 Check digging into it with:
 if the noun is not the guano and the noun is not the ground, say "Digging into [a noun] is silly." instead;
@@ -79,10 +81,9 @@ say "There is a clap of thunder, and a voice echoes through the cavern: 'Begone,
 end the game in death.
 
 Definition: a thing is valuble if the case-points of it is not 0.
-After reading a command:
-if the player's command includes "COUNT TREASURE/TREASURES/VALUBLES", replace the matched text with "$COUNTREASURE";
-if the player's command includes "TREASURE/TREASURES/VALUBLES", replace the matched text with "[list of visible valuble things had by the player]".
 
+After reading a command:
+if the player's command includes "COUNT TREASURE/TREASURES/VALUBLES", replace the matched text with "$COUNTREASURE".
 Check playing:
 if the noun is the violin, say "An amazing offensive noise issues from the violin." instead;
 say "That makes no sense." instead.
@@ -122,28 +123,27 @@ barrel. It seems that some 450 feet below, you were met by a number
 of  unfriendly rocks and boulders, causing your immediate demise.  Is
 this what 'over a barrel' means?";
 end the game in death.
+Check digging into the guano with the shovel for the first time:
+say "You are digging into a pile of bat guano." instead.
+Check digging into the guano with the shovel for the second time:
+say "You seem to be getting knee deep in guano." instead.
+Check digging into the guano with the shovel for the third time:
+say "You are covered with bat turds, cretin." instead.
+Check digging into the guano with the shovel more than 3 times:
+say "This is getting nowhere." instead.
 
-Instead of digging into the guano with the shovel for the first time:
-say "You are digging into a pile of bat guano."
-Instead of doing it for the second time:
-say "You seem to be getting knee deep in guano."
-Instead of doing it for the third time:
-say "You are covered with bat turds, cretin."
-Instead of doing it more than 3 times:
-say "This is getting nowhere."
-
-Instead of digging into the ground with the shovel when the player is in Sandy Beach for the first time:
-say "You seem to be digging a hole here."
-Instead of doing it for the second time:
-say "The hole is getting deeper, but that's about it."
-Instead of doing it for the third time:
-say "You are surrounded by a wall of sand on all sides."
-Instead of doing it for the fourth time:
+Check digging into the ground with the shovel when the player is in Sandy Beach for the first time:
+say "You seem to be digging a hole here." instead.
+Check digging into the ground with the shovel when the player is in Sandy Beach for the second time:
+say "The hole is getting deeper, but that's about it." instead.
+Check digging into the ground with the shovel when the player is in Sandy Beach for the third time:
+say "You are surrounded by a wall of sand on all sides." instead.
+Check digging into the ground with the shovel when the player is in Sandy Beach the fourth time:
 say "You can see a small statue here in the sand.";
-move the statue to Sandy Beach.
-Instead of doing it more than 4 times:
+move the statue to Sandy Beach instead.
+Check digging into the ground with the shovel when the player is in Sandy Beach more than 4 times:
 say "The hole collapses, smothering you.";
-end the game in death.
+end the game in death instead.
 
 The ground is a backdrop. The ground is everywhere. Understand "sand" and "earth" and "here" and "hole" as the ground.
 
@@ -261,12 +261,12 @@ Understand "flip [something] with [something]" as turning it with.
 Check turning it with:
   if the noun is not the bolt and the noun is not the switch, try turning the noun instead.
 
-Instead of throwing something at the player:
+Check throwing something at the player:
   say "A terrific throw! [The noun] hits you squarely in the head. Normally, this
 wouldn't do much damage, but by incredible mischance, you fall over backwards
 trying to duck, and break your neck, justice being swift and merciful in the
 Great Underground Empire.";
-  end the game in death.
+  end the game in death instead.
 Wishing is an action applying to nothing. Understand "wish" and "make wish" and "make a wish" as wishing.
 Understand "$VERIFY" as verifying the story file.
 Carry out wishing:  
@@ -519,8 +519,10 @@ Setting action variables for going:
 The last carry out going rule: 
     if in darkness, increase the dark terminus count by 1.
 After going:
-  if the dark terminus count is 2, set off the grues;
-  else continue the action.
+  if the dark terminus count is 2, set off the grues instead;
+  if the coil of rope is attached to something (called the item) and the player is carrying the coil of rope, now the coil of rope is not attached to the item;
+  continue the action.
+  
 To set off the grues:
 say "Oh no! You walked directly into the slavering fangs of a lurking grue!";
 end the game in death.
@@ -571,8 +573,8 @@ Carry out destroying it with:
 if dead flag is true, say "All such attacks are vain in your position." instead;
 if the noun is a person, try attacking the noun with the second noun instead; 
 say "Trying to destroy [a noun] is not notably useful."
-Instead of searching a door: 
-    say "[The noun] is [if open]open, but I can't see what's beyond it.[otherwise]closed.[end if]".
+Check searching a door: 
+    say "[The noun] is [if open]open, but I can't see what's beyond it.[otherwise]closed.[end if]" instead.
 
 
 Understand "frobozz" as a mistake ("The Frobozz Company, Ltd., created, owns, and operates this dungeon.").
@@ -593,7 +595,7 @@ if the noun is the aviator, say "Here, nothing happens." instead;
 if the noun is not a person, say "I think that only schizophrenics say 'Hello' to [a noun]." instead.
 Carry out hi-saying:
 say "[The noun] bows his head to you in greeting."
-Instead of asking someone to try greeting: try hi-saying the noun instead.
+Check asking someone to try greeting: try hi-saying the noun instead.
 The sailor is a backdrop. The sailor is everywhere. 
 The aviator is a backdrop. The aviator is everywhere. Understand "flyer" as the aviator.
 Brochure flag is a number that varies. Brochure flag is usually 0.
@@ -612,7 +614,7 @@ end if.
 
 The obj1234 is a backdrop. The obj1234 is everywhere. Understand "brochure" and "free brochure" as the obj1234. The free brochure is a thing. 
 The free brochure is inflammable.
-Instead of doing something other than sending for to the obj1234: print the you can't see message instead.
+Instead of doing something other than sending for to the obj1234: print the you can't see message.
 The description of the brochure is "[brochure text]".
 Does the player mean sending for the obj1234: it is very likely.
 Does the player mean doing something other than sending for to the free brochure: it is very likely.
@@ -660,16 +662,10 @@ say variable letter spacing.
 The case-points of the Don Woods stamp is 1.
 The size of the free brochure is 30.
 The size of the Don Woods stamp is 1.
-Every turn:
-if the player has been in Living Room for the second turn and brochure flag is 1 begin;
-  say "There is a knocking sound from the front of the house.";
-  change brochure flag to 2;
-  move the free brochure to the mailbox;
-end if.
-Instead of hi-saying the sailor for the tenth time:
-say "I think that phrase is getting a bit worn out."
-Instead of hi-saying the sailor for the 20th time:
-say "You seem to be repeating yourself."
+Check hi-saying the sailor for the tenth time:
+say "I think that phrase is getting a bit worn out." instead.
+Check hi-saying the sailor for the 20th time:
+say "You seem to be repeating yourself." instead.
 Understand "pour [something] in/into/on/onto [something]" as inserting it into.
 Understand "fill [something] with [something]" as inserting it into (with nouns reversed).
 A watersource is a kind of thing. A watersource is always scenery.
@@ -677,10 +673,10 @@ A watersource can be drainable or nondrainable. A watersource is usually drainab
 A quantity of water is a thing.
 The size of the quantity of water is 4.
 When play begins: move the quantity of water to the bottle.
-Instead of taking a watersource:
+Check taking a watersource:
 if the player is carrying the bottle, try inserting the noun into the bottle instead;
-else say "The water slips through your fingers."
-Instead of inserting a watersource into something:
+else say "The water slips through your fingers." instead.
+Check inserting a watersource into something:
 if the second noun is closed begin;
   say "[The second noun] is closed." instead;
 else if the second noun is not the bottle;
@@ -689,26 +685,26 @@ else if something is in the bottle;
   say "The bottle is already full." instead;
 else;
   say "The bottle is now full of water.";
-  move the quantity of water to the bottle;
+  move the quantity of water to the bottle instead;
 end if.
-Instead of inserting the quantity of water into something:
+Check inserting the quantity of water into something:
 if the second noun is closed begin;
   say "[The second noun] is closed." instead;
 else if the second noun is not the bottle;
   say "The water leaks out of [the second noun] and evaporates immediately.";
-  remove the quantity of water from play;
+  remove the quantity of water from play instead;
 end if.
-Instead of inserting the quantity of water into the bottle:
+Check inserting the quantity of water into the bottle:
 try taking the quantity of water instead.
-Instead of inserting the quantity of water into an enterable container:
+Check inserting the quantity of water into an enterable container:
   if the bottle is closed, say "The bottle is closed." instead;
   say "There is now a puddle in the bottom of [the second noun].";
-  now the quantity of water is in the second noun.
-Instead of taking the quantity of water:
+  now the quantity of water is in the second noun instead.
+Check taking the quantity of water:
 if the player is not carrying the bottle and the quantity of water is in the bottle begin;
   try taking the bottle instead;
 else if the quantity of water is in the bottle;
-  say "You already have it.";
+  say "You already have it." instead;
 else if the player is not carrying the bottle;
   say "The water slips through your fingers." instead;
 else if the bottle is closed;
@@ -718,25 +714,25 @@ else if something is in the bottle;
 else if the player is in the bucket;
   say "The bottle is now full of water.";
   move the quantity of water to the bottle;
-  move the bucket to Circular Room;
+  move the bucket to Circular Room instead;
 else;
    say "The bottle is now full of water.";
-  move the quantity of water to the bottle;
+  move the quantity of water to the bottle instead;
 end if.
-Instead of throwing the quantity of water at something:
+Check throwing the quantity of water at something:
   say "The water splashes on [the second noun] and evaporates immediately.";
-  remove the quantity of water from play.
+  remove the quantity of water from play instead.
 A persuasion rule for asking someone to try doing something when dead flag is true:
 say "No one hears you." instead.
 
-Instead of dropping when the player's command includes "throw":
+Check dropping when the player's command includes "throw":
 if the noun is the quantity of water begin;
   say "The water splashes on the walls and evaporates immediately.";
-  remove the noun from play;
+  remove the noun from play instead;
 else;
   continue the action;
 end if.
-Instead of dropping the quantity of water when the player's command does not include "throw":
+Check dropping the quantity of water when the player's command does not include "throw":
 try pouring the noun instead.
 Pouring is an action applying to one thing.
 Understand "pour [something]" as pouring. 
@@ -749,6 +745,7 @@ else if the player is in the bucket;
   move the quantity of water to the bucket;
   say "There is now a puddle in the bottom of the wooden bucket.";
   say "The bucket rises and comes to a stop.";
+move the bucket to Top of Well;
   try looking;
 else if the noun is the quantity of water and the player is in an enterable container (called the conveyance);
    say "There is now a puddle in the bottom of [the conveyance].";
@@ -765,7 +762,7 @@ else;
   say "The contents of [the noun] spill out of [the noun] and onto the floor.";
 end if.
 Winding is an action applying to one carried thing. Understand "wind [something]" and "wind up [something]" and "wind [something] up" as winding.
-Check winding: if the noun is not the canary and the noun is not the broken canary, say "You cannot wind up [a noun]." instead.
+Check winding: if the noun is not the golden clockwork canary and the noun is not the broken canary, say "You cannot wind up [a noun]." instead.
 Understand the command "answer" as something new.
 Understand the command "say" as something new.
 Saying is an action applying to one topic. Understand "answer [text]" as saying.
@@ -803,21 +800,9 @@ Kicking is an action applying to one visible thing. Understand "kick [something]
 Carry out kicking: if dead flag is true, say "All such attacks are vain in your position." instead;
 say "Kicking [a noun] is not notably useful."
 
-Lamp-power is a number that varies. Lamp-power is usually 130.
-Every turn:
-  if the battery-powered brass lantern is switched on begin;
-  decrease lamp-power by 1;
-  if lamp-power is 50, say "The lamp appears to be getting dimmer.";
-  if lamp-power is 30, say "The lamp appears to be getting dimmer.";
-  if lamp-power is 20, say "The lamp appears to be getting dimmer.";
-  if lamp-power is 10, say "The lamp appears to be getting dimmer.";
-  if lamp-power is  4, say  "The lamp is dying.";
-  if lamp-power is 0 begin;
-    say "I hope you have more light than from a lamp.";
-    now the battery-powered brass lantern is switched off;
-  end if;
-  end if.
-Instead of switching on the battery-powered brass lantern when lamp-power is 0: say "The battery has died."
+Lamp-power is a number that varies. Lamp-power is usually 325.
+
+Check switching on the battery-powered brass lantern when lamp-power is 0: say "The battery has died." instead.
 
 Load-max is a number that varies. Load-max is usually 100.
 A thing has a number called size.  The size of a thing is usually 5.
@@ -839,10 +824,10 @@ Lifting is an action applying to one visible thing. Understand "lift [something]
 Check lifting:
 if the noun is the rug begin;
 say "The rug is too heavy to lift, but in trying to raise it you notice an irregularity beneath it.";
-else if the noun is the basket;
+else if the noun is the tbasket;
   if the player is in Lower Shaft begin;
     say "The basket is raised to the top of the shaft.";
-    move the basket to Shaft Room;
+    move the tbasket to Shaft Room;
     move the fbasket to Lower Shaft;
   else;
     say "Playing in this way with [a noun] has no effect.";
@@ -850,7 +835,7 @@ else if the noun is the basket;
 else if the noun is the fbasket;
   if the player is in Shaft Room begin;
     say "The basket is raised to the top of the shaft.";
-    move the basket to Shaft Room;
+    move the tbasket to Shaft Room;
     move the fbasket to Lower Shaft;
   else;
     say "The basket is at the other end of the chain.";
@@ -860,11 +845,11 @@ else;
 end if.
 Lowering is an action applying to one visible thing. Understand "lower [something]" as lowering.
 Check lowering:
-if the noun is the basket begin;
+if the noun is the tbasket begin;
   if the player is in Shaft Room begin;
     say "The basket is lowered to the bottom of the shaft.";
     move the fbasket to Shaft Room;
-    move the basket to Lower Shaft;
+    move the tbasket to Lower Shaft;
   else;
     say "Playing in this way with [a noun] has no effect.";
   end if;
@@ -872,7 +857,7 @@ else if the noun is the fbasket;
  if the player is in Lower Shaft begin;
     say "The basket is lowered to the bottom of the shaft.";
     move the fbasket to Shaft Room;
-    move the basket to Lower Shaft;
+    move the tbasket to Lower Shaft;
   else;
     say "The basket is at the other end of the chain.";
   end if;
@@ -894,11 +879,15 @@ if the player is carrying the second noun, say "It is too clumsy when you are ca
 if the second noun is round, say "There is nothing it can be tied to." instead.
 
 Carry out tying:
-  now the noun is attached to the second noun.
+  now the noun is attached to the second noun;
+  if the second noun is in Slide Room and the player is carrying the noun begin;
+   move the noun to Slide Room;
+   say "The rope dangles down the slide." instead;
+  end if.
 Report tying:
   say "The rope is now attached to [the second noun].".
-Instead of taking a rope (called the coil) when the coil is attached to a nonrope thing (called the item):
-  say "You'll have to untie [the item] first."
+Check taking a rope (called the coil) when the coil is attached to a nonrope thing (called the item):
+  say "You'll have to untie [the item] first." instead.
 Check taking a nonrope thing (called the item) which is attached to a rope:
 say "The coil of rope comes loose from [the item].";
 now the coil is not attached to the item.
@@ -959,9 +948,6 @@ list the contents of O,
     indented, 
     giving inventory information, 
     including contents, 
-    including all contents, 
-    tersely, 
-    giving brief inventory information, 
     not listing concealed items, 
     and with extra indentation.
 To say (j - a number) spaces:
@@ -1138,29 +1124,21 @@ unreal.";
 end if.
 The player has a number called wounds.  Wounds is usually 0.
 The player has a number called cure wait.  Cure wait is usually 0.
-Every turn:
-  if the cure wait of the player is greater than 0, decrease the cure wait of the player by 1;
-  if the cure wait of the player is 0, change the wounds of the player to 0;
-  if the wounds of the player is greater than 4 begin;
-    say "It appears that blow was too much for you.  I'm afraid you are dead.";
-    change the wounds of the player to 4;
-    end the game in death;
-  end if.
 Diagnosing is an action applying to nothing.  Understand "diagnose" as diagnosing.
 Check diagnosing:
   if dead flag is true, say "You are dead as a doornail." instead.
-[* Mind! I donÃ¢â‚¬â„¢t mean to say that I know, of my own knowledge, what there is particularly dead about a doorÃ¢â‚¬â€œnail. I might have been inclined, myself, to regard a coffinÃ¢â‚¬â€œnail as the deadest piece of ironmongery in the trade. But the wisdom of our ancestors is in the simile; and my unhallowed hands shall not disturb it, or the CountryÃ¢â‚¬â„¢s done for. You will therefore permit me to repeat, emphatically, that Marley was as dead as a doorÃ¢â‚¬â€œnail. --Charles Dickens]
+[* Mind! I don't mean to say that I know, of my own knowledge, what there is particularly dead about a door-nail. I might have been inclined, myself, to regard a coffin-nail as the deadest piece of ironmongery in the trade. But the wisdom of our ancestors is in the simile; and my unhallowed hands shall not disturb it, or the Country-s done for. You will therefore permit me to repeat, emphatically, that Marley was as dead as a door-nail. --Charles Dickens]
 Carry out diagnosing:
   if the wounds of the player is 0 begin;
     say "You are in perfect health.  You are strong enough to take several wounds.";
   else if the wounds of the player is 1;
-    say "You have a light wound, which will be cured in [cure wait of the player] turn(s).  You can survive one serious wound.";
+    say "You have a light wound, which will be cured in [cure wait of the player] turn[s].  You can survive one serious wound.";
   else if the wounds of the player is 2;
-    say "You have a serious wound, which will be cured in [cure wait of the player] turn(s).  You can be killed by a serious wound.";
+    say "You have a serious wound, which will be cured in [cure wait of the player] turn[s].  You can be killed by a serious wound.";
   else if the wounds of the player is 3;
-    say "You have a several wounds, which will be cured in [cure wait of the player] turn(s).  You can be killed by one more light wound.";  
+    say "You have a several wounds, which will be cured in [cure wait of the player] turn[s].  You can be killed by one more light wound.";  
   else if the wounds of the player is 4;
-    say "You have a serious wounds, which will be cured in [cure wait of the player] turn(s).  You are at death's door.";  
+    say "You have a serious wounds, which will be cured in [cure wait of the player] turn[s].  You are at death's door.";  
   end if;
   if death count is 1, say "You have been killed once.";
   if death count is 2, say "You have been killed twice.".
@@ -1185,25 +1163,17 @@ Carry out burning:
  change match tick to 2;
  now the matchbook is flaming.
 
-Instead of switching off something which is flaming:
+Check switching off something which is flaming:
   if the noun is the matchbook begin;
-    say "The match is out.";
+    say "The match is out." instead;
     change match tick to -1;
+    now the matchbook is non-flaming;
   else if the noun is the pair of candles;
-    say "The flame is extinguished.";
+    say "The flame is extinguished." instead;
   else if the noun is the ivory torch;
-    say "You burn your hand as you attempt to extinguish the flame.";
+    say "You burn your hand as you attempt to extinguish the flame." instead;
   end if.
-Every turn:
-now every thing which is flaming is lit;
-if something inflammable (called the thingy) is non-flaming, now the thingy is unlit;
-if the matchbook is non-flaming, now the matchbook is unlit;
-if the pair of candles is non-flaming, now the pair of candles is unlit;
-if match tick is greater than 0, decrease match tick by 1;
-if match tick is 0 begin;
-  say "The match has gone out.";
-  change match tick to -1;
-end if.
+
 
 The new burning rule is listed instead of the block burning rule in the check burning rulebook.
 
@@ -1279,65 +1249,9 @@ else;
     say "[The noun] catches fire and is consumed.";
   end if;
 end if.
-Every turn:
-if burn interrupt is 0 begin;
-  if something visible is in the receptacle, say "You notice that the [list of flaming things in the receptacle] has burned out, and that the cloth bag starts to deflate.";
-  let the thingy be a random flaming  thing in the receptacle;
-  now the thingy is not flaming;
-  remove the thingy from play;
-end if;
-decrease burn interrupt by 1.
 
 Wire clock is a number that varies.  Wire clock is usually -1.
-Every turn:
-if wire clock is 0 begin;
-  if the player can see the brick begin;
-      say "Now you've done it.  It seems that the brick has other properties
-than weight, namely the ability to blow you to smithereens.";
-  remove the brick from play;
-  end the game in death;
-  else;
-   say "There is an explosion nearby.";
-   if the brick is in the oblong hole begin;
-       change ledge clock to 5;
-       now the rusty box is open;
-       move the crown to Dusty Room;
-       move the note card to Dusty Room;
-    else if the brick is in Dusty Room;
-       change ledge clock to 5;
-   else;
-     change squish clock to 2;
-     change the bad place to the location of the brick;
-   end if;
-   remove the brick from play;
- end if;
-end if;
-decrease wire clock by 1.
 Ledge clock is a number that varies.  Ledge clock is usually -1.
-Every turn:
-decrease ledge clock by 1;
-if ledge clock is 3, say "You may recall your recent explosion.  Well, probably as a result of that, you hear an ominous rumbling, as if one of the rooms in the
-dungeon has collapsed.";
-if ledge clock is 0 begin;
-  if the player is in the basket and the basket is in Wide Ledge begin;
-    if the braided wire is attached to the tiny hook begin;
-      say "The ledge collapses, probably as a result of the explosion.  A large
-chunk of it, which is attached to the hook, drags you down to the
-ground.  Fatally.";
-      end the game in death;
-    else;
-       say "The ledge collapses, leaving you with no place to land.";
-       move the basket to Volcano Near WideLedge;
-       try looking;
-    end if;
-  else if the player is in Wide Ledge or the player is in Dusty Room;
-    say "The force of the explosion has caused the ledge to collapse
-belatedly.";
-    end the game in death;
-  else;
-    say "The ledge collapses, giving you a narrow escape.";
-  end if;
-end if.
 
 Burn interrupt is a number that varies.  Burn interrupt is usually -1.
 After dropping the candles:
@@ -1353,27 +1267,6 @@ Every turn when the candles are flaming and the candles are touched:
  end if.
 The bad place is a room that varies.
 Squish clock is a number variable.  Squish clock is usually -1.
-Every turn:
-if squish clock is 0 begin;
-change the description of the bad place to "[pizza]";
-if the player is in the bad place begin;
-  say "The room trembles and 50,000 pounds of rock fall on you, turning you into a pancake.  [if the player is outside]Meteors, no doubt.[end if]";
-  end the game in death;
-else;
-  say "You may recall your recent explosion.  Well, probably as a result of
-that, you hear an ominous rumbling, as if one of the rooms in the
-dungeon has collapsed.";
-   [* OK, this sort of doesn't make sense if the player is outside]
-end if;
-end if;
-decrease squish clock by 1.
-Every turn:
-if the location is the bad place and the brick is off-stage, foo;
-if the number of moves from the location to the bad place is 1 and the brick is off-stage, foo;
-To say pizza:
-say "Your way is blocked by debris from an explosion.";
-move the player to the former location.
-
 
 Knocking is an action applying to one visible thing.  Understand "knock [something]" and "knock on [something]" and "rap on [something]" and "rap [something]" as knocking.
 
@@ -1405,7 +1298,7 @@ if the noun is not the dial, say "You can't do that to [the noun]." instead;
 if the number understood is less than 1, say "The dial only goes from 1 to 8." instead;
 if the number understood is greater than 8, say "The dial only goes from 1 to 8." instead.
 Carry out spinning it to:
-say "The dial now points to [the number understood]";
+say "The dial now points to [the number understood].";
 change dial number to the number understood.
 
 Part 2 - Above Ground Stuff
@@ -1446,7 +1339,7 @@ After taking, pushing, or pulling the rubber welcome mat:
      change mat under to false;
      continue the action;
   end if.
-Instead of removing something from the mat when mat under is true:
+Check removing something from the mat when mat under is true:
   print the you can't see message instead.
 
 An outdoors room called North of House is north of West of House.  "You are facing the north side of a white house.  There is no door here, and all the windows are barred." South of North of House is nowhere.  West of North of House is West of House. 
@@ -1459,14 +1352,14 @@ North of Behind House is North of House.  South of Behind House is South of Hous
 The white house is a backdrop.  The white house is in West of House and North of House and South of House and Behind House. The description of the white house is "The house is a beautiful colonial house which is painted white.  It is clear that the owners must have been extremely wealthy."
 
 The front door is scenery in West of House.
-Instead of entering the front door: say "The door is locked, and there is evidently no key."
-Instead of going east from West of House: say "The door is locked, and there is evidently no key."
+Check entering the front door: say "The door is locked, and there is evidently no key." instead.
+Check going east from West of House: say "The door is locked, and there is evidently no key." instead.
 Check opening the front door: say "The door cannot be opened." instead.
-Instead of unlocking the front door with something: say "It doesn't seem to work."
+Check unlocking the front door with something: say "It doesn't seem to work." instead.
 
 The window is a door.  The window is west of Behind House and east of Kitchen. The window is closed and openable. The window is scenery.
-Instead of climbing the window: try entering the noun instead.
-Instead of going inside while in Behind House: try entering the window instead. Instead of going outside while in Kitchen:  try entering the window instead.
+Check climbing the window: try entering the noun instead.
+Check going inside while in Behind House: try entering the window instead. Check exiting while in Kitchen:  try entering the window instead.
 Report opening the window: say "With great effort, you open the window far enough to allow entry." instead.
 Report closing the window: say "The window closes (more easily than it opened)." instead.
 After going through the window for the first time: award 10 points; continue the action.
@@ -1477,21 +1370,21 @@ The capacity of the sack is 15. The size of the sack is 3.
 Inside the sack is a lunch and a clove of garlic.  The lunch and the garlic are edible.
 Report eating something: say "Thank you very much.  That reallly hit the spot." instead.
 A closed openable transparent container called a bottle is in Kitchen. "Sitting on the table is a small bottle." 
-Instead of destroying the bottle:
+Check destroying the bottle:
   say "A brilliant maneuver destroys the bottle.";
-  remove the bottle from play.
+  remove the bottle from play instead.
 The capacity of the bottle is 4.
-Instead of dropping the bottle when the player's command includes "throw":
+Check dropping the bottle when the player's command includes "throw":
   try throwing the noun at the player instead.
-Instead of throwing the bottle at something:
+Check throwing the bottle at something:
   say "The bottle hits the far wall and shatters.";
-  remove the bottle from play.
+  remove the bottle from play instead.
 Understand "bottle of [something related by containment]" as the bottle.
 The Living Room is west of the Kitchen.  "This is the living room.  There is a door to the east. [if the wooden door is closed] To the west, there is a wooden door with strange gothic lettering, which appears to be nailed shut. [otherwise] To the west, there is a wooden door with strange gothic lettering and a cyclops-sized hole in it."
 The description of the wooden door is "The engravings translate to 'This space intentionally left blank.' [if the door is open]The door has a cyclops-sized hole in it." 
 An oriental rug is here. "In center of the room is [if the trap door is not revealed]a large oriental rug.[otherwise][status of the trap door] trap door." Understand "carpet" as the rug.
 A closed openable transparent container called a trophy case is here.
-Instead of taking the case: say "The trophy case is securely fastened to the wall (perhaps to foil any attempt by robbers to remove it)."
+Check  taking the case: say "The trophy case is securely fastened to the wall (perhaps to foil any attempt by robbers to remove it)." instead.
 A weapon called an elvish sword is here.  "On hooks above the mantelpiece hangs an elvish sword of great antiquity."
 Understand "glamdring" and "orcrist" as the elvish sword.
 Understand "lamp" as the battery-powered brass lantern.
@@ -1500,15 +1393,15 @@ The size of the sword is 30.
 An electric lamp called a battery-powered brass lantern is here.  "A battery powered brass lantern is on the trophy case." 
 The size of the battery-powered brass lantern is 15.
 A broken lamp is a thing. Understand "lantern" and "brass" as the broken lamp.
-Instead of throwing the lamp at something:
+Check throwing the lamp at something:
   say "The lamp smashes into the ground and is ruined.";
   remove the battery-powered brass lantern from play;
-  now the broken lamp is in the location.
-Instead of dropping the battery-powered brass lantern when the player's command includes "throw":
+  now the broken lamp is in the location instead.
+Check dropping the battery-powered brass lantern when the player's command includes "throw":
   say "The lamp smashes into the ground and is ruined.";
   remove the battery-powered brass lantern from play;
-  now the broken lamp is in the location.
-Instead of switching on or switching off the broken lamp: say "The lamp is broken.  Some idiot must have smashed it."
+  now the broken lamp is in the location instead.
+Instead of switching on or switching off the broken lamp: say "The lamp is broken.  Some idiot must have smashed it.".
 A newspaper is here. "There is an issue of US NEWS & DUNGEON REPORT here."
 The description of the newspaper is
 " [masthead]This is the Inform 7 version of Dungeon (Zork).  For more information on Inform 7, see <http://inform-fiction.org>.  Please report all bugs to Dean Menezes <samanddeanus@yahoo.com>.
@@ -1538,42 +1431,42 @@ A door called the tree is a door. The tree is scenery. The tree is open and not 
 
 
 The description of Up a Tree is "You are about ten feet above the ground nestled among some large branches. The nearest branch above you is beyond your reach."
-Instead of climbing the tree: try entering the noun instead.
+Check climbing the tree: try entering the noun instead.
 A container called a birds nest is here. "On the branch is a small birds nest.  ".  A closed unopenable container called a jewel-encrusted egg is in the nest. The initial appearance of the jewel-encrusted egg is "In the bird's nest is a large egg encrusted with precious jewels, apparently scavenged somewhere by a childless songbird.  The egg is covered with fine gold inlay and ornamented in lapis lazuli and mother-of-pearl.  Unlike most eggs, this one is hinged and has a delicate looking clasp holding it closed. The egg appears extremely fragile." The description of the egg is "The egg is covered with fine gold inlay and ornamented in lapis lazuli and mother-of-pearl.  Unlike most eggs, this one is hinged and has a delicate looking clasp holding it closed. The egg appears extremely fragile."
 Understand "whole" as the jewel-encrusted egg.
 The birds nest is inflammable.
 The capacity of the nest is 20.
 The capacity of the jewel-encrusted egg is 6.
-Instead of dropping something while in Up a Tree:
+Check dropping something while in Up a Tree:
 if the noun is not the jewel-encrusted egg begin;
   say "[The noun] falls to the ground.";
-  move the noun to Forest 4;
+  move the noun to Forest 4 instead;
 else if the golden clockwork canary is not in the jewel-encrusted egg;
   say "The jewel-encrusted egg falls to the ground and is ruined.";
   move the broken jewel-encrusted egg to Forest 4;
   remove the broken canary from play;
-  remove the jewel-encrusted egg from play;
+  remove the jewel-encrusted egg from play instead;
 else;
   say "The jewel-encrusted egg falls to the ground and is ruined.";
   move the broken jewel-encrusted egg to Forest 4;
-  remove the jewel-encrusted egg from play;
+  remove the jewel-encrusted egg from play instead;
 end if.
 The broken jewel-encrusted egg is an open openable container. The broken clockwork canary is inside the broken egg.
 The golden clockwork canary is inside the jewel-encrusted egg.
-Instead of dropping the jewel-encrusted egg when the player's command includes "throw": try destroying the broken egg instead.
-Instead of throwing the jewel-encrusted egg at something:
+Check dropping the jewel-encrusted egg when the player's command includes "throw": try destroying the broken egg instead.
+Check throwing the jewel-encrusted egg at something:
 try destroying the jewel-encrusted egg instead.
-Instead of destroying the jewel-encrusted egg when the jewel-encrusted egg is not openable:
+Check destroying the jewel-encrusted egg when the jewel-encrusted egg is not openable:
    say "Your rather indelicate handling of the egg has caused it some damage.[line break]The egg is now open.";
    move the broken egg to the holder of the jewel-encrusted egg;
    remove the jewel-encrusted egg from play;
-     say "There is a golden clockwork canary nestled in the egg.  It seems to have recently had a bad experience.  The mountings for its jewel-like eyes are empty, and its silver beak is crumpled.  Through a cracked crystal window below its left wing you can see the remains of intricate machinery.  It is not clear what result winding it would have, as the mainspring appears sprung.".
+     say "There is a golden clockwork canary nestled in the egg.  It seems to have recently had a bad experience.  The mountings for its jewel-like eyes are empty, and its silver beak is crumpled.  Through a cracked crystal window below its left wing you can see the remains of intricate machinery.  It is not clear what result winding it would have, as the mainspring appears sprung." instead.
 Carry out winding the broken canary:
   say "There is an unpleasant grinding noise from inside the canary."
 
 The description of the broken canary is "There is a golden clockwork canary nestled in the egg.  It seems to have recently had a bad experience.  The mountings for its jewel-like eyes are empty, and its silver beak is crumpled.  Through a cracked crystal window below its left wing you can see the remains of intricate machinery.  It is not clear what result winding it would have, as the mainspring appears sprung."
 The description of the golden clockwork canary is "This is a golden clockwork canary.  It has ruby eyes and a silver beak.  Through a crystal window below its left wing you can see intricate machinery inside.  It appears to have wound down."
-Instead of destroying the jewel-encrusted egg with something:
+Check destroying the jewel-encrusted egg with something:
 try destroying the jewel-encrusted egg instead.
 After taking the jewel-encrusted egg for the first time: award 5 points; continue the action.
 A beautiful brass bauble is a thing.
@@ -1601,7 +1494,7 @@ Southwest of Clearing is Behind House. Northeast of Behind House is nowhere. Eas
 
 Forest 3 is an outdoors room.
 South of Clearing is Forest 3.  North of Forest 3 is South of House. East of Forest 3 is Clearing.  "This is a dimly lit forest, with large trees all around.  To the east, there appears to be sunlight." The printed name of Forest 3 is "Forest".
-West of Forest 4 is North of House. Clearing is south of Forest 4. North of Forest 4 is Forest 3. South of Forest 3 is Forest 5. Forest 5 has printed name "Forest" . Forest 5 has description "This is a large forest, with trees obstructing all views except to the east, where a small clearing may be seen through the trees." North of Forest 5 is Forest 2. The description of Forest 2 is "This is a forest with trees in all directions around you." The printed name of Forest 2 is "Forest". South of Forest 5 is Forest 5. West of Forest 5 is Forest 3.  North of Forest 2 is Forest 2. West of Forest 2 is Forest 3. Southeast of Clearing is Forest 2. Northwest of Forest 2 is nowhere.
+West of Forest 4 is North of House. Clearing is south of Forest 4. North of Forest 4 is Forest 3. South of Forest 3 is Forest 5. Forest 5 has printed name "Forest" . Forest 5 has description "This is a large forest, with trees obstructing all views except to the east, where a small clearing may be seen through the trees." North of Forest 5 is Forest 2. The description of Forest 2 is "This is a forest with trees in all directions around you." The printed name of Forest 2 is "Forest". South of Forest 5 is Forest 5. West of Forest 5 is Forest 3.  North of Forest 2 is Forest 2. West of Forest 2 is Forest 3. Southeast of Clearing is Forest 2. Northwest of Forest 2 is nowhere. South of Forest 1 is west of Forest 3.
 West of West of House is Forest 1. East of Forest 1 is Forest 4. North of Forest 1 is Forest 1. West of Forest 1 is Forest 1. The printed name of Forest 1 is "Forest". The description of Forest 1 is "This is a forest with trees in all directions around you."
 
 Clearing has description "This is a clearing, with a forest surrounding you on the west and south." A pile of leaves is here.
@@ -1612,7 +1505,6 @@ The grating is a secret door.  The grating is down from Clearing and up from Gra
 After taking or pushing or pulling the leaves for the first time:
 say "Moving the pile of leaves reveals a grating.";
 now the grating is revealed.
-Every turn: if the player is in Grating Room, now the grating is revealed.
 The attic stairs is a door. The attic stairs are open and not openable.The attic stairs is scenery.
 A dark room called the Attic is up from the attic stairs. "This is the Attic.  The only exit is stairs that lead down."
 
@@ -1623,7 +1515,7 @@ The size of the rope is 10.
 The size of the brick is 15.
 A weapon called a nasty-looking knife is here. "On a table is a nasty-looking knife."
 Understand "nasty knife" as the nasty-looking knife.
-Down from the attic stairs is the Kitchen. Instead of climbing the attic stairs: try entering the noun.
+Down from the attic stairs is the Kitchen. Check climbing the attic stairs: try entering the noun instead.
 The wooden door is a door.  The wooden door is scenery.  The wooden door is west of Living Room and east of Strange Passage.  The wooden door is closed and not openable.
 
 Down from the Living Room is a secret door called the trap door.
@@ -1631,24 +1523,24 @@ To say status of the trap door:
 say "[if the trap door is open]an open[otherwise]a closed".
 
 The trap door is up from the Cellar. Understand "trapdoor" and "trap-door" as the trap door.
-Report opening the trap door:
+After opening the trap door:
 say "The door reluctantly opens to reveal a rickety staircase descending into darkness."
-Report closing the trap door:
+After closing the trap door:
 say "The door swings shut and closes."
 Exit found is a truth state variable.  Exit found is false.
-Before going through the trap door for the first time: 
-award 25 points.
+The rval of Cellar is 25.
+
 After going through the trap door:
 if exit found is false, shut the player in;
 continue the action.
 To shut the player in:
 say "The trap door crashes shut, and you hear someone barring it.";
 now the trap door is closed. 
-Instead of opening the trap door when the player is in the Cellar and exit found is false:
- say "The trap door is locked from above."
-Instead of looking under the rug: say "There's a trap door under the rug."
-Instead of going through the closed trap door: say "The trap door is closed."
-Instead of taking the rug: say "The rug is too heavy to lift."
+Check opening the trap door when the player is in the Cellar and exit found is false:
+ say "The trap door is locked from above." instead.
+Check looking under the rug: say "There's a trap door under the rug." instead.
+Check going through the closed trap door: say "The trap door is closed." instead.
+Check taking the rug: say "The rug is too heavy to lift." instead.
 After pushing or pulling the rug for the first time: say "With a great effort, the rug is moved to one side of the room. With the rug moved, the dusty cover of a closed trap door appears."; now the trap door is revealed.
 After pushing or pulling the rug: say "Having moved the carpet previously, you find it impossible to move it again."
 
@@ -1677,34 +1569,32 @@ Part 3 - Cellar Area and Bank of Zork
 
 A dungeon is a kind of room. A dungeon is usually dark.
 The Cellar is a dungeon. The Cellar is west of a dungeon called Troll Room.  "You are in a dark and damp cellar with a narrow passageway leading east, and a crawlway to the south.  On the west is the bottom of a steep metal ramp which is unclimbable."
-Instead of going west from Cellar: say "You attempt to climb the ramp, but it is too slippery, and you slide back down."
+Check going west while in Cellar: say "You attempt to climb the ramp, but it is too slippery, and you slide back down." instead.
 The description of Troll Room is "This is a small room with passages off in all directions. Bloodstains and deep scratches (perhaps made by an axe) mar the
 walls."
 A man called the Troll is in Troll Room.  The initial appearance of the Troll is "[if the troll is consious]A nasty-looking troll, brandishing a bloody axe, blocks all passages out of the room.[otherwise]There is an unconsious troll here.[end if]".
-Instead of going when the player can see the consious Troll:
-if the noun is not west, say "The troll fends you off with a menacing gesture.";
+Check going when the player can see the consious Troll:
+if the noun is not west, say "The troll fends you off with a menacing gesture." instead;
 else continue the action.
-Instead of throwing something at the troll:
-say "The troll, who is remarkably coordinated, catches [the noun] ";
+Check throwing something at the troll:
+say "The troll, who is remarkably coordinated, catches [the noun] " instead;
 if the noun is a weapon begin;
   say "and being for the moment sated, throws it back.  Fortunately, the troll has poor control, and the knife falls on the floor.  He does not look pleased.";
-  move the noun to the location;
+  move the noun to the location instead;
 else;
   say "and not having the most discriminating tastes, gleefully eats it.";
-  remove the noun from play;
+  remove the noun from play instead;
 end if.
 The troll can be consious or unconsious.
-Instead of attacking the unconsious troll with something:
+Check attacking the unconsious troll with something:
 say "The unconscious troll cannot defend himself:  He dies.";
 say "Almost as soon as the troll breathes his last breath, a cloud
 of sinister black fog envelops him, and when the fog lifts, the
 carcass has disappeared.";
-remove the troll from play.
-The troll carries a weapon called an axe.
-Rule for deciding the concealed possessions of the troll: no.
+remove the troll from play instead.
 West of a dungeon called West of Chasm is south of Cellar. "You are on the west edge of a chasm, the bottom of which cannot be seen. The east side is sheer rock, providing no exits. A narrow passage goes west.  The path you are on continues to the north and south."
-Instead of going down from West of Chasm: say "The chasm probably leads directly to the infernal regions."
-Instead of jumping while in West of Chasm: fatally leap.
+Check going down from West of Chasm: say "The chasm probably leads directly to the infernal regions." instead.
+Check jumping while in West of Chasm: fatally leap instead.
 A dungeon called Gallery is south of West of Chasm. "This is an art gallery. Most of the paintings which were here have been stolen by vandals with exceptional taste. The vandals left through the north, south, or west exits."
 A painting is here. "Fortunately, there is still one chance for you to be a vandal, for on the far wall is a work of unparalleled beauty."
 The printed name of the painting is "masterpiece by a neglected genius".
@@ -1713,16 +1603,16 @@ After taking the painting for the first time: award 4 points; continue the actio
 The painting has case-points 7.
 The size of the painting is 15.
 A worthless piece of canvas is a thing.
-Instead of destroying the painting:
+Check destroying the painting:
     say "Congratulations!  Unlike the other vandals, who merely stole the
-artist's masterpieces, you have destroyed one."; now the player has the worthless piece of canvas; remove the painting from play.
-Instead of destroying the painting with something:
+artist's masterpieces, you have destroyed one."; now the player has the worthless piece of canvas; remove the painting from play instead.
+Check destroying the painting with something:
     say "Congratulations!  Unlike the other vandals, who merely stole the
-artist's masterpieces, you have destroyed one."; now the player has the worthless piece of canvas; remove the painting from play.
+artist's masterpieces, you have destroyed one."; now the player has the worthless piece of canvas; remove the painting from play instead.
 To strike a blow at the player:
   let x be a random number between 1 and 6;
     if x is 1 or 2 begin;
-      say "[one of]The troll swings his axe, but it misses[or]The troll's axe barely misses your ear.[or]The axe sweeps past as you jump aside.[or]The axe crashes against the rock, throwing sparks![at random]";
+      say "[one of]The troll swings his axe, but it misses.[or]The troll's axe barely misses your ear.[or]The axe sweeps past as you jump aside.[or]The axe crashes against the rock, throwing sparks![at random]";
    else if x is 3;
       say "The troll's axe removes your head.";
       end the game in death;
@@ -1769,13 +1659,13 @@ Every turn when the troll is unconsious and the troll is on-stage and the player
   now the troll is consious.
 South of Gallery is northwest of a dungeon called Studio. The description of Studio is "This is what appears to have been an artist's studio. The walls and floors are splattered with paints of 69 different colors. Strangely enough, nothing of value is hanging here. At the north and northwest of the room are open doors (also covered with paint). An extremely dark and narrow chimney leads up from a fireplace. Although you might be able to get up the chimney, it seems unlikely that you could get back down."
 
-The chimney is a door.  The chimney is open and not openable.  Instead of climbing the chimney: try entering the noun instead. The chimney is scenery.  The chimney is up from Studio and down from Kitchen.
-Instead of going through the chimney when the player is carrying more than 2 things:
-    say "The chimney is too narrow for you and your baggage."
-Instead of going through the chimney while in Kitchen:
-    say "Only Santa Claus climbs down chimneys."
-Instead of going through the chimney when the player is not carrying anything:
-    say "Going up empty-handed is a bad idea."
+The chimney is a door.  The chimney is open and not openable.  Check climbing the chimney: try entering the noun instead. The chimney is scenery.  The chimney is up from Studio and down from Kitchen.
+Check going through the chimney when the player is carrying more than 2 things:
+    say "The chimney is too narrow for you and your baggage." instead.
+Check going through the chimney while in Kitchen:
+    say "Only Santa Claus climbs down chimneys." instead.
+Check going through the chimney when the player is not carrying anything:
+    say "Going up empty-handed is a bad idea." instead.
 
 South of a dungeon called Bank Entrance is west of Gallery. 
 "This is the large entrance hall of the Bank of Zork, the largest banking institution of the Great Underground Empire. A partial account of its history is in 'The Lives of the Twelve Flatheads' with the chapter on J. Pierpont Flathead. A more detailed history (albeit less objective) may be found in Flathead's outrageous autobiography 'I'm Rich and You Aren't -- So There!'
@@ -1815,24 +1705,24 @@ Small Room is a dark room.  The description of Small Room is "This is a small ba
 Vault is a dark room. The description of Vault is "This is the Vault of the Bank of Zork, in which there are no doors."
 A stack of zorkmid bills is here. "On the floor sit 200 neatly stacked zorkmid bills." Understand "notes" or "banknotes" or "bank notes" as the bills. The description of the bills is "[banknotes]".
 The stack of bills is inflammable.
-After taking the portrait for the first time: award 10 points; continue the action.
+After taking the portrait for the first time: award 11 points; continue the action.
 After taking the bills for the first time: award 10 points; continue the action.
 The case-points of the portrait is 5.
 The case-points of the bills is 15.
 The size of the bills is 10.
 The size of the portrait is 25.
 The portrait is inflammable.
-Instead of going east when the player is in Safety Depository and the player has the portrait: say "The alarm sounds briefly, and an invisible force prevents your from leaving."
-Instead of going west when the player is in Safety Depository and the player has the portrait: say "The alarm sounds briefly, and an invisible force prevents your from leaving."
-Instead of going east when the player is in Safety Depository and the player has the bills: say "The alarm sounds briefly, and an invisible force prevents your from leaving."
-Instead of going west when the player is in Safety Depository and the player has the bills: say "The alarm sounds briefly, and an invisible force prevents your from leaving."
+Check going east when the player is in Safety Depository and the player has the portrait: say "The alarm sounds briefly, and an invisible force prevents your from leaving." instead.
+Check going west when the player is in Safety Depository and the player has the portrait: say "The alarm sounds briefly, and an invisible force prevents your from leaving." instead.
+Check going east when the player is in Safety Depository and the player has the bills: say "The alarm sounds briefly, and an invisible force prevents your from leaving." instead.
+Check going west when the player is in Safety Depository and the player has the bills: say "The alarm sounds briefly, and an invisible force prevents your from leaving." instead.
 Instead of touching, taking, pushing, pulling, or rubbing the curtain: say "As you attempt this feat, your hand goes through the curtain."
-Instead of entering the curtain: 
+Check entering the curtain: 
 say "You feel somewhat disoriented as you pass through.";
-if the former location is West Teller's Room, move the player to Viewing Room;
-if the former location is East Teller's Room, move the player to Viewing Room;
-if the former location is Small Room, move the player to Vault;
-if the former location is Vault or the former location is Chairman's Office, move the player to Small Room.
+if the former location is West Teller's Room, move the player to Viewing Room instead;
+if the former location is East Teller's Room, move the player to Viewing Room instead;
+if the former location is Small Room, move the player to Vault instead;
+if the former location is Vault or the former location is Chairman's Office, move the player to Small Room instead.
 Understand "NORTH WALL" and "NORTHERN WALL" as the curtain.
 
 
@@ -1849,33 +1739,27 @@ else;
   remove the noun from play;
 end if.
 
-Instead of attacking the Gnome of Zurich: say "The gnome says, 'Well, I never!' and disappears with a snap of his fingers, leaving you alone."
-Instead of attacking the Gnome of Zurich with something: say "The gnome says, 'Well, I never!' and disappears with a snap of his fingers, leaving you alone."
-Every turn: if gnome flag is true and the player has been in Small Room for exactly 4 turns begin; say "An epicene Gnome of Zurich, wearing a three-piece suit and carrying a
- safety deposit box, materializes in the room.  'You seem to have
- forgotten to deposit your valuables,' he says, tapping the lid of the
- box impatiently.  'We don't usually allow customers to use the boxes
- here, but we can make this ONE exception, I suppose...'  He looks
- askance at you over his wire-rimmed bifocals."; move the Gnome of Zurich to Small Room; change gnome flag to false; end if.
-Instead of throwing something at the curtain: 
+Check attacking the Gnome of Zurich: say "The gnome says, 'Well, I never!' and disappears with a snap of his fingers, leaving you alone." instead.
+Check attacking the Gnome of Zurich with something: say "The gnome says, 'Well, I never!' and disappears with a snap of his fingers, leaving you alone." instead.
+Check throwing something at the curtain: 
 say "The curtain dims slightly as the [noun] passes through it.";
-if the former location is West Teller's Room, move the player to Viewing Room;
-if the former location is East Teller's Room, move the player to Viewing Room;
-if the former location is Small Room, move the noun to Vault;
-if the former location is Vault, move the noun to Small Room;
-if the former location is Chairman's Office, move the noun to Small Room.
+if the former location is West Teller's Room, move the noun to Viewing Room instead;
+if the former location is East Teller's Room, move the noun to Viewing Room instead;
+if the former location is Small Room, move the noun to Vault instead;
+if the former location is Vault, move the noun to Small Room instead;
+if the former location is Chairman's Office, move the noun to Small Room instead.
 The south wall is a thing in Small Room.  The south wall is scenery.
-Instead of entering the south wall: say "You feel somewhat disoriented as you pass through."; change the former location to the location; move the player to Safety Depository.
+Check entering the south wall: say "You feel somewhat disoriented as you pass through."; change the former location to the location; move the player to Safety Depository instead.
 Understand "southern wall" as the south wall.
 The north wall is a thing in Vault.  The north wall is scenery.
-Instead of entering the north wall: say "You feel somewhat disoriented as you pass through."; change the former location to the location; move the player to Safety Depository.
-
-Every turn:
-if the player has been in Vault for exactly 4 turns begin; say "A metallic voice says, 'Hello, Intruder!  Your unauthorized presence in the vault area of the Bank of Zork has set off all sorts of nasty surprises, several of which seem to have been fatal.  This message brought to you by the Frobozz Magic Alarm Company.'"; end the game in death; end if.
-Instead of throwing something at the north wall: 
-say "The [noun] goes through."
-Instead of throwing something at the south wall: 
-say "The [noun] goes through."
+Check entering the north wall: say "You feel somewhat disoriented as you pass through."; change the former location to the location; move the player to Safety Depository instead.
+To say pizza:
+say "Your way is blocked by debris from an explosion.";
+move the player to the former location;
+Check throwing something at the north wall: 
+say "The [noun] goes through." instead.
+Check throwing something at the south wall: 
+say "The [noun] goes through." instead.
 Understand "NORTHERN WALL" as the north wall.
 Does the player mean doing something to the curtain: it is very likely.
 Does the player mean doing something to the north wall: it is very likely.
@@ -1883,14 +1767,14 @@ Does the player mean doing something to the south wall: it is very likely.
 Instead of touching, taking, pushing, pulling, or rubbing the north wall: say "As you attempt this feat, your hand goes through the wall."
 Instead of touching, taking, pushing, pulling, or rubbing the south wall: say "As you attempt this feat, your hand goes through the wall."
 A dungeon called North-South Crawlway is north of Studio. "This is a north-south crawlway; a passage also goes to the east. There is a hole above, but it provides no opportunities for climbing." North of North-South Crawlway is north of West of Chasm. East of North-South Crawlway is east of Troll Room.
-Instead of going up from North-South Crawlway: say "Not even a human fly could get up it."
+Check going up while in North-South Crawlway: say "Not even a human fly could get up it." instead.
 
 Part 4 - The Maze
 
 A maze is a kind of dungeon.  A maze usually has printed name "Maze". The description of a maze is usually "This is part of a maze of twisty little passages, all alike."
 A dead end is a kind of dungeon. A dead end usually has printed name "Dead End".
 South of Troll Room is west of a maze called Maze 1. North of Maze 1 is Maze 1. East of Maze 1 is north of a maze called Maze 2. South of Maze 1 is south of a maze called Maze 3. North of Maze 3 is Maze 2. East of Maze 3 is a maze called Maze 4. East of Maze 2 is south of a dead end called DE1. North of Maze 4 is west of Maze 2.
-North of a maze called Maze 5 is Maze 4.  A skeleton is here. "A skeleton, probably the remains of a luckless adventurer, is here." An old leather bag of coins is here. "An old leather bag, bulging with coins is here." A burned-out lantern is here. "The deceased adventurer's useless lantern is here." Understand "useless" and "lamp" as the burned-out lantern.  The printed name of the bag of coins is "bag of coins".
+North of a maze called Maze 5 is up from Maze 4.  A skeleton is here. "A skeleton, probably the remains of a luckless adventurer, is here." An old leather bag of coins is here. "An old leather bag, bulging with coins is here." A burned-out lantern is here. "The deceased adventurer's useless lantern is here." Understand "useless" and "lamp" as the burned-out lantern.  The printed name of the bag of coins is "bag of coins".
 A set of keys is here.
 The printed name of the set of keys is "set of skeleton keys". Understand "skeleton keys" as the keys.
 
@@ -1898,8 +1782,8 @@ The size of the keys is 10.
 A weapon called a rusty knife is here. "Beside the skeleton is a rusty knife."
 The size of the rusty knife is 20.
 After taking the rusty knife when the player is carrying the sword: say "As you pick up the rusty knife, your sword gives a single pulse of blinding blue light."
-Instead of attacking something with the rusty knife: say "As the knife approaches its victim, your mind is submerged by an overmastering will.  Slowly, your hand turns, until the rusty blade is an inch from your neck.  The knife seems to sing as it savagely cuts your throat."; end the game in death.
-Instead of throwing the rusty knife at something: say "As the knife approaches its victim, your mind is submerged by an overmastering will.  Slowly, your hand turns, until the rusty blade is an inch from your neck.  The knife seems to sing as it savagely cuts your throat."; end the game in death.
+Check attacking something with the rusty knife: say "As the knife approaches its victim, your mind is submerged by an overmastering will.  Slowly, your hand turns, until the rusty blade is an inch from your neck.  The knife seems to sing as it savagely cuts your throat."; end the game in death instead.
+Check throwing the rusty knife at something: say "As the knife approaches its victim, your mind is submerged by an overmastering will.  Slowly, your hand turns, until the rusty blade is an inch from your neck.  The knife seems to sing as it savagely cuts your throat."; end the game in death instead.
 
 Instead of doing something to the skeleton: say "A ghost appears in the room and is appalled by your desecration of the remains of a fellow adventurer.  He casts a curse on all of your valuables and orders them banished to the Land of the Living Dead.  The ghost leaves, muttering obscenities."; scatter the treasure.
 To scatter the treasure:
@@ -1909,11 +1793,12 @@ if the case-points of the item is greater than 0, move the item to Land of the L
 end repeat.
 Instead of switching on or switching off the burned-out lantern: say "The lantern is burned out."
 The size of the burned-out lantern is 20.
-After taking the coins for the first time: award 10 points; continue the action.
+After taking the coins for the first time: award 11 points; continue the action.
 The case-points of the coins is 5.
 The size of the coins is 15.
 Southwest of Maze 5 is down from a maze called Maze 6. East of Maze 5 is a dead end.  West of Maze 6 is Maze 6. Up from Maze 6 is north of a maze called Maze 7. Northwest of Maze 7 is Maze 7. Southeast of Maze 7 is a east of a maze called Maze 8. West of Maze 8 is north of a maze called Maze 9. East of Maze 9 is south of Maze 7. Down from Maze 9 is east of a maze called Maze 10.  North from Maze 10 is a dead end. West of Maze 10 is Maze 5. Southwest from Maze 10 is a southwest of maze called Maze 11.  Northeast of Maze 11 is west of Maze 9. Down from Maze 11 is Maze 8. East of Maze 7 is Maze 11. West of Maze 11 is nowhere. Northwest of Maze 11 is Grating Room. The description of Grating Room is "This is a small room near the maze.  There are twisty passages in the immediate vicinity. Above you is a [if the grating is open]open[end if]grating[if the grating is locked] locked with a skull-and-crossbones lock[end if][if the grating is open] with sunlight poring in[end if]." Understand "grate" as the grating. The set of keys unlocks the grating. After going through the grating: now exit found is true; continue the action. West from Maze 7 is up from Maze 10. East of Maze 6 is a maze called Maze 12. Northeast of Maze 12 is DE1. Southwest of DE1 is nowhere. East of Maze 12 is northeast of a maze called Maze 13.  Southeast of Maze 12 is north of a dead end. West of Maze 13 is Maze 13. Up from Maze 12 is a northeast of a maze called Maze 14. Northwest of Maze 14 is Maze 14. South of Maze 14 is Maze 14. West of Maze 14 is west of a maze called Maze 15. South of Maze 12 is south of Maze 15. Northeast of Maze 15 is east of a dungeon called Cyclops Room. North of Cyclops Room is Strange Passage.
 The description of Cyclops Room is "This is a room with an exit on the west side, and a staircase leading up."
+
 A man called the Cyclops is here. "[cyclops text]."
 Cyclops flag is a number that varies.  Understand "Polyphemus" as the cyclops.
 Every turn:
@@ -1933,58 +1818,38 @@ end the game in death;
 end if.
 Instead of waking or attacking or poking the asleep Cyclops, say "The Cyclops yawns and stars at the thing that woke him."
 
-Instead of attacking the basic Cyclops: say "The cyclops ignores all injuries to his body with a shrug."; now the cyclops is hungry.
-Instead of attacking the basic Cyclops with something: try attacking the Cyclops instead.
-Instead of attacking the Cyclops when the Cyclops is hungry or when the Cyclops is thirsty: say "Your actions don't appear to be doing much harm to the cyclops, but
-they do not exactly lower your insurance premiums, either."
-Instead of attacking the Cyclops with something when the Cyclops is hungry or when the Cyclops is thirsty: try attacking the Cyclops instead.
+Check attacking the basic Cyclops: say "The cyclops ignores all injuries to his body with a shrug."; now the cyclops is hungry instead.
+Check attacking the basic Cyclops with something: try attacking the Cyclops instead. Check attacking the Cyclops when the Cyclops is hungry or when the Cyclops is thirsty: say "Your actions don't appear to be doing much harm to the cyclops, but
+they do not exactly lower your insurance premiums, either." instead.
+Check attacking the Cyclops with something when the Cyclops is hungry or when the Cyclops is thirsty: try attacking the Cyclops instead.
 Up from Cyclops Room is an open unopenable door called the staircase.
 Understand "stairs" as the staircase.
-After entering the staircase for the first time:
-award 25 points;
-continue the action.
+The rval of Treasure Room is 25.
 Treasure Room is a dungeon. The description of Treasure Room is "This is a large room, whose north wall is solid granite.  A number of discarded bags, which crumble at your touch, are scattered about on the floor.  There is an exit down and what appears to be a newly created passage to the east."
+Up from the staircase is Treasure Room.
 The thief is a man. Understand "shady/suspicious" and "ROBBER/CROOK/CRIMINAL/BANDIT" and  "MODO/MAHU" and "GENT/GENTLEMAN/MAN/INDIVIDUAL" as the thief.  The later appearance of the thief is "There is a suspicious-looking individual, holding a bag, leaning against one wall.  He is armed with a vicious-looking stiletto."
 [* KING LEAR, III, iv: The prince of darkness is a gentleman; Modo he's called and Mahu.]
 After giving something to the thief:
   say "The thief is taken aback by your unexpected generosity but accepts [the noun] and stops to admire its beauty."; change the engrossed of the thief to true.
 The thief has a truth state called engrossed. 
-Instead of attacking the unconsious thief with something:
+Check attacking the unconsious thief with something:
 say "The unconsious thief cannot defend himself; he dies.";
 say  "Almost as soon as the hief breathes his last breath, a cloud
 of sinister black fog envelops him, and when the fog lifts, the
 carcass has disappeared.";
   remove the thief from play;
-  if the number of valuble things had by the thief is greater than 0 begin;
+if the number of valuble things had by the thief is greater than 0 begin;
   say "His booty remains:  [a list of valuble things carried by the thief]";
-  now every thing carried by the thief is in the location;
-end if.
+  now every thing carried by the thief is in the location instead;
+end if;
+do nothing instead.
 Escaping is an action applying to nothing. 
 The thief carries a chalice.  The case-points of the chalice is 10.  After taking the chalice for the first time:  award 10 points; continue the action.  The size of the chalice is 10.
 The thief carries a stiletto.
 Carry out someone escaping: 
     let space be the holder of the person asked; 
     let place be a random dungeon which is adjacent to the space; 
-    move the person asked to the space.
-Every turn:
-if the thief carries the jewel-encrusted egg, now the jewel-encrusted egg is open;
-if the player is in Treasure Room and the thief is not in Treasure Room and the thief is on-stage begin;
-  say "You hear a scream of anguish as you violate the robber's hideaway.  Using passages unknown to you, he rushes to its defense.";
-  move the thief to Treasure Room;
-end if;
-if the thief is on-stage begin;
-if the thief cannot see the player, try the thief escaping;
-if the thief is not in Treasure Room and the player is in the holder of the thief begin;
-if the thief can see something visible begin;
-  say "A seedy-looking individual with a large bag just wandered through the room.  On the way through, he quietly abstracted all valuables from the room and from your possession, mumbling something about 'Doing unto others before...'";
-  now every valuble thing had by the player is had by the thief;
-  now every visible valuble thing in the location is had by the thief;
-else;
-  say "A seedy-looking individual with a large bag just wandered through the room.  Finding nothing of value, he left disgruntled.";
-end if;
-  try the thief escaping;
-end if;
-end if.
+    move the person asked to place.
 Carry out attacking the thief with something:
   if a random chance of 1 in 2 succeeds begin;
   if the second noun is the sword begin;
@@ -2018,13 +1883,11 @@ carcass has disappeared.";
   now every thing carried by the thief is in the location;
   end if;
 end if.
-Every turn when the player can see the consious thief:
+Every turn when the player can see the consious thief and the player is in Treasure Room:
   if the engrossed of the thief is false, strike a blow from the thief.
 Every turn when the thief is unconsious and the thief is on-stage and the player can not see the thief:
   now the thief is consious.
-Every turn:
- if the thief has been unconsious for four turns and the player can see the thief, say "The thief returns to consiousness.";
-if the engrossed of the thief has been true for two turn, change the engrossed of the thief to false.
+
 To strike a blow from the thief:
   let x be a random number between 1 and 6;
     if x is 1 or 2 begin;
@@ -2109,16 +1972,16 @@ else if a sandstone block is in x;
 else;
   say "[2 spaces]";
 end if.
-Instead of going from a puzzle when a block is in the room noun from the location:
+Check going from a puzzle when a block is in the room noun from the location:
   print the you can't go message instead.
-Instead of going up from Puzzle10:
- if a ladder is not in Puzzle11 begin;
-   say "The exit is too far above your head.";
- otherwise;
+Check going up from Puzzle10:
+ if the Ladder0 is in Puzzle11 begin;
    say "With the help of the ladder, you exit the puzzle.";
    continue the action;
+ otherwise;
+   say "The exit is too far above your head." instead;
  end if.
-Instead of going down from Small Square Room when a sandstone block is in Puzzle10: say "Your way is blocked by sandstone."
+Check going down from Small Square Room when a sandstone block is in Puzzle10: say "Your way is blocked by sandstone." instead.
 
 [1	 1	 1	 1 	 1	 1	1	1
 1	 0	-1	 0	 0	-1	0	1
@@ -2148,7 +2011,7 @@ East of Puzzle6 is a puzzle called Puzzle7.  In Puzzle7 is a marble block.  East
 South of Puzzle1 is a puzzle called Puzzle9.  In Puzzle9 is a marble block.  Northeast of Puzzle9 is Puzzle2.  East of Puzzle9 is Puzzle10.  North of Puzzle10 is Puzzle2.  Northwest of Puzzle10 is Puzzle1.  Northeast of Puzzle10 is Puzzle3.  East of Puzzle10 is a puzzle called Puzzle11.  In Puzzle11 is a sandstone block.  North of Puzzle11 is Puzzle3.  Northwest of Puzzle11 is Puzzle2.  Northeast of Puzzle11 is Puzzle4. East of Puzzle11 is a puzzle called Puzzle12.  North of Puzzle12 is Puzzle4.  Northwest of Puzzle12 is Puzzle3.  Northeast of Puzzle12 is Puzzle5. East of Puzzle12 is a puzzle called Puzzle13.  North of Puzzle13 is Puzzle5.  Northwest of Puzzle13 is Puzzle4.  Northeast of Puzzle13 is Puzzle6. East of Puzzle13 is a puzzle called Puzzle14. In Puzzle14 is a sandstone block. North of Puzzle14 is Puzzle6.  Northwest of Puzzle14 is Puzzle5.  Northeast of Puzzle14 is Puzzle7. East of Puzzle14 is a puzzle called Puzzle15.  North of Puzzle15 is Puzzle7.  Northwest of Puzzle15 is Puzzle6.  Northeast of Puzzle15 is Puzzle8.  East of Puzzle15 is a puzzle called Puzzle16.  North of Puzzle16 is Puzzle8.  Northwest of Puzzle16 is Puzzle7.
 
 South of Puzzle9 is a puzzle called Puzzle17. In Puzzle17 is a marble block. Northeast of Puzzle17 is Puzzle10. East of Puzzle17 is a puzzle called Puzzle18. In Puzzle18 is a sandstone block.  North of Puzzle18 is Puzzle10.  Northwest of Puzzle18 is Puzzle9.  Northeast of Puzzle18 is Puzzle11. East of Puzzle18 is a puzzle called Puzzle19.  North of Puzzle19 is Puzzle11.  Northwest of Puzzle19 is Puzzle10.  Northeast of Puzzle19 is Puzzle12. East of Puzzle19 is a puzzle called Puzzle20.  In Puzzle20 is a marble block.  North of Puzzle20 is Puzzle12. Northwest of Puzzle20 is Puzzle11.  Northeast of Puzzle20 is Puzzle13.  East of Puzzle20 is a puzzle called Puzzle21.
-North of Puzzle21 is Puzzle13.  Northwest of Puzzle21 is Puzzle12.  Northeast of Puzzle21 is Puzzle14. East of Puzzle21 is a puzzle called Puzzle22.  In Puzzle22 is a ladder.  North of Puzzle22 is Puzzle14.  Northwest of Puzzle22 is Puzzle13.  Northeast of Puzzle22 is Puzzle15.  East of Puzzle22 is a puzzle called Puzzle23. North of Puzzle23 is Puzzle15.  Northwest of Puzzle23 is Puzzle14.  Northeast of Puzzle23 is Puzzle16.  East of Puzzle23 is a puzzle called Puzzle24. North of Puzzle24 is Puzzle16.  In Puzzle24 is a marble block. Northwest of Puzzle24 is Puzzle15.
+North of Puzzle21 is Puzzle13.  Northwest of Puzzle21 is Puzzle12.  Northeast of Puzzle21 is Puzzle14. East of Puzzle21 is a puzzle called Puzzle22.  In Puzzle22 is a ladder called the Ladder0.  North of Puzzle22 is Puzzle14.  Northwest of Puzzle22 is Puzzle13.  Northeast of Puzzle22 is Puzzle15.  East of Puzzle22 is a puzzle called Puzzle23. North of Puzzle23 is Puzzle15.  Northwest of Puzzle23 is Puzzle14.  Northeast of Puzzle23 is Puzzle16.  East of Puzzle23 is a puzzle called Puzzle24. North of Puzzle24 is Puzzle16.  In Puzzle24 is a marble block. Northwest of Puzzle24 is Puzzle15.
 
 South of Puzzle17 is a puzzle called Puzzle25.  In Puzzle25 is a marble block. Northeast of Puzzle25 is Puzzle18.  East of Puzzle25 is a puzzle called Puzzle26. 
 North of Puzzle26 is Puzzle18.  Northwest of Puzzle26 is Puzzle17.  Northeast of Puzzle26 is Puzzle19.  East of Puzzle26 is a puzzle called Puzzle27.  North of Puzzle27 is Puzzle19.  Northwest of Puzzle27 is Puzzle18.  Northeast of Puzzle27 is Puzzle20.  East of Puzzle27 is a puzzle called Puzzle28.  North of Puzzle28 is Puzzle20.  Northwest of Puzzle28 is Puzzle19.  Northeast of Puzzle28 is Puzzle21.  East of Puzzle28 is a puzzle called Puzzle29.  North of Puzzle29 is Puzzle21.  Northwest of Puzzle29 is Puzzle20.  Northeast of Puzzle29 is Puzzle22.  East of Puzzle29 is a puzzle called Puzzle30.  North of Puzzle30 is Puzzle22.  Northwest of Puzzle30 is Puzzle21.  Northeast of Puzzle30 is Puzzle23.  In Puzzle30 is a marble block.  East of Puzzle30 is a puzzle called Puzzle31.  North of Puzzle31 is Puzzle23.  Northwest of Puzzle31 is Puzzle22.  Northeast of Puzzle31 is Puzzle24.  East of Puzzle31 is a puzzle called Puzzle32.  North of Puzzle32 is Puzzle24.  Northwest of Puzzle32 is Puzzle23. 
@@ -2335,38 +2198,38 @@ If the cyclops is gone, say "The north wall, previously solid, now has a cyclops
 The description of the cyclops is "[cyclops text]."
 Carry out odysseusing when the player can see the Cyclops and the Cyclops is not asleep and the Cyclops is not gone: award 10 points; now exit found is true; now the cyclops is gone; now the wooden door is open; say "The cyclops, hearing the name of his father's deadly nemesis, flees the room by knocking down the wall on the north side of the room."; stop the action.
 Instead of doing something to the cyclops when the cyclops is gone: print the you can't see message instead.
-Instead of doing something when the cyclops is the second noun and the cyclops is gone: say "I don't see any cylops here."
-Instead of going north from Cyclops Room when the cyclops is in Cyclops Room and the cyclops is not gone: print the you can't go message.
-Instead of taking the cyclops when the cyclops is not gone: say "The cyclops does not take to kindly to being grabbed."
-Instead of going through the staircase when the cyclops is in Cyclops Room and the cyclops is not asleep and the cyclops is not gone: say "The cyclops doesn't look like he'll let you pass."
-The staircase is scenery. Instead of climbing the staircase: try entering the noun instead.
-Instead of giving something to the cyclops when the cyclops is not gone and the cyclops is not asleep: say "The cyclops may be hungry, but there is a limit.".
-Instead of giving the bottle to the cyclops when the cyclops is not thirsty and the quantity of water is in the bottle or giving the water to the cyclops when the cyclops is not thirsty: say "The cyclops is apparently not thirsty and refuses your generosity."
-Instead of giving the bottle to the cyclops when the cyclops is thirsty and the cyclops is not gone and the quantity of water is in the bottle or giving the water to the cyclops when the cyclops is thirsty and the cyclops is not gone: say "The cyclops looks tired and quickly falls fast asleep (what did you put in that drink, anyway?)."; now the cyclops is asleep; remove the bottle from play.
-Instead of giving the garlic to the cyclops when the cyclops is not gone: say "The cyclops is not so stupid as to eat that!"
-Instead of giving the lunch to the cyclops when the cyclops is not gone: say "The cyclops says, 'Mmm mmm!  I love hot peppers!  But oh, could I use a drink.  Perhaps I could drink the blood of that thing.' From the gleam in his eye, it could be surmised that you are 'that thing'."; now the cyclops is thirsty; remove the bottle from play.
+Instead of doing something when the cyclops is the second noun and the cyclops is gone: say "I don't see any cylcops here." instead.
+Check going north from Cyclops Room when the cyclops is in Cyclops Room and the cyclops is not gone: print the you can't go message instead.
+Check taking the cyclops when the cyclops is not gone: say "The cyclops does not take to kindly to being grabbed." instead.
+Check going through the staircase when the cyclops is in Cyclops Room and the cyclops is not asleep and the cyclops is not gone: say "The cyclops doesn't look like he'll let you pass." instead.
+The staircase is scenery. Check climbing the staircase: try entering the noun instead.
+Check giving something to the cyclops when the cyclops is not gone and the cyclops is not asleep: say "The cyclops may be hungry, but there is a limit." instead.
+Check giving the bottle to the cyclops when the cyclops is not thirsty and the quantity of water is in the bottle or giving the water to the cyclops when the cyclops is not thirsty: say "The cyclops is apparently not thirsty and refuses your generosity." instead.
+Check giving the bottle to the cyclops when the cyclops is thirsty and the cyclops is not gone and the quantity of water is in the bottle or giving the water to the cyclops when the cyclops is thirsty and the cyclops is not gone: say "The cyclops looks tired and quickly falls fast asleep (what did you put in that drink, anyway?)."; now the cyclops is asleep; remove the bottle from play instead.
+Check giving the garlic to the cyclops when the cyclops is not gone: say "The cyclops is not so stupid as to eat that!" instead.
+Check giving the lunch to the cyclops when the cyclops is not gone: say "The cyclops says, 'Mmm mmm!  I love hot peppers!  But oh, could I use a drink.  Perhaps I could drink the blood of that thing.' From the gleam in his eye, it could be surmised that you are 'that thing'."; now the cyclops is thirsty; remove the bottle from play instead.
 The description of Strange Passage is "This is a long passage.  To the south is one entrance.  On the east there is an old wooden door with a large hole in it (about
 cyclops sized)."
 
 Part 5 - The Round Room, Temple, and Alice Area
 
 West of a dungeon called East-West Passage is north of Troll Room. "This is a narrow east-west passageway.  There is a narrow stairway leading down at the north end of the room."
-After going north from Troll Room for the first time: award 5 points; continue the action.
+The rval of  East-West Passage is 5.
 North of East-West Passage is a dungeon called Deep Ravine. Down from  East-West Passage is Deep Ravine. 
 The description of Deep Ravine is "This is a deep ravine at a crossing with an east-west crawlway.  Some stone steps are at the south of the ravine, and a steep staircase descends."
 
 Down from Deep Ravine is south from a dungeon called Reservoir South. The description of Reservoir South is "[if the pdl1 is on-stage]This is a long room on the south shore of a large reservoir.[otherwise]You are in a long room, to the north of which was formerly a reservoir.[end if]  There is a western exit, a passageway south, and a steep pathway climbing up along the edge of a cliff."
 A drainable watersource called the pdl1 is in Reservoir South.
-Instead of going down from Deep Ravine when the player is carrying the coffin:
-say "The stairs are to steep for you with your burden."
+Check going down from Deep Ravine when the player is carrying the coffin:
+say "The stairs are to steep for you with your burden." instead.
 East of East-West Passage is a dungeon called the Round Room.  The description of the Round Room is "This is a circular room with passages off in eight directions."
 Southwest of Round Room is Maze 1. Northeast of Maze 1 is nowhere.
 After going:
-if the location is Round Room, say "Your compass needle spins wildly, and you cannot get your bearings."; continue the action.
-Instead of going nowhere from Round Room when rotation room is 1, try going east instead.
-Instead of going from the Round Room when rotation room is 1:
+if the location is Round Room and rotation room is 1, say "Your compass needle spins wildly, and you cannot get your bearings."; continue the action.
+Check going nowhere from Round Room when rotation room is 1: try going east instead.
+Check going from the Round Room when rotation room is 1:
     say "Unfortunately, it is impossible to tell directions in here."; 
-    move the player to a random adjacent room. 
+    move the player to a random adjacent room instead.
 A dungeon called the Grail Room is east of the Round Room. "You are standing in a small circular room with a pedestal.  A set of stairs leads up, and passages leave to the east and west."
 An open container called a grail is here. "There is an extremely valuable (perhaps original) grail here."
 The grail is not openable.
@@ -2414,7 +2277,7 @@ say "(Reply via [']ANSWER 'answer'['].)".
 The great door is a door. The great door is closed and not openable. The great door is scenery. East of Riddle Room is the great door.
 West of a dungeon called Pearl Room is the great door.
 The description of Pearl Room is "This is a former broom closet.  The exits are to the east and west."
-A pearl necklace is here. 
+A pearl necklace is here. Understand "pearls" as the pearl necklace.
 The later appearance of the pearl necklace is "There is a pearl necklace here with hundreds of large pearls."
 The pearl necklace is wearable. The description of the pearl necklace is "This is a pearl necklace with hundreds of large pearls."
 After taking the necklace for the first time:
@@ -2422,36 +2285,34 @@ award 9 points; continue the action.
 The case-points of the necklace is 5.
 The size of the necklace is 5.
 West of a dungeon called Circular Room is Pearl Room.
-Instead of opening the unopenable great door: say "The door cannot be opened."
+Check opening the unopenable great door: say "The door cannot be opened." instead.
 The description of Circular Room is "This is a damp circular room, whose walls are made of brick and mortar.  The roof of this room is not visible, but there appear to be some etchings on the walls.  There is a passageway to the west."
 An enterable container called the wooden bucket is here. 
 The initial appearance of the wooden bucket is "There is a wooden bucket here, three feet in diameter and three feet high."
 The later appearance of the wooden bucket is "There is a wooden bucket here, three feet in diameter and three feet high."
 The wooden bucket is fixed in place.
-Instead of taking the quantity of water while in the bucket:
+Check taking the quantity of water while in the bucket:
   if the bottle is closed, say "The bottle is closed." instead;
-  now the quantity of water is in the bucket;
-  say "There is now a puddle in the bottom of the wooden bucket.";
-  say "The bucket rises and comes to a stop.";
-  move the bucket to Top of Well;
-  try looking.
-Instead of entering the wooden bucket when the quantity of water is in the bucket and the player is in Circular Room:
+  now the quantity of water is in the bottle;
+  say "The bottle is now full of water.";
+  say "The bucket descends and comes to a stop.";
+  move the bucket to Circular Room;
+  try looking instead.
+Check entering the wooden bucket when the quantity of water is in the bucket and the player is in Circular Room:
    say "The bucket rises and comes to a stop.";
 move the bucket to Top of Well;
-move the player to the bucket, without printing a room description.
-After exiting while in Top of Well for the first time:
- award 10 points;
-continue the action.
-Instead of entering the wooden bucket when the quantity of water is in the bottle and the player is in Top of Well:
+move the player to the bucket, without printing a room description instead.
+The rval of Top of Well is 10.
+Check entering the wooden bucket when the quantity of water is in the bottle and the player is in Top of Well:
    say "The bucket descends and comes to a stop.";
    move the bucket to Circular Room;
-   move the player to the bucket, without printing a room description.
+   move the player to the bucket, without printing a room description instead.
 
 Top of Well is a dungeon. Top of Well is up from Circular Room.
-Instead of going up from Circular Room:
-  say "The walls cannot be climbed."
+Check going up from Circular Room:
+  say "The walls cannot be climbed." instead.
 The description of Top of Well is "You are at the top of the well.  Well done.  There are etchings on the side of the well.  There is a small crack across the floor at the entrance to a room on the east, but it can be crossed easily."
-Instead of taking the bucket: say "Playing with the bucket in this manner doesn't seem to be accomplishing anything."
+Check taking the bucket: say "Playing with the bucket in this manner doesn't seem to be accomplishing anything." instead.
 The etchings is a backdrop. 
 The etchings is in Circular Room and Top of Well.
 The description of the etchings is "[bucket text]".
@@ -2471,14 +2332,14 @@ To say bucket text:
     say "                m  p  a[line break]";
   end if;
   say variable letter spacing.
-Instead of going down from Top of Well: say "It's a long way down."
-Instead of jumping while in Top of Well: fatally leap.
+Check going down from Top of Well: say "It's a long way down." instead.
+Check jumping while in Top of Well: fatally leap instead.
 Check kicking the bucket: say "If you insist."; end the game in death instead.
-
+[Ha ha get it]
 East of Top of Well is a dungeon called Tea Room.
 The description of Tea Room is "This is a small square room, in the center of which is a large oblong table, no doubt set for afternoon tea.  It is clear from the objects on the table that the users were indeed mad.  In the eastern corner of this room is a small hole no more than four inches high."
 A large oblong table is here. The table is scenery.
-A piece of eat-me cake is here. 
+A piece of eat-me cake is in Tea Room.
 The initial appearance of the piece of eat-me cake is "There is a piece of cake here with the words 'Eat-Me' on it."
 The later appearance of the piece of eat-me cake is "There is a piece of cake here with the words 'Eat-Me' on it."
 Understand "eatme cake" and "eat me cake" as the eat-me cake.
@@ -2486,11 +2347,11 @@ The size of the eat-me cake is 10.
 The size of the blue cake is 4.
 The size of the orange cake is 4.
 The size of the red cake is 4.
-A red cake is here.
+A red cake is in Tea Room.
 The printed name of the red cake is "piece of cake with red icing". Understand "piece of cake" and "piece of cake with red icing" and "piece of red cake" as the red cake.
-An orange cake is here.
+An orange cake is in Tea Room.
 The printed name of the orange cake is "piece of cake with orange icing". Understand "piece of cake" and "piece of cake with orange icing" and "piece of orange cake" as the orange cake.The inventory listing of the orange cake is "piece of cake with orange icing".
-A blue cake is here.
+A blue cake is in Tea Room.
 The printed name of the blue cake is "piece of cake with blue (ecch) icing". Understand "piece of cake" and "piece of cake with blue icing" and "piece of blue cake" as the blue cake.The inventory listing of the blue cake is "piece of cake with blue icing".
 The red cake, the blue cake, and the eat-me cake are edible.
 The description of the red cake is "The only writing visible is a capital E.  The rest is too small to be clearly visible."
@@ -2500,7 +2361,7 @@ After reading a command:
   if the player's command includes "cakes", replace the matched text with "both cake". 
 After eating the orange cake when the player is in Tea Room or Pool Room or Posts Room:
 say "You have been blasted to smithereens (whatever they are)."; end the game in death.
-Instead of eating the blue cake when the player is in Tea Room or the player is in Pool Room:
+Check eating the blue cake when the player is in Tea Room or the player is in Pool Room:
   say "The room around you seems to be getting smaller.[line break]The room seems to have become too small to hold you.  It seems that the walls are not as compressible as your body, which is more or less demolished.";
 end the game in death instead.
 A dungeon called Low Room is northwest of Tea Room. "This is a room with a low ceiling which is circular in shape. There are exits to the east and southeast."
@@ -2531,7 +2392,7 @@ A persuasion rule for asking the robot to try doing something:
     persuasion succeeds. 
 Instead of asking the robot to try eating or drinking something: 
     say "'I am sorry but that action is difficult for a being with no mouth.'".
-Procedural rule: ignore the block giving rule.
+The block giving rule is not listed in any rulebook.
 After giving something to the robot: say "The robot gladly takes [the noun] and nods his head-like appendage in thanks."
 After reading a command:
   if the player's command includes "tell robot", replace the matched text with "robot,";
@@ -2540,24 +2401,24 @@ After reading a command:
  if the player's command includes "tell r2d2", replace the matched text with "robot,";
  if the player's command includes "tell c-3po", replace the matched text with "robot,";
  if the player's command includes "tell c3po", replace the matched text with "robot,".
-Instead of giving the quantity of water to the robot:
+Check giving the quantity of water to the robot:
   say "The water slips through his fingers.";
-  remove the water from play.
-Instead of throwing something at the robot:
+  remove the water from play instead.
+Check throwing something at the robot:
   say "The robot is injured (being of shoddy construction) and falls to the floor in a pile of garbage, which disintegrates before your eyes.";
-  remove the robot from play.
-Instead of attacking the robot:
+  remove the robot from play instead.
+Check attacking the robot:
   say "The robot is injured (being of shoddy construction) and falls to the floor in a pile of garbage, which disintegrates before your eyes.";
-  remove the robot from play.
-Instead of attacking the robot with something:
+  remove the robot from play instead.
+Check attacking the robot with something:
 try attacking the noun instead.
-Instead of dropping the orange cake when the player's command includes "throw" and the player is in Pool Room or Tea Room or Posts Room:
+Check dropping the orange cake when the player's command includes "throw" and the player is in Pool Room or Tea Room or Posts Room:
   say "You have been blasted to smithereens (whatever they are).";
-  end the game in death.
-Instead of throwing the orange cake at something when the player is in Pool Room or Tea Room or Posts Room:
+  end the game in death instead.
+Check throwing the orange cake at something when the player is in Pool Room or Tea Room or Posts Room:
   say "You have been blasted to smithereens (whatever they are).";
-  end the game in death.
-Instead of answering the robot that something: say "'I am only a stupid robot and cannot perform that command.'".
+  end the game in death instead.
+Check answering the robot that something: say "'I am only a stupid robot and cannot perform that command.'" instead.
 Instead of asking the robot to try doing something other than going, taking, dropping, inserting it into, pushing, turning, giving, or lifting:
   say "'I am only a stupid robot and cannot perform that command.'".
 Instead of asking the robot to try doing something when dead flag is false:
@@ -2612,10 +2473,10 @@ else if the location is Low Room and rotation room is -1;
   say "Your compass needle spins wildly, and you cannot get your bearings.";
 end if;
 continue the action.
-Instead of going from Low Room when rotation room is -1: 
+Check going from Low Room when rotation room is -1: 
     say "Unfortunately, it is impossible to tell directions in here.";
-    move the player to a random adjacent room.
-Instead of going nowhere from Low Room when rotation room is -1, try going east instead.
+    move the player to a random adjacent room instead.
+Check going nowhere from Low Room when rotation room is -1: try going east instead.
 After the robot going:
   if the robot is in Low Room and rotation speed is -1 and rotation room is -1 begin; say "According to Prof. TAA of MIT Tech, the rapidly changing magnetic fields in the room are so intense as to fry all the delicate innards of the robot.  I really don't know, but in any event, smoke is coming out of its ears, and it has stopped moving."; remove the robot from play; else; continue the action; end if.
 Box flag is a truth state variable. Box flag is usually false.
@@ -2624,7 +2485,7 @@ The size of the dented steel box is 40.
 The dented steel box is a closed openable container. In the dented steel is a fancy violin.
 Understand "stradivarius" and "strad" as the fancy violin.
 The later appearance of the fancy violin is "There is a Stradivarius here."
-After taking the violin for the first time: award 10 points; continue the action.
+After taking the violin for the first time: award 11 points; continue the action.
 The case-points of the violin is 10.
 The size of the violin is 10.
 After eating the eat-me cake while in Tea Room:
@@ -2639,22 +2500,22 @@ After eating the blue cake while in Posts Room:
 end repeat.
 Pool Room is a dark room. Posts Room is a dark room.
 The description of Posts Room is "This is an enormous room, in the center of which are four wooden posts delineating a rectangular area, above which is what appears to be a wooden roof.  In fact, all objects in this room appear to be abnormally large.  To the east is a passageway.  There is a large chasm on the west and the northwest."
-Instead of going east from Tea Room: say "Only a mouse could get in there."
-Instead of going northwest while in Posts Room: say "There is a chasm too wide to jump across."
-Instead of going west while in Posts Room: say "There is a chasm too wide to jump across."
-Instead of jumping while in Posts Room: say "You should have looked before you leaped."
+Check going east from Tea Room: say "Only a mouse could get in there." instead.
+Check going northwest while in Posts Room: say "There is a chasm too wide to jump across." instead.
+Check going west while in Posts Room: say "There is a chasm too wide to jump across." instead.
+Check jumping while in Posts Room: fatally leap instead.
 East of Posts Room is Pool Room. The description of Pool Room is "This is a large room, one half of which is depressed.  [if the leak is in Pool Room]There is a large leak in the ceiling through which brown colored goop is falling.  The leak has submerged the depressed area in a pool of sewage.  [end if]The only exit from this room is to the west."
 The leak is a thing in Pool Room. The leak is scenery.
 The tin of rare spices is a thing. After taking the tin of spices for the first time: award 5 points; continue the action.
 The case-points of the tin of rare spices is 5.
 The size of the tin of spices is 8.
-Instead of throwing the red cake at the leak:
+Check throwing the red cake at the leak:
   say "The pool of water evaporates, revealing a tin of rare spices.";
   remove the leak from play;
-  move the tin of rare spices to Pool Room.
-Instead of dropping the red cake when the player's command includes "throw":
+  move the tin of rare spices to Pool Room instead.
+Check dropping the red cake when the player's command includes "throw":
   try throwing the red cake at the leak instead.
-Instead of inserting the red cake into the leak:
+Check inserting the red cake into the leak:
   try throwing the red cake at the leak instead.
 Understand "pool" and "pool of sewage" and "pool of water" as the leak.
 A flask is in Pool Room. "A flask is filled with some clear liquid is here."
@@ -2663,7 +2524,7 @@ Instead of getting poisoned:
   say "Just before you pass out, you notice that the vapors from the
 flask's contents are fatal.";
   end the game in death.
-Instead of dropping the flask when the player's command includes "throw": 
+Check dropping the flask when the player's command includes "throw": 
   try destroying the flask with your bare hands instead.
 The size of the flask is 10.
 South of Machine Room is a dark room called Dingy Closet. The description of Dingy Closet is "This is a dingy closet adjacent to the machine room.  On one wall is a small sticker which reads:[sticker text]".
@@ -2673,7 +2534,7 @@ center "FROBOZZ";
 center "Magic Alarm Company";
 center "(Hello, footpad!)".
 A white crystal sphere is in Dingy Closet. 
-Instead of searching the blue crystal sphere:  try examining the noun instead.
+Check searching the blue crystal sphere:  try examining the noun instead.
 The later appearance of the white crystal sphere is "There is a beautiful white crystal sphere here."
 The description of the white crystal sphere is "[white sphere text]".
 To say white sphere text:
@@ -2685,43 +2546,39 @@ a distant room, which can be described clearly....[paragraph break]";
   say "[description of the location of the blue crystal sphere][paragraph break]";
   say "The vision fades, revealing only an ordinary crystal sphere.";
 end if.
-Instead of searching the blue crystal sphere:  try examining the noun instead.
+Check searching the blue crystal sphere:  try examining the noun instead.
 Understand "PALANTHIR" and "STONE" and "SEEING" and "GLASS" and "BALL" as the white crystal sphere.
 The size of the white crystal sphere is 10.
 After taking the white crystal sphere for the first time: award 6 points; continue the action.
 The case-points of the white crystal sphere is 6.
-Instead of asking the robot to try taking the sphere when the sphere is in Dingy Closet and cage solved is false:
+Check asking the robot to try taking the sphere when the sphere is in Dingy Closet and cage solved is false:
 say "As the robot reaches for the sphere, a steel cage falls from the
 ceiling.  The robot attempts to fend it off, but is trapped below it.
 Alas, the robot short-circuits in his vain attempt to escape, and
 crushes the sphere beneath him as he falls to the floor.";
 remove the robot from play;
-remove the sphere from play.
+remove the sphere from play instead.
 Cage solved is a truth state variable. Cage solved is usually false.
-Instead of taking the sphere when the player is in Dingy Closet:
+Check taking the sphere when the player is in Dingy Closet:
 if cage solved is true, continue the action;
   say "As you reach for the sphere, a steel cage falls from the ceiling to entrap you.  To make matters worse, poisonous gas starts coming into the room.";
   if the player can not see the robot begin;
     say "Time passes...and you die from some obscure poisoning.";
-    end the game in death;
+    end the game in death instead;
   else;
     move the player to Cage;
-    move the robot to Cage;
+    move the robot to Cage instead;
   end if.
 Cage is a dark room. The description of Cage is "You are trapped inside a steel cage."
-Instead of asking the robot to try going down from Top of Well:
-  say "Whirr, buzz, click![paragraph break]The robot is unable to do that."
+Check asking the robot to try going down from Top of Well:
+  say "Whirr, buzz, click![paragraph break]The robot is unable to do that." instead.
 The steel cage is a thing in Cage. The steel cage is scenery.
 Instead of asking the robot to try lifting or taking the steel cage:
   say "Whirr, buzz, click![paragraph break]The cage shakes and is hurled across the room.";
   now everything which is in the location which is not scenery is in Dingy Closet;
   change cage solved to true;
   move the mangled steel cage to Dingy Closet.
-Every turn:
-if the player has been in Cage for the tenth turn begin;
- say "Time passes...and you die from some obscure poisoning.";
- end the game in death;
-end if.
+
 The mangled steel cage is a thing. The size of the mangled steel cage is 60.
 
 Part 6 -  Deep Ravine, Rocky Crawl, Egyptian Area
@@ -2729,18 +2586,18 @@ Part 6 -  Deep Ravine, Rocky Crawl, Egyptian Area
 West of Deep Ravine is west of a dungeon called Rocky Crawl.
 The description of Rocky Crawl is "This is a crawlway with a three-foot high ceiling.  Your footing is very unsure here due to the assortment of rocks underfoot.  Passages can be seen in the east, west, and northwest corners of the passage."
 East of a dungeon called Dome Room is east of Rocky Crawl. "You are at the periphery of a large dome, which forms the ceiling of another room below.  Protecting you from a precipitous drop is a wooden railing which circles the dome."
-Instead of jumping while in Dome Room:
-fatally leap.
+Check jumping while in Dome Room:
+fatally leap instead.
 A dungeon called Torch Room is down from Dome Room. "This is a large room with a prominent doorway leading to a down staircase. To the west is a narrow twisting tunnel, covered with a thin layer of dust.  Above you is a large dome painted with scenes depicting elfin hacking rites. Up around the edge of the dome (20 feet up) is a wooden railing. In the center of the room there is a white marble pedestal."
 The railing is unevenly shaped.
-The railing is a thing in Dome Room. After tying the rope to the railing: say "The rope drops over the side and comes within ten feet of the floor."; try silently dropping the coil of rope.
-Instead of climbing the rope when the coil of rope is attached to the railing:
+The railing is a thing in Dome Room. After tying the rope to the railing: say "The rope drops over the side and comes within ten feet of the floor."; move the coil of rope to Dome Room.
+Check climbing the rope when the coil of rope is attached to the railing:
 try going down instead.
 The railing is scenery. 
-Instead of going down from Dome Room when the rope is not attached to the railing:
-say "You cannot go down without breaking many bones."
+Check going down from Dome Room when the coil of rope is not attached to the railing:
+say "You cannot go down without breaking many bones." instead.
 Up from Torch Room is nowhere.
-Instead of going up from Torch Room: say "You cannot reach the rope."
+Check going up from Torch Room: say "You cannot reach the rope." instead.
 An ivory torch is in Torch Room.  The initial appearance of the ivory torch is "Sitting on the pedestal is a flaming torch, made of ivory."
 The ivory torch is flaming.
 The size of the ivory torch is 20.
@@ -2769,20 +2626,20 @@ To decide what direction is the way through (frame - a door):
     if way is a direction, decide on the way; 
     decide on inside. 
 Understand "lid" as the keyhole.
-Report closing the keyhole:
+After closing the keyhole:
 say "The lid falls to cover the keyhole."
-Report opening the keyhole:
+After opening the keyhole:
 say "The lid opens."
-Instead of inserting something into the keyhole when something is in the keyhole:
-  say "The keyhole is occupied."
+Check inserting something into the keyhole when something is in the keyhole:
+  say "The keyhole is occupied." instead.
 Before locking or unlocking the massive wooden door with something:
 if something is in the keyhole, say "The keyhole is blocked." instead.
 The capacity of the keyhole is 12.
 A rusty iron key is a thing. The rusty iron key unlocks the massive door.
 Before turning the rusty iron key:
 if the iron key is in the massive door, try unlocking the massive door with the iron key instead.
-Instead of going inside while in Tiny Room: try going north instead.
-Instead of going outside while in Dreary Room:  try going south instead.
+Check going inside while in Tiny Room: try going north instead.
+Check exiting while in Dreary Room:  try going south instead.
 After inserting something into the keyhole:
 if the noun is the stick or the noun is the screwdriver or the noun is the set of keys and the rusty key is in Moby Lossage begin;
   say "There is a faint noise from behind the door and a small cloud of
@@ -2819,17 +2676,17 @@ After reading a command:
 
 Northwest of Low Crawl is east of a dungeon called Egyptian Room.
 The description of Egyptian Room is "This is a room which looks like an Egyptian tomb.  There is an ascending staircase in the room as well as doors east and south."
-A closed openable container called a gold coffin is here.
+A closed openable container called a gold coffin is in Egyptian Room.
 The later appearance of the gold coffin is "The solid-gold coffin used for the burial of Ramses II is here."
 The size of the coffin is 55. The capacity of the coffin is 35.
-After taking the coffin for the first time: award 3 points.
+After taking the coffin for the first time: award 3 points; continue the action.
 The case-points of the coffin is 7.
-Instead of going east from Egyptian Room when the player is carrying the coffin:
-say "The passage is too narrow to accomodate coffins."
-Instead of going northwest from Rocky Crawl when the player is carrying the coffin:
-say "The passage is too narrow to accomodate coffins."
-Instead of going south from Reservoir South when the player is carrying the coffin:
-say "The coffin will not fit through this passage."
+Check going east from Egyptian Room when the player is carrying the coffin:
+say "The passage is too narrow to accomodate coffins." instead.
+Check going northwest from Rocky Crawl when the player is carrying the coffin:
+say "The passage is too narrow to accomodate coffins." instead.
+Check going south from Reservoir South when the player is carrying the coffin:
+say "The coffin will not fit through this passage." instead.
 
 
 Part 7 - Volcano Area
@@ -2846,12 +2703,12 @@ say "[24 spaces] per M. Agrippa, foreman[line break]";
 A gaudy crown is a thing. The later appearance of the crown is "The excessively gaudy crown of Lord Dimwit Flathead is here."  The crown is wearable.  The size of the crown is 10.  After taking the crown: award 15 points; continue the action.  The case-points of the crown is 10.
 East of a dungeon called Volcano View is south of Egyptian Room. "You are on a ledge in the middle of a large volcano.  Below you the volcano bottom can be seen and above is the rim of the volcano. A couple of ledges can be seen on the other side of the volcano;
 it appears that this ledge is intermediate in elevation between those on the other side.  The exit from this room is to the east."
-Instead of going down from Volcano View:
-say "I wouldn't try that."
-Instead of jumping while in Volcano View:
-fatally leap.
+Check going down from Volcano View:
+say "I wouldn't try that." instead.
+Check jumping while in Volcano View:
+fatally leap instead.
 The ascending staircase is a door. The ascending staircase is up from Egyptian Room. Through the ascending staircase is Glacier Room.
-The ascending staircase is open and not openable. Instead of climbing the ascending staircase:
+The ascending staircase is open and not openable. Check climbing the ascending staircase:
 try entering the noun instead.
 The ascending staircase is scenery.
 Glacier Room is a dungeon. The description of Glacier Room is "This is a large room with giant icicles hanging from the walls and ceiling.  There are passages to the north and east."
@@ -2862,7 +2719,7 @@ West of Egyptian Room is nowhere.
 West of Glacier Room is south of a dungeon called Ruby Room.
 The description of Ruby Room is "This is a small chamber behind the remains of the great glacier.  To the south and west are small passageways."
 A moby ruby is in Ruby Room.
-East of Ruby Room is east of a dungeon called Lava Room.  The description of Lava Room is "This is a small room, whose walls are formed by an old lava flow.
+West of Ruby Room is west of a dungeon called Lava Room.  The description of Lava Room is "This is a small room, whose walls are formed by an old lava flow.
 There are exits here to the west and the south."
 South of Lava Room is a dungeon called Volcano Bottom.  The description of Volcano Bottom is "You are at the bottom of a large dormant volcano.  High above you
 light may be seen entering from the cone of the volcano.  The only
@@ -2870,7 +2727,7 @@ exit here is to the north."
 In Volcano Bottom is an enterable open unopenable container called a basket.  The later appearance of the basket is "There is a very large and extremely heavy wicker basket with a cloth bag here. Inside the basket is a metal receptacle of some kind. 
 Attached to the basket on the outside is a piece of wire." Understand "balloon" and "basket" and "wicker" as the basket.  The capacity of the basket is 100. The size of the basket is 100. A metal receptacle is part of the basket.  The metal receptacle is a container.  It is closed and openable.  The carrying capacity of the receptacle is 1. The capacity of the receptacle is 100.
 
-A rope called a piece braided wire is part of the basket.
+A rope called a piece of braided wire is part of the basket. Understand "rope" as the braided wire.
 Volcano Core is a dungeon.  The description of Volcano Core is "You are about one hundred feet above the bottom of the volcano.  The top of the volcano is clearly visible here."
 
 A VolcanoLedge is a kind of dungeon.
@@ -2964,10 +2821,10 @@ say "|                                        |[line break]";
 say "---^----^----^----^----^----^----^----^---[line break]";
 say variable letter spacing.
 
-Wide Ledge is a VolcanoLedge.  The description of Wide Ledge is "You are on a wide ledge high into the volcano.  The rim of the volcano is about 200 feet above and there is a precipitous drop below to the bottom."
+Wide Ledge is a VolcanoLedge.  The description of Wide Ledge is "You are on a wide ledge high into the volcano.  The rim of the volcano is about 200 feet above and there is a precipitous drop below to the bottom.  There is a small door to the south."
 
-Instead of jumping while in Wide Ledge:  fatally leap.
-Instead of jumping while in Narrow ledge: fatally leap.
+Check jumping while in Wide Ledge:  fatally leap instead.
+Check jumping while in Narrow ledge: fatally leap instead.
 
 A tiny hook is in Wide Ledge.  The tiny hook is fixed in place.  The tiny hook is unevenly shaped.
 
@@ -2985,48 +2842,49 @@ award 15 points; continue the action.
 The case-points of the moby ruby is 8.
 The initial appearance of the moby ruby is "On the floor lies a moby ruby."
 The later appearance of the moby ruby is  "There is a moby ruby lying here."
-Instead of going west from Glacier Room when the player can see the glacier:
-say "A mass of ice fills the western half of the room."
-Instead of throwing the torch at the mass of ice:
+Check going west from Glacier Room when the player can see the mass of ice:
+say "A mass of ice fills the western half of the room." instead.
+Before throwing the ivory torch at the mass of ice:
 say "The torch hits the glacier and explodes into a great ball of flame, devouring the glacier.  The water from the melting glacier rushes downstream, carrying the torch with it.  In place of the glacier, there is a passageway leading west.";
 remove the mass of ice from play;
 change the printed name of the ivory torch to "burned-out ivory torch";
-now the torch is not lit;
-now the torch is non-flaming.
-Before dropping the torch when the player's command includes "throw":
-try throwing the torch at the mass of ice instead.
+now the ivory torch is not lit;
+move the ivory torch to Stream View;
+now the ivory torch is non-flaming instead.
+Before dropping the ivory torch when the player's command includes "throw":
+try throwing the ivory torch at the mass of ice instead.
 Understand "burned-out" and "burned out" as the ivory torch when the ivory torch is not lit.
 North of Glacier Room is north of a room called Stream View.
 The description of Stream View is "You are standing on a path beside a gently flowing stream.  The path travels to the north and the east."
 A nondrainable watersource called the pdl2 is in Stream View. 
 A dungeon called In Stream is dark.  The description of In Stream is "You are on the gently flowing stream.  The upstream route is too narrow to  navigate and the downstream route is invisible due to twisting walls.  There is a narrow beach to land on."
-Instead of going up from In Stream, say "The way is too narrow."
-
+Check going up from In Stream: say "The way is too narrow." instead.
+Check going north from Glacier Room: move the player to Stream View instead.
 A coil of thin shiny wire is in Stream View.
 Understand "fuse" as the coil of wire. Understand "string" as the coil of wire.
 The printed name of the coil of thin shiny wire is "wire coil".
 The wire coil is inflammable.
 The size of the wire coil is 1.
-Instead of inserting the coil of wire into the brick:
+Check inserting the coil of wire into the brick:
 say "You insert the fuse into the brick.";
-now the coil of wire is part of the brick.
+now the coil of wire is part of the brick instead.
 Procedural rule when taking the coil of wire:
         ignore the can't take component parts rule.
-Instead of putting the coil of wire on the brick:
+Check putting the coil of wire on the brick:
 say "You insert the fuse into the brick.";
-now the coil of wire is part of the brick.
+now the coil of wire is part of the brick instead.
 The later appearance of the coil of wire is "There is a coil of thin shiny wire here."
-East of Stream View is Reservoir South.
+East of Stream View is Reservoir South. Check going west from Reservoir South:
+move the player to Stream View instead.
 Up from Reservoir South is northwest of a dungeon called Deep Canyon. 
 South of Deep Canyon is northwest of Round Room. "You are on the south edge of a deep canyon.  Passages lead off to the east, south, and northwest.  You can hear the sound of flowing water below."
-Instead of going northwest from Deep Canyon when the player is carrying the coffin:
-  say "The passage is too steep for carrying the coffin."
-Instead of going up from Deep Canyon when the player is carrying the coffin:
-  say "The stairs are too steep for carrying the coffin."
+Check going northwest from Deep Canyon when the player is carrying the coffin:
+  say "The passage is too steep for carrying the coffin." instead.
+Check going up from Deep Canyon when the player is carrying the coffin:
+  say "The stairs are too steep for carrying the coffin." instead.
 Southeast of Round Room is a dungeon called Winding Passage. The description of Winding Passage is "This is a winding passage.  It seems that there is only an exit on the east end, although the whirring from the round room can be heard faintly to the north."
 Northwest of Winding Passage is nowhere.
-Instead of going north from Winding Passage: say "You hear the whir from the round room but can find no entrance."
-East of Winding Passage is Mirror Room No 1. The printed name of Mirror Room No 1 is "Mirror Room". The description of Mirror Room No 1 is "This is a large square room with tall ceilings.  On the south wall is an enormous mirror which fills the entire wall.  There are exits on the other three sides of the room."
+East of Winding Passage is a dungeon called Mirror Room No 1. The printed name of Mirror Room No 1 is "Mirror Room". The description of Mirror Room No 1 is "This is a large square room with tall ceilings.  On the south wall is an enormous mirror which fills the entire wall.  There are exits on the other three sides of the room."
 An enormous mirror is in Mirror Room No 1.  It is scenery.
 The description of the enormous mirror is "[if the enormous mirror is whole]There is an ugly person staring back at you.[otherwise]The mirror is broken into many pieces.[end if]".
 Instead of touching or rubbing the enormous mirror:
@@ -3034,11 +2892,12 @@ Instead of touching or rubbing the enormous mirror:
  move the player to Mirror Room No 2.
 
 Every turn when the player is not in the basket:
-if the basket is in a VolcanoLedge and the braided wire has not been attached to a nonrope thing begin;
+if the basket is in a VolcanoLedge for the at least two turns and the braided wire has not been attached to a nonrope thing begin;
   say "The balloon floats away.  It seems to be ascending, due to its light load.";
   remove the basket from play;
 end if.
-
+Does the player mean tying the braided wire to something: it is very likely.
+Does the player mean tying something to the braided wire: it is very likely.
 Every turn when the player is in the basket and the player's command does not include "launch":
   if something flaming is in the receptacle begin;
     if the receptacle is open begin;
@@ -3115,17 +2974,17 @@ fortunate than yourself.  To the east is an ornate passage,
 apparently recently constructed.  A passage exits to the west."
 East of the Land of the Living Dead is a dungeon called Tomb of the Unknown Implementor.  The description of Tomb of the Unknown Implementor is "This is the Tomb of the Unknown Implementer. A hollow voice says:  'That's not a bug, it's a feature!'
 In the north wall of the room is the Crypt of the Implementers.  It is made of the finest marble, and apparently large enough for four headless corpses.  The crypt is [if the crypt is open]open[otherwise]closed[end if].  Above the entrance is the cryptic instruction: 'Feel Free'.".
-
+Check going inside while in Tomb of the Unknown Implementor: try entering the crypt door instead.
 
 The crypt door is a door.  The crypt door is closed.  The crypt door is north of the Tomb of the Unknown Implementor.  The Crypt of the Implementors is a dark room. The Crypt of the Implementors is north of the crypt door.  The description of the Crypt of the Implementors is "Though large and aesthetically pleasing the marble crypt is empty; the sarcophagi, bodies, and rich treasure to be expected in a tomb of this magnificence are missing. Inscribed on one wall is the motto of the implementers, 'Feel Free'.  There is a door leading out of the crypt to the south.  The door is [if the crypt is open]open[otherwise]closed[end if].".
-Instead of opening the crypt door when the score is less than 616:
+Check opening the crypt door when the score is less than 616:
 say "Although the implementers are dead, they foresaw that some cretin
 would tamper with their remains.  Therefore, they took steps to
 punish such actions.";
 say "Unfortunately, we've run out of poles.  Therefore, in punishment for
 your most grievous sin, we shall deprive you of all your valuables,
 and of your life.";
-end the game in death.
+end the game in death instead.
 Every turn when the player is in Crypt of the Implementors:
 if in darkness for the first turn begin;
 say "Suddenly, as you wait in the dark, you begin to feel somewhat
@@ -3141,9 +3000,9 @@ and you will be told your own magic phrase to use by saying
 Good luck, and choose wisely!'";
 end if.
 Exorcism flag is a number that varies.
-Instead of going east from Entrance to Hades when exorcism flag is not -1:
-  say "Some invisible force prevents you from passing through the gate."
-Instead of ringing the bell while in Entrance to Hades:
+Check going east from Entrance to Hades when exorcism flag is not -1:
+  say "Some invisible force prevents you from passing through the gate." instead.
+Check ringing the bell while in Entrance to Hades:
 if exorcism flag is 0 begin;
 say "Ding Dong.[paragraph break]";
 say "The bell suddenly becomes red hot and falls to the ground. The
@@ -3155,30 +3014,30 @@ try silently dropping the candles;
 say "In your confusion, the candles drop to the ground (and they are out).";
 end if;
 move the brass bell to the location;
-change exorcism flag to 1;
+change exorcism flag to 1 instead;
 else if exorcism flag is -1;
   continue the action;
 else;
 say "The tension of this ceremony is broken, and the wraiths, amused but
 shaken at your clumsy attempt, resume their hideous jeering.";
-change exorcism flag to 0;
+change exorcism flag to 0 instead;
 end if.
 
 
-Instead of examining the black book while in Entrance to Hades:
+Check examining the black book while in Entrance to Hades:
   if exorcism flag is 2 begin;
     say "[description of the black book][paragraph break]";
     say "Each word of the prayer reverberates through the hall in a deafening
 confusion.  As the last word fades, a voice, loud and commanding,
 speaks: 'Begone, fiends!'.  A heart-stopping scream fills the cavern, 
 and the spirits, sensing a greater power, flee through the walls.";
-    change exorcism flag to -1;
+    change exorcism flag to -1 instead;
   else if exorcism flag is 1;
     continue the action;
   else;
     say "[description of the black book][paragraph break]";
     say "The tension of this ceremony is broken, and the wraiths, amused but
-shaken at your clumsy attempt, resume their hideous jeering.";
+shaken at your clumsy attempt, resume their hideous jeering." instead;
   end if.
 The description of the crypt door is "Here lie the implementers, whose heads were placed on poles by the Keeper of the Dungeon for amazing untastefulness." The crypt door is scenery.  
 A set of poled heads is in the Tomb of the Unknown Implementors.  The set of poled heads is not portable.  The initial appearance of the set of poled heads is "There are four heads here, mounted securely on poles." Understand "HEADS" and "HEAD" and "POLE" and "POLES" and "PDL" and "BKD" and "TAA" and "MARC" and "IMPLEMENTORS" and "LOSER" as the set of poled heads.
@@ -3190,17 +3049,17 @@ say "Unfortunately, we've run out of poles.  Therefore, in punishment for
 your most grievous sin, we shall deprive you of all your valuables,
 and of your life.";
 end the game in death.
-Instead of destroying the set of poled heads with something:
+Check destroying the set of poled heads with something:
 say "Although the implementers are dead, they foresaw that some cretin
 would tamper with their remains.  Therefore, they took steps to
 punish such actions.";
 say "Unfortunately, we've run out of poles.  Therefore, in punishment for
 your most grievous sin, we shall deprive you of all your valuables,
 and of your life.";
-end the game in death.
-Instead of attacking the set of poled heads with something:
+end the game in death instead.
+Check attacking the set of poled heads with something:
 try destroying the set of poled heads with the second noun instead.
-After looking while in Land of the Living Dead for the first time: award 30 points; continue the action.
+The rval of Land of the Living Dead is 30.
 
 In the Tomb of the Unknown Implementor is a bunch of Coke bottles.  The initial appearance of the bunch of Coke bottles is "There is a large pile of empty Coke bottles here, evidently produced by the implementers during their long struggle to win totally." 
 The later appearance of the bunch of Coke bottles is "Many empty Coke bottles are here.  Alas, they can't hold water."
@@ -3217,37 +3076,37 @@ paper once contained useful information, almost nothing can be
 distinguished now."
 The later appearance of the stack of listings is "There is an enormous stack of line-printer paper here.  It is barely readable." 
 The listings are inflammable.
-Instead of destroying the bunch of Coke bottles:
+Check destroying the bunch of Coke bottles:
 say "Congratulations!  You've managed to break all those bottles.
 Fortunately for your feet, they were made of magic glass and disappear
 immediately.";
-remove the bunch of Coke bottles from play.
-Instead of destroying the bunch of Coke bottles with something:
-say "Congratulations!  You've managed to break all those bottles.
-Fortunately for your feet, they were made of magic glass and disappear
-immediately.";
-remove the bunch of Coke bottles from play;
-say "Somehow, [the second noun] managed to disappear as well.";
-remove the second noun from play.
-Instead of throwing the bunch of Coke bottles at something:
+remove the bunch of Coke bottles from play instead.
+Check destroying the bunch of Coke bottles with something:
 say "Congratulations!  You've managed to break all those bottles.
 Fortunately for your feet, they were made of magic glass and disappear
 immediately.";
 remove the bunch of Coke bottles from play;
 say "Somehow, [the second noun] managed to disappear as well.";
-remove the second noun from play.
-Instead of dropping bunch of Coke bottles when the player's command includes "throw":
+remove the second noun from play instead.
+Check throwing the bunch of Coke bottles at something:
+say "Congratulations!  You've managed to break all those bottles.
+Fortunately for your feet, they were made of magic glass and disappear
+immediately.";
+remove the bunch of Coke bottles from play;
+say "Somehow, [the second noun] managed to disappear as well.";
+remove the second noun from play instead.
+Check dropping bunch of Coke bottles when the player's command includes "throw":
  say "Congratulations!  You've managed to break all those bottles.
 Fortunately for your feet, they were made of magic glass and disappear
 immediately.";
-remove the bunch of Coke bottles from play.
+remove the bunch of Coke bottles from play instead.
 
 Dead flag is a truth state variable. Dead flag is usually false.
 
 East of Ravine is a dungeon called Chasm.  The description of Chasm is "A chasm runs southwest to northeast.  You are on the south edge; the path exits to the south and to the east."
-Instead of going down from Chasm:
-  say "Are you out of your mind?"
-Instead of jumping while in Chasm: fatally leap.
+Check going down from Chasm:
+  say "Are you out of your mind?" instead.
+Check jumping while in Chasm: fatally leap instead.
 
 Northeast of Round Room is south of a dungeon called North-South Passage.  The description of North-South Passage is "This is a high north-south passage, which forks to the northeast."
 North of North-South Passage is east of Chasm. Northeast of North-South Passage is west of a dungeon called Loud Room. The description of Loud Room is "This is a large room with a ceiling which cannot be detected from the ground. There is a narrow passage from east to west and a stone stairway leading upward.  The room is extremely noisy.  In fact, it is difficult to hear yourself think."
@@ -3266,14 +3125,14 @@ A large platinum bar is in Loud Room.  The printed name of the large platinum ba
 After taking the platinum bar for the first time:
   award 12 points; continue the action.
 Up from Loud Room is south of a dungeon called Damp Cave. The description of Damp Cave is "This is a cave.  Passages exit to the south and to the east, but the cave narrows to a crack to the west.  The earth is particularly damp here."
-Instead of going west from Damp Cave, say "It is too narrow for most insects."
+Check going west from Damp Cave: say "It is too narrow for most insects." instead.
 East of Loud Room is south of a dungeon called Ancient Chasm.  The description of Ancient Chasm is "A chasm, evidently produced by an ancient river, runs through the
 cave here.  Passages lead off in all directions."
 North of Ancient Chasm is southeast of a dead end.  West of Ancient Chasm is a dead end.
-East of Ancient Chasm is a dungeon called Tiny Cave.  The description of Tiny Cave is "This is a small cave whose exits are on the south and northwest."
-A hunk of bat guano is in Ancient Chasm.  Understand "excretement" and "shit" and "crap" and "poop" as the bat guano.
+East of Ancient Chasm is northwest of a dungeon called Tiny Cave.  The description of Tiny Cave is "This is a small cave whose exits are on the south and northwest."
+A hunk of bat guano is in Tiny Cave.  Understand "excretement" and "shit" and "crap" and "poop" as the bat guano.
 The size of the bat guano is 20.  
-A shovel is in Ancient Chasm.  The later appearance of the shovel is "There is a large shovel here."  Understand "large shovel" as the shovel.  The size of the shovel is 15.
+A shovel is in Tiny Cave.  The later appearance of the shovel is "There is a large shovel here."  Understand "large shovel" as the shovel.  The size of the shovel is 15.
 
 Part 9 - Coal Mine Area
 
@@ -3289,10 +3148,10 @@ the south and southwest."
 South of Steep Crawlway is Mirror Room No 2.
 East of Mirror Room No 2 is north of a dungeon called Cave2. The printed name of Cave2 is "Tiny Cave". The description of Cave2 is "This is a tiny cave with entrances west and north, and a dark, forbidding staircase leading down."
 Down from Cave2 is a dungeon called Atlantis Room.  The description of Atlantis Room is "This is an ancient room, long under water.  There are exits here to the southeast and upward."
-A crystal trident is in Atlantis Room.  The initial appearance of the crystal trident is "On the shore lies Poseidon's own crystal trident." The later appearance of the crystal trident is "Poseidon's own crystal trident is here." The size of the crystal trident is 20.  The case-points of the crystal trident is 11. After taking the crystal trident for the first time: award 4 points; continue the action.
-
-Southwest of Atlantis Room is a dungeon called Reservoir North.  A drainable watersource called the pdl3 is in Reservoir North. The description of Reservoir North is "[if the pdl3 is on-stage]You are in a large cavernous room, north of a large reservoir.[otherwise]You are in a large cavernous room, the south of which was formerly a reservoir.[end if]  There is a tunnel leaving the room to the north."
+Southeast of Atlantis Room is north of a dungeon called Reservoir North. A drainable watersource called the pdl3 is in Reservoir North. The description of Reservoir North is "[if the pdl3 is on-stage]You are in a large cavernous room, north of a large reservoir.[otherwise]You are in a large cavernous room, the south of which was formerly a reservoir.[end if]  There is a tunnel leaving the room to the north."
 A nondrainable watersource called the pdl4 is in Reservoir. Down from In Stream is Reservoir.
+Check going southeast from Atlantis Room: move the player to Reservoir North instead.
+A crystal trident is in Atlantis Room.  The initial appearance of the crystal trident is "On the shore lies Poseidon's own crystal trident." The later appearance of the crystal trident is "Poseidon's own crystal trident is here." The size of the crystal trident is 20.  The case-points of the crystal trident is 11. After taking the crystal trident for the first time: award 4 points; continue the action.
 West of Cold Passage is a dungeon called Slide Room.  The description of Slide Room is "This is a small chamber, which appears to have been part of a coal mine. On the south wall of the chamber the letters 'Granite Wall' are etched in the rock. To the east is a long passage and there is a steep metal slide twisting downward. To the north is a small opening."
 
 The enormous mirror can be whole or trashed.  The gigantic mirror can be whole or trashed.
@@ -3321,13 +3180,13 @@ Check taking the enormous mirror:
   if the enormous mirror is trashed, say "Nobody but a greedy surgeon would allow you to attempt that trick." instead.
 Check taking the gigantic mirror:
   if the enormous mirror is trashed, say "Nobody but a greedy surgeon would allow you to attempt that trick." instead.
-The long slide is a door. The long slide is down from Slide Room.  The long slide is scenery.  Through the long slide is Cellar.
+The long slide is a door. The long slide is open and unopenable. The long slide is down from Slide Room.  The long slide is scenery.  Down from the Long Slide is Cellar.
 
-Before going through the long slide:
-if the rope is attached to the coffin or the rope is attached to the timber and the rope is in Slide Room, move the player to Slide1.
+Check going through the long slide:
+if the coil of rope is attached to something in Slide Room, move the player to Slide1 instead.
 
 Before climbing the rope:
-if the rope is attached to the coffin or the rope is attached to the timber and the rope is in Slide Room, try going down instead.
+if the coil of rope is attached to the coffin or the coil of rope is attached to the timber and the rope is in Slide Room, try going down instead.
 
 Sllide1 is a dark room.  The printed name of Slide1 is "Slide".  The description of Slide1 is "This is an uncomfortable spot within the coal chute.  The rope to which you are clinging can be seen rising into the darkness above. There is more rope dangling below you."
 
@@ -3341,14 +3200,15 @@ the chute makes a sharp turn.  On the east here is a small ledge which you might
 Down from Slide3 is Cellar.
 East of Slide3 is a dark room called Slide Ledge.  The description of Slide Ledge is "This is a narrow ledge abutting the coal chute, in which a rope can be seen passing downward.  Behind you, to the south, is a small room."
 West of Slide Ledge is nowhere.  
-
+Down from Slide Ledge is Cellar.
 South of Slide Ledge is a dark room called Sooty Room.  The description of Sooty Room is "This is a small room with rough walls, and a ceiling which is steeply
 sloping from north to south. There is coal dust covering almost
 everything, and little bits of coal are scattered around the only exit
 (which is a narrow passage to the north). In one corner of the room is
 an old coal stove which lights the room with a cheery red glow.  There
 is a very narrow crack in the north wall."
-
+Check exiting while in Sooty Room:
+try going north instead.
 A red crystal sphere is in Sooty Room.  The initial appearance of the crystal sphere is "On the floor sits a red crystal sphere." The later appearance of the crystal sphere is "There is red crystal sphere here." 
 Understand "PALANTHIR" and "STONE" and "SEEING" and "GLASS" and "BALL" as the white crystal sphere.
 The case-points of the red crystal sphere is 10.  After taking the red crystal sphere: award 5 points; continue the action.
@@ -3363,7 +3223,7 @@ a distant room, which can be described clearly....[paragraph break]";
   say "[description of the location of the white crystal sphere][paragraph break]";
   say "The vision fades, revealing only an ordinary crystal sphere.";
 end if.
-Instead of searching the blue crystal sphere:  try examining the noun instead.
+Check searching the blue crystal sphere:  try examining the noun instead.
 North of Slide Room is a dungeon called Mine Entrance.  The description of Mine Entrance is "You are standing at the entrance of what might have been a coal
 mine. To the northeast and the northwest are entrances to the mine,
 and there is another exit on the south end of the room."
@@ -3375,16 +3235,16 @@ Instead of going west from Bat Room when dead flag is false and when the player 
 from his belfry and lifts you away....";
   move the player to a random coal mine.
 A coal mine is a kind of dungeon.  A coal mine usually has printed name "Coal Mine".  A coal mine usually has description "This is a non-descript part of a coal mine."
-A deranged giant vampire bat is in Bat Room.  The deranged giant vampire bat is scenery.  Instead of taking the deranged giant vampire bat:
+A deranged giant vampire bat is in Bat Room.  The deranged giant vampire bat is scenery.  Check taking the deranged giant vampire bat:
   say "A deranged giant vampire bat (a reject from WUMPUS) swoops down
 from his belfry and lifts you away....";
-  move the player to a random coal mine.
+  move the player to a random coal mine instead.
 A jade figurine is in Bat Room.  The size of the jade figurine is 10.  The case-points of the jade figurine is 5. After taking the jade figurine for the first time: award 5 points.
 Northeast of Mine Entrance is west of a dungeon called Shaft Room.  The description of Shaft Room is "This is a large room, in the middle of which is a small shaft
 descending through the floor into darkness below.  To the west and
 the north are exits from this room.  Constructed over the top of the
 shaft is a metal framework to which a heavy iron chain is attached."
-A container called the basket is in Shaft Room.  The later appearance of the basket is "At the end of the chain is a basket." The capacity of the basket is 50. Understand "dumbwaiter" and "cage" and "tbasket" as the basket. The basket is fixed in place.
+A container called the tbasket is in Shaft Room.  The printed name of the tbasket is "basket". The later appearance of the tbasket is "At the end of the chain is a basket." The capacity of the tbasket is 50. Understand "dumbwaiter" and "cage" and "basket" as the tbasket. The tbasket is fixed in place.
 Lower Shaft is a dark room.  The description of Lower Shaft is 
 "This is a small square room which is at the bottom of a long
 shaft. To the east is a passageway and to the northeast a very narrow
@@ -3393,7 +3253,7 @@ A thing called the fbasket is in Lower Shaft.  The fbasket is scenery. Understan
 Instead of going down while in Shaft Room: say "You wouldn't fit and would die if you could."
 After deciding the scope of the player when in darkness:
   if the fbasket is in the location, place the fbasket in scope;
-  if the basket is in the location, place the basket in scope.
+  if the tbasket is in the location, place the tbasket in scope.
 North of Shaft Room is a dungeon called Wooden Tunnel.  The description of Wooden Tunnel is "This is a narrow tunnel with large wooden beams running across
 the ceiling and around the walls.  A path from the south splits into
 paths running west and northeast."
@@ -3409,7 +3269,7 @@ Every turn when the player is in Gas Room and dead flag is false:
   end the game in death;
 end if.
 
-Northwest of Wooden Tunnel is east of a coal mine called Mine1.
+Northeast of Wooden Tunnel is east of a coal mine called Mine1.
 Southwest of Mine1 is south from a coal mine called Mine2.
 Up from Mine2 is west of a coal mine called Mine3.
 Northeast of Mine2 is west of a coal mine called Mine4.
@@ -3430,26 +3290,25 @@ also a staircase leading upward."
 Down from Ladder Top is a dungeon called Ladder Bottom.
 The description of Ladder Bottom is "This is a rather wide room.  On one side is the bottom of a narrow wooden ladder.  To the northeast and the south are passages
 leaving the room."
-East of Ladder Bottom is south of a dead end called DE2.  A pile of coal is in DE2. Understand "heap" and "small" as the pile of coal.  The later appearance of the pile of coal is "There is a small heap of coal here."
+Northeast of Ladder Bottom is south of a dead end called DE2.  A pile of coal is in DE2. Understand "heap" and "small" as the pile of coal.  The later appearance of the pile of coal is "There is a small heap of coal here."
 The coal is inflammable.
 South of Ladder Bottom is north of a dark room called Timber Room.  The description of Timber Room is "This is a long and narrow passage, which is cluttered with broken
 timbers.  A wide passage comes from the north and turns at the 
 southwest corner of the room into a very narrow passageway."
 An unevenly shaped thing called a broken timber is in Timber Room.  Understand "pile" and "wooden" as the broken timber.  The size of the broken timber is 50.
 The later appearance of the broken timber is "There is a wooden timber on the ground here."
-The narrow passageway is a door.  Inside from Timber Room is the narrow passageway.  Outside from Lower Shaft is the narrow passageway.
-Instead of going southwest from Timber Room: try going inside instead.
-Instead of going northeast from Lower Shaft: try going outside instead.
+The narrow passageway is a door.  The narrow passageway is open and unopenable. Inside from Timber Room is the narrow passageway.  Outside from Lower Shaft is the narrow passageway.
+Check going southwest while in Timber Room: try going inside instead.
+Check going northeast while in Lower Shaft: try going outside instead.
 Before of going through the narrow passageway when the player is carrying something: say "You cannot fit through this passage with that load." instead.
-Instead of going up from Lower Shaft: say "The chain is not climbable."
-East of lower shaft is a dark room called Machine2 Room.  The printed name of Machine2 Room is "Machine Room".
-The description of Machine2 Room is "This is a large room which seems to be air-conditioned.  In one corner there is a machine (?) which is shaped somewhat like a clothes
-dryer.  On the 'panel' there is a switch which is labelled in a dialect of Swahili.  Fortunately, I know this dialect and the label translates to START.  The switch does not appear to be manipulable by any human hand (unless the fingers are about 1/16 by 1/4 inch).  On
+Check going up from Lower Shaft: say "The chain is not climbable." instead.
+East of lower shaft is northwest of a dark room called Machine2 Room.  The printed name of Machine2 Room is "Machine Room".
+The description of Machine2 Room is "This is a large room which seems to be air-conditioned.  In one corner there is a machine (?) which is shaped somewhat like a clothes dryer.  On the 'panel' there is a switch which is labelled in a dialect of Swahili.  Fortunately, I know this dialect and the label translates to START.  The switch does not appear to be manipulable by any human hand (unless the fingers are about 1/16 by 1/4 inch).  On
 the front of the machine is a large lid, which is [if the machine is open]open[otherwise]closed[end if]."
 The PDP-10 is a closed openable container in Machine2 Room.  The PDP-10 is scenery.  A thing called the switch is part of the PDP-10.  The printed name of the PDP-10 is "lid".
 Understand "dryer" and "pdp10" and "vax" and "machine" and "lid" as the PDP-10.
-Instead of turning the switch:
-  say "You'll cannot manipulate the switch with your hands."
+Check  turning the switch:
+  say "You'll cannot manipulate the switch with your hands." instead.
 Carry out turning the switch with something:
   if the second noun is not the screwdriver begin;
     say "It seems that [a second noun] won't do.";
@@ -3478,9 +3337,8 @@ The later appearance of the huge diamond is "There is an enormous diamond (perfe
 The case-points of the huge diamond is 6.  Understand "enormous" as the huge diamond.
 After taking the huge diamond for the first time:
   award 10 points; continue the action.
-Instead of taking the slag:  say "The slag turns out to be rather insubstantial, and crumbles into dust at your touch.  It must not have been very valuable."
+Check taking the slag:  say "The slag turns out to be rather insubstantial, and crumbles into dust at your touch.  It must not have been very valuable." instead.
 The capacity of the PDP-10 is 50.
-A screwdriver is a thing.
 
 Part 10 - The Reservoir
 
@@ -3516,7 +3374,7 @@ say "We will now point out some of the more interesting features
 of FCD#3 as we conduct you on a guided tour of the facilities.  You start your tour here in the Dam Lobby.  You will notice on your right that ........."
 Match count is a number that varies.  Match count is usually 5.
 A matchbook is in Dam Lobby.  Understand "matches" and "match" and "flint" as the matchbook.  The later appearance of the matchbook is "There is a matchbook whose cover says 'Visit Beautiful FCD#3' here."
-Instead of opening the matchbook: try counting the matchbook instead.
+Check opening the matchbook: try counting the matchbook instead.
 The description of the matchbook is "[matchbook text]".
 To say matchbook text:
 center "[unicode 91]close cover before striking BKD[unicode 93]";
@@ -3543,13 +3401,13 @@ room are in the west and south ends."
 Maintenance Room is not dark.
 A thing called a screwdriver is in Maintenance Room.  A thing called a wrench is in Maintenance Room.
 A red button, a yellow button, a blue button, and a brown button are in Maintenance Room.  The red button, the blue button, the brown button, and the yellow button are scenery.  
-Instead of pushing the red button:
+Check pushing the red button:
   if Maintenance Room is not lit begin;
     say "The lights within the room come on.";
-    now Maintenance Room is lit;
+    now Maintenance Room is lit instead;
   else;
     say "The lights within the room shut off.";
-    now Maintenance Room is dark;
+    now Maintenance Room is dark instead;
   end if.
 A closed openable container called a tube is in Maintenance Room.  The later appearance of the tube is "There is an object which looks like a tube of toothpaste here."
 Understand "tube of toothpaste" as the tube.  The capacity of the tube is 7.  The size of the tube is 10.  The description of the tube is "Frobozz Magic Gunk Company:  All Purpose Gunk".
@@ -3575,13 +3433,13 @@ message
 
 Water level is a number that varies.  Water level is usually 0.
 Understand "putty" and "toothpaste" as the viscous material.
-Instead of pushing the blue button:
+Check pushing the blue button:
   if water level is not zero begin;
-    say "The blue button appears to be jammed.";
+    say "The blue button appears to be jammed." instead;
   else;
     say "There is a rumbling sound and a stream of water appears to burst from the east wall of the room (apparently, a leak has occurred in a pipe.)";
     change water level to 1;
-    move the leak2 to Maintenance Room;
+    move the leak2 to Maintenance Room instead;
  end if.
 The leak2 is a thing.  The leak2 is scenery.  The printed name of the leak2 is "leak".
 Understand "leak" as the leak2.
@@ -3607,12 +3465,12 @@ Before going east from Dam Lobby when water level is greater than 17:
  say "The room is full of water and cannot be entered.";
 stop the action.
 
-Instead of pushing the brown button:
+Check pushing the brown button:
   change gate flag to false;
-  say "Click."
-Instead of pushing the yellow button:
+  say "Click." instead.
+Check pushing the yellow button:
   change gate flag to true;
-  say "Click."
+  say "Click." instead.
 Check turning the bolt with something:
   if the second noun is not the wrench, say "The bolt won't turn using [the second noun]." instead;
   if gate flag is false, say "The bolt won't turn with your best effort." instead.
@@ -3633,12 +3491,14 @@ North of Reservoir South is a dungeon called Reservoir.  The description of Rese
 "[if the pdl3 is on-stage]You are on the reservoir.  Beaches can be seen north and south.  Upstream a small stream enters the reservoir through a narrow cleft
 in the rocks.  The dam can be seen downstream.[otherwise]You are on what used to be a large reservoir, but which is now a large mud pile.  There are 'shores' to the north and south.[end if]".
 North of Reservoir is Reservoir North.
-Instead of going to a room that is not offroad:
+Check going north from Reservoir:
+move the player to Reservoir North instead.
+Check going to a room that is not offroad:
   if the player is not in a vehicle, print the you can't go message instead;
   else continue the action.
 A hand-held air-pump is in Reservoir North.  Understand "pump" and "airpump" as the air-pump.  The later appearance of the air-pump is "There is a small pump here."
 
-A trunk of jewels is in Reservoir.  Understand "chest" as the trunk.  The size of the trunk is 38.  The case-points of the trunk is 8.  After taking the trunk: award 15 points; continue the action.
+A trunk of jewels is in Reservoir.  Understand "chest" as the trunk.  The size of the trunk is 35.  The case-points of the trunk is 8.  After taking the trunk: award 15 points; continue the action. The initial appearance of the trunk of jewels is "Lying half buried in the mud is an old trunk, bulging with jewels." The later appearance of the trunk of jewels is "There is an old trunk here, bulging with assorted jewels."
 
 Part 11 - Old Man River, That Old Man River
 
@@ -3649,7 +3509,7 @@ A broken sharp stick is in Dam Base.  The initial appearance of the broken sharp
 The later appearance of the broken sharp stick is "There is a broken sharp stick here."
 The size of the broken sharp stick is 3.
 The pile of plastic is inflammable.  The magic boat is inflammable.  The dboat is inflammable.
-A pile of plastic is here.  The later appearance of the pile of plastic is "There is a folded pile of plastic here which has a small valve
+A pile of plastic is in Dam Base.  The later appearance of the pile of plastic is "There is a folded pile of plastic here which has a small valve
 attached."  The size of the pile of plastic is 20.  Understand "boat" as the pile of plastic.
 A dboat is a thing.  The printed name of the dboat is "plastic boat (with hole)".  Understand "pile" and "boat" and "plastic" as the dboat.
 Carry out plugging the dboat with the viscous material:
@@ -3661,13 +3521,13 @@ Carry out inflating it with:
   say "The boat inflates and appears seaworthy.";
   now the magic boat is in the holder of the pile of plastic;
   remove the pile of plastic from play.
-Instead of entering the boat when the player is carrying the sharp stick:
+Check entering the boat when the player is carrying the sharp stick:
   say "There is a hissing sound and the boat deflates.";
   move the dboat to the holder of the boat;
-  remove the boat from play.
+  remove the boat from play instead.
 Definition: a room is offroad if it does not contain a nondrainable watersource. 
-Instead of going by the magic boat when the player is in somewhere offroad: 
-    say "You can't go there in a magic boat."
+Check going by the magic boat when the player is in somewhere offroad: 
+    say "You can't go there in a magic boat." instead.
 The tan label is inflammable.
 A tan label is in the magic boat.  Understand "fine print" and "fineprint" as the tan label.  The description of the tan label is "[tan label text]".
 To say tan label text:
@@ -3684,7 +3544,7 @@ workmanship for a period of 76 milliseconds from date of purchase or
 until first used, whichever comes first.[paragraph break]";
 say "WARNING:  This boat is made of plastic.[paragraph break]";
 say "Good Luck!".
-A river is a kind of room. The printed name of a river is usually "Frigid River".  Instead of going up from a river:  say "You cannot go upstream due to strong currents.".
+A river is a kind of room. The printed name of a river is usually "Frigid River".  Check going up from a river:  say "You cannot go upstream due to strong currents." instead.
 East of Dam Base is a river called River1.  The description of River1 is "You are on the River Frigid in the vicinity of the Dam.  The river flows quietly here.  There is a landing on the west shore."
 A nondrainable watersource called the pdl5 is in River1.
 Down from River1 is a river called River2.  The description of River2 is "The River turns a corner here making it impossible to see the
@@ -3708,8 +3568,7 @@ A closed openable container called a red buoy is in River4.  The initial appeara
 The capacity of the buoy is 20.  The size of the buoy is 10.
 A large emerald is in the buoy.  After taking the emerald: award 5 points; continue the action.
 The case-points of the emerald is 10.
-
-Instead of going east from River2:  say "The White Cliffs prevent your landing here."
+Check going east from River2:  say "The White Cliffs prevent your landing here." instead.
 South of Tiny Cave is northwest of a room called Rocky Shore.  The description of Rocky Shore is "You are on the west shore of the river.  An entrance to a cave is
 to the northwest.  The shore is very rocky here."
 East of Rocky Shore is River3.
@@ -3722,13 +3581,13 @@ West of River4 is a room called Sandy Beach.  The description of Sandy Beach is 
 
 South of Sandy Beach is a room called Shore.  The description of Shore is "You are on the shore of the River.  The river here seems somewhat treacherous.  A path travels from north to south here, the south end quickly turning around a sharp corner." East of Shore is River5.
 
-South of Shore is a room called Aragain Falls.  The description of Aragain Falls is "You are at the top of Aragain Falls, an enormous waterfall with a drop of about 450 feet.  The only path here is on the north end.[if rainbow flag is true]A solid rainbow spans the falls.[otherwise]A beautiful rainbow can be seen over the falls and to the east.[end if]".
+South of Shore is a room called Aragain Falls.  The description of Aragain Falls is "You are at the top of Aragain Falls, an enormous waterfall with a drop of about 450 feet.  The only path here is on the north end.  [if rainbow flag is true]A solid rainbow spans the falls.[otherwise]A beautiful rainbow can be seen over the falls and to the east.[end if]".
 
 Rainbow Room is a room.  The description of Rainbow Room is "You are on top of a rainbow (I bet you never thought you would walk on a rainbow), with a magnificent view of the Falls.  The rainbow travels east-west here.  There is an NBC Commissary here."
 
 Rainbow flag is a truth state that varies.  Rainbow flag is usually false.
 
-Instead of waving the stick:
+Check waving the stick:
   if the player is in Aragain Falls or the player is in End of Rainbow begin;
    if rainbow flag is true begin;
    say "The rainbow seems to have become somewhat run-of-the-mill.";
@@ -3736,7 +3595,7 @@ Instead of waving the stick:
    change the west exit of Rainbow Room to nowhere;
    change the west exit of End of Rainbow to nowhere;
    change the east exit of Rainbow Room to nowhere;
-   change rainbow flag to false;
+   change rainbow flag to false instead;
    else;
    say "Suddenly, the rainbow appears to become solid and, I venture,
 walkable (I think the giveaway was the stairs and bannister).";
@@ -3745,21 +3604,21 @@ walkable (I think the giveaway was the stairs and bannister).";
    change the west exit of Rainbow Room to Aragain Falls;
    change the west exit of End of Rainbow to Rainbow Room;
    change the east exit of Rainbow Room to End of Rainbow;
-   change rainbow flag to true;
+   change rainbow flag to true instead;
    end if;
  else if the player is in Rainbow Room;
     say "The structural integrity of the rainbow seems to have left it,
 leaving you about 450 feet in the air, supported by water vapor.";
-   end the game in death;
+   end the game in death instead;
  else;
-   say "Very good.";
+   say "Very good." instead;
  end if.
 
 A pot of gold is a thing.  The initial appearance of the pot of gold is "At the end of the rainbow is a pot of gold." The later appearance of the pot of gold is "There is a pot of gold here." The size of the pot of gold is 15. The case-points of the pot of gold is 10.  After taking the pot of gold:  award 10 points; continue the action.
 A statue is a thing.
 Understand "beautiful" and "sculpture" and "rock" as the statue.
 The size of the statue is 8.
-After taking the statue: award 10 points; continue the action.
+After taking the statue: award 11 points; continue the action.
 The case-points of the statue is 13.
 Every turn while in Rainbow Room:  change exit found to true.
 
@@ -3767,7 +3626,7 @@ After taking the buoy for the first time:
   say "Something seems funny about the feel of the buoy.".
 
 An open unopenable enterable container called a man-sized wooden barrel is in Aragain Falls.  The printed name of the man-sized wooden barrel is "wooden barrel".  The later appearance of the man-sized wooden barrel is "There is a man-sized barrel here which you might be able to enter."  The barrel is fixed in place.  The capacity of the man-sized wooden barrel is 100.
-Instead of looking when the player is inside the barrel: say "You are inside a barrel.  Congratulations.  Etched into the side of the barrel is the word 'Geronimo!'.  From your position, you cannot see the falls."
+Check looking when the player is inside the barrel: say "You are inside a barrel.  Congratulations.  Etched into the side of the barrel is the word 'Geronimo!'.  From your position, you cannot see the falls." instead.
 After entering the barrel: try looking.
 
 Part 12 - The End Game
@@ -3838,9 +3697,9 @@ if n is "W", decide on 23;
 if n is "X", decide on 24;
 if n is "Y", decide on 25;
 if n is "Z", decide on 26.
-The alphabet is an indexed text variable.  The alphabet is always "ABCDEFGHIJKLMNOPQRSTVWXYZ".
-Instead of exiting when the player is in a river:
-  say "You realize, just in time, that disembarking here would probably be fatal."
+The alphabet is an indexed text variable.  The alphabet is always "ABCDEFGHIJKLMNOPQRSTUVWXYZ".
+Check exiting when the player is in a river:
+  say "You realize, just in time, that disembarking here would probably be fatal." instead.
 Incanting is an action applying to one topic.  Understand "incant [text]" as incanting.
 Check incanting:
 if endgame flag is true, say "[one of]Sorry, only one incantation to a customer.[or]Incantations are useless once you have gotten this far[at random]" instead.
@@ -3890,9 +3749,8 @@ move the player to Top of Stairs.
 Endgame flag is a truth state that varies.  Endgame flag is false.
 
 Top of Stairs is a room.  The description of Top of Stairs is "You are standing at the top of a flight of stairs that lead down to a passage below.  Dim light, as from torches, can be seen in the passage.  Behind you the stairs lead into untouched rock."
-After looking while in Top of Stairs for the first time:
-award 10 points; continue the action.
-Instead of going south from Top of Stairs:  say "The wall is solid rock."
+The rval of Top of Stairs is 10.
+Check going south from Top of Stairs:  say "The wall is solid rock." instead.
 North of Top of Stairs is Stone Room.  Down from Top of Stairs is Stone Room.
 The description of Stone Room is "You are standing near one end of a long, dimly lit hall.  At the south stone stairs ascend.  To the north the corridor is illuminated
 by torches set high in the walls, out of reach.  On one wall is a red
@@ -3900,43 +3758,37 @@ button." A thing called a redbutton is in Stone Room.  Understand "red" and "but
 The redbutton has a truth state called depressed. The depressed of the redbutton is false.
 Beam stopped is a truth state that varies.  Beam stopped is false.
 Mrint is a number that varies.  Mrint is -1.
-Instead of pushing the redbutton:
+Check pushing the redbutton:
   if the depressed of the redbutton is true begin;
-    say "The button is already depressed.";
+    say "The button is already depressed." instead;
   else;
     say "The button becomes depressed.";
     if beam stopped is false begin;
-      say "The button pops back out.";
+      say "The button pops back out." instead;
     else;
       change mirror open to true;
-      change mrint to 7;
+      change mrint to 7 instead;
     end if;
  end if.
-Every turn:
-  decrease mrint by 1;
-  if mrint is 0 begin;
-    change mirror open to true;
-    if the player can see the redbutton, say "The button pops back to its original position.";
-   change the depressed of the redbutton to false;
-  end if.
 North of Stone Room is a room called Small Room.  The description of Small Room is "You are in a small room, with narrow passages exiting to the north
 and south.  A narrow red beam of light crosses the room at the north
 end, inches above the floor.[if beam stopped is true]The beam is stopped halfway across the room by a sword lying on the floor.[end if]".
 A red beam of light is in Small Room.  The red beam of light is scenery.
-Instead of destroying the beam of light with something:
+Check destroying the beam of light with something:
 try dropping the second noun instead.
 After dropping the sword when beam stopped is false and the player can see the beam of light:
   say "The beam is now blocked by a sword lying on the floor.";
   change beam stopped to true.
 After taking the sword when beam stopped is true and the player can see the beam of light:
   change beam stopped to false.
-Instead of taking the beam of light:
-  say "No doubt you have a bottle of moonbeams as well."
+Check taking the beam of light:
+  say "No doubt you have a bottle of moonbeams as well." instead.
 Check saving the game when endgame flag is true: say "Saves are not permitted during the end game." instead. 
 
 North of Small Room is a room called Hallway.  The description of Hallway is "This is part of the long hallway.  The east and west walls are dressed stone.  In the center of the hall is a shallow stone channel. In the center of the room the channel widens into a large hole around which is engraved a compass rose. A passage enters from the south. A large mirror fills the north side of the hallway.[if mirror open is true]  The mirror is mounted on a panel which has been opened outward.[end if]".
-Instead of going inside when the player is in Hallway and mirror open is true and Room Number is 1:
-move the player to InsideMirror.
+The miror is a thing in Hallway.  The miror is scenery.  Understand "mirror" and "panel" as the miror.  Instead of entering the miror: try going inside instead.
+Check going inside when the player is in Hallway and mirror open is true and Room Number is 1:
+move the player to InsideMirror instead.
 Mirror open is a truth state that varies. Mirror open is false.
 Room Number is a number that varies.  Room Number is 1.  Mirror direction is a direction that varies. Mirror direction is usually west. Pole up is a truth state that varies.  Pole up is usually false.
 
@@ -3973,7 +3825,7 @@ The yellow panel is scenery.
 A short pole is a thing in InsideMirror.  A long pole is a thing in InsideMirror.  A mahogany panel is a thing in InsideMirror.  A pine panel is a thing in InsideMirror.  A red panel is a thing in InsideMirror.  A yellow panel is a thing in InsideMirror.  The short pole, the long pole, the mahogany panel, the pine panel, the red panel, and the white panel are scenery.  Understand "wall" as the red panel. Understand "wall" as the pine panel.
 Understand "wall" as the yellow panel.  Understand "wall" as the mahogany panel.
 Understand "yellow" as the red panel.  Understand "black" as the white panel.
-Instead of pushing the red panel:
+Check pushing the red panel:
   if the pole up is true begin; 
     say "The structure rotates clockwise.";
 if mirror direction is west begin;
@@ -3993,11 +3845,11 @@ else if mirror direction is south;
 else if mirror direction is south;
   change mirror direction to west;
 end if;
-say "The arrow is now pointing [Mirror direction].";
+say "The arrow is now pointing [Mirror direction]." instead;
   else;
-    say "The short pole stops the structure from rotating.";
+    say "The short pole stops the structure from rotating." instead;
 end if.
-Instead of pushing the white panel:
+Check pushing the white panel:
   if the pole up is true begin; 
     say "The structure rotates counterclockwise.";
 if mirror direction is west begin;
@@ -4016,58 +3868,58 @@ else if mirror direction is south;
   change mirror direction to southeast;
 else if mirror direction is south;
   change mirror direction to south;end if;
-say "The arrow is now pointing [Mirror direction].";
+say "The arrow is now pointing [Mirror direction]." instead;
   else;
-    say "The short pole stops the structure from rotating.";
+    say "The short pole stops the structure from rotating." instead;
 end if.
-Instead of lifting the short pole:
+Check lifting the short pole:
  if pole up is true begin;
-   say "The pole cannot be raised further.";
+   say "The pole cannot be raised further." instead;
  else;
    say "The pole is now slightly above the floor.";
-   change pole up to true;
+   change pole up to true instead;
  end if.
-Instead of lowering the short pole:
+Check lowering the short pole:
  if pole up is true begin;
    say "The pole is lowered into the channel.";
-   change pole up to false;
+   change pole up to false instead;
  else;
-   say "The pole cannot be lowered further.";
+   say "The pole cannot be lowered further." instead;
  end if.
-Instead of pushing the mahogany panel:
+Check pushing the mahogany panel:
 if mirror direction is not north and mirror direction is not south begin;
-  say "The structure rocks back and forth slightly but doesn't move.";
+  say "The structure rocks back and forth slightly but doesn't move." instead;
 else if mirror direction is north;
 if room number is 2 and pole up is true begin;
 say "The structure wobbles north and stops over another compass rose.[paragraph break]";
 say "The structure wobbles as it moves, alerting the Guardians.[paragraph break]";
 say "Suddenly, the Guardians realize that someone is trying to sneak by them in the structure.  They awake and, in perfect unison, hammer the box and its contents (including you) to pulp.  Satisfied, they then resume their posts.[paragraph break]";
-end the game in death;
+end the game in death instead;
 else if pole up is true;
   if room number is 4 begin;
-    say "The structure has reached the end of the stone channel and won't budge.";
+    say "The structure has reached the end of the stone channel and won't budge." instead;
   else if room number is 3;
     say "The structure wobbles north and stops over another compass rose.";
-    change room number to 4;
+    change room number to 4 instead;
   else if room number is 2;
     say "The structure wobbles north and stops over another compass rose.";
-    change room number to 3;
+    change room number to 3 instead;
    else if room number is 1;
      say "The structure wobbles north and stops over another compass rose.";
-     change room number to 3;
+     change room number to 2 instead;
    end if;
 else;
   if room number is 4 begin;
-    say "The structure has reached the end of the stone channel and won't budge.";
+    say "The structure has reached the end of the stone channel and won't budge." instead;
   else if room number is 3;
      say "The structure slides north and stops over another compass rose.";
-    change room number to 4;
+    change room number to 4 instead;
   else if room number is 2;
      say "The structure slides north and stops over another compass rose.";
-    change room number to 3;
+    change room number to 3 instead;
    else if room number is 1;
      say "The structure slides north and stops over another compass rose.";
-     change room number to 2;
+     change room number to 2 instead;
 end if;
 end if;
 else if mirror direction is south;
@@ -4075,28 +3927,29 @@ if room number is 4 and pole up is true begin;
 say "The structure wobbles south and stops over another compass rose.[paragraph break]";
 say "The structure wobbles as it moves, alerting the Guardians.[paragraph break]";
 say "Suddenly, the Guardians realize that someone is trying to sneak by them in the structure.  They awake and, in perfect unison, hammer the box and its contents (including you) to pulp.  Satisfied, they then resume their posts.[paragraph break]";
-end the game in death;
+end the game in death instead;
 else if pole up is true;
   if room number is 1 begin;
     say "The structure has reached the end of the stone channel and won't budge.";
   else if room number is 2;
     say "The structure wobbles south and stops over another compass rose.";
-    change room number to 1;
+    change room number to 1 instead;
   else if room number is 3;
     say "The structure wobbles south and stops over another compass rose.";
+    change room number to 2 instead;
    end if;
 else;
   if room number is 1 begin;
-    say "The structure has reached the end of the stone channel and won't budge.";
+    say "The structure has reached the end of the stone channel and won't budge." instead;
   else if room number is 2;
      say "The structure slides south and stops over another compass rose.";
-    change room number to 1;
+    change room number to 1 instead;
   else if room number is 3;
      say "The structure slides south and stops over another compass rose.";
-    change room number to 2;
+    change room number to 2 instead;
    else if room number is 4;
      say "The structure slides south and stops over another compass rose.";
-     change room number to 3;
+     change room number to 3 instead;
 end if;
 end if;
 end if.
@@ -4104,43 +3957,37 @@ Hallway2 is a room. The printed name of Hallway2 is "Narrow Hallway".  The descr
 dressed stone.  In the center of the hall is a shallow stone channel.
 In the center of the room the channel widens into a large hole around
 which is engraved a compass rose.The north side of the room is divided by a wooden wall into small hallways to the northeast and northwest."
-Instead of pushing the pine panel:
+Check pushing the pine panel:
 if room number is 4 and mirror direction is north begin;
   say "The pine door opens into the field of view of the Guardians.[paragraph break]";
 say "The Guardians awake and, in perfect unison, destroy you with
 their stone bludgeons.  Satisfied, they resume their posts.";
-end the game in death;
+end the game in death instead;
 else if room number is 2 and mirror direction is south;
 say "The pine door opens into the field of view of the Guardians.[paragraph break]";
 say "The Guardians awake and, in perfect unison, destroy you with
 their stone bludgeons.  Satisfied, they resume their posts.";
-end the game in death;
+end the game in death instead;
 else if room number is 3;
 say "The pine door opens into the field of view of the Guardians.[paragraph break]";
 say "The Guardians awake and, in perfect unison, destroy you with
 their stone bludgeons.  Satisfied, they resume their posts.";
-end the game in death;
+end the game in death instead;
 else if mirror direction is not north and mirror direction is not south;
 say "The structure rocks back and forth slightly but doesn't move.";
 else;
 say "The pine wall swings open.";
-change mirror open to true;
+change mirror open to true instead;
 end if.
-Every turn:
- if the player is in InsideMirror and mirror open has been true for three turns begin;
-  say "The mirror quietly swings shut.";
-  change mirror open to false;
- end if.
-Instead of exiting:
-if the player is not in InsideMirror, continue the action;
+Check exiting while in InsideMirror:
 if mirror open is false begin;
-  say "There is no way out.";
+  say "There is no way out." instead;
 else if room number is 1;
-  move the player to Hallway;
+  move the player to Hallway instead;
 else if room number is 2;
-  move the player to Hallway2;
+  move the player to Hallway2 instead;
 else;
-  move the player to Hallway4;
+  move the player to Hallway4 instead;
 end if.
 Northwest of Hallway2 is a room called Narrow Room.  The description of Narrow Room is "This is a narrow room whose east wall is a large mirror.  Somewhat to the north, identical stone statues face each other from pedestals on opposite sides of the corridor.  The statues represent Guardians of Zork, a military order of ancient lineage.  They are portrayed as heavily armored warriors standing at ease, hands clasped around formidable bludgeons."
 Northeast of Hallway2 is a room called NarrowRoom.  The printed name of Narrow Room is "Narrow Room".  The description of NarrowRoom is "This is a narrow room whose west wall is a large mirror. Somewhat to the north, identical stone statues face each other from
@@ -4153,9 +4000,7 @@ Instead of going north from NarrowRoom:
 say "The Guardians awake and, in perfect unison, destroy you with
 their stone bludgeons.  Satisfied, they resume their posts.";
 end the game in death.
-After looking while in InsideMirror for the first time:
-award 15 points;
-continue the action.
+The rval of InsideMirror is 15.
 Hallway4 is a room.  The printed name of Hallway4 is "Dungeon Entrance".  The description of Hallway4 is "This is a north-south hallway which ends in a large wooden door. The south side of the room is divided by a wooden wall into small hallways to the southeast and southwest."
 Instead of going southwest from Hallway4:
 say "The Guardians awake and, in perfect unison, destroy you with
@@ -4181,14 +4026,6 @@ his staff and traces a complicated pattern in the air.  As it
 completes you crumble into dust.";
 end the game in death.
 Question number is a number that varies.  Question number is usually 0.
-Every turn:
-if question number is 1 for the first turn begin;
-  say  "The booming voice asks: From which room can one enter the robber's hideaway without passing through the cyclops room?";
-else if question number is 2 for the first turn;
-  say "The booming voice asks: Besides the Temple, to which room is it possible to go from the Altar?";
-else if question number is 3 for the first turn;
-   say "The booming voice asks: What can be done to the Mirror that is useful?";
-end if.
 Instead of answering the dungeon master that something:
   if the topic understood matches the text "follow" begin;
    change follow to true;
@@ -4257,13 +4094,175 @@ The later appearance of the master is "The dungeon master is quietly leaning on 
 Follow is a truth state that varies.  Follow is false.
 Tries left is a number that varies.  Tries left is usually 4.
 Every turn:
+let aaa be the rval of the location;
+award aaa points;
+change the rval of the location to 0;
+ if the thief has been unconsious for four turns and the player can see the thief, say "The thief returns to consiousness.";
+if the engrossed of the thief has been true for two turn, change the engrossed of the thief to false;
+if the player has been in Cage for the tenth turn begin;
+ say "Time passes...and you die from some obscure poisoning.";
+ end the game in death;
+end if;
+ if the player is in InsideMirror and mirror open has been true for three turns begin;
+  say "The mirror quietly swings shut.";
+  change mirror open to false;
+ end if;
+if question number is 1 and question number was not 1 begin;
+  say  "The booming voice asks: From which room can one enter the robber's hideaway without passing through the cyclops room?";
+else if question number is 2 and question number was not 2;
+  say "The booming voice asks: Besides the Temple, to which room is it possible to go from the Altar?";
+else if question number is 3 and question number was not 3;
+   say "The booming voice asks: What can be done to the Mirror that is useful?";
+end if;
+if the thief carries the jewel-encrusted egg, now the jewel-encrusted egg is open;
+if the player is in Treasure Room and the thief is not in Treasure Room and the thief is on-stage begin;
+  say "You hear a scream of anguish as you violate the robber's hideaway.  Using passages unknown to you, he rushes to its defense.";
+  move the thief to Treasure Room;
+end if;
+if the thief is on-stage begin;
+if the thief cannot see the player, try the thief escaping;
+if the thief is not in Treasure Room and the player is in the holder of the thief begin;
+if the thief can see a visible valuble thing which is not held by the thief begin;
+  say "A seedy-looking individual with a large bag just wandered through the room.  On the way through, he quietly abstracted all valuables from the room and from your possession, mumbling something about 'Doing unto others before...'";
+  now every valuble thing had by the player is had by the thief;
+  now every visible valuble thing in the location is had by the thief;
+  try the thief escaping;
+else;
+  say "A seedy-looking individual with a large bag just wandered through the room.  Finding nothing of value, he left disgruntled.";
+end if;
+  try the thief escaping;
+end if;
+end if;
   if follow is true and the player is not in the holder of the dungeon master begin;
     say "The dungeon master follows you.";
     move the dungeon master to the holder of the player;
-  end if.
-After going through the large wooden door for the first time:
-award 20 points;
-continue the action.
+  end if;
+  decrease mrint by 1;
+  if mrint is 0 begin;
+    change mirror open to true;
+    if the player can see the redbutton, say "The button pops back to its original position.";
+   change the depressed of the redbutton to false;
+  end if;
+if the player has been in Vault for exactly 4 turns begin; say "A metallic voice says, 'Hello, Intruder!  Your unauthorized presence in the vault area of the Bank of Zork has set off all sorts of nasty surprises, several of which seem to have been fatal.  This message brought to you by the Frobozz Magic Alarm Company.'"; end the game in death; end if;
+if gnome flag is true and the player has been in Small Room for exactly 4 turns begin; say "An epicene Gnome of Zurich, wearing a three-piece suit and carrying a
+ safety deposit box, materializes in the room.  'You seem to have
+ forgotten to deposit your valuables,' he says, tapping the lid of the
+ box impatiently.  'We don't usually allow customers to use the boxes
+ here, but we can make this ONE exception, I suppose...'  He looks
+ askance at you over his wire-rimmed bifocals."; move the Gnome of Zurich to Small Room; change gnome flag to false; end if;
+if the player is in Grating Room, now the grating is revealed;
+if the location is the bad place and the brick is off-stage, foo;
+if the number of moves from the location to the bad place is 1 and the brick is off-stage, foo;
+if squish clock is 0 begin;
+change the description of the bad place to "[pizza]";
+if the player is in the bad place begin;
+  say "The room trembles and 50,000 pounds of rock fall on you, turning you into a pancake.  [if the player is outside]Meteors, no doubt.[end if]";
+  end the game in death;
+else;
+  say "You may recall your recent explosion.  Well, probably as a result of
+that, you hear an ominous rumbling, as if one of the rooms in the
+dungeon has collapsed.";
+   [* OK, this sort of doesn't make sense if the player is outside]
+end if;
+end if;
+decrease squish clock by 1;
+decrease ledge clock by 1;
+if ledge clock is 3, say "You may recall your recent explosion.  Well, probably as a result of that, you hear an ominous rumbling, as if one of the rooms in the
+dungeon has collapsed.";
+if ledge clock is 0 begin;
+  if the player is in the basket and the basket is in Wide Ledge begin;
+    if the braided wire is attached to the tiny hook begin;
+      say "The ledge collapses, probably as a result of the explosion.  A large
+chunk of it, which is attached to the hook, drags you down to the
+ground.  Fatally.";
+      end the game in death;
+    else;
+       say "The ledge collapses, leaving you with no place to land.";
+       move the basket to Volcano Near WideLedge;
+       try looking;
+    end if;
+  else if the player is in Wide Ledge or the player is in Dusty Room;
+    say "The force of the explosion has caused the ledge to collapse
+belatedly.";
+    end the game in death;
+  else;
+    say "The ledge collapses, giving you a narrow escape.";
+  end if;
+end if;
+if wire clock is 0 begin;
+  if the player can see the brick begin;
+      say "Now you've done it.  It seems that the brick has other properties
+than weight, namely the ability to blow you to smithereens.";
+  remove the brick from play;
+  end the game in death;
+  else;
+   say "There is an explosion nearby.";
+   if the brick is in the oblong hole begin;
+       change ledge clock to 5;
+       now the rusty box is open;
+       move the crown to Dusty Room;
+       move the note card to Dusty Room;
+    else if the brick is in Dusty Room;
+       change ledge clock to 5;
+   else;
+     change squish clock to 2;
+     change the bad place to the location of the brick;
+   end if;
+   remove the brick from play;
+ end if;
+end if;
+decrease wire clock by 1;
+if burn interrupt is 0 begin;
+  if something visible is in the receptacle, say "You notice that the [list of flaming things in the receptacle] has burned out, and that the cloth bag starts to deflate.";
+  let the thingy be a random flaming  thing in the receptacle;
+  now the thingy is not flaming;
+  remove the thingy from play;
+end if;
+decrease burn interrupt by 1;
+now every thing which is flaming is lit;
+if something inflammable (called the thingy) is non-flaming, now the thingy is unlit;
+if the matchbook is non-flaming, now the matchbook is unlit;
+if the pair of candles is non-flaming, now the pair of candles is unlit;
+if match tick is greater than 0, decrease match tick by 1;
+if match tick is 0 begin;
+  say "The match has gone out.";
+  change match tick to -1;
+  now the matchbook is non-flaming;
+end if;
+  if the cure wait of the player is greater than 0, decrease the cure wait of the player by 1;
+  if the cure wait of the player is 0, change the wounds of the player to 0;
+  if the wounds of the player is greater than 4 begin;
+    say "It appears that blow was too much for you.  I'm afraid you are dead.";
+    change the wounds of the player to 4;
+    end the game in death;
+  end if;
+  if the battery-powered brass lantern is switched on begin;
+  decrease lamp-power by 1;
+  if lamp-power is 50, say "The lamp appears to be getting dimmer.";
+  if lamp-power is 30, say "The lamp appears to be getting dimmer.";
+  if lamp-power is 20, say "The lamp appears to be getting dimmer.";
+  if lamp-power is 10, say "The lamp appears to be getting dimmer.";
+  if lamp-power is  4, say  "The lamp is dying.";
+  if lamp-power is 0 begin;
+    say "I hope you have more light than from a lamp.";
+    now the battery-powered brass lantern is switched off;
+    now the battery-powered brass lantern is unlit;
+  end if;
+  end if;
+if the player has been in Living Room for the second turn and brochure flag is 1 begin;
+  say "There is a knocking sound from the front of the house.";
+  change brochure flag to 2;
+  move the free brochure to the mailbox;
+end if;
+if the number of visible valuble things in the trophy case is 32 and the number of visible valuble things in the trophy case was not 32, say "Suddenly a sinister wraithlike figure, cloaked and hooded, appears
+seeming to float in the air before you.  In a low, almost inaudible
+voice he says, 'I welcome you to the ranks of the chosen of Zork. You
+have persisted through many trials and tests, and have overcome them
+all, dispelling the darkness of ignorance and danger.  One such as
+yourself is fit to join even the Implementers!'  He then raises his
+oaken staff, and chuckling, drifts away like a wisp of smoke, his
+laughter fading in the distance.".
+The rval of Narrow Corridor is 20.
 North of Narrow Corridor is a room called South Corridor.  The description of South Corridor is "This is an east-west corridor which turns north at its eastern and western ends.  The walls of the corridor are marble.  An additional passage leads south at the center of the corridor."
 West of South Corridor is south of a room called West Corridor.  The description of West Corridor is "This is a corridor with polished marble walls.  The corridor
 widens into larger areas as it turns east at its northern and
@@ -4276,21 +4275,22 @@ ends, and due south is a massive wooden door.  In the door is a small
 window barred with iron.  The door is [if the prison cell door is open]open[otherwise]closed.[end if]".
 North of East Corridor is North Corridor.
 North of North Corridor is a room called Parapet.  The description of Parapet is "You are standing behind a stone retaining wall which rims a large parapet overlooking a fiery pit.  It is difficult to see through the smoke and flame which fills the pit, but it seems to be more or less bottomless.  It also extends upward out of sight.  The pit itself is of roughly dressed stone and circular in shape.  It is about two hundred feet in diameter.  The flames generate considerable heat, so it is rather uncomfortable standing here.
-There is an object here which looks like a sundial.  On it are an indicator arrow and (in the center) a large button.  On the face of the dial are numbers 'one' through 'eight'.  The indicator points to the number [dial number]."
-Dial number is a number that varies.
+There is an object here which looks like a sundial.  On it are an indicator arrow and (in the center) a large button.  On the face of the dial are numbers 'one' through 'eight'.  The indicator points to the number [dial number in words]."
+Dial number is a number that varies. Dial number is 1.
 Persuasion rule for asking the dungeon master to try doing something: persuasion succeeds.
 A large button is in Parapet.  The large button is scenery.
 Persuasion rule for asking the dungeon master to try going:
 say "'I prefer to stay where I am, thank you.'".
 A dial is in Parapet. The dial is scenery. Understand "sun dial" and "sundial" and "sun-dial" and "indicator" and "arrow" as the dial.
-Instead of taking the dungeon master: say "'I'm willing to accompany you, but not ride in your pocket!'".
+Check taking the dungeon master: say "'I'm willing to accompany you, but not ride in your pocket!'" instead.
 Instead of asking the dungeon master to try doing something:
   say "'If you wish,' he replies."; continue the action.
 The prison cell door is a door.  The prison cell door is closed and openable.  The prison cell door is south of North Corridor.  South of the prison cell door is a room called Prison Cell.  
 The description of Prison Cell is "You are in a featureless prison cell.  You can see [if the prison cell door is open]the east-west corridor outside the open wooden door in front of you.[otherwise]only the flames and smoke of the pit out the small window in a closed door in front of you.[end if]."
 PCell is a room.  The description of PCell is "You are in a featureless prison cell.  Its wooden door is securely fastened, and you can see only the flames and smoke of the pit out the small window." The printed name of PCell is "Prison Cell".
 The prison cell door is scenery.
-NCell is a room. The description of NCell is "You are in a featureless prison cell.  Its wooden door is securely fastened, and you can see only the flames and smoke of the pit out its small window.  On the other side of the cell is a bronze door which seems to be". The printed name of NCell is "Prison Cell".
+NCell is a room. The description of NCell is "You are in a featureless prison cell.  Its wooden door is securely fastened, and you can see only the flames and smoke of the pit out its small window.  On the other side of the cell is a bronze door which seems to be [if the bronze door is open]open[otherwise]closed[end if].". The printed name of NCell is "Prison Cell".
+Check going inside while in NCell: try entering the bronze door instead.
 The bronze door is a door.  The bronze door is closed and openable.  
 The bronze door is scenery.  The bronze door is south of NCell.  South of the Bronze Door is a room called Treasury of Zork. The description of Treasury of Zork is 
 "[5 spaces]This is a room of large size, richly appointed and decorated
@@ -4319,14 +4319,31 @@ and you feel yourself changing, growing older and more stooped.  For a moment th
 end if.
 After deciding the scope of the player: 
 if the player is in Prison Cell, place the dungeon master in scope.
+A thing has a number called cell number.  The cell number of a thing is usually 0.
+Every turn when something is in Prison Cell:
+repeat with thingy running through things in Prison Cell begin;
+  change the cell number of the thingy to current cell;
+end repeat.
+
+Limbo is a room.
+Current cell is a number that varies.  Current cell is 1.
 Instead of someone pushing the large button:
  say "Click.";
- if dial number is 6 begin;
-   now every thing in Prison Cell is in NCell;   
- else;
-   now every thing in Prison Cell is in PCell;
- end if;
+ change the current cell to dial number;
+ if dial number is 6 and the player is in Prison Cell, move the player to NCell;
+ if the player is in Prison Cell, move the player to PCell;
+ now every thing in Prison Cell is in Limbo;
+ if the cell number of the player is dial number and the player is in PCell or the player is in NCell, move the player to Prison Cell;
+ repeat with thingy running through things in Limbo begin;
+ if the cell number of the thingy is dial number, move the thingy to Prison Cell;
+ if the player is in PCell and the cell number of the thingy is the cell number of the player, move the thingy to PCell;
+ if the player is in NCell and the cell number of the thingy is the cell number of the player, move the thingy to NCell;
+end repeat;
+repeat with thingy running through things in NCell begin;
+  if cell number of the thingy is dial number, move the thingy to Prison Cell;
+end repeat;
  rule succeeds.
+Check going inside while in Hallway4: try entering the large wooden door instead.
 Include (- [ XOR a b; return (a | b) & (~(a & b)); ];  -). [* Inform does not have a bitwise exclusive or built in, so we make one]
 
 

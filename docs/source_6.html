@@ -41,17 +41,17 @@ East of a dungeon called Volcano View is south of Egyptian Room. &quot;<font col
 <br>
 </font><font color=#000080>it appears that this ledge is intermediate in elevation between those on the other side.  The exit from this room is to the east.</font>&quot;
 <br>
-Instead of going down from Volcano View:
+Check going down from Volcano View:
 <br>
-say &quot;<font color=#000080>I wouldn't try that.</font>&quot;
+say &quot;<font color=#000080>I wouldn't try that.</font>&quot; instead.
 <br>
-Instead of jumping while in Volcano View:
+Check jumping while in Volcano View:
 <br>
-fatally leap.
+fatally leap instead.
 <br>
 The ascending staircase is a door. The ascending staircase is up from Egyptian Room. Through the ascending staircase is Glacier Room.
 <br>
-The ascending staircase is open and not openable. Instead of climbing the ascending staircase:
+The ascending staircase is open and not openable. Check climbing the ascending staircase:
 <br>
 try entering the noun instead.
 <br>
@@ -73,7 +73,7 @@ The description of Ruby Room is &quot;<font color=#000080>This is a small chambe
 <br>
 A moby ruby is in Ruby Room.
 <br>
-East of Ruby Room is east of a dungeon called Lava Room.  The description of Lava Room is &quot;<font color=#000080>This is a small room, whose walls are formed by an old lava flow.
+West of Ruby Room is west of a dungeon called Lava Room.  The description of Lava Room is &quot;<font color=#000080>This is a small room, whose walls are formed by an old lava flow.
 <br>
 </font><font color=#000080>There are exits here to the west and the south.</font>&quot;
 <br>
@@ -89,7 +89,7 @@ In Volcano Bottom is an enterable open unopenable container called a basket.  Th
 <br>
 
 <br>
-A rope called a piece braided wire is part of the basket.
+A rope called a piece of braided wire is part of the basket. Understand &quot;<font color=#000080>rope</font>&quot; as the braided wire.
 <br>
 Volcano Core is a dungeon.  The description of Volcano Core is &quot;<font color=#000080>You are about one hundred feet above the bottom of the volcano.  The top of the volcano is clearly visible here.</font>&quot;
 <br>
@@ -277,13 +277,13 @@ say variable letter spacing.
 <br>
 
 <br>
-Wide Ledge is a VolcanoLedge.  The description of Wide Ledge is &quot;<font color=#000080>You are on a wide ledge high into the volcano.  The rim of the volcano is about 200 feet above and there is a precipitous drop below to the bottom.</font>&quot;
+Wide Ledge is a VolcanoLedge.  The description of Wide Ledge is &quot;<font color=#000080>You are on a wide ledge high into the volcano.  The rim of the volcano is about 200 feet above and there is a precipitous drop below to the bottom.  There is a small door to the south.</font>&quot;
 <br>
 
 <br>
-Instead of jumping while in Wide Ledge:  fatally leap.
+Check jumping while in Wide Ledge:  fatally leap instead.
 <br>
-Instead of jumping while in Narrow ledge: fatally leap.
+Check jumping while in Narrow ledge: fatally leap instead.
 <br>
 
 <br>
@@ -319,11 +319,11 @@ The initial appearance of the moby ruby is &quot;<font color=#000080>On the floo
 <br>
 The later appearance of the moby ruby is  &quot;<font color=#000080>There is a moby ruby lying here.</font>&quot;
 <br>
-Instead of going west from Glacier Room when the player can see the glacier:
+Check going west from Glacier Room when the player can see the mass of ice:
 <br>
-say &quot;<font color=#000080>A mass of ice fills the western half of the room.</font>&quot;
+say &quot;<font color=#000080>A mass of ice fills the western half of the room.</font>&quot; instead.
 <br>
-Instead of throwing the torch at the mass of ice:
+Before throwing the ivory torch at the mass of ice:
 <br>
 say &quot;<font color=#000080>The torch hits the glacier and explodes into a great ball of flame, devouring the glacier.  The water from the melting glacier rushes downstream, carrying the torch with it.  In place of the glacier, there is a passageway leading west.</font>&quot;;
 <br>
@@ -331,13 +331,15 @@ remove the mass of ice from play;
 <br>
 change the printed name of the ivory torch to &quot;<font color=#000080>burned-out ivory torch</font>&quot;;
 <br>
-now the torch is not lit;
+now the ivory torch is not lit;
 <br>
-now the torch is non-flaming.
+move the ivory torch to Stream View;
 <br>
-Before dropping the torch when the player's command includes &quot;<font color=#000080>throw</font>&quot;:
+now the ivory torch is non-flaming instead.
 <br>
-try throwing the torch at the mass of ice instead.
+Before dropping the ivory torch when the player's command includes &quot;<font color=#000080>throw</font>&quot;:
+<br>
+try throwing the ivory torch at the mass of ice instead.
 <br>
 Understand &quot;<font color=#000080>burned-out</font>&quot; and &quot;<font color=#000080>burned out</font>&quot; as the ivory torch when the ivory torch is not lit.
 <br>
@@ -349,9 +351,9 @@ A nondrainable watersource called the pdl2 is in Stream View.
 <br>
 A dungeon called In Stream is dark.  The description of In Stream is &quot;<font color=#000080>You are on the gently flowing stream.  The upstream route is too narrow to  navigate and the downstream route is invisible due to twisting walls.  There is a narrow beach to land on.</font>&quot;
 <br>
-Instead of going up from In Stream, say &quot;<font color=#000080>The way is too narrow.</font>&quot;
+Check going up from In Stream: say &quot;<font color=#000080>The way is too narrow.</font>&quot; instead.
 <br>
-
+Check going north from Glacier Room: move the player to Stream View instead.
 <br>
 A coil of thin shiny wire is in Stream View.
 <br>
@@ -363,45 +365,45 @@ The wire coil is inflammable.
 <br>
 The size of the wire coil is 1.
 <br>
-Instead of inserting the coil of wire into the brick:
+Check inserting the coil of wire into the brick:
 <br>
 say &quot;<font color=#000080>You insert the fuse into the brick.</font>&quot;;
 <br>
-now the coil of wire is part of the brick.
+now the coil of wire is part of the brick instead.
 <br>
 Procedural rule when taking the coil of wire:
 <br>
         ignore the can't take component parts rule.
 <br>
-Instead of putting the coil of wire on the brick:
+Check putting the coil of wire on the brick:
 <br>
 say &quot;<font color=#000080>You insert the fuse into the brick.</font>&quot;;
 <br>
-now the coil of wire is part of the brick.
+now the coil of wire is part of the brick instead.
 <br>
 The later appearance of the coil of wire is &quot;<font color=#000080>There is a coil of thin shiny wire here.</font>&quot;
 <br>
-East of Stream View is Reservoir South.
+East of Stream View is Reservoir South. Check going west from Reservoir South:
+<br>
+move the player to Stream View instead.
 <br>
 Up from Reservoir South is northwest of a dungeon called Deep Canyon. 
 <br>
 South of Deep Canyon is northwest of Round Room. &quot;<font color=#000080>You are on the south edge of a deep canyon.  Passages lead off to the east, south, and northwest.  You can hear the sound of flowing water below.</font>&quot;
 <br>
-Instead of going northwest from Deep Canyon when the player is carrying the coffin:
+Check going northwest from Deep Canyon when the player is carrying the coffin:
 <br>
-  say &quot;<font color=#000080>The passage is too steep for carrying the coffin.</font>&quot;
+  say &quot;<font color=#000080>The passage is too steep for carrying the coffin.</font>&quot; instead.
 <br>
-Instead of going up from Deep Canyon when the player is carrying the coffin:
+Check going up from Deep Canyon when the player is carrying the coffin:
 <br>
-  say &quot;<font color=#000080>The stairs are too steep for carrying the coffin.</font>&quot;
+  say &quot;<font color=#000080>The stairs are too steep for carrying the coffin.</font>&quot; instead.
 <br>
 Southeast of Round Room is a dungeon called Winding Passage. The description of Winding Passage is &quot;<font color=#000080>This is a winding passage.  It seems that there is only an exit on the east end, although the whirring from the round room can be heard faintly to the north.</font>&quot;
 <br>
 Northwest of Winding Passage is nowhere.
 <br>
-Instead of going north from Winding Passage: say &quot;<font color=#000080>You hear the whir from the round room but can find no entrance.</font>&quot;
-<br>
-East of Winding Passage is Mirror Room No 1. The printed name of Mirror Room No 1 is &quot;<font color=#000080>Mirror Room</font>&quot;. The description of Mirror Room No 1 is &quot;<font color=#000080>This is a large square room with tall ceilings.  On the south wall is an enormous mirror which fills the entire wall.  There are exits on the other three sides of the room.</font>&quot;
+East of Winding Passage is a dungeon called Mirror Room No 1. The printed name of Mirror Room No 1 is &quot;<font color=#000080>Mirror Room</font>&quot;. The description of Mirror Room No 1 is &quot;<font color=#000080>This is a large square room with tall ceilings.  On the south wall is an enormous mirror which fills the entire wall.  There are exits on the other three sides of the room.</font>&quot;
 <br>
 An enormous mirror is in Mirror Room No 1.  It is scenery.
 <br>
@@ -417,7 +419,7 @@ Instead of touching or rubbing the enormous mirror:
 <br>
 Every turn when the player is not in the basket:
 <br>
-if the basket is in a VolcanoLedge and the braided wire has not been attached to a nonrope thing begin;
+if the basket is in a VolcanoLedge for the at least two turns and the braided wire has not been attached to a nonrope thing begin;
 <br>
   say &quot;<font color=#000080>The balloon floats away.  It seems to be ascending, due to its light load.</font>&quot;;
 <br>
@@ -425,7 +427,9 @@ if the basket is in a VolcanoLedge and the braided wire has not been attached to
 <br>
 end if.
 <br>
-
+Does the player mean tying the braided wire to something: it is very likely.
+<br>
+Does the player mean tying something to the braided wire: it is very likely.
 <br>
 Every turn when the player is in the basket and the player's command does not include &quot;<font color=#000080>launch</font>&quot;:
 <br>

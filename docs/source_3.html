@@ -23,7 +23,7 @@ A dead end is a kind of dungeon. A dead end usually has printed name &quot;<font
 <br>
 South of Troll Room is west of a maze called Maze 1. North of Maze 1 is Maze 1. East of Maze 1 is north of a maze called Maze 2. South of Maze 1 is south of a maze called Maze 3. North of Maze 3 is Maze 2. East of Maze 3 is a maze called Maze 4. East of Maze 2 is south of a dead end called DE1. North of Maze 4 is west of Maze 2.
 <br>
-North of a maze called Maze 5 is Maze 4.  A skeleton is here. &quot;<font color=#000080>A skeleton, probably the remains of a luckless adventurer, is here.</font>&quot; An old leather bag of coins is here. &quot;<font color=#000080>An old leather bag, bulging with coins is here.</font>&quot; A burned-out lantern is here. &quot;<font color=#000080>The deceased adventurer's useless lantern is here.</font>&quot; Understand &quot;<font color=#000080>useless</font>&quot; and &quot;<font color=#000080>lamp</font>&quot; as the burned-out lantern.  The printed name of the bag of coins is &quot;<font color=#000080>bag of coins</font>&quot;.
+North of a maze called Maze 5 is up from Maze 4.  A skeleton is here. &quot;<font color=#000080>A skeleton, probably the remains of a luckless adventurer, is here.</font>&quot; An old leather bag of coins is here. &quot;<font color=#000080>An old leather bag, bulging with coins is here.</font>&quot; A burned-out lantern is here. &quot;<font color=#000080>The deceased adventurer's useless lantern is here.</font>&quot; Understand &quot;<font color=#000080>useless</font>&quot; and &quot;<font color=#000080>lamp</font>&quot; as the burned-out lantern.  The printed name of the bag of coins is &quot;<font color=#000080>bag of coins</font>&quot;.
 <br>
 A set of keys is here.
 <br>
@@ -39,9 +39,9 @@ The size of the rusty knife is 20.
 <br>
 After taking the rusty knife when the player is carrying the sword: say &quot;<font color=#000080>As you pick up the rusty knife, your sword gives a single pulse of blinding blue light.</font>&quot;
 <br>
-Instead of attacking something with the rusty knife: say &quot;<font color=#000080>As the knife approaches its victim, your mind is submerged by an overmastering will.  Slowly, your hand turns, until the rusty blade is an inch from your neck.  The knife seems to sing as it savagely cuts your throat.</font>&quot;; end the game in death.
+Check attacking something with the rusty knife: say &quot;<font color=#000080>As the knife approaches its victim, your mind is submerged by an overmastering will.  Slowly, your hand turns, until the rusty blade is an inch from your neck.  The knife seems to sing as it savagely cuts your throat.</font>&quot;; end the game in death instead.
 <br>
-Instead of throwing the rusty knife at something: say &quot;<font color=#000080>As the knife approaches its victim, your mind is submerged by an overmastering will.  Slowly, your hand turns, until the rusty blade is an inch from your neck.  The knife seems to sing as it savagely cuts your throat.</font>&quot;; end the game in death.
+Check throwing the rusty knife at something: say &quot;<font color=#000080>As the knife approaches its victim, your mind is submerged by an overmastering will.  Slowly, your hand turns, until the rusty blade is an inch from your neck.  The knife seems to sing as it savagely cuts your throat.</font>&quot;; end the game in death instead.
 <br>
 
 <br>
@@ -61,7 +61,7 @@ Instead of switching on or switching off the burned-out lantern: say &quot;<font
 <br>
 The size of the burned-out lantern is 20.
 <br>
-After taking the coins for the first time: award 10 points; continue the action.
+After taking the coins for the first time: award 11 points; continue the action.
 <br>
 The case-points of the coins is 5.
 <br>
@@ -70,6 +70,8 @@ The size of the coins is 15.
 Southwest of Maze 5 is down from a maze called Maze 6. East of Maze 5 is a dead end.  West of Maze 6 is Maze 6. Up from Maze 6 is north of a maze called Maze 7. Northwest of Maze 7 is Maze 7. Southeast of Maze 7 is a east of a maze called Maze 8. West of Maze 8 is north of a maze called Maze 9. East of Maze 9 is south of Maze 7. Down from Maze 9 is east of a maze called Maze 10.  North from Maze 10 is a dead end. West of Maze 10 is Maze 5. Southwest from Maze 10 is a southwest of maze called Maze 11.  Northeast of Maze 11 is west of Maze 9. Down from Maze 11 is Maze 8. East of Maze 7 is Maze 11. West of Maze 11 is nowhere. Northwest of Maze 11 is Grating Room. The description of Grating Room is &quot;<font color=#000080>This is a small room near the maze.  There are twisty passages in the immediate vicinity. Above you is a [if the grating is open]open[end if]grating[if the grating is locked] locked with a skull-and-crossbones lock[end if][if the grating is open] with sunlight poring in[end if].</font>&quot; Understand &quot;<font color=#000080>grate</font>&quot; as the grating. The set of keys unlocks the grating. After going through the grating: now exit found is true; continue the action. West from Maze 7 is up from Maze 10. East of Maze 6 is a maze called Maze 12. Northeast of Maze 12 is DE1. Southwest of DE1 is nowhere. East of Maze 12 is northeast of a maze called Maze 13.  Southeast of Maze 12 is north of a dead end. West of Maze 13 is Maze 13. Up from Maze 12 is a northeast of a maze called Maze 14. Northwest of Maze 14 is Maze 14. South of Maze 14 is Maze 14. West of Maze 14 is west of a maze called Maze 15. South of Maze 12 is south of Maze 15. Northeast of Maze 15 is east of a dungeon called Cyclops Room. North of Cyclops Room is Strange Passage.
 <br>
 The description of Cyclops Room is &quot;<font color=#000080>This is a room with an exit on the west side, and a staircase leading up.</font>&quot;
+<br>
+
 <br>
 A man called the Cyclops is here. &quot;<font color=#000080>[cyclops text].</font>&quot;
 <br>
@@ -109,27 +111,23 @@ Instead of waking or attacking or poking the asleep Cyclops, say &quot;<font col
 <br>
 
 <br>
-Instead of attacking the basic Cyclops: say &quot;<font color=#000080>The cyclops ignores all injuries to his body with a shrug.</font>&quot;; now the cyclops is hungry.
+Check attacking the basic Cyclops: say &quot;<font color=#000080>The cyclops ignores all injuries to his body with a shrug.</font>&quot;; now the cyclops is hungry instead.
 <br>
-Instead of attacking the basic Cyclops with something: try attacking the Cyclops instead.
+Check attacking the basic Cyclops with something: try attacking the Cyclops instead. Check attacking the Cyclops when the Cyclops is hungry or when the Cyclops is thirsty: say &quot;<font color=#000080>Your actions don't appear to be doing much harm to the cyclops, but
 <br>
-Instead of attacking the Cyclops when the Cyclops is hungry or when the Cyclops is thirsty: say &quot;<font color=#000080>Your actions don't appear to be doing much harm to the cyclops, but
+</font><font color=#000080>they do not exactly lower your insurance premiums, either.</font>&quot; instead.
 <br>
-</font><font color=#000080>they do not exactly lower your insurance premiums, either.</font>&quot;
-<br>
-Instead of attacking the Cyclops with something when the Cyclops is hungry or when the Cyclops is thirsty: try attacking the Cyclops instead.
+Check attacking the Cyclops with something when the Cyclops is hungry or when the Cyclops is thirsty: try attacking the Cyclops instead.
 <br>
 Up from Cyclops Room is an open unopenable door called the staircase.
 <br>
 Understand &quot;<font color=#000080>stairs</font>&quot; as the staircase.
 <br>
-After entering the staircase for the first time:
-<br>
-award 25 points;
-<br>
-continue the action.
+The rval of Treasure Room is 25.
 <br>
 Treasure Room is a dungeon. The description of Treasure Room is &quot;<font color=#000080>This is a large room, whose north wall is solid granite.  A number of discarded bags, which crumble at your touch, are scattered about on the floor.  There is an exit down and what appears to be a newly created passage to the east.</font>&quot;
+<br>
+Up from the staircase is Treasure Room.
 <br>
 The thief is a man. Understand &quot;<font color=#000080>shady/suspicious</font>&quot; and &quot;<font color=#000080>ROBBER/CROOK/CRIMINAL/BANDIT</font>&quot; and  &quot;<font color=#000080>MODO/MAHU</font>&quot; and &quot;<font color=#000080>GENT/GENTLEMAN/MAN/INDIVIDUAL</font>&quot; as the thief.  The later appearance of the thief is &quot;<font color=#000080>There is a suspicious-looking individual, holding a bag, leaning against one wall.  He is armed with a vicious-looking stiletto.</font>&quot;
 <br>
@@ -141,7 +139,7 @@ After giving something to the thief:
 <br>
 The thief has a truth state called engrossed. 
 <br>
-Instead of attacking the unconsious thief with something:
+Check attacking the unconsious thief with something:
 <br>
 say &quot;<font color=#000080>The unconsious thief cannot defend himself; he dies.</font>&quot;;
 <br>
@@ -153,13 +151,15 @@ say  &quot;<font color=#000080>Almost as soon as the hief breathes his last brea
 <br>
   remove the thief from play;
 <br>
-  if the number of valuble things had by the thief is greater than 0 begin;
+if the number of valuble things had by the thief is greater than 0 begin;
 <br>
   say &quot;<font color=#000080>His booty remains:  [a list of valuble things carried by the thief]</font>&quot;;
 <br>
-  now every thing carried by the thief is in the location;
+  now every thing carried by the thief is in the location instead;
 <br>
-end if.
+end if;
+<br>
+do nothing instead.
 <br>
 Escaping is an action applying to nothing. 
 <br>
@@ -173,45 +173,7 @@ Carry out someone escaping:
 <br>
     let place be a random dungeon which is adjacent to the space; 
 <br>
-    move the person asked to the space.
-<br>
-Every turn:
-<br>
-if the thief carries the jewel-encrusted egg, now the jewel-encrusted egg is open;
-<br>
-if the player is in Treasure Room and the thief is not in Treasure Room and the thief is on-stage begin;
-<br>
-  say &quot;<font color=#000080>You hear a scream of anguish as you violate the robber's hideaway.  Using passages unknown to you, he rushes to its defense.</font>&quot;;
-<br>
-  move the thief to Treasure Room;
-<br>
-end if;
-<br>
-if the thief is on-stage begin;
-<br>
-if the thief cannot see the player, try the thief escaping;
-<br>
-if the thief is not in Treasure Room and the player is in the holder of the thief begin;
-<br>
-if the thief can see something visible begin;
-<br>
-  say &quot;<font color=#000080>A seedy-looking individual with a large bag just wandered through the room.  On the way through, he quietly abstracted all valuables from the room and from your possession, mumbling something about 'Doing unto others before...'</font>&quot;;
-<br>
-  now every valuble thing had by the player is had by the thief;
-<br>
-  now every visible valuble thing in the location is had by the thief;
-<br>
-else;
-<br>
-  say &quot;<font color=#000080>A seedy-looking individual with a large bag just wandered through the room.  Finding nothing of value, he left disgruntled.</font>&quot;;
-<br>
-end if;
-<br>
-  try the thief escaping;
-<br>
-end if;
-<br>
-end if.
+    move the person asked to place.
 <br>
 Carry out attacking the thief with something:
 <br>
@@ -279,7 +241,7 @@ Every turn when the thief is on-stage:
 <br>
 end if.
 <br>
-Every turn when the player can see the consious thief:
+Every turn when the player can see the consious thief and the player is in Treasure Room:
 <br>
   if the engrossed of the thief is false, strike a blow from the thief.
 <br>
@@ -287,11 +249,7 @@ Every turn when the thief is unconsious and the thief is on-stage and the player
 <br>
   now the thief is consious.
 <br>
-Every turn:
-<br>
- if the thief has been unconsious for four turns and the player can see the thief, say &quot;<font color=#000080>The thief returns to consiousness.</font>&quot;;
-<br>
-if the engrossed of the thief has been true for two turn, change the engrossed of the thief to false.
+
 <br>
 To strike a blow from the thief:
 <br>
@@ -461,25 +419,25 @@ else;
 <br>
 end if.
 <br>
-Instead of going from a puzzle when a block is in the room noun from the location:
+Check going from a puzzle when a block is in the room noun from the location:
 <br>
   print the you can't go message instead.
 <br>
-Instead of going up from Puzzle10:
+Check going up from Puzzle10:
 <br>
- if a ladder is not in Puzzle11 begin;
-<br>
-   say &quot;<font color=#000080>The exit is too far above your head.</font>&quot;;
-<br>
- otherwise;
+ if the Ladder0 is in Puzzle11 begin;
 <br>
    say &quot;<font color=#000080>With the help of the ladder, you exit the puzzle.</font>&quot;;
 <br>
    continue the action;
 <br>
+ otherwise;
+<br>
+   say &quot;<font color=#000080>The exit is too far above your head.</font>&quot; instead;
+<br>
  end if.
 <br>
-Instead of going down from Small Square Room when a sandstone block is in Puzzle10: say &quot;<font color=#000080>Your way is blocked by sandstone.</font>&quot;
+Check going down from Small Square Room when a sandstone block is in Puzzle10: say &quot;<font color=#000080>Your way is blocked by sandstone.</font>&quot; instead.
 <br>
 
 <br>
@@ -539,7 +497,7 @@ South of Puzzle1 is a puzzle called Puzzle9.  In Puzzle9 is a marble block.  Nor
 <br>
 South of Puzzle9 is a puzzle called Puzzle17. In Puzzle17 is a marble block. Northeast of Puzzle17 is Puzzle10. East of Puzzle17 is a puzzle called Puzzle18. In Puzzle18 is a sandstone block.  North of Puzzle18 is Puzzle10.  Northwest of Puzzle18 is Puzzle9.  Northeast of Puzzle18 is Puzzle11. East of Puzzle18 is a puzzle called Puzzle19.  North of Puzzle19 is Puzzle11.  Northwest of Puzzle19 is Puzzle10.  Northeast of Puzzle19 is Puzzle12. East of Puzzle19 is a puzzle called Puzzle20.  In Puzzle20 is a marble block.  North of Puzzle20 is Puzzle12. Northwest of Puzzle20 is Puzzle11.  Northeast of Puzzle20 is Puzzle13.  East of Puzzle20 is a puzzle called Puzzle21.
 <br>
-North of Puzzle21 is Puzzle13.  Northwest of Puzzle21 is Puzzle12.  Northeast of Puzzle21 is Puzzle14. East of Puzzle21 is a puzzle called Puzzle22.  In Puzzle22 is a ladder.  North of Puzzle22 is Puzzle14.  Northwest of Puzzle22 is Puzzle13.  Northeast of Puzzle22 is Puzzle15.  East of Puzzle22 is a puzzle called Puzzle23. North of Puzzle23 is Puzzle15.  Northwest of Puzzle23 is Puzzle14.  Northeast of Puzzle23 is Puzzle16.  East of Puzzle23 is a puzzle called Puzzle24. North of Puzzle24 is Puzzle16.  In Puzzle24 is a marble block. Northwest of Puzzle24 is Puzzle15.
+North of Puzzle21 is Puzzle13.  Northwest of Puzzle21 is Puzzle12.  Northeast of Puzzle21 is Puzzle14. East of Puzzle21 is a puzzle called Puzzle22.  In Puzzle22 is a ladder called the Ladder0.  North of Puzzle22 is Puzzle14.  Northwest of Puzzle22 is Puzzle13.  Northeast of Puzzle22 is Puzzle15.  East of Puzzle22 is a puzzle called Puzzle23. North of Puzzle23 is Puzzle15.  Northwest of Puzzle23 is Puzzle14.  Northeast of Puzzle23 is Puzzle16.  East of Puzzle23 is a puzzle called Puzzle24. North of Puzzle24 is Puzzle16.  In Puzzle24 is a marble block. Northwest of Puzzle24 is Puzzle15.
 <br>
 
 <br>
@@ -913,25 +871,25 @@ Carry out odysseusing when the player can see the Cyclops and the Cyclops is not
 <br>
 Instead of doing something to the cyclops when the cyclops is gone: print the you can't see message instead.
 <br>
-Instead of doing something when the cyclops is the second noun and the cyclops is gone: say &quot;<font color=#000080>I don't see any cylops here.</font>&quot;
+Instead of doing something when the cyclops is the second noun and the cyclops is gone: say &quot;<font color=#000080>I don't see any cylcops here.</font>&quot; instead.
 <br>
-Instead of going north from Cyclops Room when the cyclops is in Cyclops Room and the cyclops is not gone: print the you can't go message.
+Check going north from Cyclops Room when the cyclops is in Cyclops Room and the cyclops is not gone: print the you can't go message instead.
 <br>
-Instead of taking the cyclops when the cyclops is not gone: say &quot;<font color=#000080>The cyclops does not take to kindly to being grabbed.</font>&quot;
+Check taking the cyclops when the cyclops is not gone: say &quot;<font color=#000080>The cyclops does not take to kindly to being grabbed.</font>&quot; instead.
 <br>
-Instead of going through the staircase when the cyclops is in Cyclops Room and the cyclops is not asleep and the cyclops is not gone: say &quot;<font color=#000080>The cyclops doesn't look like he'll let you pass.</font>&quot;
+Check going through the staircase when the cyclops is in Cyclops Room and the cyclops is not asleep and the cyclops is not gone: say &quot;<font color=#000080>The cyclops doesn't look like he'll let you pass.</font>&quot; instead.
 <br>
-The staircase is scenery. Instead of climbing the staircase: try entering the noun instead.
+The staircase is scenery. Check climbing the staircase: try entering the noun instead.
 <br>
-Instead of giving something to the cyclops when the cyclops is not gone and the cyclops is not asleep: say &quot;<font color=#000080>The cyclops may be hungry, but there is a limit.</font>&quot;.
+Check giving something to the cyclops when the cyclops is not gone and the cyclops is not asleep: say &quot;<font color=#000080>The cyclops may be hungry, but there is a limit.</font>&quot; instead.
 <br>
-Instead of giving the bottle to the cyclops when the cyclops is not thirsty and the quantity of water is in the bottle or giving the water to the cyclops when the cyclops is not thirsty: say &quot;<font color=#000080>The cyclops is apparently not thirsty and refuses your generosity.</font>&quot;
+Check giving the bottle to the cyclops when the cyclops is not thirsty and the quantity of water is in the bottle or giving the water to the cyclops when the cyclops is not thirsty: say &quot;<font color=#000080>The cyclops is apparently not thirsty and refuses your generosity.</font>&quot; instead.
 <br>
-Instead of giving the bottle to the cyclops when the cyclops is thirsty and the cyclops is not gone and the quantity of water is in the bottle or giving the water to the cyclops when the cyclops is thirsty and the cyclops is not gone: say &quot;<font color=#000080>The cyclops looks tired and quickly falls fast asleep (what did you put in that drink, anyway?).</font>&quot;; now the cyclops is asleep; remove the bottle from play.
+Check giving the bottle to the cyclops when the cyclops is thirsty and the cyclops is not gone and the quantity of water is in the bottle or giving the water to the cyclops when the cyclops is thirsty and the cyclops is not gone: say &quot;<font color=#000080>The cyclops looks tired and quickly falls fast asleep (what did you put in that drink, anyway?).</font>&quot;; now the cyclops is asleep; remove the bottle from play instead.
 <br>
-Instead of giving the garlic to the cyclops when the cyclops is not gone: say &quot;<font color=#000080>The cyclops is not so stupid as to eat that!</font>&quot;
+Check giving the garlic to the cyclops when the cyclops is not gone: say &quot;<font color=#000080>The cyclops is not so stupid as to eat that!</font>&quot; instead.
 <br>
-Instead of giving the lunch to the cyclops when the cyclops is not gone: say &quot;<font color=#000080>The cyclops says, 'Mmm mmm!  I love hot peppers!  But oh, could I use a drink.  Perhaps I could drink the blood of that thing.' From the gleam in his eye, it could be surmised that you are 'that thing'.</font>&quot;; now the cyclops is thirsty; remove the bottle from play.
+Check giving the lunch to the cyclops when the cyclops is not gone: say &quot;<font color=#000080>The cyclops says, 'Mmm mmm!  I love hot peppers!  But oh, could I use a drink.  Perhaps I could drink the blood of that thing.' From the gleam in his eye, it could be surmised that you are 'that thing'.</font>&quot;; now the cyclops is thirsty; remove the bottle from play instead.
 <br>
 The description of Strange Passage is &quot;<font color=#000080>This is a long passage.  To the south is one entrance.  On the east there is an old wooden door with a large hole in it (about
 <br>

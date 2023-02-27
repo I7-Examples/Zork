@@ -149,11 +149,11 @@ if n is &quot;<font color=#000080>Y</font>&quot;, decide on 25;
 <br>
 if n is &quot;<font color=#000080>Z</font>&quot;, decide on 26.
 <br>
-The alphabet is an indexed text variable.  The alphabet is always &quot;<font color=#000080>ABCDEFGHIJKLMNOPQRSTVWXYZ</font>&quot;.
+The alphabet is an indexed text variable.  The alphabet is always &quot;<font color=#000080>ABCDEFGHIJKLMNOPQRSTUVWXYZ</font>&quot;.
 <br>
-Instead of exiting when the player is in a river:
+Check exiting when the player is in a river:
 <br>
-  say &quot;<font color=#000080>You realize, just in time, that disembarking here would probably be fatal.</font>&quot;
+  say &quot;<font color=#000080>You realize, just in time, that disembarking here would probably be fatal.</font>&quot; instead.
 <br>
 Incanting is an action applying to one topic.  Understand &quot;<font color=#000080>incant [text]</font>&quot; as incanting.
 <br>
@@ -253,11 +253,9 @@ Endgame flag is a truth state that varies.  Endgame flag is false.
 <br>
 Top of Stairs is a room.  The description of Top of Stairs is &quot;<font color=#000080>You are standing at the top of a flight of stairs that lead down to a passage below.  Dim light, as from torches, can be seen in the passage.  Behind you the stairs lead into untouched rock.</font>&quot;
 <br>
-After looking while in Top of Stairs for the first time:
+The rval of Top of Stairs is 10.
 <br>
-award 10 points; continue the action.
-<br>
-Instead of going south from Top of Stairs:  say &quot;<font color=#000080>The wall is solid rock.</font>&quot;
+Check going south from Top of Stairs:  say &quot;<font color=#000080>The wall is solid rock.</font>&quot; instead.
 <br>
 North of Top of Stairs is Stone Room.  Down from Top of Stairs is Stone Room.
 <br>
@@ -273,11 +271,11 @@ Beam stopped is a truth state that varies.  Beam stopped is false.
 <br>
 Mrint is a number that varies.  Mrint is -1.
 <br>
-Instead of pushing the redbutton:
+Check pushing the redbutton:
 <br>
   if the depressed of the redbutton is true begin;
 <br>
-    say &quot;<font color=#000080>The button is already depressed.</font>&quot;;
+    say &quot;<font color=#000080>The button is already depressed.</font>&quot; instead;
 <br>
   else;
 <br>
@@ -285,31 +283,17 @@ Instead of pushing the redbutton:
 <br>
     if beam stopped is false begin;
 <br>
-      say &quot;<font color=#000080>The button pops back out.</font>&quot;;
+      say &quot;<font color=#000080>The button pops back out.</font>&quot; instead;
 <br>
     else;
 <br>
       change mirror open to true;
 <br>
-      change mrint to 7;
+      change mrint to 7 instead;
 <br>
     end if;
 <br>
  end if.
-<br>
-Every turn:
-<br>
-  decrease mrint by 1;
-<br>
-  if mrint is 0 begin;
-<br>
-    change mirror open to true;
-<br>
-    if the player can see the redbutton, say &quot;<font color=#000080>The button pops back to its original position.</font>&quot;;
-<br>
-   change the depressed of the redbutton to false;
-<br>
-  end if.
 <br>
 North of Stone Room is a room called Small Room.  The description of Small Room is &quot;<font color=#000080>You are in a small room, with narrow passages exiting to the north
 <br>
@@ -319,7 +303,7 @@ North of Stone Room is a room called Small Room.  The description of Small Room 
 <br>
 A red beam of light is in Small Room.  The red beam of light is scenery.
 <br>
-Instead of destroying the beam of light with something:
+Check destroying the beam of light with something:
 <br>
 try dropping the second noun instead.
 <br>
@@ -333,9 +317,9 @@ After taking the sword when beam stopped is true and the player can see the beam
 <br>
   change beam stopped to false.
 <br>
-Instead of taking the beam of light:
+Check taking the beam of light:
 <br>
-  say &quot;<font color=#000080>No doubt you have a bottle of moonbeams as well.</font>&quot;
+  say &quot;<font color=#000080>No doubt you have a bottle of moonbeams as well.</font>&quot; instead.
 <br>
 Check saving the game when endgame flag is true: say &quot;<font color=#000080>Saves are not permitted during the end game.</font>&quot; instead. 
 <br>
@@ -343,9 +327,11 @@ Check saving the game when endgame flag is true: say &quot;<font color=#000080>S
 <br>
 North of Small Room is a room called Hallway.  The description of Hallway is &quot;<font color=#000080>This is part of the long hallway.  The east and west walls are dressed stone.  In the center of the hall is a shallow stone channel. In the center of the room the channel widens into a large hole around which is engraved a compass rose. A passage enters from the south. A large mirror fills the north side of the hallway.[if mirror open is true]  The mirror is mounted on a panel which has been opened outward.[end if]</font>&quot;.
 <br>
-Instead of going inside when the player is in Hallway and mirror open is true and Room Number is 1:
+The miror is a thing in Hallway.  The miror is scenery.  Understand &quot;<font color=#000080>mirror</font>&quot; and &quot;<font color=#000080>panel</font>&quot; as the miror.  Instead of entering the miror: try going inside instead.
 <br>
-move the player to InsideMirror.
+Check going inside when the player is in Hallway and mirror open is true and Room Number is 1:
+<br>
+move the player to InsideMirror instead.
 <br>
 Mirror open is a truth state that varies. Mirror open is false.
 <br>
@@ -419,7 +405,7 @@ Understand &quot;<font color=#000080>wall</font>&quot; as the yellow panel.  Und
 <br>
 Understand &quot;<font color=#000080>yellow</font>&quot; as the red panel.  Understand &quot;<font color=#000080>black</font>&quot; as the white panel.
 <br>
-Instead of pushing the red panel:
+Check pushing the red panel:
 <br>
   if the pole up is true begin; 
 <br>
@@ -459,15 +445,15 @@ else if mirror direction is south;
 <br>
 end if;
 <br>
-say &quot;<font color=#000080>The arrow is now pointing [Mirror direction].</font>&quot;;
+say &quot;<font color=#000080>The arrow is now pointing [Mirror direction].</font>&quot; instead;
 <br>
   else;
 <br>
-    say &quot;<font color=#000080>The short pole stops the structure from rotating.</font>&quot;;
+    say &quot;<font color=#000080>The short pole stops the structure from rotating.</font>&quot; instead;
 <br>
 end if.
 <br>
-Instead of pushing the white panel:
+Check pushing the white panel:
 <br>
   if the pole up is true begin; 
 <br>
@@ -505,47 +491,47 @@ else if mirror direction is south;
 <br>
   change mirror direction to south;end if;
 <br>
-say &quot;<font color=#000080>The arrow is now pointing [Mirror direction].</font>&quot;;
+say &quot;<font color=#000080>The arrow is now pointing [Mirror direction].</font>&quot; instead;
 <br>
   else;
 <br>
-    say &quot;<font color=#000080>The short pole stops the structure from rotating.</font>&quot;;
+    say &quot;<font color=#000080>The short pole stops the structure from rotating.</font>&quot; instead;
 <br>
 end if.
 <br>
-Instead of lifting the short pole:
+Check lifting the short pole:
 <br>
  if pole up is true begin;
 <br>
-   say &quot;<font color=#000080>The pole cannot be raised further.</font>&quot;;
+   say &quot;<font color=#000080>The pole cannot be raised further.</font>&quot; instead;
 <br>
  else;
 <br>
    say &quot;<font color=#000080>The pole is now slightly above the floor.</font>&quot;;
 <br>
-   change pole up to true;
+   change pole up to true instead;
 <br>
  end if.
 <br>
-Instead of lowering the short pole:
+Check lowering the short pole:
 <br>
  if pole up is true begin;
 <br>
    say &quot;<font color=#000080>The pole is lowered into the channel.</font>&quot;;
 <br>
-   change pole up to false;
+   change pole up to false instead;
 <br>
  else;
 <br>
-   say &quot;<font color=#000080>The pole cannot be lowered further.</font>&quot;;
+   say &quot;<font color=#000080>The pole cannot be lowered further.</font>&quot; instead;
 <br>
  end if.
 <br>
-Instead of pushing the mahogany panel:
+Check pushing the mahogany panel:
 <br>
 if mirror direction is not north and mirror direction is not south begin;
 <br>
-  say &quot;<font color=#000080>The structure rocks back and forth slightly but doesn't move.</font>&quot;;
+  say &quot;<font color=#000080>The structure rocks back and forth slightly but doesn't move.</font>&quot; instead;
 <br>
 else if mirror direction is north;
 <br>
@@ -557,31 +543,31 @@ say &quot;<font color=#000080>The structure wobbles as it moves, alerting the Gu
 <br>
 say &quot;<font color=#000080>Suddenly, the Guardians realize that someone is trying to sneak by them in the structure.  They awake and, in perfect unison, hammer the box and its contents (including you) to pulp.  Satisfied, they then resume their posts.[paragraph break]</font>&quot;;
 <br>
-end the game in death;
+end the game in death instead;
 <br>
 else if pole up is true;
 <br>
   if room number is 4 begin;
 <br>
-    say &quot;<font color=#000080>The structure has reached the end of the stone channel and won't budge.</font>&quot;;
+    say &quot;<font color=#000080>The structure has reached the end of the stone channel and won't budge.</font>&quot; instead;
 <br>
   else if room number is 3;
 <br>
     say &quot;<font color=#000080>The structure wobbles north and stops over another compass rose.</font>&quot;;
 <br>
-    change room number to 4;
+    change room number to 4 instead;
 <br>
   else if room number is 2;
 <br>
     say &quot;<font color=#000080>The structure wobbles north and stops over another compass rose.</font>&quot;;
 <br>
-    change room number to 3;
+    change room number to 3 instead;
 <br>
    else if room number is 1;
 <br>
      say &quot;<font color=#000080>The structure wobbles north and stops over another compass rose.</font>&quot;;
 <br>
-     change room number to 3;
+     change room number to 2 instead;
 <br>
    end if;
 <br>
@@ -589,25 +575,25 @@ else;
 <br>
   if room number is 4 begin;
 <br>
-    say &quot;<font color=#000080>The structure has reached the end of the stone channel and won't budge.</font>&quot;;
+    say &quot;<font color=#000080>The structure has reached the end of the stone channel and won't budge.</font>&quot; instead;
 <br>
   else if room number is 3;
 <br>
      say &quot;<font color=#000080>The structure slides north and stops over another compass rose.</font>&quot;;
 <br>
-    change room number to 4;
+    change room number to 4 instead;
 <br>
   else if room number is 2;
 <br>
      say &quot;<font color=#000080>The structure slides north and stops over another compass rose.</font>&quot;;
 <br>
-    change room number to 3;
+    change room number to 3 instead;
 <br>
    else if room number is 1;
 <br>
      say &quot;<font color=#000080>The structure slides north and stops over another compass rose.</font>&quot;;
 <br>
-     change room number to 2;
+     change room number to 2 instead;
 <br>
 end if;
 <br>
@@ -623,7 +609,7 @@ say &quot;<font color=#000080>The structure wobbles as it moves, alerting the Gu
 <br>
 say &quot;<font color=#000080>Suddenly, the Guardians realize that someone is trying to sneak by them in the structure.  They awake and, in perfect unison, hammer the box and its contents (including you) to pulp.  Satisfied, they then resume their posts.[paragraph break]</font>&quot;;
 <br>
-end the game in death;
+end the game in death instead;
 <br>
 else if pole up is true;
 <br>
@@ -635,11 +621,13 @@ else if pole up is true;
 <br>
     say &quot;<font color=#000080>The structure wobbles south and stops over another compass rose.</font>&quot;;
 <br>
-    change room number to 1;
+    change room number to 1 instead;
 <br>
   else if room number is 3;
 <br>
     say &quot;<font color=#000080>The structure wobbles south and stops over another compass rose.</font>&quot;;
+<br>
+    change room number to 2 instead;
 <br>
    end if;
 <br>
@@ -647,25 +635,25 @@ else;
 <br>
   if room number is 1 begin;
 <br>
-    say &quot;<font color=#000080>The structure has reached the end of the stone channel and won't budge.</font>&quot;;
+    say &quot;<font color=#000080>The structure has reached the end of the stone channel and won't budge.</font>&quot; instead;
 <br>
   else if room number is 2;
 <br>
      say &quot;<font color=#000080>The structure slides south and stops over another compass rose.</font>&quot;;
 <br>
-    change room number to 1;
+    change room number to 1 instead;
 <br>
   else if room number is 3;
 <br>
      say &quot;<font color=#000080>The structure slides south and stops over another compass rose.</font>&quot;;
 <br>
-    change room number to 2;
+    change room number to 2 instead;
 <br>
    else if room number is 4;
 <br>
      say &quot;<font color=#000080>The structure slides south and stops over another compass rose.</font>&quot;;
 <br>
-     change room number to 3;
+     change room number to 3 instead;
 <br>
 end if;
 <br>
@@ -681,7 +669,7 @@ Hallway2 is a room. The printed name of Hallway2 is &quot;<font color=#000080>Na
 <br>
 </font><font color=#000080>which is engraved a compass rose.The north side of the room is divided by a wooden wall into small hallways to the northeast and northwest.</font>&quot;
 <br>
-Instead of pushing the pine panel:
+Check pushing the pine panel:
 <br>
 if room number is 4 and mirror direction is north begin;
 <br>
@@ -691,7 +679,7 @@ say &quot;<font color=#000080>The Guardians awake and, in perfect unison, destro
 <br>
 </font><font color=#000080>their stone bludgeons.  Satisfied, they resume their posts.</font>&quot;;
 <br>
-end the game in death;
+end the game in death instead;
 <br>
 else if room number is 2 and mirror direction is south;
 <br>
@@ -701,7 +689,7 @@ say &quot;<font color=#000080>The Guardians awake and, in perfect unison, destro
 <br>
 </font><font color=#000080>their stone bludgeons.  Satisfied, they resume their posts.</font>&quot;;
 <br>
-end the game in death;
+end the game in death instead;
 <br>
 else if room number is 3;
 <br>
@@ -711,7 +699,7 @@ say &quot;<font color=#000080>The Guardians awake and, in perfect unison, destro
 <br>
 </font><font color=#000080>their stone bludgeons.  Satisfied, they resume their posts.</font>&quot;;
 <br>
-end the game in death;
+end the game in death instead;
 <br>
 else if mirror direction is not north and mirror direction is not south;
 <br>
@@ -721,39 +709,27 @@ else;
 <br>
 say &quot;<font color=#000080>The pine wall swings open.</font>&quot;;
 <br>
-change mirror open to true;
+change mirror open to true instead;
 <br>
 end if.
 <br>
-Every turn:
-<br>
- if the player is in InsideMirror and mirror open has been true for three turns begin;
-<br>
-  say &quot;<font color=#000080>The mirror quietly swings shut.</font>&quot;;
-<br>
-  change mirror open to false;
-<br>
- end if.
-<br>
-Instead of exiting:
-<br>
-if the player is not in InsideMirror, continue the action;
+Check exiting while in InsideMirror:
 <br>
 if mirror open is false begin;
 <br>
-  say &quot;<font color=#000080>There is no way out.</font>&quot;;
+  say &quot;<font color=#000080>There is no way out.</font>&quot; instead;
 <br>
 else if room number is 1;
 <br>
-  move the player to Hallway;
+  move the player to Hallway instead;
 <br>
 else if room number is 2;
 <br>
-  move the player to Hallway2;
+  move the player to Hallway2 instead;
 <br>
 else;
 <br>
-  move the player to Hallway4;
+  move the player to Hallway4 instead;
 <br>
 end if.
 <br>
@@ -779,11 +755,7 @@ say &quot;<font color=#000080>The Guardians awake and, in perfect unison, destro
 <br>
 end the game in death.
 <br>
-After looking while in InsideMirror for the first time:
-<br>
-award 15 points;
-<br>
-continue the action.
+The rval of InsideMirror is 15.
 <br>
 Hallway4 is a room.  The printed name of Hallway4 is &quot;<font color=#000080>Dungeon Entrance</font>&quot;.  The description of Hallway4 is &quot;<font color=#000080>This is a north-south hallway which ends in a large wooden door. The south side of the room is divided by a wooden wall into small hallways to the southeast and southwest.</font>&quot;
 <br>
@@ -834,22 +806,6 @@ say &quot;<font color=#000080>The dungeon master is taken momentarily by surpris
 end the game in death.
 <br>
 Question number is a number that varies.  Question number is usually 0.
-<br>
-Every turn:
-<br>
-if question number is 1 for the first turn begin;
-<br>
-  say  &quot;<font color=#000080>The booming voice asks: From which room can one enter the robber's hideaway without passing through the cyclops room?</font>&quot;;
-<br>
-else if question number is 2 for the first turn;
-<br>
-  say &quot;<font color=#000080>The booming voice asks: Besides the Temple, to which room is it possible to go from the Altar?</font>&quot;;
-<br>
-else if question number is 3 for the first turn;
-<br>
-   say &quot;<font color=#000080>The booming voice asks: What can be done to the Mirror that is useful?</font>&quot;;
-<br>
-end if.
 <br>
 Instead of answering the dungeon master that something:
 <br>
@@ -987,19 +943,343 @@ Tries left is a number that varies.  Tries left is usually 4.
 <br>
 Every turn:
 <br>
+let aaa be the rval of the location;
+<br>
+award aaa points;
+<br>
+change the rval of the location to 0;
+<br>
+ if the thief has been unconsious for four turns and the player can see the thief, say &quot;<font color=#000080>The thief returns to consiousness.</font>&quot;;
+<br>
+if the engrossed of the thief has been true for two turn, change the engrossed of the thief to false;
+<br>
+if the player has been in Cage for the tenth turn begin;
+<br>
+ say &quot;<font color=#000080>Time passes...and you die from some obscure poisoning.</font>&quot;;
+<br>
+ end the game in death;
+<br>
+end if;
+<br>
+ if the player is in InsideMirror and mirror open has been true for three turns begin;
+<br>
+  say &quot;<font color=#000080>The mirror quietly swings shut.</font>&quot;;
+<br>
+  change mirror open to false;
+<br>
+ end if;
+<br>
+if question number is 1 and question number was not 1 begin;
+<br>
+  say  &quot;<font color=#000080>The booming voice asks: From which room can one enter the robber's hideaway without passing through the cyclops room?</font>&quot;;
+<br>
+else if question number is 2 and question number was not 2;
+<br>
+  say &quot;<font color=#000080>The booming voice asks: Besides the Temple, to which room is it possible to go from the Altar?</font>&quot;;
+<br>
+else if question number is 3 and question number was not 3;
+<br>
+   say &quot;<font color=#000080>The booming voice asks: What can be done to the Mirror that is useful?</font>&quot;;
+<br>
+end if;
+<br>
+if the thief carries the jewel-encrusted egg, now the jewel-encrusted egg is open;
+<br>
+if the player is in Treasure Room and the thief is not in Treasure Room and the thief is on-stage begin;
+<br>
+  say &quot;<font color=#000080>You hear a scream of anguish as you violate the robber's hideaway.  Using passages unknown to you, he rushes to its defense.</font>&quot;;
+<br>
+  move the thief to Treasure Room;
+<br>
+end if;
+<br>
+if the thief is on-stage begin;
+<br>
+if the thief cannot see the player, try the thief escaping;
+<br>
+if the thief is not in Treasure Room and the player is in the holder of the thief begin;
+<br>
+if the thief can see a visible valuble thing which is not held by the thief begin;
+<br>
+  say &quot;<font color=#000080>A seedy-looking individual with a large bag just wandered through the room.  On the way through, he quietly abstracted all valuables from the room and from your possession, mumbling something about 'Doing unto others before...'</font>&quot;;
+<br>
+  now every valuble thing had by the player is had by the thief;
+<br>
+  now every visible valuble thing in the location is had by the thief;
+<br>
+  try the thief escaping;
+<br>
+else;
+<br>
+  say &quot;<font color=#000080>A seedy-looking individual with a large bag just wandered through the room.  Finding nothing of value, he left disgruntled.</font>&quot;;
+<br>
+end if;
+<br>
+  try the thief escaping;
+<br>
+end if;
+<br>
+end if;
+<br>
   if follow is true and the player is not in the holder of the dungeon master begin;
 <br>
     say &quot;<font color=#000080>The dungeon master follows you.</font>&quot;;
 <br>
     move the dungeon master to the holder of the player;
 <br>
-  end if.
+  end if;
 <br>
-After going through the large wooden door for the first time:
+  decrease mrint by 1;
 <br>
-award 20 points;
+  if mrint is 0 begin;
 <br>
-continue the action.
+    change mirror open to true;
+<br>
+    if the player can see the redbutton, say &quot;<font color=#000080>The button pops back to its original position.</font>&quot;;
+<br>
+   change the depressed of the redbutton to false;
+<br>
+  end if;
+<br>
+if the player has been in Vault for exactly 4 turns begin; say &quot;<font color=#000080>A metallic voice says, 'Hello, Intruder!  Your unauthorized presence in the vault area of the Bank of Zork has set off all sorts of nasty surprises, several of which seem to have been fatal.  This message brought to you by the Frobozz Magic Alarm Company.'</font>&quot;; end the game in death; end if;
+<br>
+if gnome flag is true and the player has been in Small Room for exactly 4 turns begin; say &quot;<font color=#000080>An epicene Gnome of Zurich, wearing a three-piece suit and carrying a
+<br>
+</font><font color=#000080> safety deposit box, materializes in the room.  'You seem to have
+<br>
+</font><font color=#000080> forgotten to deposit your valuables,' he says, tapping the lid of the
+<br>
+</font><font color=#000080> box impatiently.  'We don't usually allow customers to use the boxes
+<br>
+</font><font color=#000080> here, but we can make this ONE exception, I suppose...'  He looks
+<br>
+</font><font color=#000080> askance at you over his wire-rimmed bifocals.</font>&quot;; move the Gnome of Zurich to Small Room; change gnome flag to false; end if;
+<br>
+if the player is in Grating Room, now the grating is revealed;
+<br>
+if the location is the bad place and the brick is off-stage, foo;
+<br>
+if the number of moves from the location to the bad place is 1 and the brick is off-stage, foo;
+<br>
+if squish clock is 0 begin;
+<br>
+change the description of the bad place to &quot;<font color=#000080>[pizza]</font>&quot;;
+<br>
+if the player is in the bad place begin;
+<br>
+  say &quot;<font color=#000080>The room trembles and 50,000 pounds of rock fall on you, turning you into a pancake.  [if the player is outside]Meteors, no doubt.[end if]</font>&quot;;
+<br>
+  end the game in death;
+<br>
+else;
+<br>
+  say &quot;<font color=#000080>You may recall your recent explosion.  Well, probably as a result of
+<br>
+</font><font color=#000080>that, you hear an ominous rumbling, as if one of the rooms in the
+<br>
+</font><font color=#000080>dungeon has collapsed.</font>&quot;;
+<br>
+   <font color=#404040><sup><a href="#note1">[1]</a></sup></font>
+<br>
+end if;
+<br>
+end if;
+<br>
+decrease squish clock by 1;
+<br>
+decrease ledge clock by 1;
+<br>
+if ledge clock is 3, say &quot;<font color=#000080>You may recall your recent explosion.  Well, probably as a result of that, you hear an ominous rumbling, as if one of the rooms in the
+<br>
+</font><font color=#000080>dungeon has collapsed.</font>&quot;;
+<br>
+if ledge clock is 0 begin;
+<br>
+  if the player is in the basket and the basket is in Wide Ledge begin;
+<br>
+    if the braided wire is attached to the tiny hook begin;
+<br>
+      say &quot;<font color=#000080>The ledge collapses, probably as a result of the explosion.  A large
+<br>
+</font><font color=#000080>chunk of it, which is attached to the hook, drags you down to the
+<br>
+</font><font color=#000080>ground.  Fatally.</font>&quot;;
+<br>
+      end the game in death;
+<br>
+    else;
+<br>
+       say &quot;<font color=#000080>The ledge collapses, leaving you with no place to land.</font>&quot;;
+<br>
+       move the basket to Volcano Near WideLedge;
+<br>
+       try looking;
+<br>
+    end if;
+<br>
+  else if the player is in Wide Ledge or the player is in Dusty Room;
+<br>
+    say &quot;<font color=#000080>The force of the explosion has caused the ledge to collapse
+<br>
+</font><font color=#000080>belatedly.</font>&quot;;
+<br>
+    end the game in death;
+<br>
+  else;
+<br>
+    say &quot;<font color=#000080>The ledge collapses, giving you a narrow escape.</font>&quot;;
+<br>
+  end if;
+<br>
+end if;
+<br>
+if wire clock is 0 begin;
+<br>
+  if the player can see the brick begin;
+<br>
+      say &quot;<font color=#000080>Now you've done it.  It seems that the brick has other properties
+<br>
+</font><font color=#000080>than weight, namely the ability to blow you to smithereens.</font>&quot;;
+<br>
+  remove the brick from play;
+<br>
+  end the game in death;
+<br>
+  else;
+<br>
+   say &quot;<font color=#000080>There is an explosion nearby.</font>&quot;;
+<br>
+   if the brick is in the oblong hole begin;
+<br>
+       change ledge clock to 5;
+<br>
+       now the rusty box is open;
+<br>
+       move the crown to Dusty Room;
+<br>
+       move the note card to Dusty Room;
+<br>
+    else if the brick is in Dusty Room;
+<br>
+       change ledge clock to 5;
+<br>
+   else;
+<br>
+     change squish clock to 2;
+<br>
+     change the bad place to the location of the brick;
+<br>
+   end if;
+<br>
+   remove the brick from play;
+<br>
+ end if;
+<br>
+end if;
+<br>
+decrease wire clock by 1;
+<br>
+if burn interrupt is 0 begin;
+<br>
+  if something visible is in the receptacle, say &quot;<font color=#000080>You notice that the [list of flaming things in the receptacle] has burned out, and that the cloth bag starts to deflate.</font>&quot;;
+<br>
+  let the thingy be a random flaming  thing in the receptacle;
+<br>
+  now the thingy is not flaming;
+<br>
+  remove the thingy from play;
+<br>
+end if;
+<br>
+decrease burn interrupt by 1;
+<br>
+now every thing which is flaming is lit;
+<br>
+if something inflammable (called the thingy) is non-flaming, now the thingy is unlit;
+<br>
+if the matchbook is non-flaming, now the matchbook is unlit;
+<br>
+if the pair of candles is non-flaming, now the pair of candles is unlit;
+<br>
+if match tick is greater than 0, decrease match tick by 1;
+<br>
+if match tick is 0 begin;
+<br>
+  say &quot;<font color=#000080>The match has gone out.</font>&quot;;
+<br>
+  change match tick to -1;
+<br>
+  now the matchbook is non-flaming;
+<br>
+end if;
+<br>
+  if the cure wait of the player is greater than 0, decrease the cure wait of the player by 1;
+<br>
+  if the cure wait of the player is 0, change the wounds of the player to 0;
+<br>
+  if the wounds of the player is greater than 4 begin;
+<br>
+    say &quot;<font color=#000080>It appears that blow was too much for you.  I'm afraid you are dead.</font>&quot;;
+<br>
+    change the wounds of the player to 4;
+<br>
+    end the game in death;
+<br>
+  end if;
+<br>
+  if the battery-powered brass lantern is switched on begin;
+<br>
+  decrease lamp-power by 1;
+<br>
+  if lamp-power is 50, say &quot;<font color=#000080>The lamp appears to be getting dimmer.</font>&quot;;
+<br>
+  if lamp-power is 30, say &quot;<font color=#000080>The lamp appears to be getting dimmer.</font>&quot;;
+<br>
+  if lamp-power is 20, say &quot;<font color=#000080>The lamp appears to be getting dimmer.</font>&quot;;
+<br>
+  if lamp-power is 10, say &quot;<font color=#000080>The lamp appears to be getting dimmer.</font>&quot;;
+<br>
+  if lamp-power is  4, say  &quot;<font color=#000080>The lamp is dying.</font>&quot;;
+<br>
+  if lamp-power is 0 begin;
+<br>
+    say &quot;<font color=#000080>I hope you have more light than from a lamp.</font>&quot;;
+<br>
+    now the battery-powered brass lantern is switched off;
+<br>
+    now the battery-powered brass lantern is unlit;
+<br>
+  end if;
+<br>
+  end if;
+<br>
+if the player has been in Living Room for the second turn and brochure flag is 1 begin;
+<br>
+  say &quot;<font color=#000080>There is a knocking sound from the front of the house.</font>&quot;;
+<br>
+  change brochure flag to 2;
+<br>
+  move the free brochure to the mailbox;
+<br>
+end if;
+<br>
+if the number of visible valuble things in the trophy case is 32 and the number of visible valuble things in the trophy case was not 32, say &quot;<font color=#000080>Suddenly a sinister wraithlike figure, cloaked and hooded, appears
+<br>
+</font><font color=#000080>seeming to float in the air before you.  In a low, almost inaudible
+<br>
+</font><font color=#000080>voice he says, 'I welcome you to the ranks of the chosen of Zork. You
+<br>
+</font><font color=#000080>have persisted through many trials and tests, and have overcome them
+<br>
+</font><font color=#000080>all, dispelling the darkness of ignorance and danger.  One such as
+<br>
+</font><font color=#000080>yourself is fit to join even the Implementers!'  He then raises his
+<br>
+</font><font color=#000080>oaken staff, and chuckling, drifts away like a wisp of smoke, his
+<br>
+</font><font color=#000080>laughter fading in the distance.</font>&quot;.
+<br>
+The rval of Narrow Corridor is 20.
 <br>
 North of Narrow Corridor is a room called South Corridor.  The description of South Corridor is &quot;<font color=#000080>This is an east-west corridor which turns north at its eastern and western ends.  The walls of the corridor are marble.  An additional passage leads south at the center of the corridor.</font>&quot;
 <br>
@@ -1025,9 +1305,9 @@ North of East Corridor is North Corridor.
 <br>
 North of North Corridor is a room called Parapet.  The description of Parapet is &quot;<font color=#000080>You are standing behind a stone retaining wall which rims a large parapet overlooking a fiery pit.  It is difficult to see through the smoke and flame which fills the pit, but it seems to be more or less bottomless.  It also extends upward out of sight.  The pit itself is of roughly dressed stone and circular in shape.  It is about two hundred feet in diameter.  The flames generate considerable heat, so it is rather uncomfortable standing here.
 <br>
-</font><font color=#000080>There is an object here which looks like a sundial.  On it are an indicator arrow and (in the center) a large button.  On the face of the dial are numbers 'one' through 'eight'.  The indicator points to the number [dial number].</font>&quot;
+</font><font color=#000080>There is an object here which looks like a sundial.  On it are an indicator arrow and (in the center) a large button.  On the face of the dial are numbers 'one' through 'eight'.  The indicator points to the number [dial number in words].</font>&quot;
 <br>
-Dial number is a number that varies.
+Dial number is a number that varies. Dial number is 1.
 <br>
 Persuasion rule for asking the dungeon master to try doing something: persuasion succeeds.
 <br>
@@ -1039,7 +1319,7 @@ say &quot;<font color=#000080>'I prefer to stay where I am, thank you.'</font>&q
 <br>
 A dial is in Parapet. The dial is scenery. Understand &quot;<font color=#000080>sun dial</font>&quot; and &quot;<font color=#000080>sundial</font>&quot; and &quot;<font color=#000080>sun-dial</font>&quot; and &quot;<font color=#000080>indicator</font>&quot; and &quot;<font color=#000080>arrow</font>&quot; as the dial.
 <br>
-Instead of taking the dungeon master: say &quot;<font color=#000080>'I'm willing to accompany you, but not ride in your pocket!'</font>&quot;.
+Check taking the dungeon master: say &quot;<font color=#000080>'I'm willing to accompany you, but not ride in your pocket!'</font>&quot; instead.
 <br>
 Instead of asking the dungeon master to try doing something:
 <br>
@@ -1053,7 +1333,9 @@ PCell is a room.  The description of PCell is &quot;<font color=#000080>You are 
 <br>
 The prison cell door is scenery.
 <br>
-NCell is a room. The description of NCell is &quot;<font color=#000080>You are in a featureless prison cell.  Its wooden door is securely fastened, and you can see only the flames and smoke of the pit out its small window.  On the other side of the cell is a bronze door which seems to be</font>&quot;. The printed name of NCell is &quot;<font color=#000080>Prison Cell</font>&quot;.
+NCell is a room. The description of NCell is &quot;<font color=#000080>You are in a featureless prison cell.  Its wooden door is securely fastened, and you can see only the flames and smoke of the pit out its small window.  On the other side of the cell is a bronze door which seems to be [if the bronze door is open]open[otherwise]closed[end if].</font>&quot;. The printed name of NCell is &quot;<font color=#000080>Prison Cell</font>&quot;.
+<br>
+Check going inside while in NCell: try entering the bronze door instead.
 <br>
 The bronze door is a door.  The bronze door is closed and openable.  
 <br>
@@ -1111,31 +1393,66 @@ After deciding the scope of the player:
 <br>
 if the player is in Prison Cell, place the dungeon master in scope.
 <br>
+A thing has a number called cell number.  The cell number of a thing is usually 0.
+<br>
+Every turn when something is in Prison Cell:
+<br>
+repeat with thingy running through things in Prison Cell begin;
+<br>
+  change the cell number of the thingy to current cell;
+<br>
+end repeat.
+<br>
+
+<br>
+Limbo is a room.
+<br>
+Current cell is a number that varies.  Current cell is 1.
+<br>
 Instead of someone pushing the large button:
 <br>
  say &quot;<font color=#000080>Click.</font>&quot;;
 <br>
- if dial number is 6 begin;
+ change the current cell to dial number;
 <br>
-   now every thing in Prison Cell is in NCell;   
+ if dial number is 6 and the player is in Prison Cell, move the player to NCell;
 <br>
- else;
+ if the player is in Prison Cell, move the player to PCell;
 <br>
-   now every thing in Prison Cell is in PCell;
+ now every thing in Prison Cell is in Limbo;
 <br>
- end if;
+ if the cell number of the player is dial number and the player is in PCell or the player is in NCell, move the player to Prison Cell;
+<br>
+ repeat with thingy running through things in Limbo begin;
+<br>
+ if the cell number of the thingy is dial number, move the thingy to Prison Cell;
+<br>
+ if the player is in PCell and the cell number of the thingy is the cell number of the player, move the thingy to PCell;
+<br>
+ if the player is in NCell and the cell number of the thingy is the cell number of the player, move the thingy to NCell;
+<br>
+end repeat;
+<br>
+repeat with thingy running through things in NCell begin;
+<br>
+  if cell number of the thingy is dial number, move the thingy to Prison Cell;
+<br>
+end repeat;
 <br>
  rule succeeds.
 <br>
-Include (- <font color=#404040>[ XOR a b; return (a | b) &amp; (~(a &amp; b)); </font>];  -). <font color=#404040><sup><a href="#note1">[1]</a></sup></font>
+Check going inside while in Hallway4: try entering the large wooden door instead.
+<br>
+Include (- <font color=#404040>[ XOR a b; return (a | b) &amp; (~(a &amp; b)); </font>];  -). <font color=#404040><sup><a href="#note2">[2]</a></sup></font>
 <br>
 
 <br>
 
 <br>
 </font>
-					<p><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"><p><i>Note</i><p>
-<A name="note1"><font color=#404040>[1].  Inform does not have a bitwise exclusive or built in, so we make one</font><p>
+					<p><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"><p><i>Notes</i><p>
+<A name="note1"><font color=#404040>[1].  OK, this sort of doesn't make sense if the player is outside</font><p>
+<A name="note2"><font color=#404040>[2].  Inform does not have a bitwise exclusive or built in, so we make one</font><p>
 </font></p>
 					<p></p>
 				</td></tr></table>

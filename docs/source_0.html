@@ -17,15 +17,19 @@
 <br>
 
 <br>
+A room has a number called rval. The rval of a room is usually 0.
+<br>
+When play begins, seed the random-number generator with 1234. 
+<br>
 The story genre is &quot;<font color=#000080>Fantasy</font>&quot;. 
 <br>
 The story headline is &quot;<font color=#000080>A Computerized Fantasy Simulation Game</font>&quot;.
 <br>
-The release number is 2.
+The release number is 3.
 <br>
 The story creation year is 1979.
 <br>
-Use memory economy.
+Use the serial comma. 
 <br>
 A thing can be non-flaming or flaming.  A thing is usually non-flaming. A thing can be non-inflammable or inflammable. A thing is usually non-inflammable.
 <br>
@@ -81,7 +85,7 @@ say &quot;<font color=#000080>You have lost your mind.</font>&quot;
 <br>
 Understand &quot;<font color=#000080>count blessings</font>&quot; as a mistake (&quot;<font color=#000080>Well, for one, you are playing Zork....</font>&quot;).
 <br>
-Understand  &quot;<font color=#000080>$COUNTREASURE</font>&quot; as a mistake (&quot;<font color=#000080>Your adventure has netted [number of valuble things in the trophy case] treasure(s).  You are carrying [number of valuble things had by the player] valuble(s).</font>&quot;)
+Understand  &quot;<font color=#000080>$COUNTREASURE</font>&quot; as a mistake (&quot;<font color=#000080>Your adventure has netted [number of valuble things in the trophy case] treasure[s].  You are carrying [number of valuble things had by the player] valuble[s].</font>&quot;)
 <br>
 
 <br>
@@ -117,13 +121,11 @@ end the game in death.
 <br>
 Definition: a thing is valuble if the case-points of it is not 0.
 <br>
+
+<br>
 After reading a command:
 <br>
-if the player's command includes &quot;<font color=#000080>COUNT TREASURE/TREASURES/VALUBLES</font>&quot;, replace the matched text with &quot;<font color=#000080>$COUNTREASURE</font>&quot;;
-<br>
-if the player's command includes &quot;<font color=#000080>TREASURE/TREASURES/VALUBLES</font>&quot;, replace the matched text with &quot;<font color=#000080>[list of visible valuble things had by the player]</font>&quot;.
-<br>
-
+if the player's command includes &quot;<font color=#000080>COUNT TREASURE/TREASURES/VALUBLES</font>&quot;, replace the matched text with &quot;<font color=#000080>$COUNTREASURE</font>&quot;.
 <br>
 Check playing:
 <br>
@@ -203,49 +205,47 @@ say &quot;<font color=#000080>I didn't think you would REALLY try to go over the
 <br>
 end the game in death.
 <br>
-
+Check digging into the guano with the shovel for the first time:
 <br>
-Instead of digging into the guano with the shovel for the first time:
+say &quot;<font color=#000080>You are digging into a pile of bat guano.</font>&quot; instead.
 <br>
-say &quot;<font color=#000080>You are digging into a pile of bat guano.</font>&quot;
+Check digging into the guano with the shovel for the second time:
 <br>
-Instead of doing it for the second time:
+say &quot;<font color=#000080>You seem to be getting knee deep in guano.</font>&quot; instead.
 <br>
-say &quot;<font color=#000080>You seem to be getting knee deep in guano.</font>&quot;
+Check digging into the guano with the shovel for the third time:
 <br>
-Instead of doing it for the third time:
+say &quot;<font color=#000080>You are covered with bat turds, cretin.</font>&quot; instead.
 <br>
-say &quot;<font color=#000080>You are covered with bat turds, cretin.</font>&quot;
+Check digging into the guano with the shovel more than 3 times:
 <br>
-Instead of doing it more than 3 times:
-<br>
-say &quot;<font color=#000080>This is getting nowhere.</font>&quot;
+say &quot;<font color=#000080>This is getting nowhere.</font>&quot; instead.
 <br>
 
 <br>
-Instead of digging into the ground with the shovel when the player is in Sandy Beach for the first time:
+Check digging into the ground with the shovel when the player is in Sandy Beach for the first time:
 <br>
-say &quot;<font color=#000080>You seem to be digging a hole here.</font>&quot;
+say &quot;<font color=#000080>You seem to be digging a hole here.</font>&quot; instead.
 <br>
-Instead of doing it for the second time:
+Check digging into the ground with the shovel when the player is in Sandy Beach for the second time:
 <br>
-say &quot;<font color=#000080>The hole is getting deeper, but that's about it.</font>&quot;
+say &quot;<font color=#000080>The hole is getting deeper, but that's about it.</font>&quot; instead.
 <br>
-Instead of doing it for the third time:
+Check digging into the ground with the shovel when the player is in Sandy Beach for the third time:
 <br>
-say &quot;<font color=#000080>You are surrounded by a wall of sand on all sides.</font>&quot;
+say &quot;<font color=#000080>You are surrounded by a wall of sand on all sides.</font>&quot; instead.
 <br>
-Instead of doing it for the fourth time:
+Check digging into the ground with the shovel when the player is in Sandy Beach the fourth time:
 <br>
 say &quot;<font color=#000080>You can see a small statue here in the sand.</font>&quot;;
 <br>
-move the statue to Sandy Beach.
+move the statue to Sandy Beach instead.
 <br>
-Instead of doing it more than 4 times:
+Check digging into the ground with the shovel when the player is in Sandy Beach more than 4 times:
 <br>
 say &quot;<font color=#000080>The hole collapses, smothering you.</font>&quot;;
 <br>
-end the game in death.
+end the game in death instead.
 <br>
 
 <br>
@@ -481,7 +481,7 @@ Check turning it with:
 <br>
 
 <br>
-Instead of throwing something at the player:
+Check throwing something at the player:
 <br>
   say &quot;<font color=#000080>A terrific throw! [The noun] hits you squarely in the head. Normally, this
 <br>
@@ -491,7 +491,7 @@ Instead of throwing something at the player:
 <br>
 </font><font color=#000080>Great Underground Empire.</font>&quot;;
 <br>
-  end the game in death.
+  end the game in death instead.
 <br>
 Wishing is an action applying to nothing. Understand &quot;<font color=#000080>wish</font>&quot; and &quot;<font color=#000080>make wish</font>&quot; and &quot;<font color=#000080>make a wish</font>&quot; as wishing.
 <br>
@@ -997,9 +997,13 @@ The last carry out going rule:
 <br>
 After going:
 <br>
-  if the dark terminus count is 2, set off the grues;
+  if the dark terminus count is 2, set off the grues instead;
 <br>
-  else continue the action.
+  if the coil of rope is attached to something (called the item) and the player is carrying the coil of rope, now the coil of rope is not attached to the item;
+<br>
+  continue the action.
+<br>
+  
 <br>
 To set off the grues:
 <br>
@@ -1101,9 +1105,9 @@ if the noun is a person, try attacking the noun with the second noun instead;
 <br>
 say &quot;<font color=#000080>Trying to destroy [a noun] is not notably useful.</font>&quot;
 <br>
-Instead of searching a door: 
+Check searching a door: 
 <br>
-    say &quot;<font color=#000080>[The noun] is [if open]open, but I can't see what's beyond it.[otherwise]closed.[end if]</font>&quot;.
+    say &quot;<font color=#000080>[The noun] is [if open]open, but I can't see what's beyond it.[otherwise]closed.[end if]</font>&quot; instead.
 <br>
 
 <br>
@@ -1145,7 +1149,7 @@ Carry out hi-saying:
 <br>
 say &quot;<font color=#000080>[The noun] bows his head to you in greeting.</font>&quot;
 <br>
-Instead of asking someone to try greeting: try hi-saying the noun instead.
+Check asking someone to try greeting: try hi-saying the noun instead.
 <br>
 The sailor is a backdrop. The sailor is everywhere. 
 <br>
@@ -1183,7 +1187,7 @@ The obj1234 is a backdrop. The obj1234 is everywhere. Understand &quot;<font col
 <br>
 The free brochure is inflammable.
 <br>
-Instead of doing something other than sending for to the obj1234: print the you can't see message instead.
+Instead of doing something other than sending for to the obj1234: print the you can't see message.
 <br>
 The description of the brochure is &quot;<font color=#000080>[brochure text]</font>&quot;.
 <br>
@@ -1279,25 +1283,13 @@ The size of the free brochure is 30.
 <br>
 The size of the Don Woods stamp is 1.
 <br>
-Every turn:
+Check hi-saying the sailor for the tenth time:
 <br>
-if the player has been in Living Room for the second turn and brochure flag is 1 begin;
+say &quot;<font color=#000080>I think that phrase is getting a bit worn out.</font>&quot; instead.
 <br>
-  say &quot;<font color=#000080>There is a knocking sound from the front of the house.</font>&quot;;
+Check hi-saying the sailor for the 20th time:
 <br>
-  change brochure flag to 2;
-<br>
-  move the free brochure to the mailbox;
-<br>
-end if.
-<br>
-Instead of hi-saying the sailor for the tenth time:
-<br>
-say &quot;<font color=#000080>I think that phrase is getting a bit worn out.</font>&quot;
-<br>
-Instead of hi-saying the sailor for the 20th time:
-<br>
-say &quot;<font color=#000080>You seem to be repeating yourself.</font>&quot;
+say &quot;<font color=#000080>You seem to be repeating yourself.</font>&quot; instead.
 <br>
 Understand &quot;<font color=#000080>pour [something] in/into/on/onto [something]</font>&quot; as inserting it into.
 <br>
@@ -1313,13 +1305,13 @@ The size of the quantity of water is 4.
 <br>
 When play begins: move the quantity of water to the bottle.
 <br>
-Instead of taking a watersource:
+Check taking a watersource:
 <br>
 if the player is carrying the bottle, try inserting the noun into the bottle instead;
 <br>
-else say &quot;<font color=#000080>The water slips through your fingers.</font>&quot;
+else say &quot;<font color=#000080>The water slips through your fingers.</font>&quot; instead.
 <br>
-Instead of inserting a watersource into something:
+Check inserting a watersource into something:
 <br>
 if the second noun is closed begin;
 <br>
@@ -1337,11 +1329,11 @@ else;
 <br>
   say &quot;<font color=#000080>The bottle is now full of water.</font>&quot;;
 <br>
-  move the quantity of water to the bottle;
+  move the quantity of water to the bottle instead;
 <br>
 end if.
 <br>
-Instead of inserting the quantity of water into something:
+Check inserting the quantity of water into something:
 <br>
 if the second noun is closed begin;
 <br>
@@ -1351,23 +1343,23 @@ else if the second noun is not the bottle;
 <br>
   say &quot;<font color=#000080>The water leaks out of [the second noun] and evaporates immediately.</font>&quot;;
 <br>
-  remove the quantity of water from play;
+  remove the quantity of water from play instead;
 <br>
 end if.
 <br>
-Instead of inserting the quantity of water into the bottle:
+Check inserting the quantity of water into the bottle:
 <br>
 try taking the quantity of water instead.
 <br>
-Instead of inserting the quantity of water into an enterable container:
+Check inserting the quantity of water into an enterable container:
 <br>
   if the bottle is closed, say &quot;<font color=#000080>The bottle is closed.</font>&quot; instead;
 <br>
   say &quot;<font color=#000080>There is now a puddle in the bottom of [the second noun].</font>&quot;;
 <br>
-  now the quantity of water is in the second noun.
+  now the quantity of water is in the second noun instead.
 <br>
-Instead of taking the quantity of water:
+Check taking the quantity of water:
 <br>
 if the player is not carrying the bottle and the quantity of water is in the bottle begin;
 <br>
@@ -1375,7 +1367,7 @@ if the player is not carrying the bottle and the quantity of water is in the bot
 <br>
 else if the quantity of water is in the bottle;
 <br>
-  say &quot;<font color=#000080>You already have it.</font>&quot;;
+  say &quot;<font color=#000080>You already have it.</font>&quot; instead;
 <br>
 else if the player is not carrying the bottle;
 <br>
@@ -1395,21 +1387,21 @@ else if the player is in the bucket;
 <br>
   move the quantity of water to the bottle;
 <br>
-  move the bucket to Circular Room;
+  move the bucket to Circular Room instead;
 <br>
 else;
 <br>
    say &quot;<font color=#000080>The bottle is now full of water.</font>&quot;;
 <br>
-  move the quantity of water to the bottle;
+  move the quantity of water to the bottle instead;
 <br>
 end if.
 <br>
-Instead of throwing the quantity of water at something:
+Check throwing the quantity of water at something:
 <br>
   say &quot;<font color=#000080>The water splashes on [the second noun] and evaporates immediately.</font>&quot;;
 <br>
-  remove the quantity of water from play.
+  remove the quantity of water from play instead.
 <br>
 A persuasion rule for asking someone to try doing something when dead flag is true:
 <br>
@@ -1417,13 +1409,13 @@ say &quot;<font color=#000080>No one hears you.</font>&quot; instead.
 <br>
 
 <br>
-Instead of dropping when the player's command includes &quot;<font color=#000080>throw</font>&quot;:
+Check dropping when the player's command includes &quot;<font color=#000080>throw</font>&quot;:
 <br>
 if the noun is the quantity of water begin;
 <br>
   say &quot;<font color=#000080>The water splashes on the walls and evaporates immediately.</font>&quot;;
 <br>
-  remove the noun from play;
+  remove the noun from play instead;
 <br>
 else;
 <br>
@@ -1431,7 +1423,7 @@ else;
 <br>
 end if.
 <br>
-Instead of dropping the quantity of water when the player's command does not include &quot;<font color=#000080>throw</font>&quot;:
+Check dropping the quantity of water when the player's command does not include &quot;<font color=#000080>throw</font>&quot;:
 <br>
 try pouring the noun instead.
 <br>
@@ -1456,6 +1448,8 @@ else if the player is in the bucket;
   say &quot;<font color=#000080>There is now a puddle in the bottom of the wooden bucket.</font>&quot;;
 <br>
   say &quot;<font color=#000080>The bucket rises and comes to a stop.</font>&quot;;
+<br>
+move the bucket to Top of Well;
 <br>
   try looking;
 <br>
@@ -1489,7 +1483,7 @@ end if.
 <br>
 Winding is an action applying to one carried thing. Understand &quot;<font color=#000080>wind [something]</font>&quot; and &quot;<font color=#000080>wind up [something]</font>&quot; and &quot;<font color=#000080>wind [something] up</font>&quot; as winding.
 <br>
-Check winding: if the noun is not the canary and the noun is not the broken canary, say &quot;<font color=#000080>You cannot wind up [a noun].</font>&quot; instead.
+Check winding: if the noun is not the golden clockwork canary and the noun is not the broken canary, say &quot;<font color=#000080>You cannot wind up [a noun].</font>&quot; instead.
 <br>
 Understand the command &quot;<font color=#000080>answer</font>&quot; as something new.
 <br>
@@ -1549,35 +1543,11 @@ say &quot;<font color=#000080>Kicking [a noun] is not notably useful.</font>&quo
 <br>
 
 <br>
-Lamp-power is a number that varies. Lamp-power is usually 130.
+Lamp-power is a number that varies. Lamp-power is usually 325.
 <br>
-Every turn:
+
 <br>
-  if the battery-powered brass lantern is switched on begin;
-<br>
-  decrease lamp-power by 1;
-<br>
-  if lamp-power is 50, say &quot;<font color=#000080>The lamp appears to be getting dimmer.</font>&quot;;
-<br>
-  if lamp-power is 30, say &quot;<font color=#000080>The lamp appears to be getting dimmer.</font>&quot;;
-<br>
-  if lamp-power is 20, say &quot;<font color=#000080>The lamp appears to be getting dimmer.</font>&quot;;
-<br>
-  if lamp-power is 10, say &quot;<font color=#000080>The lamp appears to be getting dimmer.</font>&quot;;
-<br>
-  if lamp-power is  4, say  &quot;<font color=#000080>The lamp is dying.</font>&quot;;
-<br>
-  if lamp-power is 0 begin;
-<br>
-    say &quot;<font color=#000080>I hope you have more light than from a lamp.</font>&quot;;
-<br>
-    now the battery-powered brass lantern is switched off;
-<br>
-  end if;
-<br>
-  end if.
-<br>
-Instead of switching on the battery-powered brass lantern when lamp-power is 0: say &quot;<font color=#000080>The battery has died.</font>&quot;
+Check switching on the battery-powered brass lantern when lamp-power is 0: say &quot;<font color=#000080>The battery has died.</font>&quot; instead.
 <br>
 
 <br>
@@ -1621,13 +1591,13 @@ if the noun is the rug begin;
 <br>
 say &quot;<font color=#000080>The rug is too heavy to lift, but in trying to raise it you notice an irregularity beneath it.</font>&quot;;
 <br>
-else if the noun is the basket;
+else if the noun is the tbasket;
 <br>
   if the player is in Lower Shaft begin;
 <br>
     say &quot;<font color=#000080>The basket is raised to the top of the shaft.</font>&quot;;
 <br>
-    move the basket to Shaft Room;
+    move the tbasket to Shaft Room;
 <br>
     move the fbasket to Lower Shaft;
 <br>
@@ -1643,7 +1613,7 @@ else if the noun is the fbasket;
 <br>
     say &quot;<font color=#000080>The basket is raised to the top of the shaft.</font>&quot;;
 <br>
-    move the basket to Shaft Room;
+    move the tbasket to Shaft Room;
 <br>
     move the fbasket to Lower Shaft;
 <br>
@@ -1663,7 +1633,7 @@ Lowering is an action applying to one visible thing. Understand &quot;<font colo
 <br>
 Check lowering:
 <br>
-if the noun is the basket begin;
+if the noun is the tbasket begin;
 <br>
   if the player is in Shaft Room begin;
 <br>
@@ -1671,7 +1641,7 @@ if the noun is the basket begin;
 <br>
     move the fbasket to Shaft Room;
 <br>
-    move the basket to Lower Shaft;
+    move the tbasket to Lower Shaft;
 <br>
   else;
 <br>
@@ -1687,7 +1657,7 @@ else if the noun is the fbasket;
 <br>
     move the fbasket to Shaft Room;
 <br>
-    move the basket to Lower Shaft;
+    move the tbasket to Lower Shaft;
 <br>
   else;
 <br>
@@ -1731,15 +1701,23 @@ if the second noun is round, say &quot;<font color=#000080>There is nothing it c
 <br>
 Carry out tying:
 <br>
-  now the noun is attached to the second noun.
+  now the noun is attached to the second noun;
+<br>
+  if the second noun is in Slide Room and the player is carrying the noun begin;
+<br>
+   move the noun to Slide Room;
+<br>
+   say &quot;<font color=#000080>The rope dangles down the slide.</font>&quot; instead;
+<br>
+  end if.
 <br>
 Report tying:
 <br>
   say &quot;<font color=#000080>The rope is now attached to [the second noun].</font>&quot;.
 <br>
-Instead of taking a rope (called the coil) when the coil is attached to a nonrope thing (called the item):
+Check taking a rope (called the coil) when the coil is attached to a nonrope thing (called the item):
 <br>
-  say &quot;<font color=#000080>You'll have to untie [the item] first.</font>&quot;
+  say &quot;<font color=#000080>You'll have to untie [the item] first.</font>&quot; instead.
 <br>
 Check taking a nonrope thing (called the item) which is attached to a rope:
 <br>
@@ -1860,12 +1838,6 @@ list the contents of O,
     giving inventory information, 
 <br>
     including contents, 
-<br>
-    including all contents, 
-<br>
-    tersely, 
-<br>
-    giving brief inventory information, 
 <br>
     not listing concealed items, 
 <br>
@@ -2158,22 +2130,6 @@ The player has a number called wounds.  Wounds is usually 0.
 <br>
 The player has a number called cure wait.  Cure wait is usually 0.
 <br>
-Every turn:
-<br>
-  if the cure wait of the player is greater than 0, decrease the cure wait of the player by 1;
-<br>
-  if the cure wait of the player is 0, change the wounds of the player to 0;
-<br>
-  if the wounds of the player is greater than 4 begin;
-<br>
-    say &quot;<font color=#000080>It appears that blow was too much for you.  I'm afraid you are dead.</font>&quot;;
-<br>
-    change the wounds of the player to 4;
-<br>
-    end the game in death;
-<br>
-  end if.
-<br>
 Diagnosing is an action applying to nothing.  Understand &quot;<font color=#000080>diagnose</font>&quot; as diagnosing.
 <br>
 Check diagnosing:
@@ -2190,19 +2146,19 @@ Carry out diagnosing:
 <br>
   else if the wounds of the player is 1;
 <br>
-    say &quot;<font color=#000080>You have a light wound, which will be cured in [cure wait of the player] turn(s).  You can survive one serious wound.</font>&quot;;
+    say &quot;<font color=#000080>You have a light wound, which will be cured in [cure wait of the player] turn[s].  You can survive one serious wound.</font>&quot;;
 <br>
   else if the wounds of the player is 2;
 <br>
-    say &quot;<font color=#000080>You have a serious wound, which will be cured in [cure wait of the player] turn(s).  You can be killed by a serious wound.</font>&quot;;
+    say &quot;<font color=#000080>You have a serious wound, which will be cured in [cure wait of the player] turn[s].  You can be killed by a serious wound.</font>&quot;;
 <br>
   else if the wounds of the player is 3;
 <br>
-    say &quot;<font color=#000080>You have a several wounds, which will be cured in [cure wait of the player] turn(s).  You can be killed by one more light wound.</font>&quot;;  
+    say &quot;<font color=#000080>You have a several wounds, which will be cured in [cure wait of the player] turn[s].  You can be killed by one more light wound.</font>&quot;;  
 <br>
   else if the wounds of the player is 4;
 <br>
-    say &quot;<font color=#000080>You have a serious wounds, which will be cured in [cure wait of the player] turn(s).  You are at death's door.</font>&quot;;  
+    say &quot;<font color=#000080>You have a serious wounds, which will be cured in [cure wait of the player] turn[s].  You are at death's door.</font>&quot;;  
 <br>
   end if;
 <br>
@@ -2252,43 +2208,27 @@ Carry out burning:
 <br>
 
 <br>
-Instead of switching off something which is flaming:
+Check switching off something which is flaming:
 <br>
   if the noun is the matchbook begin;
 <br>
-    say &quot;<font color=#000080>The match is out.</font>&quot;;
+    say &quot;<font color=#000080>The match is out.</font>&quot; instead;
 <br>
     change match tick to -1;
 <br>
+    now the matchbook is non-flaming;
+<br>
   else if the noun is the pair of candles;
 <br>
-    say &quot;<font color=#000080>The flame is extinguished.</font>&quot;;
+    say &quot;<font color=#000080>The flame is extinguished.</font>&quot; instead;
 <br>
   else if the noun is the ivory torch;
 <br>
-    say &quot;<font color=#000080>You burn your hand as you attempt to extinguish the flame.</font>&quot;;
+    say &quot;<font color=#000080>You burn your hand as you attempt to extinguish the flame.</font>&quot; instead;
 <br>
   end if.
 <br>
-Every turn:
-<br>
-now every thing which is flaming is lit;
-<br>
-if something inflammable (called the thingy) is non-flaming, now the thingy is unlit;
-<br>
-if the matchbook is non-flaming, now the matchbook is unlit;
-<br>
-if the pair of candles is non-flaming, now the pair of candles is unlit;
-<br>
-if match tick is greater than 0, decrease match tick by 1;
-<br>
-if match tick is 0 begin;
-<br>
-  say &quot;<font color=#000080>The match has gone out.</font>&quot;;
-<br>
-  change match tick to -1;
-<br>
-end if.
+
 <br>
 
 <br>
@@ -2440,123 +2380,11 @@ else;
 <br>
 end if.
 <br>
-Every turn:
-<br>
-if burn interrupt is 0 begin;
-<br>
-  if something visible is in the receptacle, say &quot;<font color=#000080>You notice that the [list of flaming things in the receptacle] has burned out, and that the cloth bag starts to deflate.</font>&quot;;
-<br>
-  let the thingy be a random flaming  thing in the receptacle;
-<br>
-  now the thingy is not flaming;
-<br>
-  remove the thingy from play;
-<br>
-end if;
-<br>
-decrease burn interrupt by 1.
-<br>
 
 <br>
 Wire clock is a number that varies.  Wire clock is usually -1.
 <br>
-Every turn:
-<br>
-if wire clock is 0 begin;
-<br>
-  if the player can see the brick begin;
-<br>
-      say &quot;<font color=#000080>Now you've done it.  It seems that the brick has other properties
-<br>
-</font><font color=#000080>than weight, namely the ability to blow you to smithereens.</font>&quot;;
-<br>
-  remove the brick from play;
-<br>
-  end the game in death;
-<br>
-  else;
-<br>
-   say &quot;<font color=#000080>There is an explosion nearby.</font>&quot;;
-<br>
-   if the brick is in the oblong hole begin;
-<br>
-       change ledge clock to 5;
-<br>
-       now the rusty box is open;
-<br>
-       move the crown to Dusty Room;
-<br>
-       move the note card to Dusty Room;
-<br>
-    else if the brick is in Dusty Room;
-<br>
-       change ledge clock to 5;
-<br>
-   else;
-<br>
-     change squish clock to 2;
-<br>
-     change the bad place to the location of the brick;
-<br>
-   end if;
-<br>
-   remove the brick from play;
-<br>
- end if;
-<br>
-end if;
-<br>
-decrease wire clock by 1.
-<br>
 Ledge clock is a number that varies.  Ledge clock is usually -1.
-<br>
-Every turn:
-<br>
-decrease ledge clock by 1;
-<br>
-if ledge clock is 3, say &quot;<font color=#000080>You may recall your recent explosion.  Well, probably as a result of that, you hear an ominous rumbling, as if one of the rooms in the
-<br>
-</font><font color=#000080>dungeon has collapsed.</font>&quot;;
-<br>
-if ledge clock is 0 begin;
-<br>
-  if the player is in the basket and the basket is in Wide Ledge begin;
-<br>
-    if the braided wire is attached to the tiny hook begin;
-<br>
-      say &quot;<font color=#000080>The ledge collapses, probably as a result of the explosion.  A large
-<br>
-</font><font color=#000080>chunk of it, which is attached to the hook, drags you down to the
-<br>
-</font><font color=#000080>ground.  Fatally.</font>&quot;;
-<br>
-      end the game in death;
-<br>
-    else;
-<br>
-       say &quot;<font color=#000080>The ledge collapses, leaving you with no place to land.</font>&quot;;
-<br>
-       move the basket to Volcano Near WideLedge;
-<br>
-       try looking;
-<br>
-    end if;
-<br>
-  else if the player is in Wide Ledge or the player is in Dusty Room;
-<br>
-    say &quot;<font color=#000080>The force of the explosion has caused the ledge to collapse
-<br>
-</font><font color=#000080>belatedly.</font>&quot;;
-<br>
-    end the game in death;
-<br>
-  else;
-<br>
-    say &quot;<font color=#000080>The ledge collapses, giving you a narrow escape.</font>&quot;;
-<br>
-  end if;
-<br>
-end if.
 <br>
 
 <br>
@@ -2587,48 +2415,6 @@ Every turn when the candles are flaming and the candles are touched:
 The bad place is a room that varies.
 <br>
 Squish clock is a number variable.  Squish clock is usually -1.
-<br>
-Every turn:
-<br>
-if squish clock is 0 begin;
-<br>
-change the description of the bad place to &quot;<font color=#000080>[pizza]</font>&quot;;
-<br>
-if the player is in the bad place begin;
-<br>
-  say &quot;<font color=#000080>The room trembles and 50,000 pounds of rock fall on you, turning you into a pancake.  [if the player is outside]Meteors, no doubt.[end if]</font>&quot;;
-<br>
-  end the game in death;
-<br>
-else;
-<br>
-  say &quot;<font color=#000080>You may recall your recent explosion.  Well, probably as a result of
-<br>
-</font><font color=#000080>that, you hear an ominous rumbling, as if one of the rooms in the
-<br>
-</font><font color=#000080>dungeon has collapsed.</font>&quot;;
-<br>
-   <font color=#404040><sup><a href="#note5">[5]</a></sup></font>
-<br>
-end if;
-<br>
-end if;
-<br>
-decrease squish clock by 1.
-<br>
-Every turn:
-<br>
-if the location is the bad place and the brick is off-stage, foo;
-<br>
-if the number of moves from the location to the bad place is 1 and the brick is off-stage, foo;
-<br>
-To say pizza:
-<br>
-say &quot;<font color=#000080>Your way is blocked by debris from an explosion.</font>&quot;;
-<br>
-move the player to the former location.
-<br>
-
 <br>
 
 <br>
@@ -2692,7 +2478,7 @@ if the number understood is greater than 8, say &quot;<font color=#000080>The di
 <br>
 Carry out spinning it to:
 <br>
-say &quot;<font color=#000080>The dial now points to [the number understood]</font>&quot;;
+say &quot;<font color=#000080>The dial now points to [the number understood].</font>&quot;;
 <br>
 change dial number to the number understood.
 <br>
@@ -2703,8 +2489,7 @@ change dial number to the number understood.
 <A name="note1"><font color=#404040>[1]. According to THE ELEMENTS OF STYLE --  FLAMMABLE: An oddity, chiefly useful in saving lives. The common word meaning "combustible" is inflammable. But some people are thrown off by the in- and think inflammable means "not combustible." For this reason, trucks carrying gasoline or explosives are now marked FLAMMABLE. Unless you are operating such a truck and hence are concerned with the safety of children and illiterates, use inflammable.</font><p>
 <A name="note2"><font color=#404040>[2].  It is absurd that the adventurer would be able to count so many leaves with such precision, especially in the minute or so time that a normal turn supposedly takes.</font><p>
 <A name="note3"><font color=#404040>[3].  Decimal 69 is equal to octal 105, and hexadecimal 69 is equal to decimal 105.</font><p>
-<A name="note4"><font color=#404040>[4].  Mind! I donÃ¢â‚¬â„¢t mean to say that I know, of my own knowledge, what there is particularly dead about a doorÃ¢â‚¬â€œnail. I might have been inclined, myself, to regard a coffinÃ¢â‚¬â€œnail as the deadest piece of ironmongery in the trade. But the wisdom of our ancestors is in the simile; and my unhallowed hands shall not disturb it, or the CountryÃ¢â‚¬â„¢s done for. You will therefore permit me to repeat, emphatically, that Marley was as dead as a doorÃ¢â‚¬â€œnail. --Charles Dickens</font><p>
-<A name="note5"><font color=#404040>[5].  OK, this sort of doesn't make sense if the player is outside</font><p>
+<A name="note4"><font color=#404040>[4].  Mind! I don't mean to say that I know, of my own knowledge, what there is particularly dead about a door-nail. I might have been inclined, myself, to regard a coffin-nail as the deadest piece of ironmongery in the trade. But the wisdom of our ancestors is in the simile; and my unhallowed hands shall not disturb it, or the Country-s done for. You will therefore permit me to repeat, emphatically, that Marley was as dead as a door-nail. --Charles Dickens</font><p>
 </font></p>
 					<p></p>
 				</td></tr></table>

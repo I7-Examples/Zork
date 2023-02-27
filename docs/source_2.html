@@ -21,7 +21,7 @@ A dungeon is a kind of room. A dungeon is usually dark.
 <br>
 The Cellar is a dungeon. The Cellar is west of a dungeon called Troll Room.  &quot;<font color=#000080>You are in a dark and damp cellar with a narrow passageway leading east, and a crawlway to the south.  On the west is the bottom of a steep metal ramp which is unclimbable.</font>&quot;
 <br>
-Instead of going west from Cellar: say &quot;<font color=#000080>You attempt to climb the ramp, but it is too slippery, and you slide back down.</font>&quot;
+Check going west while in Cellar: say &quot;<font color=#000080>You attempt to climb the ramp, but it is too slippery, and you slide back down.</font>&quot; instead.
 <br>
 The description of Troll Room is &quot;<font color=#000080>This is a small room with passages off in all directions. Bloodstains and deep scratches (perhaps made by an axe) mar the
 <br>
@@ -29,33 +29,33 @@ The description of Troll Room is &quot;<font color=#000080>This is a small room 
 <br>
 A man called the Troll is in Troll Room.  The initial appearance of the Troll is &quot;<font color=#000080>[if the troll is consious]A nasty-looking troll, brandishing a bloody axe, blocks all passages out of the room.[otherwise]There is an unconsious troll here.[end if]</font>&quot;.
 <br>
-Instead of going when the player can see the consious Troll:
+Check going when the player can see the consious Troll:
 <br>
-if the noun is not west, say &quot;<font color=#000080>The troll fends you off with a menacing gesture.</font>&quot;;
+if the noun is not west, say &quot;<font color=#000080>The troll fends you off with a menacing gesture.</font>&quot; instead;
 <br>
 else continue the action.
 <br>
-Instead of throwing something at the troll:
+Check throwing something at the troll:
 <br>
-say &quot;<font color=#000080>The troll, who is remarkably coordinated, catches [the noun] </font>&quot;;
+say &quot;<font color=#000080>The troll, who is remarkably coordinated, catches [the noun] </font>&quot; instead;
 <br>
 if the noun is a weapon begin;
 <br>
   say &quot;<font color=#000080>and being for the moment sated, throws it back.  Fortunately, the troll has poor control, and the knife falls on the floor.  He does not look pleased.</font>&quot;;
 <br>
-  move the noun to the location;
+  move the noun to the location instead;
 <br>
 else;
 <br>
   say &quot;<font color=#000080>and not having the most discriminating tastes, gleefully eats it.</font>&quot;;
 <br>
-  remove the noun from play;
+  remove the noun from play instead;
 <br>
 end if.
 <br>
 The troll can be consious or unconsious.
 <br>
-Instead of attacking the unconsious troll with something:
+Check attacking the unconsious troll with something:
 <br>
 say &quot;<font color=#000080>The unconscious troll cannot defend himself:  He dies.</font>&quot;;
 <br>
@@ -65,17 +65,13 @@ say &quot;<font color=#000080>Almost as soon as the troll breathes his last brea
 <br>
 </font><font color=#000080>carcass has disappeared.</font>&quot;;
 <br>
-remove the troll from play.
-<br>
-The troll carries a weapon called an axe.
-<br>
-Rule for deciding the concealed possessions of the troll: no.
+remove the troll from play instead.
 <br>
 West of a dungeon called West of Chasm is south of Cellar. &quot;<font color=#000080>You are on the west edge of a chasm, the bottom of which cannot be seen. The east side is sheer rock, providing no exits. A narrow passage goes west.  The path you are on continues to the north and south.</font>&quot;
 <br>
-Instead of going down from West of Chasm: say &quot;<font color=#000080>The chasm probably leads directly to the infernal regions.</font>&quot;
+Check going down from West of Chasm: say &quot;<font color=#000080>The chasm probably leads directly to the infernal regions.</font>&quot; instead.
 <br>
-Instead of jumping while in West of Chasm: fatally leap.
+Check jumping while in West of Chasm: fatally leap instead.
 <br>
 A dungeon called Gallery is south of West of Chasm. &quot;<font color=#000080>This is an art gallery. Most of the paintings which were here have been stolen by vandals with exceptional taste. The vandals left through the north, south, or west exits.</font>&quot;
 <br>
@@ -93,17 +89,17 @@ The size of the painting is 15.
 <br>
 A worthless piece of canvas is a thing.
 <br>
-Instead of destroying the painting:
+Check destroying the painting:
 <br>
     say &quot;<font color=#000080>Congratulations!  Unlike the other vandals, who merely stole the
 <br>
-</font><font color=#000080>artist's masterpieces, you have destroyed one.</font>&quot;; now the player has the worthless piece of canvas; remove the painting from play.
+</font><font color=#000080>artist's masterpieces, you have destroyed one.</font>&quot;; now the player has the worthless piece of canvas; remove the painting from play instead.
 <br>
-Instead of destroying the painting with something:
+Check destroying the painting with something:
 <br>
     say &quot;<font color=#000080>Congratulations!  Unlike the other vandals, who merely stole the
 <br>
-</font><font color=#000080>artist's masterpieces, you have destroyed one.</font>&quot;; now the player has the worthless piece of canvas; remove the painting from play.
+</font><font color=#000080>artist's masterpieces, you have destroyed one.</font>&quot;; now the player has the worthless piece of canvas; remove the painting from play instead.
 <br>
 To strike a blow at the player:
 <br>
@@ -111,7 +107,7 @@ To strike a blow at the player:
 <br>
     if x is 1 or 2 begin;
 <br>
-      say &quot;<font color=#000080>[one of]The troll swings his axe, but it misses[or]The troll's axe barely misses your ear.[or]The axe sweeps past as you jump aside.[or]The axe crashes against the rock, throwing sparks![at random]</font>&quot;;
+      say &quot;<font color=#000080>[one of]The troll swings his axe, but it misses.[or]The troll's axe barely misses your ear.[or]The axe sweeps past as you jump aside.[or]The axe crashes against the rock, throwing sparks![at random]</font>&quot;;
 <br>
    else if x is 3;
 <br>
@@ -205,19 +201,19 @@ South of Gallery is northwest of a dungeon called Studio. The description of Stu
 <br>
 
 <br>
-The chimney is a door.  The chimney is open and not openable.  Instead of climbing the chimney: try entering the noun instead. The chimney is scenery.  The chimney is up from Studio and down from Kitchen.
+The chimney is a door.  The chimney is open and not openable.  Check climbing the chimney: try entering the noun instead. The chimney is scenery.  The chimney is up from Studio and down from Kitchen.
 <br>
-Instead of going through the chimney when the player is carrying more than 2 things:
+Check going through the chimney when the player is carrying more than 2 things:
 <br>
-    say &quot;<font color=#000080>The chimney is too narrow for you and your baggage.</font>&quot;
+    say &quot;<font color=#000080>The chimney is too narrow for you and your baggage.</font>&quot; instead.
 <br>
-Instead of going through the chimney while in Kitchen:
+Check going through the chimney while in Kitchen:
 <br>
-    say &quot;<font color=#000080>Only Santa Claus climbs down chimneys.</font>&quot;
+    say &quot;<font color=#000080>Only Santa Claus climbs down chimneys.</font>&quot; instead.
 <br>
-Instead of going through the chimney when the player is not carrying anything:
+Check going through the chimney when the player is not carrying anything:
 <br>
-    say &quot;<font color=#000080>Going up empty-handed is a bad idea.</font>&quot;
+    say &quot;<font color=#000080>Going up empty-handed is a bad idea.</font>&quot; instead.
 <br>
 
 <br>
@@ -297,7 +293,7 @@ A stack of zorkmid bills is here. &quot;<font color=#000080>On the floor sit 200
 <br>
 The stack of bills is inflammable.
 <br>
-After taking the portrait for the first time: award 10 points; continue the action.
+After taking the portrait for the first time: award 11 points; continue the action.
 <br>
 After taking the bills for the first time: award 10 points; continue the action.
 <br>
@@ -311,27 +307,27 @@ The size of the portrait is 25.
 <br>
 The portrait is inflammable.
 <br>
-Instead of going east when the player is in Safety Depository and the player has the portrait: say &quot;<font color=#000080>The alarm sounds briefly, and an invisible force prevents your from leaving.</font>&quot;
+Check going east when the player is in Safety Depository and the player has the portrait: say &quot;<font color=#000080>The alarm sounds briefly, and an invisible force prevents your from leaving.</font>&quot; instead.
 <br>
-Instead of going west when the player is in Safety Depository and the player has the portrait: say &quot;<font color=#000080>The alarm sounds briefly, and an invisible force prevents your from leaving.</font>&quot;
+Check going west when the player is in Safety Depository and the player has the portrait: say &quot;<font color=#000080>The alarm sounds briefly, and an invisible force prevents your from leaving.</font>&quot; instead.
 <br>
-Instead of going east when the player is in Safety Depository and the player has the bills: say &quot;<font color=#000080>The alarm sounds briefly, and an invisible force prevents your from leaving.</font>&quot;
+Check going east when the player is in Safety Depository and the player has the bills: say &quot;<font color=#000080>The alarm sounds briefly, and an invisible force prevents your from leaving.</font>&quot; instead.
 <br>
-Instead of going west when the player is in Safety Depository and the player has the bills: say &quot;<font color=#000080>The alarm sounds briefly, and an invisible force prevents your from leaving.</font>&quot;
+Check going west when the player is in Safety Depository and the player has the bills: say &quot;<font color=#000080>The alarm sounds briefly, and an invisible force prevents your from leaving.</font>&quot; instead.
 <br>
 Instead of touching, taking, pushing, pulling, or rubbing the curtain: say &quot;<font color=#000080>As you attempt this feat, your hand goes through the curtain.</font>&quot;
 <br>
-Instead of entering the curtain: 
+Check entering the curtain: 
 <br>
 say &quot;<font color=#000080>You feel somewhat disoriented as you pass through.</font>&quot;;
 <br>
-if the former location is West Teller's Room, move the player to Viewing Room;
+if the former location is West Teller's Room, move the player to Viewing Room instead;
 <br>
-if the former location is East Teller's Room, move the player to Viewing Room;
+if the former location is East Teller's Room, move the player to Viewing Room instead;
 <br>
-if the former location is Small Room, move the player to Vault;
+if the former location is Small Room, move the player to Vault instead;
 <br>
-if the former location is Vault or the former location is Chairman's Office, move the player to Small Room.
+if the former location is Vault or the former location is Chairman's Office, move the player to Small Room instead.
 <br>
 Understand &quot;<font color=#000080>NORTH WALL</font>&quot; and &quot;<font color=#000080>NORTHERN WALL</font>&quot; as the curtain.
 <br>
@@ -365,59 +361,47 @@ end if.
 <br>
 
 <br>
-Instead of attacking the Gnome of Zurich: say &quot;<font color=#000080>The gnome says, 'Well, I never!' and disappears with a snap of his fingers, leaving you alone.</font>&quot;
+Check attacking the Gnome of Zurich: say &quot;<font color=#000080>The gnome says, 'Well, I never!' and disappears with a snap of his fingers, leaving you alone.</font>&quot; instead.
 <br>
-Instead of attacking the Gnome of Zurich with something: say &quot;<font color=#000080>The gnome says, 'Well, I never!' and disappears with a snap of his fingers, leaving you alone.</font>&quot;
+Check attacking the Gnome of Zurich with something: say &quot;<font color=#000080>The gnome says, 'Well, I never!' and disappears with a snap of his fingers, leaving you alone.</font>&quot; instead.
 <br>
-Every turn: if gnome flag is true and the player has been in Small Room for exactly 4 turns begin; say &quot;<font color=#000080>An epicene Gnome of Zurich, wearing a three-piece suit and carrying a
-<br>
-</font><font color=#000080> safety deposit box, materializes in the room.  'You seem to have
-<br>
-</font><font color=#000080> forgotten to deposit your valuables,' he says, tapping the lid of the
-<br>
-</font><font color=#000080> box impatiently.  'We don't usually allow customers to use the boxes
-<br>
-</font><font color=#000080> here, but we can make this ONE exception, I suppose...'  He looks
-<br>
-</font><font color=#000080> askance at you over his wire-rimmed bifocals.</font>&quot;; move the Gnome of Zurich to Small Room; change gnome flag to false; end if.
-<br>
-Instead of throwing something at the curtain: 
+Check throwing something at the curtain: 
 <br>
 say &quot;<font color=#000080>The curtain dims slightly as the [noun] passes through it.</font>&quot;;
 <br>
-if the former location is West Teller's Room, move the player to Viewing Room;
+if the former location is West Teller's Room, move the noun to Viewing Room instead;
 <br>
-if the former location is East Teller's Room, move the player to Viewing Room;
+if the former location is East Teller's Room, move the noun to Viewing Room instead;
 <br>
-if the former location is Small Room, move the noun to Vault;
+if the former location is Small Room, move the noun to Vault instead;
 <br>
-if the former location is Vault, move the noun to Small Room;
+if the former location is Vault, move the noun to Small Room instead;
 <br>
-if the former location is Chairman's Office, move the noun to Small Room.
+if the former location is Chairman's Office, move the noun to Small Room instead.
 <br>
 The south wall is a thing in Small Room.  The south wall is scenery.
 <br>
-Instead of entering the south wall: say &quot;<font color=#000080>You feel somewhat disoriented as you pass through.</font>&quot;; change the former location to the location; move the player to Safety Depository.
+Check entering the south wall: say &quot;<font color=#000080>You feel somewhat disoriented as you pass through.</font>&quot;; change the former location to the location; move the player to Safety Depository instead.
 <br>
 Understand &quot;<font color=#000080>southern wall</font>&quot; as the south wall.
 <br>
 The north wall is a thing in Vault.  The north wall is scenery.
 <br>
-Instead of entering the north wall: say &quot;<font color=#000080>You feel somewhat disoriented as you pass through.</font>&quot;; change the former location to the location; move the player to Safety Depository.
+Check entering the north wall: say &quot;<font color=#000080>You feel somewhat disoriented as you pass through.</font>&quot;; change the former location to the location; move the player to Safety Depository instead.
 <br>
-
+To say pizza:
 <br>
-Every turn:
+say &quot;<font color=#000080>Your way is blocked by debris from an explosion.</font>&quot;;
 <br>
-if the player has been in Vault for exactly 4 turns begin; say &quot;<font color=#000080>A metallic voice says, 'Hello, Intruder!  Your unauthorized presence in the vault area of the Bank of Zork has set off all sorts of nasty surprises, several of which seem to have been fatal.  This message brought to you by the Frobozz Magic Alarm Company.'</font>&quot;; end the game in death; end if.
+move the player to the former location;
 <br>
-Instead of throwing something at the north wall: 
+Check throwing something at the north wall: 
 <br>
-say &quot;<font color=#000080>The [noun] goes through.</font>&quot;
+say &quot;<font color=#000080>The [noun] goes through.</font>&quot; instead.
 <br>
-Instead of throwing something at the south wall: 
+Check throwing something at the south wall: 
 <br>
-say &quot;<font color=#000080>The [noun] goes through.</font>&quot;
+say &quot;<font color=#000080>The [noun] goes through.</font>&quot; instead.
 <br>
 Understand &quot;<font color=#000080>NORTHERN WALL</font>&quot; as the north wall.
 <br>
@@ -433,7 +417,7 @@ Instead of touching, taking, pushing, pulling, or rubbing the south wall: say &q
 <br>
 A dungeon called North-South Crawlway is north of Studio. &quot;<font color=#000080>This is a north-south crawlway; a passage also goes to the east. There is a hole above, but it provides no opportunities for climbing.</font>&quot; North of North-South Crawlway is north of West of Chasm. East of North-South Crawlway is east of Troll Room.
 <br>
-Instead of going up from North-South Crawlway: say &quot;<font color=#000080>Not even a human fly could get up it.</font>&quot;
+Check going up while in North-South Crawlway: say &quot;<font color=#000080>Not even a human fly could get up it.</font>&quot; instead.
 <br>
 
 <br>

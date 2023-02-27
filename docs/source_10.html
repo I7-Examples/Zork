@@ -31,7 +31,7 @@ The size of the broken sharp stick is 3.
 <br>
 The pile of plastic is inflammable.  The magic boat is inflammable.  The dboat is inflammable.
 <br>
-A pile of plastic is here.  The later appearance of the pile of plastic is &quot;<font color=#000080>There is a folded pile of plastic here which has a small valve
+A pile of plastic is in Dam Base.  The later appearance of the pile of plastic is &quot;<font color=#000080>There is a folded pile of plastic here which has a small valve
 <br>
 </font><font color=#000080>attached.</font>&quot;  The size of the pile of plastic is 20.  Understand &quot;<font color=#000080>boat</font>&quot; as the pile of plastic.
 <br>
@@ -55,19 +55,19 @@ Carry out inflating it with:
 <br>
   remove the pile of plastic from play.
 <br>
-Instead of entering the boat when the player is carrying the sharp stick:
+Check entering the boat when the player is carrying the sharp stick:
 <br>
   say &quot;<font color=#000080>There is a hissing sound and the boat deflates.</font>&quot;;
 <br>
   move the dboat to the holder of the boat;
 <br>
-  remove the boat from play.
+  remove the boat from play instead.
 <br>
 Definition: a room is offroad if it does not contain a nondrainable watersource. 
 <br>
-Instead of going by the magic boat when the player is in somewhere offroad: 
+Check going by the magic boat when the player is in somewhere offroad: 
 <br>
-    say &quot;<font color=#000080>You can't go there in a magic boat.</font>&quot;
+    say &quot;<font color=#000080>You can't go there in a magic boat.</font>&quot; instead.
 <br>
 The tan label is inflammable.
 <br>
@@ -101,7 +101,7 @@ say &quot;<font color=#000080>WARNING:  This boat is made of plastic.[paragraph 
 <br>
 say &quot;<font color=#000080>Good Luck!</font>&quot;.
 <br>
-A river is a kind of room. The printed name of a river is usually &quot;<font color=#000080>Frigid River</font>&quot;.  Instead of going up from a river:  say &quot;<font color=#000080>You cannot go upstream due to strong currents.</font>&quot;.
+A river is a kind of room. The printed name of a river is usually &quot;<font color=#000080>Frigid River</font>&quot;.  Check going up from a river:  say &quot;<font color=#000080>You cannot go upstream due to strong currents.</font>&quot; instead.
 <br>
 East of Dam Base is a river called River1.  The description of River1 is &quot;<font color=#000080>You are on the River Frigid in the vicinity of the Dam.  The river flows quietly here.  There is a landing on the west shore.</font>&quot;
 <br>
@@ -149,9 +149,7 @@ A large emerald is in the buoy.  After taking the emerald: award 5 points; conti
 <br>
 The case-points of the emerald is 10.
 <br>
-
-<br>
-Instead of going east from River2:  say &quot;<font color=#000080>The White Cliffs prevent your landing here.</font>&quot;
+Check going east from River2:  say &quot;<font color=#000080>The White Cliffs prevent your landing here.</font>&quot; instead.
 <br>
 South of Tiny Cave is northwest of a room called Rocky Shore.  The description of Rocky Shore is &quot;<font color=#000080>You are on the west shore of the river.  An entrance to a cave is
 <br>
@@ -177,7 +175,7 @@ South of Sandy Beach is a room called Shore.  The description of Shore is &quot;
 <br>
 
 <br>
-South of Shore is a room called Aragain Falls.  The description of Aragain Falls is &quot;<font color=#000080>You are at the top of Aragain Falls, an enormous waterfall with a drop of about 450 feet.  The only path here is on the north end.[if rainbow flag is true]A solid rainbow spans the falls.[otherwise]A beautiful rainbow can be seen over the falls and to the east.[end if]</font>&quot;.
+South of Shore is a room called Aragain Falls.  The description of Aragain Falls is &quot;<font color=#000080>You are at the top of Aragain Falls, an enormous waterfall with a drop of about 450 feet.  The only path here is on the north end.  [if rainbow flag is true]A solid rainbow spans the falls.[otherwise]A beautiful rainbow can be seen over the falls and to the east.[end if]</font>&quot;.
 <br>
 
 <br>
@@ -189,7 +187,7 @@ Rainbow flag is a truth state that varies.  Rainbow flag is usually false.
 <br>
 
 <br>
-Instead of waving the stick:
+Check waving the stick:
 <br>
   if the player is in Aragain Falls or the player is in End of Rainbow begin;
 <br>
@@ -205,7 +203,7 @@ Instead of waving the stick:
 <br>
    change the east exit of Rainbow Room to nowhere;
 <br>
-   change rainbow flag to false;
+   change rainbow flag to false instead;
 <br>
    else;
 <br>
@@ -223,7 +221,7 @@ Instead of waving the stick:
 <br>
    change the east exit of Rainbow Room to End of Rainbow;
 <br>
-   change rainbow flag to true;
+   change rainbow flag to true instead;
 <br>
    end if;
 <br>
@@ -233,11 +231,11 @@ Instead of waving the stick:
 <br>
 </font><font color=#000080>leaving you about 450 feet in the air, supported by water vapor.</font>&quot;;
 <br>
-   end the game in death;
+   end the game in death instead;
 <br>
  else;
 <br>
-   say &quot;<font color=#000080>Very good.</font>&quot;;
+   say &quot;<font color=#000080>Very good.</font>&quot; instead;
 <br>
  end if.
 <br>
@@ -251,7 +249,7 @@ Understand &quot;<font color=#000080>beautiful</font>&quot; and &quot;<font colo
 <br>
 The size of the statue is 8.
 <br>
-After taking the statue: award 10 points; continue the action.
+After taking the statue: award 11 points; continue the action.
 <br>
 The case-points of the statue is 13.
 <br>
@@ -267,7 +265,7 @@ After taking the buoy for the first time:
 <br>
 An open unopenable enterable container called a man-sized wooden barrel is in Aragain Falls.  The printed name of the man-sized wooden barrel is &quot;<font color=#000080>wooden barrel</font>&quot;.  The later appearance of the man-sized wooden barrel is &quot;<font color=#000080>There is a man-sized barrel here which you might be able to enter.</font>&quot;  The barrel is fixed in place.  The capacity of the man-sized wooden barrel is 100.
 <br>
-Instead of looking when the player is inside the barrel: say &quot;<font color=#000080>You are inside a barrel.  Congratulations.  Etched into the side of the barrel is the word 'Geronimo!'.  From your position, you cannot see the falls.</font>&quot;
+Check looking when the player is inside the barrel: say &quot;<font color=#000080>You are inside a barrel.  Congratulations.  Etched into the side of the barrel is the word 'Geronimo!'.  From your position, you cannot see the falls.</font>&quot; instead.
 <br>
 After entering the barrel: try looking.
 <br>
