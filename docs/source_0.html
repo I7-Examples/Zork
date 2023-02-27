@@ -1418,7 +1418,11 @@ try exiting.
 <tr><td halign="left" valign="top">493&nbsp;&nbsp;</td><td halign="left" valign="top"> &quot;<font color=#000080>Winner</font>&quot;</td></tr>
 <tr><td halign="left" valign="top">554&nbsp;&nbsp;</td><td halign="left" valign="top"> &quot;<font color=#000080>Master</font>&quot;</td></tr>
 <tr><td halign="left" valign="top">585&nbsp;&nbsp;</td><td halign="left" valign="top"> &quot;<font color=#000080>Wizard</font>&quot;</td></tr>
-<tr><td halign="left" valign="top">616&nbsp;&nbsp;</td><td halign="left" valign="top"> &quot;<font color=#000080>Cheater</font>&quot;&nbsp;&nbsp;</td><td halign="left" valign="top"> </td></tr>
+<tr><td halign="left" valign="top">616&nbsp;&nbsp;</td><td halign="left" valign="top"> &quot;<font color=#000080>Cheater</font>&quot;</td></tr>
+<tr><td halign="left" valign="top">641&nbsp;&nbsp;</td><td halign="left" valign="top"> &quot;<font color=#000080>Advanced Cheater</font>&quot;</td></tr>
+<tr><td halign="left" valign="top">666&nbsp;&nbsp;</td><td halign="left" valign="top"> &quot;<font color=#000080>Master Cheater</font>&quot;</td></tr>
+<tr><td halign="left" valign="top">691&nbsp;&nbsp;</td><td halign="left" valign="top"> &quot;<font color=#000080>Super Cheater</font>&quot;</td></tr>
+<tr><td halign="left" valign="top">716&nbsp;&nbsp;</td><td halign="left" valign="top"> &quot;<font color=#000080>Dungeon Master</font>&quot;</td></tr>
 </table>
 <br>
 Kicking is an action applying to one visible thing. Understand &quot;<font color=#000080>kick [something]</font>&quot; as kicking.
@@ -1926,7 +1930,15 @@ increase death count by 1;
 <br>
 award -10 points;
 <br>
-if death count is 3 begin;
+if endgame flag is true begin;
+<br>
+  say &quot;<font color=#000080>Normally, I would attempt to rectify your condition, but I'm ashamed
+<br>
+</font><font color=#000080>to say my abilities are not equal to dealing with your present state
+<br>
+</font><font color=#000080>of disrepair.  Please let me express my profoundest regrets.</font>&quot;;
+<br>
+else if death count is 3;
 <br>
   say &quot;<font color=#000080>You clearly are a suicidal maniac.  We don't allow psychotics in the
 <br>

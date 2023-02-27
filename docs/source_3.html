@@ -129,15 +129,65 @@ award 25 points;
 <br>
 continue the action.
 <br>
-Treasure Room is a dark room. The description of Treasure Room is &quot;<font color=#000080>This is a large room, whose north wall is solid granite.  A number
+Treasure Room is a dungeon. The description of Treasure Room is &quot;<font color=#000080>This is a large room, whose north wall is solid granite.  A number of discarded bags, which crumble at your touch, are scattered about on the floor.  There is an exit down and what appears to be a newly created passage to the east.</font>&quot;
 <br>
-</font><font color=#000080>of discarded bags, which crumble at your touch, are scattered about
+The thief is a man in Treasure Room.  Understand &quot;<font color=#000080>shady/suspicious</font>&quot; and &quot;<font color=#000080>ROBBER/CROOK/CRIMINAL/BANDIT</font>&quot; and  &quot;<font color=#000080>MODO/MANU</font>&quot; and &quot;<font color=#000080>GENT/GENTLEMAN/MAN/INDIVIDUAL</font>&quot; as the thief.  The later appearance of the thief is &quot;<font color=#000080>There is a suspicious-looking individual, holding a bag, leaning against one wall.  He is armed with a vicious-looking stiletto.</font>&quot;
 <br>
-</font><font color=#000080>on the floor.  There is an exit down and what appears to be a newly
+Escaping is an action applying to nothing. 
 <br>
-</font><font color=#000080>created passage to the east.</font>&quot;
+
 <br>
-Down from treasure room is the staircase.
+Carry out someone escaping: 
+<br>
+    let space be the holder of the person asked; 
+<br>
+    let place be a random dungeon which is adjacent to the space; 
+<br>
+    move the person asked to the space.
+<br>
+Every turn:
+<br>
+if the thief cannot see the player, try the thief escaping;
+<br>
+if the thief is not in Treasure Room and the player can see the thief begin;
+<br>
+if the thief can see something visible begin;
+<br>
+  say &quot;<font color=#000080>A seedy-looking individual with a large bag just wandered through the room.  On the way through, he quietly abstracted all valuables from the room and from your possession, mumbling something about 'Doing unto others before...'</font>&quot;;
+<br>
+  now every valuble thing had by the player is had by the thief;
+<br>
+  now every visible valuble thing in the location is had by the thief;
+<br>
+else;
+<br>
+  say &quot;<font color=#000080>A seedy-looking individual with a large bag just wandered through the room.  Finding nothing of value, he left disgruntled.</font>&quot;;
+<br>
+end if;
+<br>
+  try the thief escaping;
+<br>
+end if;
+<br>
+if the thief can see something portable begin;
+<br>
+ let the thingy be a random portable nonrope thing that is not attached to a rope;
+<br>
+ move the thingy to the thief;
+<br>
+ if the thief is in a maze and the player is in a maze, say &quot;<font color=#000080>You hear, off in the distance, someone saying 'My, I wonder what this fine [thingy] is doing here.</font>&quot;;
+<br>
+else;
+<br>
+  move a random thing that is not valuble held by the thief to the holder of the thief;
+<br>
+end if;
+<br>
+
+<br>
+
+<br>
+Down from Treasure Room is the staircase.
 <br>
 The Cyclops can be basic, hungry, thirsty, asleep, or gone. 
 <br>
@@ -145,9 +195,7 @@ To say cyclops text:
 <br>
 if the cyclops is basic, say &quot;<font color=#000080>A cyclops, who looks prepared to eat horses (much less mere adventurers), blocks the staircase.  From his state of health
 <br>
-</font><font color=#000080>and the bloodstains on the walls, you gather that he is not very
-<br>
-</font><font color=#000080>friendly, though he likes people</font>&quot;;
+</font><font color=#000080>and the bloodstains on the walls, you gather that he is not very friendly, though he likes people</font>&quot;;
 <br>
 if the cyclops is hungry, say &quot;<font color=#000080>The cyclops is standing in the corner, eyeing you closely.  I don't think he likes you very much.  He looks extremely hungry, even for a cyclops</font>&quot;;
 <br>

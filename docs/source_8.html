@@ -13,7 +13,7 @@
 					<h3><font color="#0000cc" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif">Zork</font></h3>
 					<h3><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif">An interactive fiction by Dean Menezes (2023) - the Inform 7 source text</font></h3>
 				</td></tr>
-		<tr align="left" valign="top"><td align="left" valign="top"><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"><a href="index.html">Home page</a><br><br><a href="source.html">Contents</a><br><a href="source_7.html">Previous</a><br><br><a href="source.txt">Complete text</a></font></td><td align="left" valign="top"><font face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"><b>Part 9 - Old Man River, That Old Man River</b>
+		<tr align="left" valign="top"><td align="left" valign="top"><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"><a href="index.html">Home page</a><br><br><a href="source.html">Contents</a><br><a href="source_7.html">Previous</a><br><a href="source_9.html">Next</a><br><br><a href="source.txt">Complete text</a></font></td><td align="left" valign="top"><font face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"><b>Part 9 - Old Man River, That Old Man River</b>
 <br>
 
 <br>
@@ -266,70 +266,6 @@ An open unopenable enterable container called a man-sized wooden barrel is in Ar
 Instead of looking when the player is inside the barrel: say &quot;<font color=#000080>You are inside a barrel.  Congratulations.  Etched into the side of the barrel is the word 'Geronimo!'.  From your position, you cannot see the falls.</font>&quot;
 <br>
 After entering the barrel: try looking.
-<br>
-
-<br>
-Instead of exiting when the player is in a river:
-<br>
-  say &quot;<font color=#000080>You realize, just in time, that disembarking here would probably be fatal.</font>&quot;
-<br>
-<font color=#404040>[Include (- 
-<br>
-</font><font color=#404040>  Array keyw string &quot;ECOVXRMS&quot;; 
-<br>
-</font><font color=#404040>  Array inw-&gt;9;
-<br>
-</font><font color=#404040>  Array outw-&gt;9; 
-<br>
-</font><font color=#404040>  Array uinw-&gt;9; 
-<br>
-</font><font color=#404040>  Array ukeyw-&gt;9; 
-<br>
-</font><font color=#404040><font color=#404040>[Encrypt inw outw ichara i j uinws ukeyws usum; 
-<br>
-</font><font color=#404040>  j=1; ichara='A'-1; uinws=0; ukeyws=0;
-<br>
-</font><font color=#404040>  for (i=1; i&lt;=8; i++) { 
-<br>
-</font><font color=#404040>    ukeyw-&gt;i = keyw-&gt;i - ichara; 
-<br>
-</font><font color=#404040>    if (inw-&gt;j&lt;=ichara) j=1; 
-<br>
-</font><font color=#404040>    uinw-&gt;i=inw-&gt;j-ichara; 
-<br>
-</font><font color=#404040>    ukeyws=ukeyws+ukeyw-&gt;i; 
-<br>
-</font><font color=#404040>    uinws=uinws+uinw-&gt;i; 
-<br>
-</font><font color=#404040>    j=j+1; 
-<br>
-</font><font color=#404040>  } 
-<br>
-</font><font color=#404040>  usum=(uinws%8)+8*(ukeyws%8); 
-<br>
-</font><font color=#404040>  for (i=1; i&lt;=8; i++) { 
-<br>
-</font><font color=#404040>    j=XOR(uinw-&gt;i, XOR(ukeyw-&gt;i, usum))%32; 
-<br>
-</font><font color=#404040>    usum=(usum+1)%32; 
-<br>
-</font><font color=#404040>    if (j&gt;26) j=j%26; 
-<br>
-</font><font color=#404040>    outw-&gt;i=max(1, j)+ichara; 
-<br>
-</font><font color=#404040>  } 
-<br>
-</font><font color=#404040></font>]; 
-<br>
-<font color=#404040>[ XOR a b; return (a | b) &amp; (~(a &amp; b)); </font>];        ! Bitwise Exclusive OR
-<br>
-<font color=#404040>[ MAX a b; if (a&gt;b) return a; else return b;</font>]; 
-<br>
--). ]
-<br>
-
-<br>
-
 <br>
 
 <br>

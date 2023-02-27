@@ -1,6 +1,6 @@
 "Zork" by Dean Menezes
 
-Include (- Serial "071128"; -).
+Include (- Serial "071217"; -).
 
 
 Part 1 - New Actions and Concepts
@@ -711,7 +711,11 @@ Score	Rank
 493	"Winner"
 554	"Master"
 585	"Wizard"
-616	"Cheater"	
+616	"Cheater"
+641	"Advanced Cheater"
+666	"Master Cheater"
+691	"Super Cheater"
+716	"Dungeon Master"
 
 Kicking is an action applying to one visible thing. Understand "kick [something]" as kicking.
 Carry out kicking: if dead flag is true, say "All such attacks are vain in your position." instead;
@@ -996,7 +1000,11 @@ Death count is a number that varies.
 When play ends when the game ended in death:
 increase death count by 1;
 award -10 points;
-if death count is 3 begin;
+if endgame flag is true begin;
+  say "Normally, I would attempt to rectify your condition, but I'm ashamed
+to say my abilities are not equal to dealing with your present state
+of disrepair.  Please let me express my profoundest regrets.";
+else if death count is 3;
   say "You clearly are a suicidal maniac.  We don't allow psychotics in the
 dungeon, since they may harm other adventurers.  Your remains will be
 installed in the Land of the Living Dead, where your fellow adventurers
@@ -1591,16 +1599,40 @@ Understand "stairs" as the staircase.
 After entering the staircase for the first time:
 award 25 points;
 continue the action.
-Treasure Room is a dark room. The description of Treasure Room is "This is a large room, whose north wall is solid granite.  A number
-of discarded bags, which crumble at your touch, are scattered about
-on the floor.  There is an exit down and what appears to be a newly
-created passage to the east."
-Down from treasure room is the staircase.
+Treasure Room is a dungeon. The description of Treasure Room is "This is a large room, whose north wall is solid granite.  A number of discarded bags, which crumble at your touch, are scattered about on the floor.  There is an exit down and what appears to be a newly created passage to the east."
+The thief is a man in Treasure Room.  Understand "shady/suspicious" and "ROBBER/CROOK/CRIMINAL/BANDIT" and  "MODO/MANU" and "GENT/GENTLEMAN/MAN/INDIVIDUAL" as the thief.  The later appearance of the thief is "There is a suspicious-looking individual, holding a bag, leaning against one wall.  He is armed with a vicious-looking stiletto."
+Escaping is an action applying to nothing. 
+
+Carry out someone escaping: 
+    let space be the holder of the person asked; 
+    let place be a random dungeon which is adjacent to the space; 
+    move the person asked to the space.
+Every turn:
+if the thief cannot see the player, try the thief escaping;
+if the thief is not in Treasure Room and the player can see the thief begin;
+if the thief can see something visible begin;
+  say "A seedy-looking individual with a large bag just wandered through the room.  On the way through, he quietly abstracted all valuables from the room and from your possession, mumbling something about 'Doing unto others before...'";
+  now every valuble thing had by the player is had by the thief;
+  now every visible valuble thing in the location is had by the thief;
+else;
+  say "A seedy-looking individual with a large bag just wandered through the room.  Finding nothing of value, he left disgruntled.";
+end if;
+  try the thief escaping;
+end if;
+if the thief can see something portable begin;
+ let the thingy be a random portable nonrope thing that is not attached to a rope;
+ move the thingy to the thief;
+ if the thief is in a maze and the player is in a maze, say "You hear, off in the distance, someone saying 'My, I wonder what this fine [thingy] is doing here.";
+else;
+  move a random thing that is not valuble held by the thief to the holder of the thief;
+end if;
+
+
+Down from Treasure Room is the staircase.
 The Cyclops can be basic, hungry, thirsty, asleep, or gone. 
 To say cyclops text:
 if the cyclops is basic, say "A cyclops, who looks prepared to eat horses (much less mere adventurers), blocks the staircase.  From his state of health
-and the bloodstains on the walls, you gather that he is not very
-friendly, though he likes people";
+and the bloodstains on the walls, you gather that he is not very friendly, though he likes people";
 if the cyclops is hungry, say "The cyclops is standing in the corner, eyeing you closely.  I don't think he likes you very much.  He looks extremely hungry, even for a cyclops";
 If the cyclops is thirsty, say "The cyclops, having eaten the hot peppers, appears to be gasping. His inflamed tongue protrudes from his man-sized mouth";
 If the cyclops is asleep, say "The cyclops is sleeping blissfully at the foot of the stairs";
@@ -1798,8 +1830,6 @@ After eating the red cake when the player is in Tea Room or Pool Room or Posts R
   end the game in death.
 A persuasion rule for asking the robot to try doing something: 
     persuasion succeeds. 
-
-
 Instead of asking the robot to try eating or drinking something: 
     say "'I am sorry but that action is difficult for a being with no mouth.'".
 Procedural rule: ignore the block giving rule.
@@ -2686,35 +2716,160 @@ An open unopenable enterable container called a man-sized wooden barrel is in Ar
 Instead of looking when the player is inside the barrel: say "You are inside a barrel.  Congratulations.  Etched into the side of the barrel is the word 'Geronimo!'.  From your position, you cannot see the falls."
 After entering the barrel: try looking.
 
+Part 10 - The End Game
+
+To decide what indexed text is the encryption of (x - an indexed text):
+let keyw be {5, 3, 15, 22, 24, 18, 13, 19};
+let outw be an indexed text;
+let uinws be 0;
+let usum be 0;
+let inw be a list of numbers;
+let i be 1;
+let j be 1;
+change outw to "[8 spaces]";
+let len be the number of characters in x;
+while i is at most 8 begin;
+  if j is greater than len, change j to 1;
+  let a be character number j in x;
+  if a matches the regular expression "<^A-Z>", change j to 1;
+  let a be character number j in x;
+  let b be the alphabet position of a;
+  add b to inw;
+  increase uinws by b;
+  increase i by 1;
+  increase j by 1;
+end while;
+change usum to (the remainder after dividing uinws by 8) + 56;
+change i to 1;
+while i is at most 8 begin;
+  let c be entry i of inw;
+  let b be entry i of keyw;
+  change j to the twiddle of c and b and usum;
+  change j to the remainder after dividing j by 32;
+  if j is greater than 26, change j to the remainder after dividing j by 26;
+  change a to character number j in the alphabet;
+  replace character number i in outw with a;
+  change usum to the remainder after dividing (usum + 1) by 32;
+  increase i by 1;
+end while;
+decide on outw.
+
+To decide what number is the twiddle of (a - a number) and (b - a number) and (c - a number):
+  (- xor(xor({a},{b}),{c}) -).
+
+To decide which number is the alphabet position of (n - an indexed text):
+if n is "A", decide on 1;
+if n is "B", decide on 2;
+if n is "C", decide on 3;
+if n is "D", decide on 4;
+if n is "E", decide on 5;
+if n is "F", decide on 6;
+if n is "G", decide on 7;
+if n is "H", decide on 8;
+if n is "I", decide on 9;
+if n is "J", decide on 10;
+if n is "K", decide on 11;
+if n is "L", decide on 12;
+if n is "M", decide on 13;
+if n is "N", decide on 14;
+if n is "O", decide on 15;
+if n is "P", decide on 16;
+if n is "Q", decide on 17;
+if n is "R", decide on 18;
+if n is "S", decide on 19;
+if n is "T", decide on 20;
+if n is "U", decide on 21;
+if n is "V", decide on 22;
+if n is "W", decide on 23;
+if n is "X", decide on 24;
+if n is "Y", decide on 25;
+if n is "Z", decide on 26.
+The alphabet is an indexed text variable.  The alphabet is always "ABCDEFGHIJKLMNOPQRSTVWXYZ".
 Instead of exiting when the player is in a river:
   say "You realize, just in time, that disembarking here would probably be fatal."
-[Include (- 
-  Array keyw string "ECOVXRMS"; 
-  Array inw->9;
-  Array outw->9; 
-  Array uinw->9; 
-  Array ukeyw->9; 
-[Encrypt inw outw ichara i j uinws ukeyws usum; 
-  j=1; ichara='A'-1; uinws=0; ukeyws=0;
-  for (i=1; i<=8; i++) { 
-    ukeyw->i = keyw->i - ichara; 
-    if (inw->j<=ichara) j=1; 
-    uinw->i=inw->j-ichara; 
-    ukeyws=ukeyws+ukeyw->i; 
-    uinws=uinws+uinw->i; 
-    j=j+1; 
-  } 
-  usum=(uinws%8)+8*(ukeyws%8); 
-  for (i=1; i<=8; i++) { 
-    j=XOR(uinw->i, XOR(ukeyw->i, usum))%32; 
-    usum=(usum+1)%32; 
-    if (j>26) j=j%26; 
-    outw->i=max(1, j)+ichara; 
-  } 
-]; 
-[ XOR a b; return (a | b) & (~(a & b)); ];        ! Bitwise Exclusive OR
-[ MAX a b; if (a>b) return a; else return b;]; 
--). ]
+Incanting is an action applying to one topic.  Understand "incant [text]" as incanting.
+Check incanting:
+if endgame flag is true, say "[one of]Sorry, only one incantation to a customer.[or]Incantations are useless once you have gotten this far[at random]" instead.
+
+Carry out incanting:
+let i be the number of words in the topic understood;
+  let a be word number one in the topic understood;
+  change a to "[a in upper case]";
+  let b be word number two in the topic understood;
+  change b to "[b in upper case]";
+if i is 1 begin;
+  let b be character number 1 in a;
+  if b matches the regular expression "<^A-Z>", say "Sorry, your secret word must begin with a letter." instead;
+  say "A hollow voice replies '[encryption of a]'";
+else if i is 2;
+ let c be character number one in a;
+  let d be character number one in b;
+ if c matches the regular expression "<^A-Z>", say "That spell has no obvious effect." instead;
+  if d matches the regular expression "<^A-Z>", say "That spell has no obvious effect.";
+  let e be the encryption of a;
+  let f be the encryption of b;
+  if e is b, skip to the endgame instead;
+  if f is a, skip to the endgame instead;
+  say "That spell has no obvious effect.";
+else;
+  say "That spell has no obvious effect.";
+end if.
+To skip to the endgame:
+say "As the last syllable of your spell fades into silence, darkness
+envelops you, and the earth shakes briefly.  Then all is quiet.";
+change the score to 621;
+change endgame flag to true;
+move the battery-powered brass lantern to the player;
+move the sword to the player;
+move the player to Top of Stairs.
+
+Endgame flag is a truth state that varies.  Endgame flag is false.
+
+Top of Stairs is a room.  The description of Top of Stairs is "You are standing at the top of a flight of stairs that lead down to a passage below.  Dim light, as from torches, can be seen in the passage.  Behind you the stairs lead into untouched rock."
+After looking while in Top of Stairs for the first time: award 10 points.
+Instead of going south from Top of Stairs:  say "The wall is solid rock."
+North of Top of Stairs is Stone Room.  Down from Top of Stairs is Stone Room.
+The description of Stone Room is "You are standing near one end of a long, dimly lit hall.  At the south stone stairs ascend.  To the north the corridor is illuminated
+by torches set high in the walls, out of reach.  On one wall is a red
+button." A thing called a redbutton is here.  Understand "red" and "button" and "switch" as the red button. The redbutton is scenery.  The printed name of the redbutton is "red button".
+The redbutton has a truth state called depressed. Depressed is false.
+Beam stopped is a truth state that varies.  Beam stopped is false.
+Mrint is a number that varies.  Mrint is -1.
+Instead of pushing the redbutton:
+  if the depressed of the button is true begin;
+    say "The button is already depressed.";
+  else;
+    say "The button becomes depressed.";
+    if beam stopped is false begin;
+      say "The button pops back out.";
+    else;
+      change mrint to 7;
+      change mirror open to true;
+    end if;
+ end if.
+Every turn:
+  decrease mrint by 1;
+  if mrint is 0 begin;
+    if the player can see the redbutton, say "The button pops back to its original position.";
+   change mirror open to false;
+   change the depressed of the button to false;
+  end if.
+North of Stone Room is a room called Small Room.  The description of Small Room is "You are in a small room, with narrow passages exiting to the north
+and south.  A narrow red beam of light crosses the room at the north
+end, inches above the floor.[if beam stopped is true]The beam is stopped halfway across the room by a sword lying on the floor.[end if]".
+A red beam of light is in Small Room.  The red beam of light is scenery.
+Instead of destroying the beam of light with something:
+try dropping the second noun instead.
+After dropping the sword when beam stopped is false and the player can see the beam of light:
+  say "The beam is now blocked by a sword lying on the floor.";
+  change beam stopped to true.
+After taking the sword when beam stopped is true and the player can see the beam of light:
+  change beam stopped to false.
+Instead of taking the beam of light:
+  say "No doubt you have a bottle of moonbeams as well."
+Mirror open is a truth state that varies.
+
+Include (- [ XOR a b; return (a | b) & (~(a & b)); ];  -).
 
 
 
