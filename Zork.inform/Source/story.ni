@@ -1,6 +1,30 @@
-"Zork" by Dean Menezes
+"Zork" by Infocom -- Ported by Dean Menezes
 
-Include (- Serial "080127"; -).
+Include (- Serial "080203"; -).
+
+
+[Copyright (c) 2008 Dean Menezes
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.]
 
 
 Part 1 - New Actions and Concepts
@@ -153,6 +177,7 @@ else if the player is in the basket;
   else if the basket is in Volcano Near Viewing Ledge;
     say "The ledge is too narrow to land on." instead;
   else if the basket is in Volcano Near WideLedge;
+    if the rusty old box is open, say "The ledge has collapsed and cannot be landed on." instead;
     move the basket to Wide Ledge;
     try looking instead;
   end if;
@@ -553,8 +578,9 @@ Understand "frobozz" as a mistake ("The Frobozz Company, Ltd., created, owns, an
 Understand "schedule" as a mistake ("The dungeon is ALWAYS open (always room for one more).").
 
 Understand "time" as a mistake ("You have been playing Zork for longer than you think.").
-
-Treasure-travelling is an action applying to nothing. Understand "treasure" as treasure-travelling. Check treasure-travelling: if the player is not in Temple, say "Nothing happens." instead.
+First after reading a command rule:
+if the player's command matches "treasure", replace the player's command with "$treasure$".
+Treasure-travelling is an action applying to nothing. Understand "$treasure$" as treasure-travelling. Check treasure-travelling: if the player is not in Temple, say "Nothing happens." instead.
 Carry out treasure-travelling: move the player to Treasure Room.
 Temple-travelling is an action applying to nothing. Understand "temple" as temple-travelling. Check temple-travelling: if the player is not in Treasure Room, say "Nothing happens." instead.
 Carry out temple-travelling: move the player to Temple.
@@ -1480,7 +1506,8 @@ A door called the tree is a door. The tree is scenery. The tree is open and not 
 
 The description of Up a Tree is "You are about ten feet above the ground nestled among some large branches. The nearest branch above you is beyond your reach."
 Instead of climbing the tree: try entering the noun instead.
-A container called a birds nest is here. "On the branch is a small birds nest.  ".  A closed unopenable container called a jewel-encrusted egg is in the nest. The initial appearance of the jewel-encrusted egg is "In the bird's nest is a large egg encrusted with precious jewels, apparently scavenged somewhere by a childless songbird.  The egg is covered with fine gold inlay and ornamented in lapis lazuli and mother-of-pearl.  Unlike most eggs, this one is hinged and has a delicate looking clasp holding it closed. The egg appears extremely fragile." The description of the egg is "The egg is covered with fine gold inlay and ornamented in lapis lazuli and mother-of-pearl.  Unlike most eggs, this one is hinged and has a delicate looking clasp holding it closed. The egg appears extremely fragile." 
+A container called a birds nest is here. "On the branch is a small birds nest.  ".  A closed unopenable container called a jewel-encrusted egg is in the nest. The initial appearance of the jewel-encrusted egg is "In the bird's nest is a large egg encrusted with precious jewels, apparently scavenged somewhere by a childless songbird.  The egg is covered with fine gold inlay and ornamented in lapis lazuli and mother-of-pearl.  Unlike most eggs, this one is hinged and has a delicate looking clasp holding it closed. The egg appears extremely fragile." The description of the egg is "The egg is covered with fine gold inlay and ornamented in lapis lazuli and mother-of-pearl.  Unlike most eggs, this one is hinged and has a delicate looking clasp holding it closed. The egg appears extremely fragile."
+Understand "whole" as the jewel-encrusted egg.
 The birds nest is inflammable.
 The capacity of the nest is 20.
 The capacity of the jewel-encrusted egg is 6.
@@ -1907,8 +1934,8 @@ Carry out someone escaping:
     let place be a random dungeon which is adjacent to the space; 
     move the person asked to the space.
 Every turn:
-if the thief is carrying the jewel-encrusted egg, now the jewel-encrusted egg is open;
-if the player is in Treasure Room and the thief is not in Treasure Room begin;
+if the thief carries the jewel-encrusted egg, now the jewel-encrusted egg is open;
+if the player is in Treasure Room and the thief is not in Treasure Room and the thief is on-stage begin;
   say "You hear a scream of anguish as you violate the robber's hideaway.  Using passages unknown to you, he rushes to its defense.";
   move the thief to Treasure Room;
 end if;
@@ -2320,6 +2347,7 @@ A scenery thing called the inscription is in Temple. Understand "prayer" as the 
 A bell called a small brass bell is in Temple.
 A dungeon called Altar is east of Temple. "This is the east end of a large temple.  In front of you is what appears to be an altar."
 A pair of candles is here.  "On the two ends of the altar are burning candles."
+The candles are flaming.
 The later appearance of the pair of candles is "There are two candles here."
 A large black book is here. "On the altar is a large black book, open to page 569."
 Understand "bible" and "good book" and "goodbook" as the book.
@@ -3079,6 +3107,9 @@ end if.
 Exorcism flag is a number that varies.
 Instead of going east from Entrance to Hades when exorcism flag is not -1:
   say "Some invisible force prevents you from passing through the gate."
+[After going east from Entrance to Hades for the first time:
+award 30 points;
+continue the action.]
 Instead of ringing the bell while in Entrance to Hades:
 if exorcism flag is 0 begin;
 say "Ding Dong.[paragraph break]";
