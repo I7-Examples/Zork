@@ -11,7 +11,7 @@
 	<body bgcolor="#ffffff">
 		<table border="0" cellpadding="2"><tr><td align="left" valign="top"><font face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"></font></td><td align="left" valign="top">
 					<h3><font color="#0000cc" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif">Zork</font></h3>
-					<h3><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif">An interactive fiction by Infocom -- Ported by Dean Menezes (2023) - the Inform 7 source text</font></h3>
+					<h3><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif">An interactive fiction by Infocom -- Ported by Dean Menezes (1979) - the Inform 7 source text</font></h3>
 				</td></tr>
 		<tr align="left" valign="top"><td align="left" valign="top"><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"><a href="index.html">Home page</a><br><br><a href="source.html">Contents</a><br><a href="source_1.html">Next</a><br><br><a href="source.txt">Complete text</a></font></td><td align="left" valign="top"><font face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"><b>Part 1 - New Actions and Concepts</b>
 <br>
@@ -20,6 +20,10 @@
 The story genre is &quot;<font color=#000080>Fantasy</font>&quot;. 
 <br>
 The story headline is &quot;<font color=#000080>A Computerized Fantasy Simulation Game</font>&quot;.
+<br>
+The release number is 2.
+<br>
+The story creation year is 1979.
 <br>
 Use memory economy.
 <br>
@@ -1531,17 +1535,11 @@ try exiting.
 <tr><td halign="left" valign="top">554&nbsp;&nbsp;</td><td halign="left" valign="top"> &quot;<font color=#000080>Master</font>&quot;</td></tr>
 <tr><td halign="left" valign="top">585&nbsp;&nbsp;</td><td halign="left" valign="top"> &quot;<font color=#000080>Wizard</font>&quot;</td></tr>
 <tr><td halign="left" valign="top">616&nbsp;&nbsp;</td><td halign="left" valign="top"> &quot;<font color=#000080>Cheater</font>&quot;</td></tr>
+<tr><td halign="left" valign="top">641&nbsp;&nbsp;</td><td halign="left" valign="top"> &quot;<font color=#000080>Advanced Cheater</font>&quot;</td></tr>
+<tr><td halign="left" valign="top">666&nbsp;&nbsp;</td><td halign="left" valign="top"> &quot;<font color=#000080>Master Cheater</font>&quot;</td></tr>
+<tr><td halign="left" valign="top">691&nbsp;&nbsp;</td><td halign="left" valign="top"> &quot;<font color=#000080>Super Cheater</font>&quot;</td></tr>
+<tr><td halign="left" valign="top">716&nbsp;&nbsp;</td><td halign="left" valign="top"> &quot;<font color=#000080>Dungeon Master</font>&quot;</td></tr>
 </table>
-<br>
-<font color=#404040>[641 &quot;Advanced Cheater&quot;
-<br>
-</font><font color=#404040>666 &quot;Master Cheater&quot;
-<br>
-</font><font color=#404040>691 &quot;Super Cheater&quot;
-<br>
-</font><font color=#404040>716 &quot;Dungeon Master&quot;</font>]
-<br>
-
 <br>
 Kicking is an action applying to one visible thing. Understand &quot;<font color=#000080>kick [something]</font>&quot; as kicking.
 <br>
@@ -2632,7 +2630,71 @@ move the player to the former location.
 <br>
 
 <br>
-Every turn: if the score is 616, end the game in victory.
+
+<br>
+Knocking is an action applying to one visible thing.  Understand &quot;<font color=#000080>knock [something]</font>&quot; and &quot;<font color=#000080>knock on [something]</font>&quot; and &quot;<font color=#000080>rap on [something]</font>&quot; and &quot;<font color=#000080>rap [something]</font>&quot; as knocking.
+<br>
+
+<br>
+Check knocking:
+<br>
+if the noun is not a door, say &quot;<font color=#000080>Why knock on [a noun]?</font>&quot; instead;
+<br>
+if the noun is not the large wooden door, say &quot;<font color=#000080>I don't think anyone is home.</font>&quot; instead.
+<br>
+Carry out knocking:
+<br>
+say &quot;<font color=#000080>The knock reverberates along the hall.  For a time it seems there
+<br>
+</font><font color=#000080>will be no answer.  Then you hear someone unlatching the small wooden
+<br>
+</font><font color=#000080>panel.  Through the bars of the great door, the wrinkled face of an
+<br>
+</font><font color=#000080>old man appears.  He gazes down at you and intones as follows:[paragraph break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>[5 spaces] 'I am the Master of the dungeon, whose task it is to insure
+<br>
+</font><font color=#000080>that none but the most scholarly and masterful adventurers are 
+<br>
+</font><font color=#000080>admitted into the secret realms of the dungeon.  To ascertain whether 
+<br>
+</font><font color=#000080>you meet the stringent requirements laid down by the Great
+<br>
+</font><font color=#000080>Implementers, I will ask three questions which should be easy for
+<br>
+</font><font color=#000080>one of your reputed excellence to answer.  You have undoubtedly
+<br>
+</font><font color=#000080>discovered the answers during your travels through the dungeon.
+<br>
+</font><font color=#000080>Should you answer each of these questions correctly within five
+<br>
+</font><font color=#000080>attempts, then I am obliged to acknowledge your skill and daring and
+<br>
+</font><font color=#000080>admit you to these regions.'[paragraph break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>All answers should be in the form [']ANSWER 'answer'['].</font>&quot;;
+<br>
+change question number to 1;
+<br>
+move the dungeon master to Hallway4.
+<br>
+
+<br>
+Spinning it to is an action applying to one thing and one number.  Understand &quot;<font color=#000080>spin [something] to [a number]</font>&quot; as spinning it to. Understand &quot;<font color=#000080>turn [something] to [a number]</font>&quot; as spinning it to.
+<br>
+Check spinning it to:
+<br>
+if the noun is not the dial, say &quot;<font color=#000080>You can't do that to [the noun].</font>&quot; instead;
+<br>
+if the number understood is less than 1, say &quot;<font color=#000080>The dial only goes from 1 to 8.</font>&quot; instead;
+<br>
+if the number understood is greater than 8, say &quot;<font color=#000080>The dial only goes from 1 to 8.</font>&quot; instead.
+<br>
+Carry out spinning it to:
+<br>
+say &quot;<font color=#000080>The dial now points to [the number understood]</font>&quot;;
+<br>
+change dial number to the number understood.
 <br>
 
 <br>

@@ -1,6 +1,6 @@
 "Zork" by Infocom -- Ported by Dean Menezes
 
-Include (- Serial "080203"; -).
+Include (- Serial "080217"; -).
 
 
 [Copyright (c) 2008 Dean Menezes
@@ -31,6 +31,8 @@ Part 1 - New Actions and Concepts
 
 The story genre is "Fantasy". 
 The story headline is "A Computerized Fantasy Simulation Game".
+The release number is 2.
+The story creation year is 1979.
 Use memory economy.
 A thing can be non-flaming or flaming.  A thing is usually non-flaming. A thing can be non-inflammable or inflammable. A thing is usually non-inflammable.
 [*According to THE ELEMENTS OF STYLE --  FLAMMABLE: An oddity, chiefly useful in saving lives. The common word meaning "combustible" is inflammable. But some people are thrown off by the in- and think inflammable means "not combustible." For this reason, trucks carrying gasoline or explosives are now marked FLAMMABLE. Unless you are operating such a truck and hence are concerned with the safety of children and illiterates, use inflammable.]
@@ -792,11 +794,10 @@ Score	Rank
 554	"Master"
 585	"Wizard"
 616	"Cheater"
-
-[641	"Advanced Cheater"
+641	"Advanced Cheater"
 666	"Master Cheater"
 691	"Super Cheater"
-716	"Dungeon Master"]
+716	"Dungeon Master"
 
 Kicking is an action applying to one visible thing. Understand "kick [something]" as kicking.
 Carry out kicking: if dead flag is true, say "All such attacks are vain in your position." instead;
@@ -1373,7 +1374,39 @@ To say pizza:
 say "Your way is blocked by debris from an explosion.";
 move the player to the former location.
 
-Every turn: if the score is 616, end the game in victory.
+
+Knocking is an action applying to one visible thing.  Understand "knock [something]" and "knock on [something]" and "rap on [something]" and "rap [something]" as knocking.
+
+Check knocking:
+if the noun is not a door, say "Why knock on [a noun]?" instead;
+if the noun is not the large wooden door, say "I don't think anyone is home." instead.
+Carry out knocking:
+say "The knock reverberates along the hall.  For a time it seems there
+will be no answer.  Then you hear someone unlatching the small wooden
+panel.  Through the bars of the great door, the wrinkled face of an
+old man appears.  He gazes down at you and intones as follows:[paragraph break]";
+say "[5 spaces] 'I am the Master of the dungeon, whose task it is to insure
+that none but the most scholarly and masterful adventurers are 
+admitted into the secret realms of the dungeon.  To ascertain whether 
+you meet the stringent requirements laid down by the Great
+Implementers, I will ask three questions which should be easy for
+one of your reputed excellence to answer.  You have undoubtedly
+discovered the answers during your travels through the dungeon.
+Should you answer each of these questions correctly within five
+attempts, then I am obliged to acknowledge your skill and daring and
+admit you to these regions.'[paragraph break]";
+say "All answers should be in the form [']ANSWER 'answer'['].";
+change question number to 1;
+move the dungeon master to Hallway4.
+
+Spinning it to is an action applying to one thing and one number.  Understand "spin [something] to [a number]" as spinning it to. Understand "turn [something] to [a number]" as spinning it to.
+Check spinning it to:
+if the noun is not the dial, say "You can't do that to [the noun]." instead;
+if the number understood is less than 1, say "The dial only goes from 1 to 8." instead;
+if the number understood is greater than 8, say "The dial only goes from 1 to 8." instead.
+Carry out spinning it to:
+say "The dial now points to [the number understood]";
+change dial number to the number understood.
 
 Part 2 - Above Ground Stuff
 
@@ -2767,6 +2800,9 @@ The massive wooden door is closed,openable, locked, and lockable.
 
 A blue crystal sphere is a thing in Dreary Room.
 The description of the blue crystal sphere is "[blue sphere text]".
+The case-points of the blue crystal sphere is 10.
+After taking the blue crystal sphere for the first time:
+award 5 points; continue the action.
 To say blue sphere text:
 if the red crystal sphere is in something which is closed and opaque begin;
   say "You see only darkness.";
@@ -3107,9 +3143,6 @@ end if.
 Exorcism flag is a number that varies.
 Instead of going east from Entrance to Hades when exorcism flag is not -1:
   say "Some invisible force prevents you from passing through the gate."
-[After going east from Entrance to Hades for the first time:
-award 30 points;
-continue the action.]
 Instead of ringing the bell while in Entrance to Hades:
 if exorcism flag is 0 begin;
 say "Ding Dong.[paragraph break]";
@@ -3167,8 +3200,8 @@ and of your life.";
 end the game in death.
 Instead of attacking the set of poled heads with something:
 try destroying the set of poled heads with the second noun instead.
-After looking while in Land of the Living Dead for the first time:
-  award 30 points; continue the action.
+After looking while in Land of the Living Dead for the first time: award 30 points; continue the action.
+
 In the Tomb of the Unknown Implementor is a bunch of Coke bottles.  The initial appearance of the bunch of Coke bottles is "There is a large pile of empty Coke bottles here, evidently produced by the implementers during their long struggle to win totally." 
 The later appearance of the bunch of Coke bottles is "Many empty Coke bottles are here.  Alas, they can't hold water."
 The size of the bunch of Coke bottles is 15.
@@ -3346,6 +3379,7 @@ A deranged giant vampire bat is in Bat Room.  The deranged giant vampire bat is 
   say "A deranged giant vampire bat (a reject from WUMPUS) swoops down
 from his belfry and lifts you away....";
   move the player to a random coal mine.
+A jade figurine is in Bat Room.  The size of the jade figurine is 10.  The case-points of the jade figurine is 5. After taking the jade figurine for the first time: award 5 points.
 Northeast of Mine Entrance is west of a dungeon called Shaft Room.  The description of Shaft Room is "This is a large room, in the middle of which is a small shaft
 descending through the floor into darkness below.  To the west and
 the north are exits from this room.  Constructed over the top of the
@@ -3602,7 +3636,9 @@ North of Reservoir is Reservoir North.
 Instead of going to a room that is not offroad:
   if the player is not in a vehicle, print the you can't go message instead;
   else continue the action.
-A hand-held air-pump is in Reservoir.  Understand "pump" and "airpump" as the air-pump.  The later appearance of the air-pump is "There is a small pump here."
+A hand-held air-pump is in Reservoir North.  Understand "pump" and "airpump" as the air-pump.  The later appearance of the air-pump is "There is a small pump here."
+
+A trunk of jewels is in Reservoir.  Understand "chest" as the trunk.  The size of the trunk is 38.  The case-points of the trunk is 8.  After taking the trunk: award 15 points; continue the action.
 
 Part 11 - Old Man River, That Old Man River
 
@@ -3734,7 +3770,7 @@ An open unopenable enterable container called a man-sized wooden barrel is in Ar
 Instead of looking when the player is inside the barrel: say "You are inside a barrel.  Congratulations.  Etched into the side of the barrel is the word 'Geronimo!'.  From your position, you cannot see the falls."
 After entering the barrel: try looking.
 
-[Part 12 - The End Game
+Part 12 - The End Game
 
 To decide what indexed text is the encryption of (x - an indexed text):
 let keyw be {5, 3, 15, 22, 24, 18, 13, 19};
@@ -3845,6 +3881,8 @@ say "As the last syllable of your spell fades into silence, darkness
 envelops you, and the earth shakes briefly.  Then all is quiet.";
 change the score to 621;
 change endgame flag to true;
+now the sword is touched;
+now the battery-powered brass lantern is touched;
 move the battery-powered brass lantern to the player;
 move the sword to the player;
 move the player to Top of Stairs.
@@ -3852,33 +3890,34 @@ move the player to Top of Stairs.
 Endgame flag is a truth state that varies.  Endgame flag is false.
 
 Top of Stairs is a room.  The description of Top of Stairs is "You are standing at the top of a flight of stairs that lead down to a passage below.  Dim light, as from torches, can be seen in the passage.  Behind you the stairs lead into untouched rock."
-After looking while in Top of Stairs for the first time: award 10 points.
+After looking while in Top of Stairs for the first time:
+award 10 points; continue the action.
 Instead of going south from Top of Stairs:  say "The wall is solid rock."
 North of Top of Stairs is Stone Room.  Down from Top of Stairs is Stone Room.
 The description of Stone Room is "You are standing near one end of a long, dimly lit hall.  At the south stone stairs ascend.  To the north the corridor is illuminated
 by torches set high in the walls, out of reach.  On one wall is a red
-button." A thing called a redbutton is here.  Understand "red" and "button" and "switch" as the red button. The redbutton is scenery.  The printed name of the redbutton is "red button".
-The redbutton has a truth state called depressed. Depressed is false.
+button." A thing called a redbutton is in Stone Room.  Understand "red" and "button" and "switch" as the redbutton. The redbutton is scenery.  The printed name of the redbutton is "red button".
+The redbutton has a truth state called depressed. The depressed of the redbutton is false.
 Beam stopped is a truth state that varies.  Beam stopped is false.
 Mrint is a number that varies.  Mrint is -1.
 Instead of pushing the redbutton:
-  if the depressed of the button is true begin;
+  if the depressed of the redbutton is true begin;
     say "The button is already depressed.";
   else;
     say "The button becomes depressed.";
     if beam stopped is false begin;
       say "The button pops back out.";
     else;
-      change mrint to 7;
       change mirror open to true;
+      change mrint to 7;
     end if;
  end if.
 Every turn:
   decrease mrint by 1;
   if mrint is 0 begin;
+    change mirror open to true;
     if the player can see the redbutton, say "The button pops back to its original position.";
-   change mirror open to false;
-   change the depressed of the button to false;
+   change the depressed of the redbutton to false;
   end if.
 North of Stone Room is a room called Small Room.  The description of Small Room is "You are in a small room, with narrow passages exiting to the north
 and south.  A narrow red beam of light crosses the room at the north
@@ -3893,11 +3932,401 @@ After taking the sword when beam stopped is true and the player can see the beam
   change beam stopped to false.
 Instead of taking the beam of light:
   say "No doubt you have a bottle of moonbeams as well."
-Mirror open is a truth state that varies.
 Check saving the game when endgame flag is true: say "Saves are not permitted during the end game." instead. 
 
-Include (- [ XOR a b; return (a | b) & (~(a & b)); ];  -). [* Inform does not have a bitwise exclusive or built in, so we make one]]
+North of Small Room is a room called Hallway.  The description of Hallway is "This is part of the long hallway.  The east and west walls are dressed stone.  In the center of the hall is a shallow stone channel. In the center of the room the channel widens into a large hole around which is engraved a compass rose. A passage enters from the south. A large mirror fills the north side of the hallway.[if mirror open is true]  The mirror is mounted on a panel which has been opened outward.[end if]".
+Instead of going inside when the player is in Hallway and mirror open is true and Room Number is 1:
+move the player to InsideMirror.
+Mirror open is a truth state that varies. Mirror open is false.
+Room Number is a number that varies.  Room Number is 1.  Mirror direction is a direction that varies. Mirror direction is usually west. Pole up is a truth state that varies.  Pole up is usually false.
 
+InsideMirror is a room with printed name "Inside Mirror".  The description of InsideMirror is 
+"[5 spaces]You are inside a rectangular box of wood whose structure is rather
+complicated.  Four sides and the roof are filled in, and the floor is
+open.[paragraph break]
+[5 spaces]As you face the side opposite the entrance, two short sides of
+carved and polished wood are to your left and right.  The left panel
+is mahogany, the right pine.  The wall you face is red on its left
+half and black on its right.  On the entrance side, the wall is white
+opposite the red part of the wall it faces, and yellow opposite the
+black section.  The painted walls are at least twice the length of
+the unpainted ones.  The ceiling is painted blue.[paragraph break]
+[5 spaces]In the floor is a stone channel about six inches wide and a foot
+deep.  The channel is oriented in a north-south direction.  In the
+exact center of the room the channel widens into a circular
+depression perhaps two feet wide.  Incised in the stone around this
+area is a compass rose.[paragraph break]
+[5 spaces]Running from one short wall to the other at about waist height
+is a wooden bar, carefully carved and drilled.  This bar is pierced
+in two places.  The first hole is in the center of the bar (and thus
+the center of the room).  The second is at the left end of the room
+(as you face opposite the entrance).  Through each hole runs a wooden
+pole.[paragraph break]
+[5 spaces]The pole at the left end of the bar is short, extending about a foot
+above the bar, and ends in a hand grip.  The pole is [if pole up is true]up[otherwise]down[end if].[paragraph break]
+[5 spaces]The long pole at the center of the bar extends from the ceiling
+through the bar to the circular area in the stone channel.  This
+bottom end of the pole has a T-bar a bit less than two feet long
+attached to it, and on the T-bar is carved an arrow.  The arrow and
+T-bar are pointing [Mirror direction]."
+The yellow panel is scenery.
+A short pole is a thing in InsideMirror.  A long pole is a thing in InsideMirror.  A mahogany panel is a thing in InsideMirror.  A pine panel is a thing in InsideMirror.  A red panel is a thing in InsideMirror.  A yellow panel is a thing in InsideMirror.  The short pole, the long pole, the mahogany panel, the pine panel, the red panel, and the white panel are scenery.  Understand "wall" as the red panel. Understand "wall" as the pine panel.
+Understand "wall" as the yellow panel.  Understand "wall" as the mahogany panel.
+Understand "yellow" as the red panel.  Understand "black" as the white panel.
+Instead of pushing the red panel:
+  if the pole up is true begin; 
+    say "The structure rotates clockwise.";
+if mirror direction is west begin;
+  change mirror direction to northwest;
+else if mirror direction is northwest;
+  change mirror direction to north;
+else if mirror direction is north;
+  change mirror direction to northeast;
+else if mirror direction is northeast;
+  change mirror direction to east;
+else if mirror direction is east;
+  change mirror direction to southeast;
+else if mirror direction is southeast;
+  change mirror direction to south;
+else if mirror direction is south;
+  change mirror direction to south;
+else if mirror direction is south;
+  change mirror direction to west;
+end if;
+say "The arrow is now pointing [Mirror direction].";
+  else;
+    say "The short pole stops the structure from rotating.";
+end if.
+Instead of pushing the white panel:
+  if the pole up is true begin; 
+    say "The structure rotates counterclockwise.";
+if mirror direction is west begin;
+  change mirror direction to south;
+else if mirror direction is northwest;
+  change mirror direction to west;
+else if mirror direction is north;
+  change mirror direction to northwest;
+else if mirror direction is northeast;
+  change mirror direction to north;
+else if mirror direction is east;
+  change mirror direction to northeast;
+else if mirror direction is southeast;
+  change mirror direction to east;
+else if mirror direction is south;
+  change mirror direction to southeast;
+else if mirror direction is south;
+  change mirror direction to south;end if;
+say "The arrow is now pointing [Mirror direction].";
+  else;
+    say "The short pole stops the structure from rotating.";
+end if.
+Instead of lifting the short pole:
+ if pole up is true begin;
+   say "The pole cannot be raised further.";
+ else;
+   say "The pole is now slightly above the floor.";
+   change pole up to true;
+ end if.
+Instead of lowering the short pole:
+ if pole up is true begin;
+   say "The pole is lowered into the channel.";
+   change pole up to false;
+ else;
+   say "The pole cannot be lowered further.";
+ end if.
+Instead of pushing the mahogany panel:
+if mirror direction is not north and mirror direction is not south begin;
+  say "The structure rocks back and forth slightly but doesn't move.";
+else if mirror direction is north;
+if room number is 2 and pole up is true begin;
+say "The structure wobbles north and stops over another compass rose.[paragraph break]";
+say "The structure wobbles as it moves, alerting the Guardians.[paragraph break]";
+say "Suddenly, the Guardians realize that someone is trying to sneak by them in the structure.  They awake and, in perfect unison, hammer the box and its contents (including you) to pulp.  Satisfied, they then resume their posts.[paragraph break]";
+end the game in death;
+else if pole up is true;
+  if room number is 4 begin;
+    say "The structure has reached the end of the stone channel and won't budge.";
+  else if room number is 3;
+    say "The structure wobbles north and stops over another compass rose.";
+    change room number to 4;
+  else if room number is 2;
+    say "The structure wobbles north and stops over another compass rose.";
+    change room number to 3;
+   else if room number is 1;
+     say "The structure wobbles north and stops over another compass rose.";
+     change room number to 3;
+   end if;
+else;
+  if room number is 4 begin;
+    say "The structure has reached the end of the stone channel and won't budge.";
+  else if room number is 3;
+     say "The structure slides north and stops over another compass rose.";
+    change room number to 4;
+  else if room number is 2;
+     say "The structure slides north and stops over another compass rose.";
+    change room number to 3;
+   else if room number is 1;
+     say "The structure slides north and stops over another compass rose.";
+     change room number to 2;
+end if;
+end if;
+else if mirror direction is south;
+if room number is 4 and pole up is true begin;
+say "The structure wobbles south and stops over another compass rose.[paragraph break]";
+say "The structure wobbles as it moves, alerting the Guardians.[paragraph break]";
+say "Suddenly, the Guardians realize that someone is trying to sneak by them in the structure.  They awake and, in perfect unison, hammer the box and its contents (including you) to pulp.  Satisfied, they then resume their posts.[paragraph break]";
+end the game in death;
+else if pole up is true;
+  if room number is 1 begin;
+    say "The structure has reached the end of the stone channel and won't budge.";
+  else if room number is 2;
+    say "The structure wobbles south and stops over another compass rose.";
+    change room number to 1;
+  else if room number is 3;
+    say "The structure wobbles south and stops over another compass rose.";
+   end if;
+else;
+  if room number is 1 begin;
+    say "The structure has reached the end of the stone channel and won't budge.";
+  else if room number is 2;
+     say "The structure slides south and stops over another compass rose.";
+    change room number to 1;
+  else if room number is 3;
+     say "The structure slides south and stops over another compass rose.";
+    change room number to 2;
+   else if room number is 4;
+     say "The structure slides south and stops over another compass rose.";
+     change room number to 3;
+end if;
+end if;
+end if.
+Hallway2 is a room. The printed name of Hallway2 is "Narrow Hallway".  The description of Hallway2 is "This is part of the long hallway.  The east and west walls are
+dressed stone.  In the center of the hall is a shallow stone channel.
+In the center of the room the channel widens into a large hole around
+which is engraved a compass rose.The north side of the room is divided by a wooden wall into small hallways to the northeast and northwest."
+Instead of pushing the pine panel:
+if room number is 4 and mirror direction is north begin;
+  say "The pine door opens into the field of view of the Guardians.[paragraph break]";
+say "The Guardians awake and, in perfect unison, destroy you with
+their stone bludgeons.  Satisfied, they resume their posts.";
+end the game in death;
+else if room number is 2 and mirror direction is south;
+say "The pine door opens into the field of view of the Guardians.[paragraph break]";
+say "The Guardians awake and, in perfect unison, destroy you with
+their stone bludgeons.  Satisfied, they resume their posts.";
+end the game in death;
+else if room number is 3;
+say "The pine door opens into the field of view of the Guardians.[paragraph break]";
+say "The Guardians awake and, in perfect unison, destroy you with
+their stone bludgeons.  Satisfied, they resume their posts.";
+end the game in death;
+else if mirror direction is not north and mirror direction is not south;
+say "The structure rocks back and forth slightly but doesn't move.";
+else;
+say "The pine wall swings open.";
+change mirror open to true;
+end if.
+Every turn:
+ if the player is in InsideMirror and mirror open has been true for three turns begin;
+  say "The mirror quietly swings shut.";
+  change mirror open to false;
+ end if.
+Instead of exiting:
+if the player is not in InsideMirror, continue the action;
+if mirror open is false begin;
+  say "There is no way out.";
+else if room number is 1;
+  move the player to Hallway;
+else if room number is 2;
+  move the player to Hallway2;
+else;
+  move the player to Hallway4;
+end if.
+Northwest of Hallway2 is a room called Narrow Room.  The description of Narrow Room is "This is a narrow room whose east wall is a large mirror.  Somewhat to the north, identical stone statues face each other from pedestals on opposite sides of the corridor.  The statues represent Guardians of Zork, a military order of ancient lineage.  They are portrayed as heavily armored warriors standing at ease, hands clasped around formidable bludgeons."
+Northeast of Hallway2 is a room called NarrowRoom.  The printed name of Narrow Room is "Narrow Room".  The description of NarrowRoom is "This is a narrow room whose west wall is a large mirror. Somewhat to the north, identical stone statues face each other from
+pedestals on opposite sides of the corridor.  The statues represent Guardians of Zork, a military order of ancient lineage.  They are portrayed as heavily armored warriors standing at ease, hands clasped around formidable bludgeons."
+Instead of going north from Narrow Room:
+say "The Guardians awake and, in perfect unison, destroy you with
+their stone bludgeons.  Satisfied, they resume their posts.";
+end the game in death.
+Instead of going north from NarrowRoom:
+say "The Guardians awake and, in perfect unison, destroy you with
+their stone bludgeons.  Satisfied, they resume their posts.";
+end the game in death.
+After looking while in InsideMirror for the first time:
+award 15 points;
+continue the action.
+Hallway4 is a room.  The printed name of Hallway4 is "Dungeon Entrance".  The description of Hallway4 is "This is a north-south hallway which ends in a large wooden door. The south side of the room is divided by a wooden wall into small hallways to the southeast and southwest."
+Instead of going southwest from Hallway4:
+say "The Guardians awake and, in perfect unison, destroy you with
+their stone bludgeons.  Satisfied, they resume their posts.";
+end the game in death.
+Instead of going southeast from Hallway4:
+say "The Guardians awake and, in perfect unison, destroy you with
+their stone bludgeons.  Satisfied, they resume their posts.";
+end the game in death.
 
+The large wooden door is a door.  The large wooden door is closed, openable, lockable, and locked.  The large wooden door is north from Hallway4. The large wooden door is scenery. North of the large wooden door is Narrow Corridor.
+
+Narrow Corridor is a room.  The description of Narrow Corridor is "This is a narrow north-south corridor.  At the south end is a door and at the north end is an east-west corridor.  The door is [if the large wooden door is open]open.[otherwise]closed.[end if]".
+
+The dungeon master is a man.  Instead of attacking the dungeon master:
+say "The dungeon master is taken momentarily by surprise.  He dodges your
+blow and then, with a disappointed expression on his face, he raises
+his staff and traces a complicated pattern in the air.  As it
+completes you crumble into dust."; end the game in death.  Instead of attacking the dungeon master with something:
+say "The dungeon master is taken momentarily by surprise.  He dodges your
+blow and then, with a disappointed expression on his face, he raises
+his staff and traces a complicated pattern in the air.  As it
+completes you crumble into dust.";
+end the game in death.
+Question number is a number that varies.  Question number is usually 0.
+Every turn:
+if question number is 1 for the first turn begin;
+  say  "The booming voice asks: From which room can one enter the robber's hideaway without passing through the cyclops room?";
+else if question number is 2 for the first turn;
+  say "The booming voice asks: Besides the Temple, to which room is it possible to go from the Altar?";
+else if question number is 3 for the first turn;
+   say "The booming voice asks: What can be done to the Mirror that is useful?";
+end if.
+Instead of answering the dungeon master that something:
+  if the topic understood matches the text "follow" begin;
+   change follow to true;
+   say "The dungeon master answers, 'I will follow.'";
+  else if the topic understood matches the text "stay";
+    say "The dungeon master says, 'I will stay.'";
+    change follow to false;
+  else;
+    try saying the topic understood instead;
+  end if.
+Instead of saying when question number is 1:
+if the topic understood matches the text "temple" begin;
+  say "The dungeon master says, 'Excellent.'";
+  change question number to 2;
+  change tries left to 4;
+  award 5 points;
+else if tries left is 0;
+  say "The dungeon master, obviously disappointed in your lack of knowledge, shakes his head and mumbles 'I guess they'll let anyone in the Dungeon these days'.  With
+that, he departs.";
+  remove the dungeon master from play;
+else if tries left is 1;
+  say "The dungeon master says, 'You are wrong.  You have one more chance.'";
+  change tries left to 0;
+else;
+  say "The dungeon master says, 'You are wrong.  You have [tries left in words] more chances.'";
+  decrease tries left by 1;
+end if.
+Instead of saying when question number is 2:
+if the topic understood matches the text "forest" begin;
+  say "The dungeon master says, 'Excellent.'";
+  change question number to 3;
+  change tries left to 4;
+  award 5 points;
+else if tries left is 0;
+  say "The dungeon master, obviously disappointed in your lack of knowledge, shakes his head and mumbles 'I guess they'll let anyone in the Dungeon these days'.  With
+that, he departs.";
+  remove the dungeon master from play;
+else if tries left is 1;
+  say "The dungeon master says, 'You are wrong.  You have one more chance.'";
+  change tries left to 0;
+else;
+  say "The dungeon master says, 'You are wrong.  You have [tries left in words] more chances.'";
+  decrease tries left by 1;
+end if.
+Instead of saying when question number is 3:
+if the topic understood matches the text "touch" or the topic understood matches the text "rub" begin;
+say "The dungeon master, obviously pleased, says 'You are indeed a
+master of lore. I am proud to be at your service.'  The massive
+wooden door swings open, and the master motions for you to enter.";
+award 5 points;
+now the large wooden door is open;
+now the large wooden door is unlocked;
+change follow to true;
+else if tries left is 0;
+  say "The dungeon master, obviously disappointed in your lack of knowledge, shakes his head and mumbles 'I guess they'll let anyone in the Dungeon these days'.  With
+that, he departs.";
+  remove the dungeon master from play;
+else if tries left is 1;
+  say "The dungeon master says, 'You are wrong.  You have one more chance.'";
+  change tries left to 0;
+else;
+  say "The dungeon master says, 'You are wrong.  You have [tries left in words] more chances.'";
+  decrease tries left by 1;
+end if.
+The later appearance of the master is "The dungeon master is quietly leaning on his staff here."
+Follow is a truth state that varies.  Follow is false.
+Tries left is a number that varies.  Tries left is usually 4.
+Every turn:
+  if follow is true and the player is not in the holder of the dungeon master begin;
+    say "The dungeon master follows you.";
+    move the dungeon master to the holder of the player;
+  end if.
+After going through the large wooden door for the first time:
+award 20 points;
+continue the action.
+North of Narrow Corridor is a room called South Corridor.  The description of South Corridor is "This is an east-west corridor which turns north at its eastern and western ends.  The walls of the corridor are marble.  An additional passage leads south at the center of the corridor."
+West of South Corridor is south of a room called West Corridor.  The description of West Corridor is "This is a corridor with polished marble walls.  The corridor
+widens into larger areas as it turns east at its northern and
+southern ends."
+East of South corridor is south of a room called East Corridor.  The description of East Corridor is "This is a corridor with polished marble walls.  The corridor widens into larger areas as it turns west at its northern and southern ends."
+North of West Corridor is a room called North Corridor.  The description of North Corridor is "This is a large east-west corridor which opens out to a northern
+parapet at its center.  You can see flames and smoke as you peer
+towards the parapet.  The corridor turns south at its east and west
+ends, and due south is a massive wooden door.  In the door is a small
+window barred with iron.  The door is [if the prison cell door is open]open[otherwise]closed.[end if]".
+North of East Corridor is North Corridor.
+North of North Corridor is a room called Parapet.  The description of Parapet is "You are standing behind a stone retaining wall which rims a large parapet overlooking a fiery pit.  It is difficult to see through the smoke and flame which fills the pit, but it seems to be more or less bottomless.  It also extends upward out of sight.  The pit itself is of roughly dressed stone and circular in shape.  It is about two hundred feet in diameter.  The flames generate considerable heat, so it is rather uncomfortable standing here.
+There is an object here which looks like a sundial.  On it are an indicator arrow and (in the center) a large button.  On the face of the dial are numbers 'one' through 'eight'.  The indicator points to the number [dial number]."
+Dial number is a number that varies.
+Persuasion rule for asking the dungeon master to try doing something: persuasion succeeds.
+A large button is in Parapet.  The large button is scenery.
+Persuasion rule for asking the dungeon master to try going:
+say "'I prefer to stay where I am, thank you.'".
+A dial is in Parapet. The dial is scenery. Understand "sun dial" and "sundial" and "sun-dial" and "indicator" and "arrow" as the dial.
+Instead of taking the dungeon master: say "'I'm willing to accompany you, but not ride in your pocket!'".
+Instead of asking the dungeon master to try doing something:
+  say "'If you wish,' he replies."; continue the action.
+The prison cell door is a door.  The prison cell door is closed and openable.  The prison cell door is south of North Corridor.  South of the prison cell door is a room called Prison Cell.  
+The description of Prison Cell is "You are in a featureless prison cell.  You can see [if the prison cell door is open]the east-west corridor outside the open wooden door in front of you.[otherwise]only the flames and smoke of the pit out the small window in a closed door in front of you.[end if]."
+PCell is a room.  The description of PCell is "You are in a featureless prison cell.  Its wooden door is securely fastened, and you can see only the flames and smoke of the pit out the small window." The printed name of PCell is "Prison Cell".
+The prison cell door is scenery.
+NCell is a room. The description of NCell is "You are in a featureless prison cell.  Its wooden door is securely fastened, and you can see only the flames and smoke of the pit out its small window.  On the other side of the cell is a bronze door which seems to be". The printed name of NCell is "Prison Cell".
+The bronze door is a door.  The bronze door is closed and openable.  
+The bronze door is scenery.  The bronze door is south of NCell.  South of the Bronze Door is a room called Treasury of Zork. The description of Treasury of Zork is 
+"[5 spaces]This is a room of large size, richly appointed and decorated
+in a style that bespeaks exquisite taste.  To judge from its
+contents, it is the ultimate storehouse of the treasures of Zork.[paragraph break]
+[5 spaces]There are chests here containing precious jewels, mountains of
+zorkmids, rare paintings, ancient statuary, and beguiling curios.[paragraph break]
+[5 spaces]In one corner of the room is a bookcase boasting such volumes as
+'The History of the Great Underground Empire,' 'The Lives of the
+Twelve Flatheads,' 'The Wisdom of the Implementors,' and other
+informative and inspiring works.[paragraph break]
+[5 spaces]On one wall is a completely annotated map of the Great Underground
+Empire, showing points of interest, various troves of treasure, and
+indicating the locations of several superior scenic views.[paragraph break]
+[5 spaces]On a desk at the far end of the room may be found stock
+certificates representing a controlling interest in FrobozzCo
+International, the multinational conglomerate and parent company of
+the Frobozz Magic Boat Co., etc.[paragraph break]".
+Last every turn rule:
+if the player is in Treasury of Zork begin;
+  award 35 points;
+  say "[5 spaces]As you gleefully examine your new-found riches, the Dungeon
+Master himself materializes beside you, and says, 'Now that you have solved all the mysteries of the Dungeon, it is time for you to assume your rightly-earned place in the scheme of things.  Long have I waited for one capable of releasing me from my burden!'  He taps you lightly on the head with his staff, mumbling a few well-chosen spells,
+and you feel yourself changing, growing older and more stooped.  For a moment there are two identical mages staring at each other among the treasure, then you watch as your counterpart dissolves into a mist and disappears, a sardonic grin on his face.";
+  end the game in victory;
+end if.
+After deciding the scope of the player: 
+if the player is in Prison Cell, place the dungeon master in scope.
+Instead of someone pushing the large button:
+ say "Click.";
+ if dial number is 6 begin;
+   now every thing in Prison Cell is in NCell;   
+ else;
+   now every thing in Prison Cell is in PCell;
+ end if;
+ rule succeeds.
+Include (- [ XOR a b; return (a | b) & (~(a & b)); ];  -). [* Inform does not have a bitwise exclusive or built in, so we make one]
 
 
