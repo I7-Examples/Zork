@@ -1,6 +1,6 @@
 "Zork" by Dean Menezes
 
-Include (- Serial "071219"; -).
+Include (- Serial "071227"; -).
 
 
 Part 1 - New Actions and Concepts
@@ -13,6 +13,7 @@ Digging into it with is an action applying to one thing and one carried thing.
 Understand "dig into/in [something] with/using [something]" as digging into it with.
 Understand "dig [something] with/using [something]" as digging into it with.
 Understand "dig with/using [something] into/in [something]" as digging into it with (with nouns reversed).
+
 Check digging into it with:
 if the second noun is not the shovel, say "Digging with [the second noun] is slow and tedious." instead;
 if the noun is not the guano and the noun is not the ground, say "Digging into [a noun] is silly." instead;
@@ -1629,7 +1630,7 @@ if the player is in Treasure Room and the thief is not in Treasure Room begin;
 end if;
 if the thief is on-stage begin;
 if the thief cannot see the player, try the thief escaping;
-if the thief is not in Treasure Room and the player can see the thief begin;
+if the thief is not in Treasure Room and the player is in the holder of the thief begin;
 if the thief can see something visible begin;
   say "A seedy-looking individual with a large bag just wandered through the room.  On the way through, he quietly abstracted all valuables from the room and from your possession, mumbling something about 'Doing unto others before...'";
   now every valuble thing had by the player is had by the thief;
@@ -1638,13 +1639,6 @@ else;
   say "A seedy-looking individual with a large bag just wandered through the room.  Finding nothing of value, he left disgruntled.";
 end if;
   try the thief escaping;
-end if;
-if the thief can see something portable and the holder of the thief is visited begin;
- let the thingy be a random portable nonrope thing that is not attached to a rope;
- move the thingy to the thief;
- if the thief is in a maze and the player is in a maze, say "You hear, off in the distance, someone saying 'My, I wonder what this fine [thingy] is doing here.";
-else;
-  move a random thing that is not valuble held by the thief to the holder of the thief;
 end if;
 end if.
 Carry out attacking the thief with something:
@@ -1708,9 +1702,283 @@ back.[or]The thief attacks, and you fall back desperately.[or]The thief rams the
 you out of breath.[at random]";
      increase the wounds of the player by 2;
    end if.
+East of Treasure Room is a dungeon called Small Square Room.  The description of Small Square Room is "This is a small square room, in the middle of which is a recently created hole[if a block is in Puzzle10] which is blocked by smooth sandstone.[otherwise] through which you can barely discern the floor some ten feet below.[end if]  It doesn't seem likely you could climb back up.  There
+are exits to the west and south."
+Understand "paper" and "piece of paper" as the note of warning.
+A note of warning is in Small Square Room.  The later appearance of the note of warning is "There is a piece of paper on the ground here."
+The description of the note of warning is "[note text]".
+To say note text:
+say "The paper is rather worn; although the writing is barely legible (the
+author probably had only a used pencil), it is a very elegant
+copperplate.[paragraph break]";
+say "To Whom It May Concern:[paragraph break]";
+say "[5 spaces]I regret to report that the rumours regarding treasure contained
+in the chamber to which this passage leads have no basis in fact.
+Should you nevertheless be sufficiently foolhardy to enter, it will
+be quite impossible for you to exit.[paragraph break]";
+say "[32 spaces]Sincerely yours,[line break]";
+say "[32 spaces]The Thief".
+South of Small Square Room is a dungeon called Side Room.  The description of Side Room is "You are in a room with an exit to the north and a steel door to the east[if the steel door is open]which is open[end if]."
+The steel door is a door.  East of Side Room is the steel door.  The steel door is scenery.  The steel door is closed and not openable. 
+Before pushing a direction:
+if the room noun from the location is not a puzzle, say "The wall does not budge." instead;
+if the room noun from the location does not contain a block, say "There is only a passage in that direction." instead;
+if the room the noun from the location contains a marble block, say "The wall does not budge." instead;
+if the room the noun from the room the noun from the location contains a block, say "The wall does not budge." instead;
+if the room the noun from the room the noun from the location is not a puzzle, say "The wall does not budge." instead;
+say "The wall slides forward and you follow it to this position:";
+move a random block in the room noun from the location to the room noun from the room noun from the location;
+try going the noun instead.
+Every turn when the player is in a puzzle:
+foo.
+To foo:
+(- lookmode=2; -).
+A puzzle is a kind of room.  A puzzle is always dark.  The printed name of a puzzle is always "Room in Puzzle".
+A block is a kind of thing.
+A marble block is a kind of block.  A sandstone block is a kind of block.
+A ladder is a kind of sandstone block.
+Puzzle10 is a puzzle.
+The description of a puzzle is usually "[puzzle text]".
+The description of Puzzle10 is "[if a block is in Puzzle11 and a block is in Puzzle18]You are in a small square room bounded to the north and west with
+marble walls and to the east and south with sandstone walls.[otherwise][puzzle text][end if]".
+To say puzzle text:
+say fixed letter spacing;
+say "[6 spaces]|[txt of the room northwest from the location] [txt of the room north from the location] [txt of the room northeast from the location]|[line break]";
+say "West[2 spaces]|[txt of the room west from the location] .. [txt of the room east from the location]|[2 spaces]East[line break]";
+say "[6 spaces]|[txt of the room southwest from the location] [txt of the room south from the location] [txt of the room southeast from the location]|[line break]";
+say variable letter spacing;
+if the location is Puzzle10 begin;
+  say "In the ceiling above you is a large circular opening.";
+else if the location is Puzzle37;
+  say "The center of the floor here is noticeably depressed.";
+else if the location is Puzzle52;
+  say "The west wall here has a large steel door [if the steel door is open]which is open [end if]at its center.  One one side of the door is a small slit.";
+end if;
+if a ladder is in the room east from the location, say "There is a ladder here, firmly attached to the east wall.";
+if a ladder is in the room west from the location, say "There is a ladder here, firmly attached to the west wall.".
+To say txt of (x - a room):
+if a marble block is in x or x is not a puzzle begin;
+  say "MM";
+else if a sandstone block is in x;
+ say "SS";
+else;
+  say "[2 spaces]";
+end if.
+Instead of going from a puzzle when a block is in the room noun from the location:
+  print the you can't go message instead.
+Instead of going up from Puzzle10:
+ if a ladder is not in Puzzle11 begin;
+   say "The exit is too far above your head.";
+ otherwise;
+   say "With the help of the ladder, you exit the puzzle.";
+   continue the action;
+ end if.
+Instead of going down from Small Square Room when a sandstone block is in Puzzle10: say "Your way is blocked by sandstone."
+
+[1	 1	 1	 1 	 1	 1	1	1
+1	 0	-1	 0	 0	-1	0	1
+1	-1	 0	 1	 0	-2	0	1
+1	 0	 0	 0	 0	 1	0	1
+1	-3	 0	 0	-1	-1	0	1
+1	 0	 0	-1	 0	 0	0	1
+1	 1	 1	 0	 0	 0	1	1
+1	 1	 1	 1	 1	 1	1	1].
+Down from Small Square Room is Puzzle10.
+[solution to royal puzzle:
+
+Down, push east wall, South, Southwest, Push south wall, East 
+twice, Push south wall, North twice, East, Push south wall, 
+Take card, Push south wall, East, Northeast, Push west wall 
+four times, Northeast twice, North, Push east wall, Southwest, 
+South, Southeast, Northeast, North, Push west wall, Northwest, 
+Push south wall twice, West, Northwest twice, Push south wall, 
+Southeast trice, Northeast, Push west wall twice, Southwest, 
+Push north wall trice, Northwest, Up.
+]
+
+Puzzle1 is a puzzle.  In Puzzle1 is a marble block.  East of Puzzle1 is a puzzle called Puzzle2.  In Puzzle2 is a marble block. East of Puzzle2 is a puzzle called Puzzle3.  
+In Puzzle3 is a marble block.  East of Puzzle3 is a puzzle called Puzzle4.  In Puzzle4 is a marble block.  East of Puzzle4 is a puzzle called Puzzle5.  In Puzzle5 is a marble block.  East of Puzzle5 is a puzzle called Puzzle6.  In Puzzle6 is a marble block.  
+East of Puzzle6 is a puzzle called Puzzle7.  In Puzzle7 is a marble block.  East of Puzzle7 is a puzzle called Puzzle8.  In Puzzle8 is a marble block.
+   
+South of Puzzle1 is a puzzle called Puzzle9.  In Puzzle9 is a marble block.  Northeast of Puzzle9 is Puzzle2.  East of Puzzle9 is Puzzle10.  North of Puzzle10 is Puzzle2.  Northwest of Puzzle10 is Puzzle1.  Northeast of Puzzle10 is Puzzle3.  East of Puzzle10 is a puzzle called Puzzle11.  In Puzzle11 is a sandstone block.  North of Puzzle11 is Puzzle3.  Northwest of Puzzle11 is Puzzle2.  Northeast of Puzzle11 is Puzzle4. East of Puzzle11 is a puzzle called Puzzle12.  North of Puzzle12 is Puzzle4.  Northwest of Puzzle12 is Puzzle3.  Northeast of Puzzle12 is Puzzle5. East of Puzzle12 is a puzzle called Puzzle13.  North of Puzzle13 is Puzzle5.  Northwest of Puzzle13 is Puzzle4.  Northeast of Puzzle13 is Puzzle6. East of Puzzle13 is a puzzle called Puzzle14. In Puzzle14 is a sandstone block. North of Puzzle14 is Puzzle6.  Northwest of Puzzle14 is Puzzle5.  Northeast of Puzzle14 is Puzzle7. East of Puzzle14 is a puzzle called Puzzle15.  North of Puzzle15 is Puzzle7.  Northwest of Puzzle15 is Puzzle6.  Northeast of Puzzle15 is Puzzle8.  East of Puzzle15 is a puzzle called Puzzle16.  North of Puzzle16 is Puzzle8.  Northwest of Puzzle16 is Puzzle7.
+
+South of Puzzle9 is a puzzle called Puzzle17. In Puzzle17 is a marble block. Northeast of Puzzle17 is Puzzle10. East of Puzzle17 is a puzzle called Puzzle18. In Puzzle18 is a sandstone block.  North of Puzzle18 is Puzzle10.  Northwest of Puzzle18 is Puzzle9.  Northeast of Puzzle18 is Puzzle11. East of Puzzle18 is a puzzle called Puzzle19.  North of Puzzle19 is Puzzle11.  Northwest of Puzzle19 is Puzzle10.  Northeast of Puzzle19 is Puzzle12. East of Puzzle19 is a puzzle called Puzzle20.  In Puzzle20 is a marble block.  North of Puzzle20 is Puzzle12. Northwest of Puzzle20 is Puzzle11.  Northeast of Puzzle20 is Puzzle13.  East of Puzzle20 is a puzzle called Puzzle21.
+North of Puzzle21 is Puzzle13.  Northwest of Puzzle21 is Puzzle12.  Northeast of Puzzle21 is Puzzle14. East of Puzzle21 is a puzzle called Puzzle22.  In Puzzle22 is a ladder.  North of Puzzle22 is Puzzle14.  Northwest of Puzzle22 is Puzzle13.  Northeast of Puzzle22 is Puzzle15.  East of Puzzle22 is a puzzle called Puzzle23. North of Puzzle23 is Puzzle15.  Northwest of Puzzle23 is Puzzle14.  Northeast of Puzzle23 is Puzzle16.  East of Puzzle23 is a puzzle called Puzzle24. North of Puzzle24 is Puzzle16.  In Puzzle24 is a marble block. Northwest of Puzzle24 is Puzzle15.
+
+South of Puzzle17 is a puzzle called Puzzle25.  In Puzzle25 is a marble block. Northeast of Puzzle25 is Puzzle18.  East of Puzzle25 is a puzzle called Puzzle26. 
+North of Puzzle26 is Puzzle18.  Northwest of Puzzle26 is Puzzle17.  Northeast of Puzzle26 is Puzzle19.  East of Puzzle26 is a puzzle called Puzzle27.  North of Puzzle27 is Puzzle19.  Northwest of Puzzle27 is Puzzle18.  Northeast of Puzzle27 is Puzzle20.  East of Puzzle27 is a puzzle called Puzzle28.  North of Puzzle28 is Puzzle20.  Northwest of Puzzle28 is Puzzle19.  Northeast of Puzzle28 is Puzzle21.  East of Puzzle28 is a puzzle called Puzzle29.  North of Puzzle29 is Puzzle21.  Northwest of Puzzle29 is Puzzle20.  Northeast of Puzzle29 is Puzzle22.  East of Puzzle29 is a puzzle called Puzzle30.  North of Puzzle30 is Puzzle22.  Northwest of Puzzle30 is Puzzle21.  Northeast of Puzzle30 is Puzzle23.  In Puzzle30 is a marble block.  East of Puzzle30 is a puzzle called Puzzle31.  North of Puzzle31 is Puzzle23.  Northwest of Puzzle31 is Puzzle22.  Northeast of Puzzle31 is Puzzle24.  East of Puzzle31 is a puzzle called Puzzle32.  North of Puzzle32 is Puzzle24.  Northwest of Puzzle32 is Puzzle23. 
+
+South of Puzzle32 is a puzzle called Puzzle33.
+North of Puzzle33 is Puzzle25.
+Northeast of Puzzle33 is Puzzle26.
+East of Puzzle33 is a puzzle called Puzzle34.
+North of Puzzle34 is Puzzle26.
+Northwest of Puzzle34 is Puzzle25.
+Northeast of Puzzle34 is Puzzle27.
+East of Puzzle34 is a puzzle called Puzzle35.
+North of Puzzle35 is Puzzle27.
+Northwest of Puzzle35 is Puzzle26.
+Northeast of Puzzle35 is Puzzle28.
+East of Puzzle35 is a puzzle called Puzzle36.
+North of Puzzle36 is Puzzle28.
+Northwest of Puzzle36 is Puzzle27.
+Northeast of Puzzle36 is Puzzle29.
+East of Puzzle36 is a puzzle called Puzzle37.
+North of Puzzle37 is Puzzle29.
+Northwest of Puzzle37 is Puzzle28.
+Northeast of Puzzle37 is Puzzle30.
+East of Puzzle37 is a puzzle called Puzzle38.
+North of Puzzle38 is Puzzle30.
+Northwest of Puzzle38 is Puzzle29.
+Northeast of Puzzle38 is Puzzle31.
+East of Puzzle38 is a puzzle called Puzzle39.
+North of Puzzle39 is Puzzle31.
+Northwest of Puzzle39 is Puzzle30.
+Northeast of Puzzle39 is Puzzle32.
+East of Puzzle39 is a puzzle called Puzzle40.
+North of Puzzle40 is Puzzle32.
+Northwest of Puzzle40 is Puzzle31.
+
+In Puzzle33 is a marble block.  In Puzzle34 is a ladder.  In Puzzle37 is a sandstone block.  In Puzzle38 is a sandstone block.  In Puzzle40 is a marble block.
+
+South of Puzzle40 is a puzzle called Puzzle41.
+North of Puzzle41 is Puzzle33.
+Northeast of Puzzle41 is Puzzle34.
+East of Puzzle41 is a puzzle called Puzzle42.
+North of Puzzle42 is Puzzle34.
+Northwest of Puzzle42 is Puzzle33.
+Northeast of Puzzle42 is Puzzle35.
+East of Puzzle42 is a puzzle called Puzzle43.
+North of Puzzle43 is Puzzle35.
+Northwest of Puzzle43 is Puzzle34.
+Northeast of Puzzle43 is Puzzle36.
+East of Puzzle43 is a puzzle called Puzzle44.
+North of Puzzle44 is Puzzle36.
+Northwest of Puzzle44 is Puzzle35.
+Northeast of Puzzle44 is Puzzle37.
+East of Puzzle44 is a puzzle called Puzzle45.
+North of Puzzle45 is Puzzle37.
+Northwest of Puzzle45 is Puzzle36.
+Northeast of Puzzle45 is Puzzle38.
+East of Puzzle45 is a puzzle called Puzzle46.
+North of Puzzle46 is Puzzle38.
+Northwest of Puzzle46 is Puzzle37.
+Northeast of Puzzle46 is Puzzle39.
+East of Puzzle46 is a puzzle called Puzzle47.
+North of Puzzle47 is Puzzle39.
+Northwest of Puzzle47 is Puzzle38.
+Northeast of Puzzle47 is Puzzle40.
+East of Puzzle47 is a puzzle called Puzzle48.
+North of Puzzle48 is Puzzle40.
+Northwest of Puzzle48 is Puzzle39.
+
+In Puzzle41 is a marble block.  In Puzzle44 is a sandstone block.  In Puzzle48 is a marble block.
 
 
-Down from Treasure Room is the staircase.
+South of Puzzle48 is a puzzle called Puzzle49.
+North of Puzzle49 is Puzzle41.
+Northeast of Puzzle49 is Puzzle42.
+East of Puzzle49 is a puzzle called Puzzle50.
+North of Puzzle50 is Puzzle42.
+Northwest of Puzzle50 is Puzzle41.
+Northeast of Puzzle50 is Puzzle43.
+East of Puzzle50 is a puzzle called Puzzle51.
+North of Puzzle51 is Puzzle43.
+Northwest of Puzzle51 is Puzzle42.
+Northeast of Puzzle51 is Puzzle44.
+East of the steel door is a puzzle called Puzzle52.
+North of Puzzle52 is Puzzle44.
+Northwest of Puzzle52 is Puzzle43.
+Northeast of Puzzle52 is Puzzle45.
+East of Puzzle52 is a puzzle called Puzzle53.
+North of Puzzle53 is Puzzle45.
+Northwest of Puzzle53 is Puzzle44.
+Northeast of Puzzle53 is Puzzle46.
+East of Puzzle53 is a puzzle called Puzzle54.
+North of Puzzle54 is Puzzle46.
+Northwest of Puzzle54 is Puzzle45.
+Northeast of Puzzle54 is Puzzle47.
+East of Puzzle54 is a puzzle called Puzzle55.
+North of Puzzle55 is Puzzle47.
+Northwest of Puzzle55 is Puzzle46.
+Northeast of Puzzle55 is Puzzle48.
+East of Puzzle55 is a puzzle called Puzzle56.
+North of Puzzle56 is Puzzle48.
+Northwest of Puzzle56 is Puzzle47.
+
+A small slit is in Puzzle52. The small slit is scenery. The small slit is a container.  The capacity of the small slit is 4.  The carrying capacity of the small slit is 1.
+Carry out inserting something into the small slit:
+  if the noun is the gold card begin;
+    say "The card slides easily into the slot and vanishes and the metal door slides open revealing a passageway to the west.  A moment later, a previously unseen sign flashes:[line break] [4 spaces]'Unauthorized/Illegal Use of Pass Card -- Card Confiscated'";
+    remove the gold card from play;
+    now the steel door is open;
+    now the steel door is openable;
+  else;
+    say "The item vanishes into the slot.  A moment later, a previously unseen sign flashes 'Garbage In, Garbage Out' and spews [the noun] (now atomized) through the slot.";
+    remove the noun from play;
+  end if.
+In Puzzle49 is a marble block.  In Puzzle50 is a marble block.  In Puzzle51 is a marble block.  In Puzzle55 is a marble block.  In Puzzle56 is a marble block.
+
+South of Puzzle56 is a puzzle called Puzzle57.
+North of Puzzle57 is Puzzle49.
+Northeast of Puzzle57 is Puzzle50.
+East of Puzzle57 is a puzzle called Puzzle58.
+North of Puzzle58 is Puzzle50.
+Northwest of Puzzle58 is Puzzle49.
+Northeast of Puzzle58 is Puzzle51.
+East of Puzzle58 is a puzzle called Puzzle59.
+North of Puzzle59 is Puzzle51.
+Northwest of Puzzle59 is Puzzle50.
+Northeast of Puzzle59 is Puzzle52.
+East of Puzzle59 is a puzzle called Puzzle60.
+North of Puzzle60 is Puzzle52.
+Northwest of Puzzle60 is Puzzle51.
+Northeast of Puzzle60 is Puzzle53.
+East of Puzzle60 is a puzzle called Puzzle61.
+North of Puzzle61 is Puzzle53.
+Northwest of Puzzle61 is Puzzle52.
+Northeast of Puzzle61 is Puzzle54.
+East of Puzzle61 is a puzzle called Puzzle62.
+North of Puzzle62 is Puzzle54.
+Northwest of Puzzle62 is Puzzle53.
+Northeast of Puzzle62 is Puzzle55.
+East of Puzzle62 is a puzzle called Puzzle63.
+North of Puzzle63 is Puzzle55.
+Northwest of Puzzle63 is Puzzle54.
+Northeast of Puzzle63 is Puzzle56.
+East of Puzzle63 is a puzzle called Puzzle64.
+North of Puzzle64 is Puzzle56.
+Northwest of Puzzle64 is Puzzle55.
+
+In Puzzle57 is a marble block. In Puzzle58 is a marble block. In Puzzle59 is a marble block. In Puzzle60 is a marble block. In Puzzle61 is a marble block.  In Puzzle62 is a marble block.  In Puzzle63 is a marble block.  In Puzzle64 is a marble block.
+In Puzzle37 is a gold card.  The initial appearance of the gold card is "Nestled inside the niche is an engraved gold card." The later appearance of the gold card is "There is a solid gold engraved card here."
+The description of the gold card is "[card text]".
+To say card text:
+  say fixed letter spacing;
+say " ____________________________________________________________[line break]";
+say "|                                                            |[line break]";
+say "|              FROBOZZ MAGIC SECURITY SYSTEMS                |[line break]";
+say "|    Door Pass                  Royal Zork Puzzle Museum     |[line break]";
+say "|                                                            |[line break]";
+say "|                     #632-988-496-XTHF                      |[line break]";
+say "|                                                            |[line break]";
+say "|                                                            |[line break]";
+say "|     USE OF THIS PASS BY UNAUTHORIZED PERSONS OR AFTER      |[line break]";
+say "|   EXPIRATION DATE WILL RESULT IN IMMEDIATE CONFISCATION    |[line break]";
+say "|                                                            |[line break]";
+say "|                                                            |[line break]";
+say "|                              (approved)                    |[line break]";
+say "|                              Will Weng                     |[line break]";
+say "|                               789 G.U.E.                   |[line break]";
+say "|                                                            |[line break]";
+say "|                                        Expires 792 G.U.E.  |[line break]";
+say "|____________________________________________________________|[line break]";
+  say variable letter spacing.
+The size of the gold card is 4.
+The case-points of the gold card is 10.
+After taking the gold card for the first time:
+award 15 points;
+continue the action.
 The Cyclops can be basic, hungry, thirsty, asleep, or gone. 
 To say cyclops text:
 if the cyclops is basic, say "A cyclops, who looks prepared to eat horses (much less mere adventurers), blocks the staircase.  From his state of health
@@ -1723,7 +1991,7 @@ The description of the cyclops is "[cyclops text]."
 Carry out odysseusing when the player can see the Cyclops and the Cyclops is not asleep and the Cyclops is not gone: award 10 points; now exit found is true; now the cyclops is gone; now the wooden door is open; say "The cyclops, hearing the name of his father's deadly nemesis, flees the room by knocking down the wall on the north side of the room."; stop the action.
 Instead of doing something to the cyclops when the cyclops is gone: print the you can't see message instead.
 Instead of doing something when the cyclops is the second noun and the cyclops is gone: say "I don't see any cylops here."
-Instead of going north from Cyclops Room when the cyclops is in Cyclops Room and the cyclops is not gone: say "You can't go that way."
+Instead of going north from Cyclops Room when the cyclops is in Cyclops Room and the cyclops is not gone: print the you can't go message.
 Instead of taking the cyclops when the cyclops is not gone: say "The cyclops does not take to kindly to being grabbed."
 Instead of going through the staircase when the cyclops is in Cyclops Room and the cyclops is not asleep and the cyclops is not gone: say "The cyclops doesn't look like he'll let you pass."
 The staircase is scenery. Instead of climbing the staircase: try entering the noun instead.
@@ -1746,7 +2014,7 @@ Down from Deep Ravine is south from a dungeon called Reservoir South. The descri
 A drainable watersource called the pdl1 is in Reservoir South.
 Instead of going down from Deep Ravine when the player is carrying the coffin:
 say "The stairs are to steep for you with your burden."
-West of a dungeon called the Round Room is East-West Passage. "This is a circular room with passages off in eight directions."
+East of East-West Passage is a dungeon called the Round Room.  The description of the Round Room is "This is a circular room with passages off in eight directions."
 Southwest of Round Room is Maze 1. Northeast of Maze 1 is nowhere.
 After going:
 if the location is Round Room, say "Your compass needle spins wildly, and you cannot get your bearings."; continue the action.

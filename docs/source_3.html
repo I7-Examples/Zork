@@ -189,7 +189,7 @@ if the thief is on-stage begin;
 <br>
 if the thief cannot see the player, try the thief escaping;
 <br>
-if the thief is not in Treasure Room and the player can see the thief begin;
+if the thief is not in Treasure Room and the player is in the holder of the thief begin;
 <br>
 if the thief can see something visible begin;
 <br>
@@ -206,20 +206,6 @@ else;
 end if;
 <br>
   try the thief escaping;
-<br>
-end if;
-<br>
-if the thief can see something portable and the holder of the thief is visited begin;
-<br>
- let the thingy be a random portable nonrope thing that is not attached to a rope;
-<br>
- move the thingy to the thief;
-<br>
- if the thief is in a maze and the player is in a maze, say &quot;<font color=#000080>You hear, off in the distance, someone saying 'My, I wonder what this fine [thingy] is doing here.</font>&quot;;
-<br>
-else;
-<br>
-  move a random thing that is not valuble held by the thief to the holder of the thief;
 <br>
 end if;
 <br>
@@ -347,11 +333,559 @@ To strike a blow from the thief:
 <br>
    end if.
 <br>
-
+East of Treasure Room is a dungeon called Small Square Room.  The description of Small Square Room is &quot;<font color=#000080>This is a small square room, in the middle of which is a recently created hole[if a block is in Puzzle10] which is blocked by smooth sandstone.[otherwise] through which you can barely discern the floor some ten feet below.[end if]  It doesn't seem likely you could climb back up.  There
+<br>
+</font><font color=#000080>are exits to the west and south.</font>&quot;
+<br>
+Understand &quot;<font color=#000080>paper</font>&quot; and &quot;<font color=#000080>piece of paper</font>&quot; as the note of warning.
+<br>
+A note of warning is in Small Square Room.  The later appearance of the note of warning is &quot;<font color=#000080>There is a piece of paper on the ground here.</font>&quot;
+<br>
+The description of the note of warning is &quot;<font color=#000080>[note text]</font>&quot;.
+<br>
+To say note text:
+<br>
+say &quot;<font color=#000080>The paper is rather worn; although the writing is barely legible (the
+<br>
+</font><font color=#000080>author probably had only a used pencil), it is a very elegant
+<br>
+</font><font color=#000080>copperplate.[paragraph break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>To Whom It May Concern:[paragraph break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>[5 spaces]I regret to report that the rumours regarding treasure contained
+<br>
+</font><font color=#000080>in the chamber to which this passage leads have no basis in fact.
+<br>
+</font><font color=#000080>Should you nevertheless be sufficiently foolhardy to enter, it will
+<br>
+</font><font color=#000080>be quite impossible for you to exit.[paragraph break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>[32 spaces]Sincerely yours,[line break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>[32 spaces]The Thief</font>&quot;.
+<br>
+South of Small Square Room is a dungeon called Side Room.  The description of Side Room is &quot;<font color=#000080>You are in a room with an exit to the north and a steel door to the east[if the steel door is open]which is open[end if].</font>&quot;
+<br>
+The steel door is a door.  East of Side Room is the steel door.  The steel door is scenery.  The steel door is closed and not openable. 
+<br>
+Before pushing a direction:
+<br>
+if the room noun from the location is not a puzzle, say &quot;<font color=#000080>The wall does not budge.</font>&quot; instead;
+<br>
+if the room noun from the location does not contain a block, say &quot;<font color=#000080>There is only a passage in that direction.</font>&quot; instead;
+<br>
+if the room the noun from the location contains a marble block, say &quot;<font color=#000080>The wall does not budge.</font>&quot; instead;
+<br>
+if the room the noun from the room the noun from the location contains a block, say &quot;<font color=#000080>The wall does not budge.</font>&quot; instead;
+<br>
+if the room the noun from the room the noun from the location is not a puzzle, say &quot;<font color=#000080>The wall does not budge.</font>&quot; instead;
+<br>
+say &quot;<font color=#000080>The wall slides forward and you follow it to this position:</font>&quot;;
+<br>
+move a random block in the room noun from the location to the room noun from the room noun from the location;
+<br>
+try going the noun instead.
+<br>
+Every turn when the player is in a puzzle:
+<br>
+foo.
+<br>
+To foo:
+<br>
+(- lookmode=2; -).
+<br>
+A puzzle is a kind of room.  A puzzle is always dark.  The printed name of a puzzle is always &quot;<font color=#000080>Room in Puzzle</font>&quot;.
+<br>
+A block is a kind of thing.
+<br>
+A marble block is a kind of block.  A sandstone block is a kind of block.
+<br>
+A ladder is a kind of sandstone block.
+<br>
+Puzzle10 is a puzzle.
+<br>
+The description of a puzzle is usually &quot;<font color=#000080>[puzzle text]</font>&quot;.
+<br>
+The description of Puzzle10 is &quot;<font color=#000080>[if a block is in Puzzle11 and a block is in Puzzle18]You are in a small square room bounded to the north and west with
+<br>
+</font><font color=#000080>marble walls and to the east and south with sandstone walls.[otherwise][puzzle text][end if]</font>&quot;.
+<br>
+To say puzzle text:
+<br>
+say fixed letter spacing;
+<br>
+say &quot;<font color=#000080>[6 spaces]|[txt of the room northwest from the location] [txt of the room north from the location] [txt of the room northeast from the location]|[line break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>West[2 spaces]|[txt of the room west from the location] .. [txt of the room east from the location]|[2 spaces]East[line break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>[6 spaces]|[txt of the room southwest from the location] [txt of the room south from the location] [txt of the room southeast from the location]|[line break]</font>&quot;;
+<br>
+say variable letter spacing;
+<br>
+if the location is Puzzle10 begin;
+<br>
+  say &quot;<font color=#000080>In the ceiling above you is a large circular opening.</font>&quot;;
+<br>
+else if the location is Puzzle37;
+<br>
+  say &quot;<font color=#000080>The center of the floor here is noticeably depressed.</font>&quot;;
+<br>
+else if the location is Puzzle52;
+<br>
+  say &quot;<font color=#000080>The west wall here has a large steel door [if the steel door is open]which is open [end if]at its center.  One one side of the door is a small slit.</font>&quot;;
+<br>
+end if;
+<br>
+if a ladder is in the room east from the location, say &quot;<font color=#000080>There is a ladder here, firmly attached to the east wall.</font>&quot;;
+<br>
+if a ladder is in the room west from the location, say &quot;<font color=#000080>There is a ladder here, firmly attached to the west wall.</font>&quot;.
+<br>
+To say txt of (x - a room):
+<br>
+if a marble block is in x or x is not a puzzle begin;
+<br>
+  say &quot;<font color=#000080>MM</font>&quot;;
+<br>
+else if a sandstone block is in x;
+<br>
+ say &quot;<font color=#000080>SS</font>&quot;;
+<br>
+else;
+<br>
+  say &quot;<font color=#000080>[2 spaces]</font>&quot;;
+<br>
+end if.
+<br>
+Instead of going from a puzzle when a block is in the room noun from the location:
+<br>
+  print the you can't go message instead.
+<br>
+Instead of going up from Puzzle10:
+<br>
+ if a ladder is not in Puzzle11 begin;
+<br>
+   say &quot;<font color=#000080>The exit is too far above your head.</font>&quot;;
+<br>
+ otherwise;
+<br>
+   say &quot;<font color=#000080>With the help of the ladder, you exit the puzzle.</font>&quot;;
+<br>
+   continue the action;
+<br>
+ end if.
+<br>
+Instead of going down from Small Square Room when a sandstone block is in Puzzle10: say &quot;<font color=#000080>Your way is blocked by sandstone.</font>&quot;
 <br>
 
 <br>
-Down from Treasure Room is the staircase.
+<font color=#404040>[1  1  1  1   1  1 1 1
+<br>
+</font><font color=#404040>1  0 -1  0  0 -1 0 1
+<br>
+</font><font color=#404040>1 -1  0  1  0 -2 0 1
+<br>
+</font><font color=#404040>1  0  0  0  0  1 0 1
+<br>
+</font><font color=#404040>1 -3  0  0 -1 -1 0 1
+<br>
+</font><font color=#404040>1  0  0 -1  0  0 0 1
+<br>
+</font><font color=#404040>1  1  1  0  0  0 1 1
+<br>
+</font><font color=#404040>1  1  1  1  1  1 1 1</font>].
+<br>
+Down from Small Square Room is Puzzle10.
+<br>
+<font color=#404040>[solution to royal puzzle:
+<br>
+</font><font color=#404040>
+<br>
+</font><font color=#404040>Down, push east wall, South, Southwest, Push south wall, East 
+<br>
+</font><font color=#404040>twice, Push south wall, North twice, East, Push south wall, 
+<br>
+</font><font color=#404040>Take card, Push south wall, East, Northeast, Push west wall 
+<br>
+</font><font color=#404040>four times, Northeast twice, North, Push east wall, Southwest, 
+<br>
+</font><font color=#404040>South, Southeast, Northeast, North, Push west wall, Northwest, 
+<br>
+</font><font color=#404040>Push south wall twice, West, Northwest twice, Push south wall, 
+<br>
+</font><font color=#404040>Southeast trice, Northeast, Push west wall twice, Southwest, 
+<br>
+</font><font color=#404040>Push north wall trice, Northwest, Up.
+<br>
+</font><font color=#404040></font>]
+<br>
+
+<br>
+Puzzle1 is a puzzle.  In Puzzle1 is a marble block.  East of Puzzle1 is a puzzle called Puzzle2.  In Puzzle2 is a marble block. East of Puzzle2 is a puzzle called Puzzle3.  
+<br>
+In Puzzle3 is a marble block.  East of Puzzle3 is a puzzle called Puzzle4.  In Puzzle4 is a marble block.  East of Puzzle4 is a puzzle called Puzzle5.  In Puzzle5 is a marble block.  East of Puzzle5 is a puzzle called Puzzle6.  In Puzzle6 is a marble block.  
+<br>
+East of Puzzle6 is a puzzle called Puzzle7.  In Puzzle7 is a marble block.  East of Puzzle7 is a puzzle called Puzzle8.  In Puzzle8 is a marble block.
+<br>
+   
+<br>
+South of Puzzle1 is a puzzle called Puzzle9.  In Puzzle9 is a marble block.  Northeast of Puzzle9 is Puzzle2.  East of Puzzle9 is Puzzle10.  North of Puzzle10 is Puzzle2.  Northwest of Puzzle10 is Puzzle1.  Northeast of Puzzle10 is Puzzle3.  East of Puzzle10 is a puzzle called Puzzle11.  In Puzzle11 is a sandstone block.  North of Puzzle11 is Puzzle3.  Northwest of Puzzle11 is Puzzle2.  Northeast of Puzzle11 is Puzzle4. East of Puzzle11 is a puzzle called Puzzle12.  North of Puzzle12 is Puzzle4.  Northwest of Puzzle12 is Puzzle3.  Northeast of Puzzle12 is Puzzle5. East of Puzzle12 is a puzzle called Puzzle13.  North of Puzzle13 is Puzzle5.  Northwest of Puzzle13 is Puzzle4.  Northeast of Puzzle13 is Puzzle6. East of Puzzle13 is a puzzle called Puzzle14. In Puzzle14 is a sandstone block. North of Puzzle14 is Puzzle6.  Northwest of Puzzle14 is Puzzle5.  Northeast of Puzzle14 is Puzzle7. East of Puzzle14 is a puzzle called Puzzle15.  North of Puzzle15 is Puzzle7.  Northwest of Puzzle15 is Puzzle6.  Northeast of Puzzle15 is Puzzle8.  East of Puzzle15 is a puzzle called Puzzle16.  North of Puzzle16 is Puzzle8.  Northwest of Puzzle16 is Puzzle7.
+<br>
+
+<br>
+South of Puzzle9 is a puzzle called Puzzle17. In Puzzle17 is a marble block. Northeast of Puzzle17 is Puzzle10. East of Puzzle17 is a puzzle called Puzzle18. In Puzzle18 is a sandstone block.  North of Puzzle18 is Puzzle10.  Northwest of Puzzle18 is Puzzle9.  Northeast of Puzzle18 is Puzzle11. East of Puzzle18 is a puzzle called Puzzle19.  North of Puzzle19 is Puzzle11.  Northwest of Puzzle19 is Puzzle10.  Northeast of Puzzle19 is Puzzle12. East of Puzzle19 is a puzzle called Puzzle20.  In Puzzle20 is a marble block.  North of Puzzle20 is Puzzle12. Northwest of Puzzle20 is Puzzle11.  Northeast of Puzzle20 is Puzzle13.  East of Puzzle20 is a puzzle called Puzzle21.
+<br>
+North of Puzzle21 is Puzzle13.  Northwest of Puzzle21 is Puzzle12.  Northeast of Puzzle21 is Puzzle14. East of Puzzle21 is a puzzle called Puzzle22.  In Puzzle22 is a ladder.  North of Puzzle22 is Puzzle14.  Northwest of Puzzle22 is Puzzle13.  Northeast of Puzzle22 is Puzzle15.  East of Puzzle22 is a puzzle called Puzzle23. North of Puzzle23 is Puzzle15.  Northwest of Puzzle23 is Puzzle14.  Northeast of Puzzle23 is Puzzle16.  East of Puzzle23 is a puzzle called Puzzle24. North of Puzzle24 is Puzzle16.  In Puzzle24 is a marble block. Northwest of Puzzle24 is Puzzle15.
+<br>
+
+<br>
+South of Puzzle17 is a puzzle called Puzzle25.  In Puzzle25 is a marble block. Northeast of Puzzle25 is Puzzle18.  East of Puzzle25 is a puzzle called Puzzle26. 
+<br>
+North of Puzzle26 is Puzzle18.  Northwest of Puzzle26 is Puzzle17.  Northeast of Puzzle26 is Puzzle19.  East of Puzzle26 is a puzzle called Puzzle27.  North of Puzzle27 is Puzzle19.  Northwest of Puzzle27 is Puzzle18.  Northeast of Puzzle27 is Puzzle20.  East of Puzzle27 is a puzzle called Puzzle28.  North of Puzzle28 is Puzzle20.  Northwest of Puzzle28 is Puzzle19.  Northeast of Puzzle28 is Puzzle21.  East of Puzzle28 is a puzzle called Puzzle29.  North of Puzzle29 is Puzzle21.  Northwest of Puzzle29 is Puzzle20.  Northeast of Puzzle29 is Puzzle22.  East of Puzzle29 is a puzzle called Puzzle30.  North of Puzzle30 is Puzzle22.  Northwest of Puzzle30 is Puzzle21.  Northeast of Puzzle30 is Puzzle23.  In Puzzle30 is a marble block.  East of Puzzle30 is a puzzle called Puzzle31.  North of Puzzle31 is Puzzle23.  Northwest of Puzzle31 is Puzzle22.  Northeast of Puzzle31 is Puzzle24.  East of Puzzle31 is a puzzle called Puzzle32.  North of Puzzle32 is Puzzle24.  Northwest of Puzzle32 is Puzzle23. 
+<br>
+
+<br>
+South of Puzzle32 is a puzzle called Puzzle33.
+<br>
+North of Puzzle33 is Puzzle25.
+<br>
+Northeast of Puzzle33 is Puzzle26.
+<br>
+East of Puzzle33 is a puzzle called Puzzle34.
+<br>
+North of Puzzle34 is Puzzle26.
+<br>
+Northwest of Puzzle34 is Puzzle25.
+<br>
+Northeast of Puzzle34 is Puzzle27.
+<br>
+East of Puzzle34 is a puzzle called Puzzle35.
+<br>
+North of Puzzle35 is Puzzle27.
+<br>
+Northwest of Puzzle35 is Puzzle26.
+<br>
+Northeast of Puzzle35 is Puzzle28.
+<br>
+East of Puzzle35 is a puzzle called Puzzle36.
+<br>
+North of Puzzle36 is Puzzle28.
+<br>
+Northwest of Puzzle36 is Puzzle27.
+<br>
+Northeast of Puzzle36 is Puzzle29.
+<br>
+East of Puzzle36 is a puzzle called Puzzle37.
+<br>
+North of Puzzle37 is Puzzle29.
+<br>
+Northwest of Puzzle37 is Puzzle28.
+<br>
+Northeast of Puzzle37 is Puzzle30.
+<br>
+East of Puzzle37 is a puzzle called Puzzle38.
+<br>
+North of Puzzle38 is Puzzle30.
+<br>
+Northwest of Puzzle38 is Puzzle29.
+<br>
+Northeast of Puzzle38 is Puzzle31.
+<br>
+East of Puzzle38 is a puzzle called Puzzle39.
+<br>
+North of Puzzle39 is Puzzle31.
+<br>
+Northwest of Puzzle39 is Puzzle30.
+<br>
+Northeast of Puzzle39 is Puzzle32.
+<br>
+East of Puzzle39 is a puzzle called Puzzle40.
+<br>
+North of Puzzle40 is Puzzle32.
+<br>
+Northwest of Puzzle40 is Puzzle31.
+<br>
+
+<br>
+In Puzzle33 is a marble block.  In Puzzle34 is a ladder.  In Puzzle37 is a sandstone block.  In Puzzle38 is a sandstone block.  In Puzzle40 is a marble block.
+<br>
+
+<br>
+South of Puzzle40 is a puzzle called Puzzle41.
+<br>
+North of Puzzle41 is Puzzle33.
+<br>
+Northeast of Puzzle41 is Puzzle34.
+<br>
+East of Puzzle41 is a puzzle called Puzzle42.
+<br>
+North of Puzzle42 is Puzzle34.
+<br>
+Northwest of Puzzle42 is Puzzle33.
+<br>
+Northeast of Puzzle42 is Puzzle35.
+<br>
+East of Puzzle42 is a puzzle called Puzzle43.
+<br>
+North of Puzzle43 is Puzzle35.
+<br>
+Northwest of Puzzle43 is Puzzle34.
+<br>
+Northeast of Puzzle43 is Puzzle36.
+<br>
+East of Puzzle43 is a puzzle called Puzzle44.
+<br>
+North of Puzzle44 is Puzzle36.
+<br>
+Northwest of Puzzle44 is Puzzle35.
+<br>
+Northeast of Puzzle44 is Puzzle37.
+<br>
+East of Puzzle44 is a puzzle called Puzzle45.
+<br>
+North of Puzzle45 is Puzzle37.
+<br>
+Northwest of Puzzle45 is Puzzle36.
+<br>
+Northeast of Puzzle45 is Puzzle38.
+<br>
+East of Puzzle45 is a puzzle called Puzzle46.
+<br>
+North of Puzzle46 is Puzzle38.
+<br>
+Northwest of Puzzle46 is Puzzle37.
+<br>
+Northeast of Puzzle46 is Puzzle39.
+<br>
+East of Puzzle46 is a puzzle called Puzzle47.
+<br>
+North of Puzzle47 is Puzzle39.
+<br>
+Northwest of Puzzle47 is Puzzle38.
+<br>
+Northeast of Puzzle47 is Puzzle40.
+<br>
+East of Puzzle47 is a puzzle called Puzzle48.
+<br>
+North of Puzzle48 is Puzzle40.
+<br>
+Northwest of Puzzle48 is Puzzle39.
+<br>
+
+<br>
+In Puzzle41 is a marble block.  In Puzzle44 is a sandstone block.  In Puzzle48 is a marble block.
+<br>
+
+<br>
+
+<br>
+South of Puzzle48 is a puzzle called Puzzle49.
+<br>
+North of Puzzle49 is Puzzle41.
+<br>
+Northeast of Puzzle49 is Puzzle42.
+<br>
+East of Puzzle49 is a puzzle called Puzzle50.
+<br>
+North of Puzzle50 is Puzzle42.
+<br>
+Northwest of Puzzle50 is Puzzle41.
+<br>
+Northeast of Puzzle50 is Puzzle43.
+<br>
+East of Puzzle50 is a puzzle called Puzzle51.
+<br>
+North of Puzzle51 is Puzzle43.
+<br>
+Northwest of Puzzle51 is Puzzle42.
+<br>
+Northeast of Puzzle51 is Puzzle44.
+<br>
+East of the steel door is a puzzle called Puzzle52.
+<br>
+North of Puzzle52 is Puzzle44.
+<br>
+Northwest of Puzzle52 is Puzzle43.
+<br>
+Northeast of Puzzle52 is Puzzle45.
+<br>
+East of Puzzle52 is a puzzle called Puzzle53.
+<br>
+North of Puzzle53 is Puzzle45.
+<br>
+Northwest of Puzzle53 is Puzzle44.
+<br>
+Northeast of Puzzle53 is Puzzle46.
+<br>
+East of Puzzle53 is a puzzle called Puzzle54.
+<br>
+North of Puzzle54 is Puzzle46.
+<br>
+Northwest of Puzzle54 is Puzzle45.
+<br>
+Northeast of Puzzle54 is Puzzle47.
+<br>
+East of Puzzle54 is a puzzle called Puzzle55.
+<br>
+North of Puzzle55 is Puzzle47.
+<br>
+Northwest of Puzzle55 is Puzzle46.
+<br>
+Northeast of Puzzle55 is Puzzle48.
+<br>
+East of Puzzle55 is a puzzle called Puzzle56.
+<br>
+North of Puzzle56 is Puzzle48.
+<br>
+Northwest of Puzzle56 is Puzzle47.
+<br>
+
+<br>
+A small slit is in Puzzle52. The small slit is scenery. The small slit is a container.  The capacity of the small slit is 4.  The carrying capacity of the small slit is 1.
+<br>
+Carry out inserting something into the small slit:
+<br>
+  if the noun is the gold card begin;
+<br>
+    say &quot;<font color=#000080>The card slides easily into the slot and vanishes and the metal door slides open revealing a passageway to the west.  A moment later, a previously unseen sign flashes:[line break] [4 spaces]'Unauthorized/Illegal Use of Pass Card -- Card Confiscated'</font>&quot;;
+<br>
+    remove the gold card from play;
+<br>
+    now the steel door is open;
+<br>
+    now the steel door is openable;
+<br>
+  else;
+<br>
+    say &quot;<font color=#000080>The item vanishes into the slot.  A moment later, a previously unseen sign flashes 'Garbage In, Garbage Out' and spews [the noun] (now atomized) through the slot.</font>&quot;;
+<br>
+    remove the noun from play;
+<br>
+  end if.
+<br>
+In Puzzle49 is a marble block.  In Puzzle50 is a marble block.  In Puzzle51 is a marble block.  In Puzzle55 is a marble block.  In Puzzle56 is a marble block.
+<br>
+
+<br>
+South of Puzzle56 is a puzzle called Puzzle57.
+<br>
+North of Puzzle57 is Puzzle49.
+<br>
+Northeast of Puzzle57 is Puzzle50.
+<br>
+East of Puzzle57 is a puzzle called Puzzle58.
+<br>
+North of Puzzle58 is Puzzle50.
+<br>
+Northwest of Puzzle58 is Puzzle49.
+<br>
+Northeast of Puzzle58 is Puzzle51.
+<br>
+East of Puzzle58 is a puzzle called Puzzle59.
+<br>
+North of Puzzle59 is Puzzle51.
+<br>
+Northwest of Puzzle59 is Puzzle50.
+<br>
+Northeast of Puzzle59 is Puzzle52.
+<br>
+East of Puzzle59 is a puzzle called Puzzle60.
+<br>
+North of Puzzle60 is Puzzle52.
+<br>
+Northwest of Puzzle60 is Puzzle51.
+<br>
+Northeast of Puzzle60 is Puzzle53.
+<br>
+East of Puzzle60 is a puzzle called Puzzle61.
+<br>
+North of Puzzle61 is Puzzle53.
+<br>
+Northwest of Puzzle61 is Puzzle52.
+<br>
+Northeast of Puzzle61 is Puzzle54.
+<br>
+East of Puzzle61 is a puzzle called Puzzle62.
+<br>
+North of Puzzle62 is Puzzle54.
+<br>
+Northwest of Puzzle62 is Puzzle53.
+<br>
+Northeast of Puzzle62 is Puzzle55.
+<br>
+East of Puzzle62 is a puzzle called Puzzle63.
+<br>
+North of Puzzle63 is Puzzle55.
+<br>
+Northwest of Puzzle63 is Puzzle54.
+<br>
+Northeast of Puzzle63 is Puzzle56.
+<br>
+East of Puzzle63 is a puzzle called Puzzle64.
+<br>
+North of Puzzle64 is Puzzle56.
+<br>
+Northwest of Puzzle64 is Puzzle55.
+<br>
+
+<br>
+In Puzzle57 is a marble block. In Puzzle58 is a marble block. In Puzzle59 is a marble block. In Puzzle60 is a marble block. In Puzzle61 is a marble block.  In Puzzle62 is a marble block.  In Puzzle63 is a marble block.  In Puzzle64 is a marble block.
+<br>
+In Puzzle37 is a gold card.  The initial appearance of the gold card is &quot;<font color=#000080>Nestled inside the niche is an engraved gold card.</font>&quot; The later appearance of the gold card is &quot;<font color=#000080>There is a solid gold engraved card here.</font>&quot;
+<br>
+The description of the gold card is &quot;<font color=#000080>[card text]</font>&quot;.
+<br>
+To say card text:
+<br>
+  say fixed letter spacing;
+<br>
+say &quot;<font color=#000080> ____________________________________________________________[line break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>|                                                            |[line break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>|              FROBOZZ MAGIC SECURITY SYSTEMS                |[line break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>|    Door Pass                  Royal Zork Puzzle Museum     |[line break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>|                                                            |[line break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>|                     #632-988-496-XTHF                      |[line break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>|                                                            |[line break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>|                                                            |[line break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>|     USE OF THIS PASS BY UNAUTHORIZED PERSONS OR AFTER      |[line break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>|   EXPIRATION DATE WILL RESULT IN IMMEDIATE CONFISCATION    |[line break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>|                                                            |[line break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>|                                                            |[line break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>|                              (approved)                    |[line break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>|                              Will Weng                     |[line break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>|                               789 G.U.E.                   |[line break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>|                                                            |[line break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>|                                        Expires 792 G.U.E.  |[line break]</font>&quot;;
+<br>
+say &quot;<font color=#000080>|____________________________________________________________|[line break]</font>&quot;;
+<br>
+  say variable letter spacing.
+<br>
+The size of the gold card is 4.
+<br>
+The case-points of the gold card is 10.
+<br>
+After taking the gold card for the first time:
+<br>
+award 15 points;
+<br>
+continue the action.
 <br>
 The Cyclops can be basic, hungry, thirsty, asleep, or gone. 
 <br>
@@ -377,7 +911,7 @@ Instead of doing something to the cyclops when the cyclops is gone: print the yo
 <br>
 Instead of doing something when the cyclops is the second noun and the cyclops is gone: say &quot;<font color=#000080>I don't see any cylops here.</font>&quot;
 <br>
-Instead of going north from Cyclops Room when the cyclops is in Cyclops Room and the cyclops is not gone: say &quot;<font color=#000080>You can't go that way.</font>&quot;
+Instead of going north from Cyclops Room when the cyclops is in Cyclops Room and the cyclops is not gone: print the you can't go message.
 <br>
 Instead of taking the cyclops when the cyclops is not gone: say &quot;<font color=#000080>The cyclops does not take to kindly to being grabbed.</font>&quot;
 <br>
