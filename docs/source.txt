@@ -1,6 +1,6 @@
 "Zork" by Dean Menezes
 
-Include (- Serial "071227"; -).
+Include (- Serial "080106"; -).
 
 
 Part 1 - New Actions and Concepts
@@ -8,22 +8,55 @@ Part 1 - New Actions and Concepts
 The story genre is "Fantasy". 
 The story headline is "A Computerized Fantasy Simulation Game".
 Use memory economy.
+A thing can be non-flaming or flaming.  A thing is usually non-flaming. A thing can be non-inflammable or inflammable. A thing is usually non-inflammable.
+[* According to THE ELEMENTS OF STYLE: 
+FLAMMABLE:
+An oddity, chiefly useful in saving lives. The common word meaning "combustible" is inflammable. But some people are thrown off by the in- and think inflammable means "not combustible." For this reason, trucks carrying gasoline or explosives are now marked FLAMMABLE. Unless you are operating such a truck and hence are concerned with the safety of children and illiterates, use inflammable.]
+
 Release along with the source text and a website.
 Digging into it with is an action applying to one thing and one carried thing.
 Understand "dig into/in [something] with/using [something]" as digging into it with.
 Understand "dig [something] with/using [something]" as digging into it with.
 Understand "dig with/using [something] into/in [something]" as digging into it with (with nouns reversed).
+Counting is an action applying to one visible thing.  Understand "count [something]" as counting.
+Check counting:
+if the noun is the pile of leaves, say "There are 69,105 leaves here." instead;
+[* It is absurd that the adventurer would be able to count so many leaves with such precision, especially in the minute or so time that a normal turn supposedly takes.]
+[* Decimal 69 is equal to octal 105, and hexadecimal 69 is equal to decimal 105.] 
+if the noun is the pair of candles, say "Let's see, how many objects in a pair?  Don't tell me, I'll get it." instead;
+if the noun is the bills, say "Don't you trust me?  There are 200 bills." instead;
+if the noun is the matchbook begin;
+  if match count is 1 begin;
+    say "You have one match.";
+  else if match count is 0;
+    say "You have no matches.";
+  else;
+    say "You have [match count] matches.";
+  end if;
+end if.
+Carry out counting:
+say "You have lost your mind."
+Understand "count blessings" as a mistake ("Well, for one, you are playing Zork....").
+Understand  "$COUNTREASURE" as a mistake ("Your adventure has netted [number of valuble things in the trophy case] treasure(s).  You are carrying [number of valuble things had by the player] valuble(s).")
 
 Check digging into it with:
-if the second noun is not the shovel, say "Digging with [the second noun] is slow and tedious." instead;
 if the noun is not the guano and the noun is not the ground, say "Digging into [a noun] is silly." instead;
+if the second noun is not the shovel, say "Digging with [the second noun] is slow and tedious." instead;
 if the noun is the ground and the player is not in Sandy Beach, say  "The ground is too hard for digging here.".
 
 Playing is an action applying to one carried thing.  
 Understand "play [something]" as playing.
 
+Exorcising is an action applying to nothing.  Understand "exorcise" as exorcising.
+Check exorcising:
+  if exorcism flag is not -1, say "You must perform the ceremony." instead.
+Carry out exorcising:
+say "There is a clap of thunder, and a voice echoes through the cavern: 'Begone, chomper!'  Apparently, the voice thinks you are an evil spirit and dismisses you from the land of the living.";
+end the game in death.
+
 Definition: a thing is valuble if the case-points of it is not 0.
 After reading a command:
+if the player's command includes "COUNT TREASURE/TREASURES/VALUBLES", replace the matched text with "$COUNTREASURE";
 if the player's command includes "TREASURE/TREASURES/VALUBLES", replace the matched text with "[list of visible valuble things had by the player]".
 
 Check playing:
@@ -236,7 +269,7 @@ Understand "board [something]" as entering.
 Understand "disembark" as exiting.
 Understand "climb [direction]" as going.
 Understand "light [electric lamp]" as switching on.
-Understand "extinguish [electric lamp]" as switching off.
+Understand "extinguish [something]" as switching off.
 Understand "douse [electric lamp]" as switching off.
 Understand "climb through [something]" as climbing.
 Understand "what is [something]" as examining.
@@ -533,6 +566,7 @@ else if brochure flag is 2;
 end if.
 
 The obj1234 is a backdrop. The obj1234 is everywhere. Understand "brochure" and "free brochure" as the obj1234. The free brochure is a thing. 
+The free brochure is inflammable.
 Instead of doing something other than sending for to the obj1234: print the you can't see message instead.
 The description of the brochure is "[brochure text]".
 Does the player mean sending for the obj1234: it is very likely.
@@ -551,6 +585,7 @@ The Don Woods stamp is a part of the brochure.
 Procedural rule when taking the Don Woods stamp: 
         ignore the can't take component parts rule.
 The description of the Don Woods stamp is "[stamp text]".
+The Don Woods stamp is inflammable.
 To say stamp text:
 say fixed letter spacing;
 say "+--v----v----v----v----v--+[line break]";
@@ -991,12 +1026,23 @@ Before rubbing:
 if dead flag is true, say "Even such a simple action is beyond your capabilities" instead.
 Before touching:
 if dead flag is true, say "Even such a simple action is beyond your capabilities" instead.
-Before burning:
+Before burning something with something:
+if dead flag is true, say "Even such a simple action is beyond your capabilities" instead.
+Before burning something:
 if dead flag is true, say "Even such a simple action is beyond your capabilities" instead.
 Before untying:
 if dead flag is true, say "Even such a simple action is beyond your capabilities" instead.
 Before saying:
 if dead flag is true, say "No one hears you." instead.
+Before switching on something:
+if dead flag is true, say "You need no light to guide you." instead.
+Before taking something:
+if dead flag is true, say "Your hand passes through the object." instead.
+Before taking inventory:
+if dead flag is true, say "You are empty handed." instead.
+Instead of doing something other than looking, going, attacking, kicking, or destroying:
+if dead flag is false, continue the action;
+say "You can't do even that.".
 
 Death count is a number that varies.
 When play ends when the game ended in death:
@@ -1072,7 +1118,120 @@ Carry out diagnosing:
   end if;
   if death count is 1, say "You have been killed once.";
   if death count is 2, say "You have been killed twice.".
- 
+
+Burning it with is an action applying to one thing and one carried thing.  Understand "burn [something] with/using [something]" as burning it with. Understand "light [something] with/using [something]" as burning it with.
+
+Check burning (this is the new burning rule):
+  if the noun is not the matchbook and the player is carrying something flaming begin;
+    let i be the number of flaming things had by the player;
+    if i is 1, try burning the noun with a random flaming thing held by the player instead;
+    else say "It's not clear what you want to burn [the noun] with." instead;
+  else if the noun is not the matchbook;
+    say "It's not clear what you want to burn [the noun] with." instead;
+  else if the matchbook is flaming;
+    say "The match is already lit." instead;
+  else;
+    say "I'm afraid you have run out of matches." instead;
+  end if.  
+Match tick is a number that varies.  Match tick is usually -1.
+Carry out burning:
+ say "One of the matches starts to burn.";
+ change match tick to 2;
+ now the matchbook is flaming.
+Instead of switching off something which is flaming:
+  if the noun is the matchbook begin;
+    say "The match is out.";
+    change match tick to -1;
+  else if the noun is the pair of candles;
+    say "The flame is extinguished.";
+  else if the noun is the ivory torch;
+    say "You burn your hand as you attempt to extinguish the flame.";
+  end if.
+Every turn:
+now every thing which is flaming is lit;
+if the matchbook is non-flaming, now the matchbook is unlit;
+if the pair of candles is non-flaming, now the pair of candles is unlit;
+if match tick is greater than 0, decrease match tick by 1;
+if match tick is 0 begin;
+  say "The match has gone out.";
+  change match tick to -1;
+end if;
+now the matchbook is not flaming.
+
+The new burning rule is listed instead of the block burning rule in the check burning rulebook.
+
+Check burning it with:
+  if the second noun is not flaming, say "How do you expect to burn anything with that?" instead;
+  if the noun is the black book begin;
+    say "A booming voice says 'Wrong, cretin!' and you notice that you have turned into a pile of dust.";
+    end the game in death instead;
+  end if;
+  if the noun is the barrel, say "The barrel is damp and cannot be burned." instead;
+  if the noun is flaming, say "[The noun] is already burning." instead;
+  if the noun is not the candles and the noun is not inflammable, say "I don't think you can burn [a noun]." instead.
+
+Candle tick is a number that varies.  Candle tick is usually 40.
+Carry out burning it with:
+if the noun is the pair of candles begin;
+if the candles are flaming, say "You realize, just in time, that the candles are already lighted." instead;
+if candle tick is 0, say "There's not much left of the candles; definately not enough left to light." instead;
+if the second noun is the torch begin;
+  say "The heat from the torch is so intense that the candles are vaporized.";
+  remove the candles from play instead;
+end if;
+say "The candles are now lighted.";
+if the player is in Entrance to Hades begin;
+if exorcism flag is 1 begin;
+say "The flames flicker wildly and appear to dance.  The earth beneath
+your feet trembles, and your legs nearly buckle beneath you.
+The spirits cower at your unearthly power.";
+change exorcism flag to 2;
+else if exorcism flag is -1;
+continue the action;
+else;
+say "The tension of this ceremony is broken, and the wraiths, amused but
+shaken at your clumsy attempt, resume their hideous jeering.";
+change exorcism flag to 0;
+end if;
+end if;
+now the candles are flaming;
+else if the noun is the pile of leaves;
+  now the grating is revealed;
+  if the player is carrying the noun begin;
+  say "The sight of someone carrying a pile of burning leaves so offends the neighbors that  they come over and put you out.";
+   remove the pile of leaves from play;
+   end the game in death;
+   else;
+     say "The leaves burn and the neighbors start to complain.";
+     remove the pile of leaves from play;
+   end if;
+else if the noun is the brick;
+  say "It turns out the brick has other properties besides mass.  Namely, the power to blow you to smithereens";
+  remove the brick from play;
+  end the game in death instead;
+else if the noun is the coil of wire;
+  say "The wire rapidly burns to nothingness.";
+  remove the coil of wire from play;
+else;
+  if the noun is the bills, say "Nothing like having money to burn!";
+  if the player is carrying the noun begin;
+    say "[The noun] catches fire and is consumed.  Unfortunately, you were holding it at the time.";
+    end the game in death;
+  else;
+    say "[The noun] catches fire and is consumed.";
+  end if;
+end if.
+After dropping the candles:
+if the candles are flaming, now the candles are non-flaming;
+continue the action.
+Every turn when the candles are flaming and the candles are touched:
+  decrease candle tick by 1;
+  if candle tick is 0 begin;
+    now the candles are non-flaming;
+    say "I hope you have more light than from a pair of candles.";
+ else if candle tick is 20 or candle tick is 10 or candle tick is 5;
+    say "The candles grow shorter.";
+ end if.
 
 Part 2 - Above Ground Stuff
 
@@ -1090,14 +1249,17 @@ say paragraph break;
 say "   Zork is a game of adventure, danger, and low cunning.  In it you will explore some of the most amazing territory ever seen by mortal man.  Hardened adventurers have run screaming from the terrors contained within.[paragraph break]";
 say "   In Zork, the intrepid explorer delves into the forgotten secrets of a lost labyrinth deep in the bowels of the earth, searching for vast treasures long hidden from prying eyes, treasures guarded by fearsome monsters and diabolical traps![paragraph break]";
 say "   No system should be without one![paragraph break]";
+[* Originally, this said "No PDP-10 should be without one" but the user is probably not playing ZORK on a PDP-10]
 say "   Zork was created at the MIT Laboratory for Computer Science by
 Tim Anderson, Marc Blank, Bruce Daniels, and Dave Lebling.  It was inspired by the Adventure game of Crowther and Woods, and the long tradition of fantasy and science fiction games.[paragraph break]";
 say "   On-line information may be obtained with the command HELP (synonyms are ABOUT, INFO, HINT, etc.)."
+The leaflet is inflammable.
 
 An electric lamp is a kind of device. Carry out switching on an electric lamp: now the noun is lit. Carry out switching off an electric lamp: now the noun is unlit.
 
 A portable supporter called a rubber welcome mat is here. "A rubber mat saying 'Welcome to Zork' lies by the door." The description of the mat is "The mat says 'Welcome to Zork'."
-The size of the rubber welcome mat is 12.
+The size of the rubber welcome mat is 
+12.
 
 Mat under is a truth state that varies. Mat under is usually false.
 After taking, pushing, or pulling the rubber welcome mat:
@@ -1135,6 +1297,7 @@ Report closing the window: say "The window closes (more easily than it opened)."
 After going through the window for the first time: award 10 points; continue the action.
 The description of Kitchen is "This is the kitchen of the white house.  A table seems to have been used recently for the preparation of food.  A passage leads to the west, and a dark staircase can be seen leading upward.  A dark chimney leads down and to the east is a small window which is [if the window is open]open. [otherwise]closed."
 The sack is in Kitchen. "On the table is an enlongated brown sack, smelling of hot peppers." The sack is a closed openable container.
+The sack is inflammable.
 The capacity of the sack is 15. The size of the sack is 3.
 Inside the sack is a lunch and a clove of garlic.  The lunch and the garlic are edible.
 Report eating something: say "Thank you very much.  That reallly hit the spot." instead.
@@ -1180,6 +1343,7 @@ Lots and lots and lots and LOTS of bugs have been fixed.
 Aspiring adventurers should avail themselves of every opportunity to broaden their intellectual horizons and increase their perspicacity.
 
 Fatal events have somewhat more convoluted results than previously."
+The newspaper is inflammable.
 To say masthead:
 center "US NEWS AND DUNGEON REPORT";
 center "2007[12 spaces]Late Dungeon Edition";
@@ -1201,6 +1365,7 @@ A door called the tree is a door. The tree is scenery. The tree is open and not 
 The description of Up a Tree is "You are about ten feet above the ground nestled among some large branches. The nearest branch above you is beyond your reach."
 Instead of climbing the tree: try entering the noun instead.
 A container called a birds nest is here. "On the branch is a small birds nest.  ".  A closed unopenable container called a jewel-encrusted egg is in the nest. The initial appearance of the jewel-encrusted egg is "In the bird's nest is a large egg encrusted with precious jewels, apparently scavenged somewhere by a childless songbird.  The egg is covered with fine gold inlay and ornamented in lapis lazuli and mother-of-pearl.  Unlike most eggs, this one is hinged and has a delicate looking clasp holding it closed. The egg appears extremely fragile." The description of the egg is "The egg is covered with fine gold inlay and ornamented in lapis lazuli and mother-of-pearl.  Unlike most eggs, this one is hinged and has a delicate looking clasp holding it closed. The egg appears extremely fragile." 
+The birds nest is inflammable.
 The capacity of the nest is 20.
 The capacity of the jewel-encrusted egg is 6.
 Instead of dropping something while in Up a Tree:
@@ -1264,6 +1429,7 @@ West of Forest 4 is North of House. Clearing is south of Forest 4. North of Fore
 West of West of House is Forest 1. East of Forest 1 is Forest 4. North of Forest 1 is Forest 1. West of Forest 1 is Forest 1. The printed name of Forest 1 is "Forest". The description of Forest 1 is "This is a forest with trees in all directions around you."
 
 Clearing has description "This is a clearing, with a forest surrounding you on the west and south." A pile of leaves is here.
+The pile of leaves is inflammable.
 The later appearance of the pile of leaves is "There is a pile of leaves on the ground."
 The size of the leaves is 25.
 The grating is a secret door.  The grating is down from Clearing and up from Grating Room.  The grating is closed, openable, locked, and lockable.  
@@ -1275,7 +1441,7 @@ The attic stairs is a door. The attic stairs are open and not openable.The attic
 A dark room called the Attic is up from the attic stairs. "This is the Attic.  The only exit is stairs that lead down."
 
 A rope called a large coil of rope is here.  "A large coil of rope is in the corner." A square brick feeling like clay is here. 
-
+The brick is inflammable.
 The later appearance of the square brick is "There is a square brick here which feels like clay." 
 The size of the rope is 10.
 The size of the brick is 15.
@@ -1366,7 +1532,7 @@ Instead of jumping while in West of Chasm: fatally leap.
 A dungeon called Gallery is south of West of Chasm. "This is an art gallery. Most of the paintings which were here have been stolen by vandals with exceptional taste. The vandals left through the north, south, or west exits."
 A painting is here. "Fortunately, there is still one chance for you to be a vandal, for on the far wall is a work of unparalleled beauty."
 The printed name of the painting is "masterpiece by a neglected genius".
-The inventory listing of the painting is "a painting". Understand "masterpiece" as the painting.
+The inventory listing of the painting is "a painting". Understand "masterpiece" as the painting. The painting is inflammable.
 After taking the painting for the first time: award 4 points; continue the action. 
 The painting has case-points 7.
 The size of the painting is 15.
@@ -1472,13 +1638,14 @@ The curtain of light is a thing in the Safety Depository.  The curtain is scener
 Small Room is a dark room.  The description of Small Room is "This is a small bare room with no distinguishing features. There are no exits from this room."
 Vault is a dark room. The description of Vault is "This is the Vault of the Bank of Zork, in which there are no doors."
 A stack of zorkmid bills is here. "On the floor sit 200 neatly stacked zorkmid bills." Understand "notes" or "banknotes" or "bank notes" as the bills. The description of the bills is "[banknotes]".
+The stack of bills is inflammable.
 After taking the portrait for the first time: award 10 points; continue the action.
 After taking the bills for the first time: award 10 points; continue the action.
 The case-points of the portrait is 5.
 The case-points of the bills is 15.
 The size of the bills is 10.
 The size of the portrait is 25.
-
+The portrait is inflammable.
 Instead of going east when the player is in Safety Depository and the player has the portrait: say "The alarm sounds briefly, and an invisible force prevents your from leaving."
 Instead of going west when the player is in Safety Depository and the player has the portrait: say "The alarm sounds briefly, and an invisible force prevents your from leaving."
 Instead of going east when the player is in Safety Depository and the player has the bills: say "The alarm sounds briefly, and an invisible force prevents your from leaving."
@@ -1601,7 +1768,8 @@ After entering the staircase for the first time:
 award 25 points;
 continue the action.
 Treasure Room is a dungeon. The description of Treasure Room is "This is a large room, whose north wall is solid granite.  A number of discarded bags, which crumble at your touch, are scattered about on the floor.  There is an exit down and what appears to be a newly created passage to the east."
-The thief is a man. Understand "shady/suspicious" and "ROBBER/CROOK/CRIMINAL/BANDIT" and  "MODO/MANU" and "GENT/GENTLEMAN/MAN/INDIVIDUAL" as the thief.  The later appearance of the thief is "There is a suspicious-looking individual, holding a bag, leaning against one wall.  He is armed with a vicious-looking stiletto."
+The thief is a man. Understand "shady/suspicious" and "ROBBER/CROOK/CRIMINAL/BANDIT" and  "MODO/MAHU" and "GENT/GENTLEMAN/MAN/INDIVIDUAL" as the thief.  The later appearance of the thief is "There is a suspicious-looking individual, holding a bag, leaning against one wall.  He is armed with a vicious-looking stiletto."
+[* KING LEAR, III, iv: The prince of darkness is a gentleman; Modo he's called and Mahu.]
 After giving something to the thief:
   say "The thief is taken aback by your unexpected generosity but accepts [the noun] and stops to admire its beauty."; change the engrossed of the thief to true.
 The thief has a truth state called engrossed. 
@@ -1706,6 +1874,7 @@ East of Treasure Room is a dungeon called Small Square Room.  The description of
 are exits to the west and south."
 Understand "paper" and "piece of paper" as the note of warning.
 A note of warning is in Small Square Room.  The later appearance of the note of warning is "There is a piece of paper on the ground here."
+The note of warning is inflammable.
 The description of the note of warning is "[note text]".
 To say note text:
 say "The paper is rather worn; although the writing is barely legible (the
@@ -2034,6 +2203,8 @@ West of a dungeon called Temple is up from Grail Room. "This is the west end of 
 A scenery thing called the inscription is in Temple. Understand "prayer" as the inscription.  The description of the inscription is "The prayer is inscribed in an ancient script which is hardly remembered these days, much less understood.  What little of it can be made out seems to be a diatribe against small insects, absent-mindedness, and the picking up and dropping of small objects.  The final verse seems to consign trespassers to the land of the dead.  All evidence indicates that the beliefs of the ancient Zorkers were obscure."
 A bell called a small brass bell is in Temple.
 A dungeon called Altar is east of Temple. "This is the east end of a large temple.  In front of you is what appears to be an altar."
+A pair of candles is here.  "On the two ends of the altar are burning candles."
+The later appearance of the pair of candles is "There are two candles here."
 A large black book is here. "On the altar is a large black book, open to page 569."
 Understand "bible" and "good book" and "goodbook" as the book.
 The description of the black book is "[book text]".
@@ -2160,6 +2331,7 @@ A person called a robot is here.
 A green piece of paper is here.
 Understand "robby" and "r2-d2" and "c-3po" and "r2d2" and "c3po" as the robot.
 The description of the green paper is "[instruction text]".
+The green paper is inflammable.
 To say instruction text:
 center "!!!! FROBOZZ MAGIC ROBOT COMPANY !!!!";
 say paragraph break;
@@ -2393,6 +2565,7 @@ say "You cannot go down without breaking many bones."
 Up from Torch Room is nowhere.
 Instead of going up from Torch Room: say "You cannot reach the rope."
 An ivory torch is in Torch Room.  The initial appearance of the ivory torch is "Sitting on the pedestal is a flaming torch, made of ivory."
+The ivory torch is flaming.
 The size of the ivory torch is 20.
 The case-points of the ivory torch is 14.
 After taking the ivory torch for the first time:
@@ -2506,7 +2679,8 @@ Instead of throwing the torch at the mass of ice:
 say "The torch hits the glacier and explodes into a great ball of flame, devouring the glacier.  The water from the melting glacier rushes downstream, carrying the torch with it.  In place of the glacier, there is a passageway leading west.";
 remove the mass of ice from play;
 change the printed name of the ivory torch to "burned-out ivory torch";
-now the torch is not lit.
+now the torch is not lit;
+now the torch is non-flaming.
 Before dropping the torch when the player's command includes "throw":
 try throwing the torch at the mass of ice instead.
 Understand "burned-out" and "burned out" as the ivory torch when the ivory torch is not lit.
@@ -2519,6 +2693,7 @@ Instead of going up from In Stream, say "The way is too narrow."
 A coil of thin shiny wire is in Stream View.
 Understand "fuse" as the coil of wire. 
 The printed name of the coil of thin shiny wire is "wire coil".
+The wire coil is inflammable.
 The later appearance of the coil of wire is "There is a coil of thin shiny wire here."
 East of Stream View is Reservoir South.
 Up from Reservoir South is northwest of a dungeon called Deep Canyon. 
@@ -2547,6 +2722,139 @@ Entrance to Hades is a dungeon. The description of Entrance to Hades is
 [8 spaces]'Abandon every hope, all ye who enter here.'[paragraph break]
 The gate is open; through it you can see a desolation, with a pile of mangled corpses in one corner.  Thousands of voices, lamenting some hideous fate, can be heard."
 Down from Cave1 is Entrance to Hades. Land of the Living Dead is a dungeon. East of Entrance to Hades is Land of the Living Dead.
+The description of Land of the Living Dead is "You have entered the Land of the Living Dead, a large desolate room.  Although it is apparently uninhabited, you can hear the sounds of thousands of lost souls weeping and moaning.  In the east corner are
+stacked the remains of dozens of previous adventurers who were less
+fortunate than yourself.  To the east is an ornate passage,
+apparently recently constructed.  A passage exits to the west."
+East of the Land of the Living Dead is a dungeon called Tomb of the Unknown Implementor.  The description of Tomb of the Unknown Implementor is "This is the Tomb of the Unknown Implementer. A hollow voice says:  'That's not a bug, it's a feature!'
+In the north wall of the room is the Crypt of the Implementers.  It is made of the finest marble, and apparently large enough for four headless corpses.  The crypt is [if the crypt is open]open[otherwise]closed[end if].  Above the entrance is the cryptic instruction: 'Feel Free'.".
+
+
+The crypt door is a door.  The crypt door is closed.  The crypt door is north of the Tomb of the Unknown Implementor.  The Crypt of the Implementors is a dark room. The Crypt of the Implementors is north of the crypt door.  The description of the Crypt of the Implementors is "Though large and aesthetically pleasing the marble crypt is empty; the sarcophagi, bodies, and rich treasure to be expected in a tomb of this magnificence are missing. Inscribed on one wall is the motto of the implementers, 'Feel Free'.  There is a door leading out of the crypt to the south.  The door is [if the crypt is open]open[otherwise]closed[end if].".
+Instead of opening the crypt door when the score is less than 616:
+say "Although the implementers are dead, they foresaw that some cretin
+would tamper with their remains.  Therefore, they took steps to
+punish such actions.";
+say "Unfortunately, we've run out of poles.  Therefore, in punishment for
+your most grievous sin, we shall deprive you of all your valuables,
+and of your life.";
+end the game in death.
+Every turn when the player is in Crypt of the Implementors:
+if in darkness for the first turn begin;
+say "Suddenly, as you wait in the dark, you begin to feel somewhat
+disoriented.  The feeling passes, but something seems different.  
+As you regain your composure, the cloaked figure appears before you,
+and says, 'You are now ready to face the ultimate challenge of
+Zork.  Should you wish to do this somewhat more quickly in the
+future, you will be given a magic phrase which will at any time
+transport you by magic to this point.  To select the phrase, say
+	INCANT '<word>'
+and you will be told your own magic phrase to use by saying
+	INCANT '<word> <phrase>'
+Good luck, and choose wisely!'";
+end if.
+Exorcism flag is a number that varies.
+Instead of going east from Entrance to Hades when exorcism flag is not -1:
+  say "Some invisible force prevents you from passing through the gate."
+Instead of ringing the bell while in Entrance to Hades:
+if exorcism flag is 0 begin;
+say "Ding Dong.[paragraph break]";
+say "The bell suddenly becomes red hot and falls to the ground. The
+wraiths, as if paralyzed, stop their jeering and slowly turn to face
+you.  On their ashen faces, the expression of a long-forgotten terror
+takes shape.";
+if the candles are flaming begin;
+try silently dropping the candles;
+say "In your confusion, the candles drop to the ground (and they are out).";
+end if;
+move the brass bell to the location;
+change exorcism flag to 1;
+else if exorcism flag is -1;
+  continue the action;
+else;
+say "The tension of this ceremony is broken, and the wraiths, amused but
+shaken at your clumsy attempt, resume their hideous jeering.";
+change exorcism flag to 0;
+end if.
+
+
+Instead of examining the black book while in Entrance to Hades:
+  if exorcism flag is 2 begin;
+    say "[description of the black book][paragraph break]";
+    say "Each word of the prayer reverberates through the hall in a deafening
+confusion.  As the last word fades, a voice, loud and commanding,
+speaks: 'Begone, fiends!'.  A heart-stopping scream fills the cavern, 
+and the spirits, sensing a greater power, flee through the walls.";
+    change exorcism flag to -1;
+  else if exorcism flag is 1;
+    continue the action;
+  else;
+    say "[description of the black book][paragraph break]";
+    say "The tension of this ceremony is broken, and the wraiths, amused but
+shaken at your clumsy attempt, resume their hideous jeering.";
+  end if.
+The description of the crypt door is "Here lie the implementers, whose heads were placed on poles by the Keeper of the Dungeon for amazing untastefulness." The crypt door is scenery.  
+A set of poled heads is in the Tomb of the Unknown Implementors.  The set of poled heads is not portable.  The initial appearance of the set of poled heads is "There are four heads here, mounted securely on poles." Understand "HEADS" and "HEAD" and "POLE" and "POLES" and "PDL" and "BKD" and "TAA" and "MARC" and "IMPLEMENTORS" and "LOSER" as the set of poled heads.
+Instead of taking or destroying or attacking or kicking or poking the set of poled heads:
+say "Although the implementers are dead, they foresaw that some cretin
+would tamper with their remains.  Therefore, they took steps to
+punish such actions.";
+say "Unfortunately, we've run out of poles.  Therefore, in punishment for
+your most grievous sin, we shall deprive you of all your valuables,
+and of your life.";
+end the game in death.
+Instead of destroying the set of poled heads with something:
+say "Although the implementers are dead, they foresaw that some cretin
+would tamper with their remains.  Therefore, they took steps to
+punish such actions.";
+say "Unfortunately, we've run out of poles.  Therefore, in punishment for
+your most grievous sin, we shall deprive you of all your valuables,
+and of your life.";
+end the game in death.
+Instead of attacking the set of poled heads with something:
+try destroying the set of poled heads with the second noun instead.
+After looking while in Land of the Living Dead for the first time:
+  award 30 points; continue the action.
+In the Tomb of the Unknown Implementor is a bunch of Coke bottles.  The initial appearance of the bunch of Coke bottles is "There is a large pile of empty Coke bottles here, evidently produced by the implementers during their long struggle to win totally." 
+The later appearance of the bunch of Coke bottles is "Many empty Coke bottles are here.  Alas, they can't hold water."
+The size of the bunch of Coke bottles is 15.
+In the Tomb of the Unknown Implementor is a stack of listings.   The description of the stack of listings is "[listing text]".
+To say listing text:
+say "<DEFINE FEEL-FREE (LOSER)[line break]";
+say "		   <TELL 'FEEL FREE, CHOMPER!'>>[line break]";
+say "			...[line break]";
+say "The rest is, alas, unintelligible (as were the implementers)."
+The size of the stack of listings is 70.  The initial appearance of the stack of listings is 
+"There is a gigantic pile of line-printer output here.  Although the
+paper once contained useful information, almost nothing can be
+distinguished now."
+The later appearance of the stack of listings is "There is an enormous stack of line-printer paper here.  It is barely readable." 
+The listings are inflammable.
+Instead of destroying the bunch of Coke bottles:
+say "Congratulations!  You've managed to break all those bottles.
+Fortunately for your feet, they were made of magic glass and disappear
+immediately.";
+remove the bunch of Coke bottles from play.
+Instead of destroying the bunch of Coke bottles with something:
+say "Congratulations!  You've managed to break all those bottles.
+Fortunately for your feet, they were made of magic glass and disappear
+immediately.";
+remove the bunch of Coke bottles from play;
+say "Somehow, [the second noun] managed to disappear as well.";
+remove the second noun from play.
+Instead of throwing the bunch of Coke bottles at something:
+say "Congratulations!  You've managed to break all those bottles.
+Fortunately for your feet, they were made of magic glass and disappear
+immediately.";
+remove the bunch of Coke bottles from play;
+say "Somehow, [the second noun] managed to disappear as well.";
+remove the second noun from play.
+Instead of dropping bunch of Coke bottles when the player's command includes "throw":
+ say "Congratulations!  You've managed to break all those bottles.
+Fortunately for your feet, they were made of magic glass and disappear
+immediately.";
+remove the bunch of Coke bottles from play.
+
 Dead flag is a truth state variable. Dead flag is usually false.
 
 East of Ravine is a dungeon called Chasm.  The description of Chasm is "A chasm runs southwest to northeast.  You are on the south edge; the path exits to the south and to the east."
@@ -2735,6 +3043,7 @@ Down from Ladder Top is a dungeon called Ladder Bottom.
 The description of Ladder Bottom is "This is a rather wide room.  On one side is the bottom of a narrow wooden ladder.  To the northeast and the south are passages
 leaving the room."
 East of Ladder Bottom is south of a dead end called DE2.  A pile of coal is in DE2. Understand "heap" and "small" as the pile of coal.  The later appearance of the pile of coal is "There is a small heap of coal here."
+The coal is inflammable.
 South of Ladder Bottom is north of a dark room called Timber Room.  The description of Timber Room is "This is a long and narrow passage, which is cluttered with broken
 timbers.  A wide passage comes from the north and turns at the 
 southwest corner of the room into a very narrow passageway."
@@ -2794,6 +3103,7 @@ North of Flood Control Dam #3 is a dungeon called Dam Lobby.      Dam Lobby is n
 A tour guidebook is in Dam Lobby.  The initial appearance of the tour guidebook is "Some guidebooks entitled 'Flood Control Dam #3' are on the reception
 desk." The later appearance of the tour guidebook is "There are tour guidebooks here."
 The description of the tour guidebooks is "[guidebook text]".
+The guidebook is inflammable.
 To say guidebook text:
 center "Guide Book to";
 center "Flood Control Dam #3";
@@ -2816,7 +3126,9 @@ bureaucrats, 2347 secretaries (at least two of whom can type),
 processors, and nearly one million dead trees.[paragraph break]";
 say "We will now point out some of the more interesting features
 of FCD#3 as we conduct you on a guided tour of the facilities.  You start your tour here in the Dam Lobby.  You will notice on your right that ........."
+Match count is a number that varies.  Match count is usually 5.
 A matchbook is in Dam Lobby.  Understand "matches" and "match" and "flint" as the matchbook.  The later appearance of the matchbook is "There is a matchbook whose cover says 'Visit Beautiful FCD#3' here."
+Instead of opening the matchbook: try counting the matchbook instead.
 The description of the matchbook is "[matchbook text]".
 To say matchbook text:
 center "[unicode 91]close cover before striking BKD[unicode 93]";
@@ -2946,6 +3258,7 @@ and to the north.  The river Frigid is flowing by here.  Across the river are th
 A broken sharp stick is in Dam Base.  The initial appearance of the broken sharp stick is "A sharp stick, which appears to have been broken at one end, is here."
 The later appearance of the broken sharp stick is "There is a broken sharp stick here."
 The size of the broken sharp stick is 3.
+The pile of plastic is inflammable.  The magic boat is inflammable.  The dboat is inflammable.
 A pile of plastic is here.  The later appearance of the pile of plastic is "There is a folded pile of plastic here which has a small valve
 attached."  The size of the pile of plastic is 20.  Understand "boat" as the pile of plastic.
 A dboat is a thing.  The printed name of the dboat is "plastic boat (with hole)".  Understand "pile" and "boat" and "plastic" as the dboat.
@@ -2965,6 +3278,7 @@ Instead of entering the boat when the player is carrying the sharp stick:
 Definition: a room is offroad if it does not contain a nondrainable watersource. 
 Instead of going by the magic boat when the player is in somewhere offroad: 
     say "You can't go there in a magic boat."
+The tan label is inflammable.
 A tan label is in the magic boat.  Understand "fine print" and "fineprint" as the tan label.  The description of the tan label is "[tan label text]".
 To say tan label text:
 center "!!!! 	FROBOZZ MAGIC BOAT COMPANY  !!!!";
@@ -3148,9 +3462,17 @@ let i be the number of words in the topic understood;
   let b be word number two in the topic understood;
   change b to "[b in upper case]";
 if i is 1 begin;
+  if the player is not in Crypt of the Implementors, say "That spell has no obvious effect." instead;
+  if not in darkness, say  "That spell has no obvious effect." instead;
+  if the player is carrying something lit, say "That spell has no obvious effect." instead;
   let b be character number 1 in a;
   if b matches the regular expression "<^A-Z>", say "Sorry, your secret word must begin with a letter." instead;
   say "A hollow voice replies '[encryption of a]'";
+  change the score to 621;
+  change endgame flag to true;
+  move the battery-powered brass lantern to the player;
+  move the sword to the player;
+  move the player to Top of Stairs.
 else if i is 2;
  let c be character number one in a;
   let d be character number one in b;
@@ -3220,7 +3542,7 @@ Instead of taking the beam of light:
 Mirror open is a truth state that varies.
 Check saving the game when endgame flag is true: say "Saves are not permitted during the end game." instead. 
 
-Include (- [ XOR a b; return (a | b) & (~(a & b)); ];  -).
+Include (- [ XOR a b; return (a | b) & (~(a & b)); ];  -). [* Inform does not have a bitwise exclusive or built in, so we make one]
 
 
 

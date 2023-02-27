@@ -177,11 +177,27 @@ let i be the number of words in the topic understood;
 <br>
 if i is 1 begin;
 <br>
+  if the player is not in Crypt of the Implementors, say &quot;<font color=#000080>That spell has no obvious effect.</font>&quot; instead;
+<br>
+  if not in darkness, say  &quot;<font color=#000080>That spell has no obvious effect.</font>&quot; instead;
+<br>
+  if the player is carrying something lit, say &quot;<font color=#000080>That spell has no obvious effect.</font>&quot; instead;
+<br>
   let b be character number 1 in a;
 <br>
   if b matches the regular expression &quot;<font color=#000080>&lt;^A-Z&gt;</font>&quot;, say &quot;<font color=#000080>Sorry, your secret word must begin with a letter.</font>&quot; instead;
 <br>
   say &quot;<font color=#000080>A hollow voice replies '[encryption of a]'</font>&quot;;
+<br>
+  change the score to 621;
+<br>
+  change endgame flag to true;
+<br>
+  move the battery-powered brass lantern to the player;
+<br>
+  move the sword to the player;
+<br>
+  move the player to Top of Stairs.
 <br>
 else if i is 2;
 <br>
@@ -321,7 +337,7 @@ Check saving the game when endgame flag is true: say &quot;<font color=#000080>S
 <br>
 
 <br>
-Include (- <font color=#404040>[ XOR a b; return (a | b) &amp; (~(a &amp; b)); </font>];  -).
+Include (- <font color=#404040>[ XOR a b; return (a | b) &amp; (~(a &amp; b)); </font>];  -). <font color=#404040><sup><a href="#note1">[1]</a></sup></font>
 <br>
 
 <br>
@@ -330,7 +346,9 @@ Include (- <font color=#404040>[ XOR a b; return (a | b) &amp; (~(a &amp; b)); <
 
 <br>
 </font>
-					<p><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"></font></p>
+					<p><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"><p><i>Note</i><p>
+<A name="note1"><font color=#404040>[1].  Inform does not have a bitwise exclusive or built in, so we make one</font><p>
+</font></p>
 					<p></p>
 				</td></tr></table>
 	</body>

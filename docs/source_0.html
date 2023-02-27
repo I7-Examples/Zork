@@ -23,6 +23,16 @@ The story headline is &quot;<font color=#000080>A Computerized Fantasy Simulatio
 <br>
 Use memory economy.
 <br>
+A thing can be non-flaming or flaming.  A thing is usually non-flaming. A thing can be non-inflammable or inflammable. A thing is usually non-inflammable.
+<br>
+<font color=#404040><sup><a href="#note1">[1]</a></sup></font>A thing is usually non-flaming. A thing can be non-inflammable or inflammable. A thing is usually non-inflammable.
+<br>
+FLAMMABLE:
+<br>
+An oddity, chiefly useful in saving lives. The common word meaning &quot;<font color=#000080>combustible</font>&quot; is inflammable. But some people are thrown off by the in- and think inflammable means &quot;<font color=#000080>not combustible.</font>&quot; For this reason, trucks carrying gasoline or explosives are now marked FLAMMABLE. Unless you are operating such a truck and hence are concerned with the safety of children and illiterates, use inflammable.]
+<br>
+
+<br>
 Release along with the source text and a website.
 <br>
 Digging into it with is an action applying to one thing and one carried thing.
@@ -33,13 +43,53 @@ Understand &quot;<font color=#000080>dig [something] with/using [something]</fon
 <br>
 Understand &quot;<font color=#000080>dig with/using [something] into/in [something]</font>&quot; as digging into it with (with nouns reversed).
 <br>
+Counting is an action applying to one visible thing.  Understand &quot;<font color=#000080>count [something]</font>&quot; as counting.
+<br>
+Check counting:
+<br>
+if the noun is the pile of leaves, say &quot;<font color=#000080>There are 69,105 leaves here.</font>&quot; instead;
+<br>
+<font color=#404040><sup><a href="#note2">[2]</a></sup></font>
+<br>
+<font color=#404040><sup><a href="#note3">[3]</a></sup></font> 
+<br>
+if the noun is the pair of candles, say &quot;<font color=#000080>Let's see, how many objects in a pair?  Don't tell me, I'll get it.</font>&quot; instead;
+<br>
+if the noun is the bills, say &quot;<font color=#000080>Don't you trust me?  There are 200 bills.</font>&quot; instead;
+<br>
+if the noun is the matchbook begin;
+<br>
+  if match count is 1 begin;
+<br>
+    say &quot;<font color=#000080>You have one match.</font>&quot;;
+<br>
+  else if match count is 0;
+<br>
+    say &quot;<font color=#000080>You have no matches.</font>&quot;;
+<br>
+  else;
+<br>
+    say &quot;<font color=#000080>You have [match count] matches.</font>&quot;;
+<br>
+  end if;
+<br>
+end if.
+<br>
+Carry out counting:
+<br>
+say &quot;<font color=#000080>You have lost your mind.</font>&quot;
+<br>
+Understand &quot;<font color=#000080>count blessings</font>&quot; as a mistake (&quot;<font color=#000080>Well, for one, you are playing Zork....</font>&quot;).
+<br>
+Understand  &quot;<font color=#000080>$COUNTREASURE</font>&quot; as a mistake (&quot;<font color=#000080>Your adventure has netted [number of valuble things in the trophy case] treasure(s).  You are carrying [number of valuble things had by the player] valuble(s).</font>&quot;)
+<br>
 
 <br>
 Check digging into it with:
 <br>
-if the second noun is not the shovel, say &quot;<font color=#000080>Digging with [the second noun] is slow and tedious.</font>&quot; instead;
-<br>
 if the noun is not the guano and the noun is not the ground, say &quot;<font color=#000080>Digging into [a noun] is silly.</font>&quot; instead;
+<br>
+if the second noun is not the shovel, say &quot;<font color=#000080>Digging with [the second noun] is slow and tedious.</font>&quot; instead;
 <br>
 if the noun is the ground and the player is not in Sandy Beach, say  &quot;<font color=#000080>The ground is too hard for digging here.</font>&quot;.
 <br>
@@ -51,9 +101,25 @@ Understand &quot;<font color=#000080>play [something]</font>&quot; as playing.
 <br>
 
 <br>
+Exorcising is an action applying to nothing.  Understand &quot;<font color=#000080>exorcise</font>&quot; as exorcising.
+<br>
+Check exorcising:
+<br>
+  if exorcism flag is not -1, say &quot;<font color=#000080>You must perform the ceremony.</font>&quot; instead.
+<br>
+Carry out exorcising:
+<br>
+say &quot;<font color=#000080>There is a clap of thunder, and a voice echoes through the cavern: 'Begone, chomper!'  Apparently, the voice thinks you are an evil spirit and dismisses you from the land of the living.</font>&quot;;
+<br>
+end the game in death.
+<br>
+
+<br>
 Definition: a thing is valuble if the case-points of it is not 0.
 <br>
 After reading a command:
+<br>
+if the player's command includes &quot;<font color=#000080>COUNT TREASURE/TREASURES/VALUBLES</font>&quot;, replace the matched text with &quot;<font color=#000080>$COUNTREASURE</font>&quot;;
 <br>
 if the player's command includes &quot;<font color=#000080>TREASURE/TREASURES/VALUBLES</font>&quot;, replace the matched text with &quot;<font color=#000080>[list of visible valuble things had by the player]</font>&quot;.
 <br>
@@ -479,7 +545,7 @@ Understand &quot;<font color=#000080>climb [direction]</font>&quot; as going.
 <br>
 Understand &quot;<font color=#000080>light [electric lamp]</font>&quot; as switching on.
 <br>
-Understand &quot;<font color=#000080>extinguish [electric lamp]</font>&quot; as switching off.
+Understand &quot;<font color=#000080>extinguish [something]</font>&quot; as switching off.
 <br>
 Understand &quot;<font color=#000080>douse [electric lamp]</font>&quot; as switching off.
 <br>
@@ -1073,6 +1139,8 @@ end if.
 <br>
 The obj1234 is a backdrop. The obj1234 is everywhere. Understand &quot;<font color=#000080>brochure</font>&quot; and &quot;<font color=#000080>free brochure</font>&quot; as the obj1234. The free brochure is a thing. 
 <br>
+The free brochure is inflammable.
+<br>
 Instead of doing something other than sending for to the obj1234: print the you can't see message instead.
 <br>
 The description of the brochure is &quot;<font color=#000080>[brochure text]</font>&quot;.
@@ -1108,6 +1176,8 @@ Procedural rule when taking the Don Woods stamp:
         ignore the can't take component parts rule.
 <br>
 The description of the Don Woods stamp is &quot;<font color=#000080>[stamp text]</font>&quot;.
+<br>
+The Don Woods stamp is inflammable.
 <br>
 To say stamp text:
 <br>
@@ -1912,7 +1982,11 @@ Before touching:
 <br>
 if dead flag is true, say &quot;<font color=#000080>Even such a simple action is beyond your capabilities</font>&quot; instead.
 <br>
-Before burning:
+Before burning something with something:
+<br>
+if dead flag is true, say &quot;<font color=#000080>Even such a simple action is beyond your capabilities</font>&quot; instead.
+<br>
+Before burning something:
 <br>
 if dead flag is true, say &quot;<font color=#000080>Even such a simple action is beyond your capabilities</font>&quot; instead.
 <br>
@@ -1923,6 +1997,24 @@ if dead flag is true, say &quot;<font color=#000080>Even such a simple action is
 Before saying:
 <br>
 if dead flag is true, say &quot;<font color=#000080>No one hears you.</font>&quot; instead.
+<br>
+Before switching on something:
+<br>
+if dead flag is true, say &quot;<font color=#000080>You need no light to guide you.</font>&quot; instead.
+<br>
+Before taking something:
+<br>
+if dead flag is true, say &quot;<font color=#000080>Your hand passes through the object.</font>&quot; instead.
+<br>
+Before taking inventory:
+<br>
+if dead flag is true, say &quot;<font color=#000080>You are empty handed.</font>&quot; instead.
+<br>
+Instead of doing something other than looking, going, attacking, kicking, or destroying:
+<br>
+if dead flag is false, continue the action;
+<br>
+say &quot;<font color=#000080>You can't do even that.</font>&quot;.
 <br>
 
 <br>
@@ -2074,12 +2166,242 @@ Carry out diagnosing:
 <br>
   if death count is 2, say &quot;<font color=#000080>You have been killed twice.</font>&quot;.
 <br>
- 
+
+<br>
+Burning it with is an action applying to one thing and one carried thing.  Understand &quot;<font color=#000080>burn [something] with/using [something]</font>&quot; as burning it with. Understand &quot;<font color=#000080>light [something] with/using [something]</font>&quot; as burning it with.
+<br>
+
+<br>
+Check burning (this is the new burning rule):
+<br>
+  if the noun is not the matchbook and the player is carrying something flaming begin;
+<br>
+    let i be the number of flaming things had by the player;
+<br>
+    if i is 1, try burning the noun with a random flaming thing held by the player instead;
+<br>
+    else say &quot;<font color=#000080>It's not clear what you want to burn [the noun] with.</font>&quot; instead;
+<br>
+  else if the noun is not the matchbook;
+<br>
+    say &quot;<font color=#000080>It's not clear what you want to burn [the noun] with.</font>&quot; instead;
+<br>
+  else if the matchbook is flaming;
+<br>
+    say &quot;<font color=#000080>The match is already lit.</font>&quot; instead;
+<br>
+  else;
+<br>
+    say &quot;<font color=#000080>I'm afraid you have run out of matches.</font>&quot; instead;
+<br>
+  end if.  
+<br>
+Match tick is a number that varies.  Match tick is usually -1.
+<br>
+Carry out burning:
+<br>
+ say &quot;<font color=#000080>One of the matches starts to burn.</font>&quot;;
+<br>
+ change match tick to 2;
+<br>
+ now the matchbook is flaming.
+<br>
+Instead of switching off something which is flaming:
+<br>
+  if the noun is the matchbook begin;
+<br>
+    say &quot;<font color=#000080>The match is out.</font>&quot;;
+<br>
+    change match tick to -1;
+<br>
+  else if the noun is the pair of candles;
+<br>
+    say &quot;<font color=#000080>The flame is extinguished.</font>&quot;;
+<br>
+  else if the noun is the ivory torch;
+<br>
+    say &quot;<font color=#000080>You burn your hand as you attempt to extinguish the flame.</font>&quot;;
+<br>
+  end if.
+<br>
+Every turn:
+<br>
+now every thing which is flaming is lit;
+<br>
+if the matchbook is non-flaming, now the matchbook is unlit;
+<br>
+if the pair of candles is non-flaming, now the pair of candles is unlit;
+<br>
+if match tick is greater than 0, decrease match tick by 1;
+<br>
+if match tick is 0 begin;
+<br>
+  say &quot;<font color=#000080>The match has gone out.</font>&quot;;
+<br>
+  change match tick to -1;
+<br>
+end if;
+<br>
+now the matchbook is not flaming.
+<br>
+
+<br>
+The new burning rule is listed instead of the block burning rule in the check burning rulebook.
+<br>
+
+<br>
+Check burning it with:
+<br>
+  if the second noun is not flaming, say &quot;<font color=#000080>How do you expect to burn anything with that?</font>&quot; instead;
+<br>
+  if the noun is the black book begin;
+<br>
+    say &quot;<font color=#000080>A booming voice says 'Wrong, cretin!' and you notice that you have turned into a pile of dust.</font>&quot;;
+<br>
+    end the game in death instead;
+<br>
+  end if;
+<br>
+  if the noun is the barrel, say &quot;<font color=#000080>The barrel is damp and cannot be burned.</font>&quot; instead;
+<br>
+  if the noun is flaming, say &quot;<font color=#000080>[The noun] is already burning.</font>&quot; instead;
+<br>
+  if the noun is not the candles and the noun is not inflammable, say &quot;<font color=#000080>I don't think you can burn [a noun].</font>&quot; instead.
+<br>
+
+<br>
+Candle tick is a number that varies.  Candle tick is usually 40.
+<br>
+Carry out burning it with:
+<br>
+if the noun is the pair of candles begin;
+<br>
+if the candles are flaming, say &quot;<font color=#000080>You realize, just in time, that the candles are already lighted.</font>&quot; instead;
+<br>
+if candle tick is 0, say &quot;<font color=#000080>There's not much left of the candles; definately not enough left to light.</font>&quot; instead;
+<br>
+if the second noun is the torch begin;
+<br>
+  say &quot;<font color=#000080>The heat from the torch is so intense that the candles are vaporized.</font>&quot;;
+<br>
+  remove the candles from play instead;
+<br>
+end if;
+<br>
+say &quot;<font color=#000080>The candles are now lighted.</font>&quot;;
+<br>
+if the player is in Entrance to Hades begin;
+<br>
+if exorcism flag is 1 begin;
+<br>
+say &quot;<font color=#000080>The flames flicker wildly and appear to dance.  The earth beneath
+<br>
+</font><font color=#000080>your feet trembles, and your legs nearly buckle beneath you.
+<br>
+</font><font color=#000080>The spirits cower at your unearthly power.</font>&quot;;
+<br>
+change exorcism flag to 2;
+<br>
+else if exorcism flag is -1;
+<br>
+continue the action;
+<br>
+else;
+<br>
+say &quot;<font color=#000080>The tension of this ceremony is broken, and the wraiths, amused but
+<br>
+</font><font color=#000080>shaken at your clumsy attempt, resume their hideous jeering.</font>&quot;;
+<br>
+change exorcism flag to 0;
+<br>
+end if;
+<br>
+end if;
+<br>
+now the candles are flaming;
+<br>
+else if the noun is the pile of leaves;
+<br>
+  now the grating is revealed;
+<br>
+  if the player is carrying the noun begin;
+<br>
+  say &quot;<font color=#000080>The sight of someone carrying a pile of burning leaves so offends the neighbors that  they come over and put you out.</font>&quot;;
+<br>
+   remove the pile of leaves from play;
+<br>
+   end the game in death;
+<br>
+   else;
+<br>
+     say &quot;<font color=#000080>The leaves burn and the neighbors start to complain.</font>&quot;;
+<br>
+     remove the pile of leaves from play;
+<br>
+   end if;
+<br>
+else if the noun is the brick;
+<br>
+  say &quot;<font color=#000080>It turns out the brick has other properties besides mass.  Namely, the power to blow you to smithereens</font>&quot;;
+<br>
+  remove the brick from play;
+<br>
+  end the game in death instead;
+<br>
+else if the noun is the coil of wire;
+<br>
+  say &quot;<font color=#000080>The wire rapidly burns to nothingness.</font>&quot;;
+<br>
+  remove the coil of wire from play;
+<br>
+else;
+<br>
+  if the noun is the bills, say &quot;<font color=#000080>Nothing like having money to burn!</font>&quot;;
+<br>
+  if the player is carrying the noun begin;
+<br>
+    say &quot;<font color=#000080>[The noun] catches fire and is consumed.  Unfortunately, you were holding it at the time.</font>&quot;;
+<br>
+    end the game in death;
+<br>
+  else;
+<br>
+    say &quot;<font color=#000080>[The noun] catches fire and is consumed.</font>&quot;;
+<br>
+  end if;
+<br>
+end if.
+<br>
+After dropping the candles:
+<br>
+if the candles are flaming, now the candles are non-flaming;
+<br>
+continue the action.
+<br>
+Every turn when the candles are flaming and the candles are touched:
+<br>
+  decrease candle tick by 1;
+<br>
+  if candle tick is 0 begin;
+<br>
+    now the candles are non-flaming;
+<br>
+    say &quot;<font color=#000080>I hope you have more light than from a pair of candles.</font>&quot;;
+<br>
+ else if candle tick is 20 or candle tick is 10 or candle tick is 5;
+<br>
+    say &quot;<font color=#000080>The candles grow shorter.</font>&quot;;
+<br>
+ end if.
 <br>
 
 <br>
 </font>
-					<p><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"></font></p>
+					<p><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"><p><i>Notes</i><p>
+<A name="note1"><font color=#404040>[1].  According to THE ELEMENTS OF STYLE: </font><p>
+<A name="note2"><font color=#404040>[2].  It is absurd that the adventurer would be able to count so many leaves with such precision, especially in the minute or so time that a normal turn supposedly takes.</font><p>
+<A name="note3"><font color=#404040>[3].  Decimal 69 is equal to octal 105, and hexadecimal 69 is equal to decimal 105.</font><p>
+</font></p>
 					<p></p>
 				</td></tr></table>
 	</body>
