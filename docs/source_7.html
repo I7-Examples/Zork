@@ -1,376 +1,49 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<head>
+  <title>Infocom -- Ported by Dean Menezes - Zork — 9 of 13</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="author" content="Infocom -- Ported by Dean Menezes" />
+  <meta name="description" content="A page for the game Zork by Infocom -- Ported by Dean Menezes." />
+  <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+</head>
 
-	<head>
-		<meta http-equiv="content-type" content="text/html;charset=utf-8">
-		<meta name="generator" content="Adobe GoLive">
-		<title>Zork - Source Text</title>
-	</head>
+<body>
 
-	<body bgcolor="#ffffff">
-		<table border="0" cellpadding="2"><tr><td align="left" valign="top"><font face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"></font></td><td align="left" valign="top">
-					<h3><font color="#0000cc" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif">Zork</font></h3>
-					<h3><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif">An interactive fiction by Infocom -- Ported by Dean Menezes (1979) - the Inform 7 source text</font></h3>
-				</td></tr>
-		<tr align="left" valign="top"><td align="left" valign="top"><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"><a href="index.html">Home page</a><br><br><a href="source.html">Contents</a><br><a href="source_6.html">Previous</a><br><a href="source_8.html">Next</a><br><br><a href="source.txt">Complete text</a></font></td><td align="left" valign="top"><font face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"><b>Part 8 - Exorcism Stuff</b>
-<br>
+<div class = "container">
 
-<br>
-North of Mirror Room No 1 is southwest of Narrow Crawlway. 
-<br>
-Cave1 is a dungeon. &quot;<font color=#000080>This is a tiny cave with entrances west and north, and a dark, forbidding staircase leading down.</font>&quot;
-<br>
-The printed name of Cave1 is &quot;<font color=#000080>Tiny Cave</font>&quot;.
-<br>
-North of Cave1 is Narrow Crawlway. East of Mirror Room is Cave1.
-<br>
-Entrance to Hades is a dungeon. The description of Entrance to Hades is
-<br>
-&quot;<font color=#000080>You are outside a large gateway, on which is inscribed: [paragraph break]
-<br>
-</font><font color=#000080>[8 spaces]'Abandon every hope, all ye who enter here.'[paragraph break]
-<br>
-</font><font color=#000080>The gate is open; through it you can see a desolation, with a pile of mangled corpses in one corner.  Thousands of voices, lamenting some hideous fate, can be heard.</font>&quot;
-<br>
-Down from Cave1 is Entrance to Hades. Land of the Living Dead is a dungeon. East of Entrance to Hades is Land of the Living Dead.
-<br>
-The description of Land of the Living Dead is &quot;<font color=#000080>You have entered the Land of the Living Dead, a large desolate room.  Although it is apparently uninhabited, you can hear the sounds of thousands of lost souls weeping and moaning.  In the east corner are
-<br>
-</font><font color=#000080>stacked the remains of dozens of previous adventurers who were less
-<br>
-</font><font color=#000080>fortunate than yourself.  To the east is an ornate passage,
-<br>
-</font><font color=#000080>apparently recently constructed.  A passage exits to the west.</font>&quot;
-<br>
-East of the Land of the Living Dead is a dungeon called Tomb of the Unknown Implementor.  The description of Tomb of the Unknown Implementor is &quot;<font color=#000080>This is the Tomb of the Unknown Implementer. A hollow voice says:  'That's not a bug, it's a feature!'
-<br>
-</font><font color=#000080>In the north wall of the room is the Crypt of the Implementers.  It is made of the finest marble, and apparently large enough for four headless corpses.  The crypt is [if the crypt is open]open[otherwise]closed[end if].  Above the entrance is the cryptic instruction: 'Feel Free'.</font>&quot;.
-<br>
-Check going inside while in Tomb of the Unknown Implementor: try entering the crypt door instead.
-<br>
+<div class ="sourcecoverimage">
+	<span><a href="Cover.jpg"><img src="Small Cover.jpg" border="1"></a></span>
+</div>
 
-<br>
-The crypt door is a door.  The crypt door is closed.  The crypt door is north of the Tomb of the Unknown Implementor.  The Crypt of the Implementors is a dark room. The Crypt of the Implementors is north of the crypt door.  The description of the Crypt of the Implementors is &quot;<font color=#000080>Though large and aesthetically pleasing the marble crypt is empty; the sarcophagi, bodies, and rich treasure to be expected in a tomb of this magnificence are missing. Inscribed on one wall is the motto of the implementers, 'Feel Free'.  There is a door leading out of the crypt to the south.  The door is [if the crypt is open]open[otherwise]closed[end if].</font>&quot;.
-<br>
-Check opening the crypt door when the score is less than 616:
-<br>
-say &quot;<font color=#000080>Although the implementers are dead, they foresaw that some cretin
-<br>
-</font><font color=#000080>would tamper with their remains.  Therefore, they took steps to
-<br>
-</font><font color=#000080>punish such actions.</font>&quot;;
-<br>
-say &quot;<font color=#000080>Unfortunately, we've run out of poles.  Therefore, in punishment for
-<br>
-</font><font color=#000080>your most grievous sin, we shall deprive you of all your valuables,
-<br>
-</font><font color=#000080>and of your life.</font>&quot;;
-<br>
-end the game in death instead.
-<br>
-Every turn when the player is in Crypt of the Implementors:
-<br>
-if in darkness for the first turn begin;
-<br>
-say &quot;<font color=#000080>Suddenly, as you wait in the dark, you begin to feel somewhat
-<br>
-</font><font color=#000080>disoriented.  The feeling passes, but something seems different.  
-<br>
-</font><font color=#000080>As you regain your composure, the cloaked figure appears before you,
-<br>
-</font><font color=#000080>and says, 'You are now ready to face the ultimate challenge of
-<br>
-</font><font color=#000080>Zork.  Should you wish to do this somewhat more quickly in the
-<br>
-</font><font color=#000080>future, you will be given a magic phrase which will at any time
-<br>
-</font><font color=#000080>transport you by magic to this point.  To select the phrase, say
-<br>
-</font><font color=#000080>&nbsp;&nbsp;&nbsp;&nbsp;INCANT '&lt;word&gt;'
-<br>
-</font><font color=#000080>and you will be told your own magic phrase to use by saying
-<br>
-</font><font color=#000080>&nbsp;&nbsp;&nbsp;&nbsp;INCANT '&lt;word&gt; &lt;phrase&gt;'
-<br>
-</font><font color=#000080>Good luck, and choose wisely!'</font>&quot;;
-<br>
-end if.
-<br>
-Exorcism flag is a number that varies.
-<br>
-Check going east from Entrance to Hades when exorcism flag is not -1:
-<br>
-  say &quot;<font color=#000080>Some invisible force prevents you from passing through the gate.</font>&quot; instead.
-<br>
-Check ringing the bell while in Entrance to Hades:
-<br>
-if exorcism flag is 0 begin;
-<br>
-say &quot;<font color=#000080>Ding Dong.[paragraph break]</font>&quot;;
-<br>
-say &quot;<font color=#000080>The bell suddenly becomes red hot and falls to the ground. The
-<br>
-</font><font color=#000080>wraiths, as if paralyzed, stop their jeering and slowly turn to face
-<br>
-</font><font color=#000080>you.  On their ashen faces, the expression of a long-forgotten terror
-<br>
-</font><font color=#000080>takes shape.</font>&quot;;
-<br>
-if the candles are flaming begin;
-<br>
-try silently dropping the candles;
-<br>
-say &quot;<font color=#000080>In your confusion, the candles drop to the ground (and they are out).</font>&quot;;
-<br>
-end if;
-<br>
-move the brass bell to the location;
-<br>
-change exorcism flag to 1 instead;
-<br>
-else if exorcism flag is -1;
-<br>
-  continue the action;
-<br>
-else;
-<br>
-say &quot;<font color=#000080>The tension of this ceremony is broken, and the wraiths, amused but
-<br>
-</font><font color=#000080>shaken at your clumsy attempt, resume their hideous jeering.</font>&quot;;
-<br>
-change exorcism flag to 0 instead;
-<br>
-end if.
-<br>
+<div class ="sourceintroduction">
+	<h1>
+		<span>Zork</span> <span class="pagination">— 9 of 13</span>
+	</h1>
+	<h2>
+		<span>Infocom -- Ported by Dean Menezes</span>
+	</h2>
+	<div class ="sourcebibliography">
+		<span>Release 4</span>
+	</div>
+</div>
 
-<br>
+<div class = "links">
+<ul>
+<li><a href="index.html">Home page</a></li><li><a href="source.html">Beginning</a></li><li><a href="source_6.html">Previous</a></li><li><a href="source_8.html">Next</a></li>
+</ul>
+</div>
 
-<br>
-Check examining the black book while in Entrance to Hades:
-<br>
-  if exorcism flag is 2 begin;
-<br>
-    say &quot;<font color=#000080>[description of the black book][paragraph break]</font>&quot;;
-<br>
-    say &quot;<font color=#000080>Each word of the prayer reverberates through the hall in a deafening
-<br>
-</font><font color=#000080>confusion.  As the last word fades, a voice, loud and commanding,
-<br>
-</font><font color=#000080>speaks: 'Begone, fiends!'.  A heart-stopping scream fills the cavern, 
-<br>
-</font><font color=#000080>and the spirits, sensing a greater power, flee through the walls.</font>&quot;;
-<br>
-    change exorcism flag to -1 instead;
-<br>
-  else if exorcism flag is 1;
-<br>
-    continue the action;
-<br>
-  else;
-<br>
-    say &quot;<font color=#000080>[description of the black book][paragraph break]</font>&quot;;
-<br>
-    say &quot;<font color=#000080>The tension of this ceremony is broken, and the wraiths, amused but
-<br>
-</font><font color=#000080>shaken at your clumsy attempt, resume their hideous jeering.</font>&quot; instead;
-<br>
-  end if.
-<br>
-The description of the crypt door is &quot;<font color=#000080>Here lie the implementers, whose heads were placed on poles by the Keeper of the Dungeon for amazing untastefulness.</font>&quot; The crypt door is scenery.  
-<br>
-A set of poled heads is in the Tomb of the Unknown Implementors.  The set of poled heads is not portable.  The initial appearance of the set of poled heads is &quot;<font color=#000080>There are four heads here, mounted securely on poles.</font>&quot; Understand &quot;<font color=#000080>HEADS</font>&quot; and &quot;<font color=#000080>HEAD</font>&quot; and &quot;<font color=#000080>POLE</font>&quot; and &quot;<font color=#000080>POLES</font>&quot; and &quot;<font color=#000080>PDL</font>&quot; and &quot;<font color=#000080>BKD</font>&quot; and &quot;<font color=#000080>TAA</font>&quot; and &quot;<font color=#000080>MARC</font>&quot; and &quot;<font color=#000080>IMPLEMENTORS</font>&quot; and &quot;<font color=#000080>LOSER</font>&quot; as the set of poled heads.
-<br>
-Instead of taking or destroying or attacking or kicking or poking the set of poled heads:
-<br>
-say &quot;<font color=#000080>Although the implementers are dead, they foresaw that some cretin
-<br>
-</font><font color=#000080>would tamper with their remains.  Therefore, they took steps to
-<br>
-</font><font color=#000080>punish such actions.</font>&quot;;
-<br>
-say &quot;<font color=#000080>Unfortunately, we've run out of poles.  Therefore, in punishment for
-<br>
-</font><font color=#000080>your most grievous sin, we shall deprive you of all your valuables,
-<br>
-</font><font color=#000080>and of your life.</font>&quot;;
-<br>
-end the game in death.
-<br>
-Check destroying the set of poled heads with something:
-<br>
-say &quot;<font color=#000080>Although the implementers are dead, they foresaw that some cretin
-<br>
-</font><font color=#000080>would tamper with their remains.  Therefore, they took steps to
-<br>
-</font><font color=#000080>punish such actions.</font>&quot;;
-<br>
-say &quot;<font color=#000080>Unfortunately, we've run out of poles.  Therefore, in punishment for
-<br>
-</font><font color=#000080>your most grievous sin, we shall deprive you of all your valuables,
-<br>
-</font><font color=#000080>and of your life.</font>&quot;;
-<br>
-end the game in death instead.
-<br>
-Check attacking the set of poled heads with something:
-<br>
-try destroying the set of poled heads with the second noun instead.
-<br>
-The rval of Land of the Living Dead is 30.
-<br>
+<div class = "source">
+<p class="indent0"><span class="heading">Part 8 - Exorcism Stuff</span></p><p class="indent0">North of Mirror Room No 1 is southwest of Narrow Crawlway. </p><p class="indent0">Cave1 is a dungeon. &quot;<span class="quote">This is a tiny cave with entrances west and north, and a dark, forbidding staircase leading down.</span>&quot;</p><p class="indent0">The printed name of Cave1 is &quot;<span class="quote">Tiny Cave</span>&quot;.</p><p class="indent0">North of Cave1 is Narrow Crawlway. East of Mirror Room is Cave1.</p><p class="indent0">Entrance to Hades is a dungeon. The description of Entrance to Hades is</p><p class="indent0">&quot;<span class="quote">You are outside a large gateway, on which is inscribed: [</span><span class="substitution">paragraph break</span><span class="quote">]</span></p><p class="indent0"><span class="quote">[</span><span class="substitution">8 spaces</span><span class="quote">]'Abandon every hope, all ye who enter here.'[</span><span class="substitution">paragraph break</span><span class="quote">]</span></p><p class="indent0"><span class="quote">The gate is open; through it you can see a desolation, with a pile of mangled corpses in one corner.  Thousands of voices, lamenting some hideous fate, can be heard.</span>&quot;</p><p class="indent0">Down from Cave1 is Entrance to Hades. Land of the Living Dead is a dungeon. East of Entrance to Hades is Land of the Living Dead.</p><p class="indent0">The description of Land of the Living Dead is &quot;<span class="quote">You have entered the Land of the Living Dead, a large desolate room.  Although it is apparently uninhabited, you can hear the sounds of thousands of lost souls weeping and moaning.  In the east corner are</span></p><p class="indent0"><span class="quote">stacked the remains of dozens of previous adventurers who were less</span></p><p class="indent0"><span class="quote">fortunate than yourself.  To the east is an ornate passage,</span></p><p class="indent0"><span class="quote">apparently recently constructed.  A passage exits to the west.</span>&quot;</p><p class="indent0">East of the Land of the Living Dead is a dungeon called Tomb of the Unknown Implementor.  The description of Tomb of the Unknown Implementor is &quot;<span class="quote">This is the Tomb of the Unknown Implementer. A hollow voice says:  'That's not a bug, it's a feature!'</span></p><p class="indent0"><span class="quote">In the north wall of the room is the Crypt of the Implementers.  It is made of the finest marble, and apparently large enough for four headless corpses.  The crypt is [</span><span class="substitution">if the crypt is open</span><span class="quote">]open[</span><span class="substitution">otherwise</span><span class="quote">]closed[</span><span class="substitution">end if</span><span class="quote">].  Above the entrance is the cryptic instruction: 'Feel Free'.</span>&quot;.</p><p class="indent0">Check going inside while in Tomb of the Unknown Implementor: try entering the crypt door instead.</p><p class="indent0">The crypt door is a door.  The crypt door is closed.  The crypt door is north of the Tomb of the Unknown Implementor.  The Crypt of the Implementors is a dark room. The Crypt of the Implementors is north of the crypt door.  The description of the Crypt of the Implementors is &quot;<span class="quote">Though large and aesthetically pleasing the marble crypt is empty; the sarcophagi, bodies, and rich treasure to be expected in a tomb of this magnificence are missing. Inscribed on one wall is the motto of the implementers, 'Feel Free'.  There is a door leading out of the crypt to the south.  The door is [</span><span class="substitution">if the crypt is open</span><span class="quote">]open[</span><span class="substitution">otherwise</span><span class="quote">]closed[</span><span class="substitution">end if</span><span class="quote">].</span>&quot;.</p><p class="indent0">Check opening the crypt door when the score is less than 616:</p><p class="indent0">say &quot;<span class="quote">Although the implementers are dead, they foresaw that some cretin</span></p><p class="indent0"><span class="quote">would tamper with their remains.  Therefore, they took steps to</span></p><p class="indent0"><span class="quote">punish such actions.</span>&quot;;</p><p class="indent0">say &quot;<span class="quote">Unfortunately, we've run out of poles.  Therefore, in punishment for</span></p><p class="indent0"><span class="quote">your most grievous sin, we shall deprive you of all your valuables,</span></p><p class="indent0"><span class="quote">and of your life.</span>&quot;;</p><p class="indent0">end the game in death instead.</p><p class="indent0">Every turn when the player is in Crypt of the Implementors:</p><p class="indent0">if in darkness for the first turn begin;</p><p class="indent0">say &quot;<span class="quote">Suddenly, as you wait in the dark, you begin to feel somewhat</span></p><p class="indent0"><span class="quote">disoriented.  The feeling passes, but something seems different.  </span></p><p class="indent0"><span class="quote">As you regain your composure, the cloaked figure appears before you,</span></p><p class="indent0"><span class="quote">and says, 'You are now ready to face the ultimate challenge of</span></p><p class="indent0"><span class="quote">Zork.  Should you wish to do this somewhat more quickly in the</span></p><p class="indent0"><span class="quote">future, you will be given a magic phrase which will at any time</span></p><p class="indent0"><span class="quote">transport you by magic to this point.  To select the phrase, say</span></p><p class="indent0"><span class="quote">INCANT '&lt;word&gt;'</span></p><p class="indent0"><span class="quote">and you will be told your own magic phrase to use by saying</span></p><p class="indent0"><span class="quote">INCANT '&lt;word&gt; &lt;phrase&gt;'</span></p><p class="indent0"><span class="quote">Good luck, and choose wisely!'</span>&quot;;</p><p class="indent0">end if.</p><p class="indent0">Exorcism flag is a number that varies.</p><p class="indent0">Check going east from Entrance to Hades when exorcism flag is not -1:</p><p class="indent0">  say &quot;<span class="quote">Some invisible force prevents you from passing through the gate.</span>&quot; instead.</p><p class="indent0">Check ringing the bell while the location is Entrance to Hades:</p><p class="indent0">if exorcism flag is 0 begin;</p><p class="indent0">say &quot;<span class="quote">Ding Dong.[</span><span class="substitution">paragraph break</span><span class="quote">]</span>&quot;;</p><p class="indent0">say &quot;<span class="quote">The bell suddenly becomes red hot and falls to the ground. The</span></p><p class="indent0"><span class="quote">wraiths, as if paralyzed, stop their jeering and slowly turn to face</span></p><p class="indent0"><span class="quote">you.  On their ashen faces, the expression of a long-forgotten terror</span></p><p class="indent0"><span class="quote">takes shape.</span>&quot;;</p><p class="indent0">if the candles are flaming begin;</p><p class="indent0">try silently dropping the candles;</p><p class="indent0">say &quot;<span class="quote">In your confusion, the candles drop to the ground (and they are out).</span>&quot;;</p><p class="indent0">end if;</p><p class="indent0">move the brass bell to the location;</p><p class="indent0">now exorcism flag is 1 instead;</p><p class="indent0">else if exorcism flag is -1;</p><p class="indent0">  continue the action;</p><p class="indent0">else;</p><p class="indent0">say &quot;<span class="quote">The tension of this ceremony is broken, and the wraiths, amused but</span></p><p class="indent0"><span class="quote">shaken at your clumsy attempt, resume their hideous jeering.</span>&quot;;</p><p class="indent0">now exorcism flag is 0 instead;</p><p class="indent0">end if.</p><p class="indent0">Check examining the black book while the location is Entrance to Hades:</p><p class="indent0">  if exorcism flag is 2 begin;</p><p class="indent0">    say &quot;<span class="quote">[</span><span class="substitution">description of the black book</span><span class="quote">][</span><span class="substitution">paragraph break</span><span class="quote">]</span>&quot;;</p><p class="indent0">    say &quot;<span class="quote">Each word of the prayer reverberates through the hall in a deafening</span></p><p class="indent0"><span class="quote">confusion.  As the last word fades, a voice, loud and commanding,</span></p><p class="indent0"><span class="quote">speaks: 'Begone, fiends!'.  A heart-stopping scream fills the cavern, </span></p><p class="indent0"><span class="quote">and the spirits, sensing a greater power, flee through the walls.</span>&quot;;</p><p class="indent0">    now exorcism flag is -1 instead;</p><p class="indent0">  else if exorcism flag is 1;</p><p class="indent0">    continue the action;</p><p class="indent0">  else;</p><p class="indent0">    say &quot;<span class="quote">[</span><span class="substitution">description of the black book</span><span class="quote">][</span><span class="substitution">paragraph break</span><span class="quote">]</span>&quot;;</p><p class="indent0">    say &quot;<span class="quote">The tension of this ceremony is broken, and the wraiths, amused but</span></p><p class="indent0"><span class="quote">shaken at your clumsy attempt, resume their hideous jeering.</span>&quot; instead;</p><p class="indent0">  end if.</p><p class="indent0">The description of the crypt door is &quot;<span class="quote">Here lie the implementers, whose heads were placed on poles by the Keeper of the Dungeon for amazing untastefulness.</span>&quot; The crypt door is scenery.  </p><p class="indent0">A set of poled heads is in the Tomb of the Unknown Implementors.  The set of poled heads is not portable.  The initial appearance of the set of poled heads is &quot;<span class="quote">There are four heads here, mounted securely on poles.</span>&quot; Understand &quot;<span class="quote">HEADS</span>&quot; and &quot;<span class="quote">HEAD</span>&quot; and &quot;<span class="quote">POLE</span>&quot; and &quot;<span class="quote">POLES</span>&quot; and &quot;<span class="quote">PDL</span>&quot; and &quot;<span class="quote">BKD</span>&quot; and &quot;<span class="quote">TAA</span>&quot; and &quot;<span class="quote">MARC</span>&quot; and &quot;<span class="quote">IMPLEMENTORS</span>&quot; and &quot;<span class="quote">LOSER</span>&quot; as the set of poled heads.</p><p class="indent0">Instead of taking or destroying or attacking or kicking or poking the set of poled heads:</p><p class="indent0">say &quot;<span class="quote">Although the implementers are dead, they foresaw that some cretin</span></p><p class="indent0"><span class="quote">would tamper with their remains.  Therefore, they took steps to</span></p><p class="indent0"><span class="quote">punish such actions.</span>&quot;;</p><p class="indent0">say &quot;<span class="quote">Unfortunately, we've run out of poles.  Therefore, in punishment for</span></p><p class="indent0"><span class="quote">your most grievous sin, we shall deprive you of all your valuables,</span></p><p class="indent0"><span class="quote">and of your life.</span>&quot;;</p><p class="indent0">end the game in death.</p><p class="indent0">Check destroying the set of poled heads with something:</p><p class="indent0">say &quot;<span class="quote">Although the implementers are dead, they foresaw that some cretin</span></p><p class="indent0"><span class="quote">would tamper with their remains.  Therefore, they took steps to</span></p><p class="indent0"><span class="quote">punish such actions.</span>&quot;;</p><p class="indent0">say &quot;<span class="quote">Unfortunately, we've run out of poles.  Therefore, in punishment for</span></p><p class="indent0"><span class="quote">your most grievous sin, we shall deprive you of all your valuables,</span></p><p class="indent0"><span class="quote">and of your life.</span>&quot;;</p><p class="indent0">end the game in death instead.</p><p class="indent0">Check attacking the set of poled heads with something:</p><p class="indent0">try destroying the set of poled heads with the second noun instead.</p><p class="indent0">The rval of Land of the Living Dead is 30.</p><p class="indent0">In the Tomb of the Unknown Implementor is a bunch of Coke bottles.  The initial appearance of the bunch of Coke bottles is &quot;<span class="quote">There is a large pile of empty Coke bottles here, evidently produced by the implementers during their long struggle to win totally.</span>&quot; </p><p class="indent0">The later appearance of the bunch of Coke bottles is &quot;<span class="quote">Many empty Coke bottles are here.  Alas, they can't hold water.</span>&quot;</p><p class="indent0">The size of the bunch of Coke bottles is 15.</p><p class="indent0">In the Tomb of the Unknown Implementor is a stack of listings.   The description of the stack of listings is &quot;<span class="quote">[</span><span class="substitution">listing text</span><span class="quote">]</span>&quot;.</p><p class="indent0">To say listing text:</p><p class="indent0">say &quot;<span class="quote">&lt;DEFINE FEEL-FREE (LOSER)[</span><span class="substitution">line break</span><span class="quote">]</span>&quot;;</p><p class="indent0">say &quot;<span class="quote">    &lt;TELL 'FEEL FREE, CHOMPER!'&gt;&gt;[</span><span class="substitution">line break</span><span class="quote">]</span>&quot;;</p><p class="indent0">say &quot;<span class="quote"> ...[</span><span class="substitution">line break</span><span class="quote">]</span>&quot;;</p><p class="indent0">say &quot;<span class="quote">The rest is, alas, unintelligible (as were the implementers).</span>&quot;</p><p class="indent0">The size of the stack of listings is 70.  The initial appearance of the stack of listings is </p><p class="indent0">&quot;<span class="quote">There is a gigantic pile of line-printer output here.  Although the</span></p><p class="indent0"><span class="quote">paper once contained useful information, almost nothing can be</span></p><p class="indent0"><span class="quote">distinguished now.</span>&quot;</p><p class="indent0">The later appearance of the stack of listings is &quot;<span class="quote">There is an enormous stack of line-printer paper here.  It is barely readable.</span>&quot; </p><p class="indent0">The listings are inflammable.</p><p class="indent0">Check destroying the bunch of Coke bottles:</p><p class="indent0">say &quot;<span class="quote">Congratulations!  You've managed to break all those bottles.</span></p><p class="indent0"><span class="quote">Fortunately for your feet, they were made of magic glass and disappear</span></p><p class="indent0"><span class="quote">immediately.</span>&quot;;</p><p class="indent0">remove the bunch of Coke bottles from play instead.</p><p class="indent0">Check destroying the bunch of Coke bottles with something:</p><p class="indent0">say &quot;<span class="quote">Congratulations!  You've managed to break all those bottles.</span></p><p class="indent0"><span class="quote">Fortunately for your feet, they were made of magic glass and disappear</span></p><p class="indent0"><span class="quote">immediately.</span>&quot;;</p><p class="indent0">remove the bunch of Coke bottles from play;</p><p class="indent0">say &quot;<span class="quote">Somehow, [</span><span class="substitution">the second noun</span><span class="quote">] managed to disappear as well.</span>&quot;;</p><p class="indent0">remove the second noun from play instead.</p><p class="indent0">Check throwing the bunch of Coke bottles at something:</p><p class="indent0">say &quot;<span class="quote">Congratulations!  You've managed to break all those bottles.</span></p><p class="indent0"><span class="quote">Fortunately for your feet, they were made of magic glass and disappear</span></p><p class="indent0"><span class="quote">immediately.</span>&quot;;</p><p class="indent0">remove the bunch of Coke bottles from play;</p><p class="indent0">say &quot;<span class="quote">Somehow, [</span><span class="substitution">the second noun</span><span class="quote">] managed to disappear as well.</span>&quot;;</p><p class="indent0">remove the second noun from play instead.</p><p class="indent0">Check dropping bunch of Coke bottles when the player's command includes &quot;<span class="quote">throw</span>&quot;:</p><p class="indent0"> say &quot;<span class="quote">Congratulations!  You've managed to break all those bottles.</span></p><p class="indent0"><span class="quote">Fortunately for your feet, they were made of magic glass and disappear</span></p><p class="indent0"><span class="quote">immediately.</span>&quot;;</p><p class="indent0">remove the bunch of Coke bottles from play instead.</p><p class="indent0">Dead flag is a truth state variable. Dead flag is usually false.</p><p class="indent0">East of Ravine is a dungeon called Chasm.  The description of Chasm is &quot;<span class="quote">A chasm runs southwest to northeast.  You are on the south edge; the path exits to the south and to the east.</span>&quot;</p><p class="indent0">Check going down from Chasm:</p><p class="indent0">  say &quot;<span class="quote">Are you out of your mind?</span>&quot; instead.</p><p class="indent0">Check jumping while the location is Chasm: fatally leap instead.</p><p class="indent0">Northeast of Round Room is south of a dungeon called North-South Passage.  The description of North-South Passage is &quot;<span class="quote">This is a high north-south passage, which forks to the northeast.</span>&quot;</p><p class="indent0">North of North-South Passage is east of Chasm. Northeast of North-South Passage is west of a dungeon called Loud Room. The description of Loud Room is &quot;<span class="quote">This is a large room with a ceiling which cannot be detected from the ground. There is a narrow passage from east to west and a stone stairway leading upward.  The room is extremely noisy.  In fact, it is difficult to hear yourself think.</span>&quot;</p><p class="indent0">Echo flag is a truth state variable.  Echo flag is usually false.</p><p class="indent0">After reading a command while the location is Loud Room:</p><p class="indent0">if the player's command does not include &quot;<span class="quote">[</span><span class="substitution">direction</span><span class="quote">]</span>&quot; and the player's command does not match &quot;<span class="quote">ECHO</span>&quot; and echo flag is false begin;</p><p class="indent0">say &quot;<span class="quote">[</span><span class="substitution">player's command</span><span class="quote">]</span>&quot;;</p><p class="indent0">reject the player's command;</p><p class="indent0">else if the player's command matches &quot;<span class="quote">ECHO</span>&quot; and echo flag is false;</p><p class="indent0">  now echo flag is true;</p><p class="indent0">  say &quot;<span class="quote">The acoustics of the room change subtly.</span>&quot;;</p><p class="indent0">  reject the player's command;</p><p class="indent0">end if.</p><p class="indent0">A large platinum bar is in Loud Room.  The printed name of the large platinum bar is &quot;<span class="quote">platinum bar</span>&quot;.  The later appearance of the large platinum bar is &quot;<span class="quote">There is a large platinum bar here.</span>&quot;  The size of the platinum bar is 20.  The case-points of the platinum bar is 10. </p><p class="indent0">After taking the platinum bar for the first time:</p><p class="indent0">  award 12 points; continue the action.</p><p class="indent0">Up from Loud Room is south of a dungeon called Damp Cave. The description of Damp Cave is &quot;<span class="quote">This is a cave.  Passages exit to the south and to the east, but the cave narrows to a crack to the west.  The earth is particularly damp here.</span>&quot;</p><p class="indent0">Check going west from Damp Cave: say &quot;<span class="quote">It is too narrow for most insects.</span>&quot; instead.</p><p class="indent0">East of Loud Room is south of a dungeon called Ancient Chasm.  The description of Ancient Chasm is &quot;<span class="quote">A chasm, evidently produced by an ancient river, runs through the</span></p><p class="indent0"><span class="quote">cave here.  Passages lead off in all directions.</span>&quot;</p><p class="indent0">North of Ancient Chasm is southeast of a dead end.  West of Ancient Chasm is a dead end.</p><p class="indent0">East of Ancient Chasm is northwest of a dungeon called Tiny Cave.  The description of Tiny Cave is &quot;<span class="quote">This is a small cave whose exits are on the south and northwest.</span>&quot;</p><p class="indent0">A hunk of bat guano is in Tiny Cave.  Understand &quot;<span class="quote">excretement</span>&quot; and &quot;<span class="quote">shit</span>&quot; and &quot;<span class="quote">crap</span>&quot; and &quot;<span class="quote">poop</span>&quot; as the bat guano.</p><p class="indent0">The size of the bat guano is 20.  </p><p class="indent0">A shovel is in Tiny Cave.  The later appearance of the shovel is &quot;<span class="quote">There is a large shovel here.</span>&quot;  Understand &quot;<span class="quote">large shovel</span>&quot; as the shovel.  The size of the shovel is 15.</p>
+</div>
 
-<br>
-In the Tomb of the Unknown Implementor is a bunch of Coke bottles.  The initial appearance of the bunch of Coke bottles is &quot;<font color=#000080>There is a large pile of empty Coke bottles here, evidently produced by the implementers during their long struggle to win totally.</font>&quot; 
-<br>
-The later appearance of the bunch of Coke bottles is &quot;<font color=#000080>Many empty Coke bottles are here.  Alas, they can't hold water.</font>&quot;
-<br>
-The size of the bunch of Coke bottles is 15.
-<br>
-In the Tomb of the Unknown Implementor is a stack of listings.   The description of the stack of listings is &quot;<font color=#000080>[listing text]</font>&quot;.
-<br>
-To say listing text:
-<br>
-say &quot;<font color=#000080>&lt;DEFINE FEEL-FREE (LOSER)[line break]</font>&quot;;
-<br>
-say &quot;<font color=#000080>    &lt;TELL 'FEEL FREE, CHOMPER!'&gt;&gt;[line break]</font>&quot;;
-<br>
-say &quot;<font color=#000080> ...[line break]</font>&quot;;
-<br>
-say &quot;<font color=#000080>The rest is, alas, unintelligible (as were the implementers).</font>&quot;
-<br>
-The size of the stack of listings is 70.  The initial appearance of the stack of listings is 
-<br>
-&quot;<font color=#000080>There is a gigantic pile of line-printer output here.  Although the
-<br>
-</font><font color=#000080>paper once contained useful information, almost nothing can be
-<br>
-</font><font color=#000080>distinguished now.</font>&quot;
-<br>
-The later appearance of the stack of listings is &quot;<font color=#000080>There is an enormous stack of line-printer paper here.  It is barely readable.</font>&quot; 
-<br>
-The listings are inflammable.
-<br>
-Check destroying the bunch of Coke bottles:
-<br>
-say &quot;<font color=#000080>Congratulations!  You've managed to break all those bottles.
-<br>
-</font><font color=#000080>Fortunately for your feet, they were made of magic glass and disappear
-<br>
-</font><font color=#000080>immediately.</font>&quot;;
-<br>
-remove the bunch of Coke bottles from play instead.
-<br>
-Check destroying the bunch of Coke bottles with something:
-<br>
-say &quot;<font color=#000080>Congratulations!  You've managed to break all those bottles.
-<br>
-</font><font color=#000080>Fortunately for your feet, they were made of magic glass and disappear
-<br>
-</font><font color=#000080>immediately.</font>&quot;;
-<br>
-remove the bunch of Coke bottles from play;
-<br>
-say &quot;<font color=#000080>Somehow, [the second noun] managed to disappear as well.</font>&quot;;
-<br>
-remove the second noun from play instead.
-<br>
-Check throwing the bunch of Coke bottles at something:
-<br>
-say &quot;<font color=#000080>Congratulations!  You've managed to break all those bottles.
-<br>
-</font><font color=#000080>Fortunately for your feet, they were made of magic glass and disappear
-<br>
-</font><font color=#000080>immediately.</font>&quot;;
-<br>
-remove the bunch of Coke bottles from play;
-<br>
-say &quot;<font color=#000080>Somehow, [the second noun] managed to disappear as well.</font>&quot;;
-<br>
-remove the second noun from play instead.
-<br>
-Check dropping bunch of Coke bottles when the player's command includes &quot;<font color=#000080>throw</font>&quot;:
-<br>
- say &quot;<font color=#000080>Congratulations!  You've managed to break all those bottles.
-<br>
-</font><font color=#000080>Fortunately for your feet, they were made of magic glass and disappear
-<br>
-</font><font color=#000080>immediately.</font>&quot;;
-<br>
-remove the bunch of Coke bottles from play instead.
-<br>
+<div class ="notes">
 
-<br>
-Dead flag is a truth state variable. Dead flag is usually false.
-<br>
+</div>
 
-<br>
-East of Ravine is a dungeon called Chasm.  The description of Chasm is &quot;<font color=#000080>A chasm runs southwest to northeast.  You are on the south edge; the path exits to the south and to the east.</font>&quot;
-<br>
-Check going down from Chasm:
-<br>
-  say &quot;<font color=#000080>Are you out of your mind?</font>&quot; instead.
-<br>
-Check jumping while in Chasm: fatally leap instead.
-<br>
+</div>
 
-<br>
-Northeast of Round Room is south of a dungeon called North-South Passage.  The description of North-South Passage is &quot;<font color=#000080>This is a high north-south passage, which forks to the northeast.</font>&quot;
-<br>
-North of North-South Passage is east of Chasm. Northeast of North-South Passage is west of a dungeon called Loud Room. The description of Loud Room is &quot;<font color=#000080>This is a large room with a ceiling which cannot be detected from the ground. There is a narrow passage from east to west and a stone stairway leading upward.  The room is extremely noisy.  In fact, it is difficult to hear yourself think.</font>&quot;
-<br>
-
-<br>
-Echo flag is a truth state variable.  Echo flag is usually false.
-<br>
-After reading a command while in Loud Room:
-<br>
-if the player's command does not include &quot;<font color=#000080>[direction]</font>&quot; and the player's command does not match &quot;<font color=#000080>ECHO</font>&quot; and echo flag is false begin;
-<br>
-say &quot;<font color=#000080>[player's command]</font>&quot;;
-<br>
-reject the player's command;
-<br>
-else if the player's command matches &quot;<font color=#000080>ECHO</font>&quot; and echo flag is false;
-<br>
-  change echo flag to true;
-<br>
-  say &quot;<font color=#000080>The acoustics of the room change subtly.</font>&quot;;
-<br>
-  reject the player's command;
-<br>
-end if.
-<br>
-A large platinum bar is in Loud Room.  The printed name of the large platinum bar is &quot;<font color=#000080>platinum bar</font>&quot;.  The later appearance of the large platinum bar is &quot;<font color=#000080>There is a large platinum bar here.</font>&quot;  The size of the platinum bar is 20.  The case-points of the platinum bar is 10. 
-<br>
-After taking the platinum bar for the first time:
-<br>
-  award 12 points; continue the action.
-<br>
-Up from Loud Room is south of a dungeon called Damp Cave. The description of Damp Cave is &quot;<font color=#000080>This is a cave.  Passages exit to the south and to the east, but the cave narrows to a crack to the west.  The earth is particularly damp here.</font>&quot;
-<br>
-Check going west from Damp Cave: say &quot;<font color=#000080>It is too narrow for most insects.</font>&quot; instead.
-<br>
-East of Loud Room is south of a dungeon called Ancient Chasm.  The description of Ancient Chasm is &quot;<font color=#000080>A chasm, evidently produced by an ancient river, runs through the
-<br>
-</font><font color=#000080>cave here.  Passages lead off in all directions.</font>&quot;
-<br>
-North of Ancient Chasm is southeast of a dead end.  West of Ancient Chasm is a dead end.
-<br>
-East of Ancient Chasm is northwest of a dungeon called Tiny Cave.  The description of Tiny Cave is &quot;<font color=#000080>This is a small cave whose exits are on the south and northwest.</font>&quot;
-<br>
-A hunk of bat guano is in Tiny Cave.  Understand &quot;<font color=#000080>excretement</font>&quot; and &quot;<font color=#000080>shit</font>&quot; and &quot;<font color=#000080>crap</font>&quot; and &quot;<font color=#000080>poop</font>&quot; as the bat guano.
-<br>
-The size of the bat guano is 20.  
-<br>
-A shovel is in Tiny Cave.  The later appearance of the shovel is &quot;<font color=#000080>There is a large shovel here.</font>&quot;  Understand &quot;<font color=#000080>large shovel</font>&quot; as the shovel.  The size of the shovel is 15.
-<br>
-
-<br>
-</font>
-					<p><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"></font></p>
-					<p></p>
-				</td></tr></table>
-	</body>
+</body>
 
 </html>

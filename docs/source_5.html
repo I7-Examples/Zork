@@ -1,240 +1,49 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<head>
+  <title>Infocom -- Ported by Dean Menezes - Zork — 7 of 13</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="author" content="Infocom -- Ported by Dean Menezes" />
+  <meta name="description" content="A page for the game Zork by Infocom -- Ported by Dean Menezes." />
+  <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+</head>
 
-	<head>
-		<meta http-equiv="content-type" content="text/html;charset=utf-8">
-		<meta name="generator" content="Adobe GoLive">
-		<title>Zork - Source Text</title>
-	</head>
+<body>
 
-	<body bgcolor="#ffffff">
-		<table border="0" cellpadding="2"><tr><td align="left" valign="top"><font face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"></font></td><td align="left" valign="top">
-					<h3><font color="#0000cc" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif">Zork</font></h3>
-					<h3><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif">An interactive fiction by Infocom -- Ported by Dean Menezes (1979) - the Inform 7 source text</font></h3>
-				</td></tr>
-		<tr align="left" valign="top"><td align="left" valign="top"><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"><a href="index.html">Home page</a><br><br><a href="source.html">Contents</a><br><a href="source_4.html">Previous</a><br><a href="source_6.html">Next</a><br><br><a href="source.txt">Complete text</a></font></td><td align="left" valign="top"><font face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"><b>Part 6 -  Deep Ravine, Rocky Crawl, Egyptian Area</b>
-<br>
+<div class = "container">
 
-<br>
-West of Deep Ravine is west of a dungeon called Rocky Crawl.
-<br>
-The description of Rocky Crawl is &quot;<font color=#000080>This is a crawlway with a three-foot high ceiling.  Your footing is very unsure here due to the assortment of rocks underfoot.  Passages can be seen in the east, west, and northwest corners of the passage.</font>&quot;
-<br>
-East of a dungeon called Dome Room is east of Rocky Crawl. &quot;<font color=#000080>You are at the periphery of a large dome, which forms the ceiling of another room below.  Protecting you from a precipitous drop is a wooden railing which circles the dome.</font>&quot;
-<br>
-Check jumping while in Dome Room:
-<br>
-fatally leap instead.
-<br>
-A dungeon called Torch Room is down from Dome Room. &quot;<font color=#000080>This is a large room with a prominent doorway leading to a down staircase. To the west is a narrow twisting tunnel, covered with a thin layer of dust.  Above you is a large dome painted with scenes depicting elfin hacking rites. Up around the edge of the dome (20 feet up) is a wooden railing. In the center of the room there is a white marble pedestal.</font>&quot;
-<br>
-The railing is unevenly shaped.
-<br>
-The railing is a thing in Dome Room. After tying the rope to the railing: say &quot;<font color=#000080>The rope drops over the side and comes within ten feet of the floor.</font>&quot;; move the coil of rope to Dome Room.
-<br>
-Check climbing the rope when the coil of rope is attached to the railing:
-<br>
-try going down instead.
-<br>
-The railing is scenery. 
-<br>
-Check going down from Dome Room when the coil of rope is not attached to the railing:
-<br>
-say &quot;<font color=#000080>You cannot go down without breaking many bones.</font>&quot; instead.
-<br>
-Up from Torch Room is nowhere.
-<br>
-Check going up from Torch Room: say &quot;<font color=#000080>You cannot reach the rope.</font>&quot; instead.
-<br>
-An ivory torch is in Torch Room.  The initial appearance of the ivory torch is &quot;<font color=#000080>Sitting on the pedestal is a flaming torch, made of ivory.</font>&quot;
-<br>
-The ivory torch is flaming.
-<br>
-The size of the ivory torch is 20.
-<br>
-The case-points of the ivory torch is 14.
-<br>
-After taking the ivory torch for the first time:
-<br>
-  award 6 points; continue the action.
-<br>
-The ivory torch is lit.
-<br>
-Down from Torch Room is North-South Crawlway. Up from North-South Crawlway is nowhere.
-<br>
-Up from Torch Room is nowhere.
-<br>
-Rule for writing a paragraph about a rope (called the coil) when the coil is attached to something:
-<br>
- if the coil is attached to the railing begin;
-<br>
-  say &quot;<font color=#000080>Hanging down from the railing is a rope which ends about ten feet from the floor below.</font>&quot;;
-<br>
-else;
-<br>
- say &quot;<font color=#000080>There is [a coil] here[if the coil is attached to a visible nonrope thing], tied to [the list of nonrope visible things which are attached to the coil][end if].</font>&quot;;
-<br>
-end if.
-<br>
-West of Torch Room is a dungeon called Tiny Room.  The description of Tiny Room is &quot;<font color=#000080>This is a tiny room, which has an exit to the east.</font>&quot;
-<br>
+<div class ="sourcecoverimage">
+	<span><a href="Cover.jpg"><img src="Small Cover.jpg" border="1"></a></span>
+</div>
 
-<br>
-The initial appearance of the massive wooden door is  &quot;<font color=#000080>On the [way through the massive wooden door] side of the room is a massive wooden door, near the top of which, in the center, is a window barred with iron.  A formidable bolt lock is set within the door frame.  A keyhole lies within the lock[if the keyhole is closed]covered by a thin metal lid lies within the lock.[otherwise].[end if]</font>&quot;
-<br>
+<div class ="sourceintroduction">
+	<h1>
+		<span>Zork</span> <span class="pagination">— 7 of 13</span>
+	</h1>
+	<h2>
+		<span>Infocom -- Ported by Dean Menezes</span>
+	</h2>
+	<div class ="sourcebibliography">
+		<span>Release 4</span>
+	</div>
+</div>
 
-<br>
-A container called a keyhole is a thing. The keyhole is closed and openable. 
-<br>
-When play begins:
-<br>
-now the keyhole is part of the massive wooden door.
-<br>
-To decide what direction is the way through (frame - a door): 
-<br>
-    let far side be the other side of frame; 
-<br>
-    let way be the best route from the location to the far side, using even locked doors; 
-<br>
-    if way is a direction, decide on the way; 
-<br>
-    decide on inside. 
-<br>
-Understand &quot;<font color=#000080>lid</font>&quot; as the keyhole.
-<br>
-After closing the keyhole:
-<br>
-say &quot;<font color=#000080>The lid falls to cover the keyhole.</font>&quot;
-<br>
-After opening the keyhole:
-<br>
-say &quot;<font color=#000080>The lid opens.</font>&quot;
-<br>
-Check inserting something into the keyhole when something is in the keyhole:
-<br>
-  say &quot;<font color=#000080>The keyhole is occupied.</font>&quot; instead.
-<br>
-Before locking or unlocking the massive wooden door with something:
-<br>
-if something is in the keyhole, say &quot;<font color=#000080>The keyhole is blocked.</font>&quot; instead.
-<br>
-The capacity of the keyhole is 12.
-<br>
-A rusty iron key is a thing. The rusty iron key unlocks the massive door.
-<br>
-Before turning the rusty iron key:
-<br>
-if the iron key is in the massive door, try unlocking the massive door with the iron key instead.
-<br>
-Check going inside while in Tiny Room: try going north instead.
-<br>
-Check exiting while in Dreary Room:  try going south instead.
-<br>
-After inserting something into the keyhole:
-<br>
-if the noun is the stick or the noun is the screwdriver or the noun is the set of keys and the rusty key is in Moby Lossage begin;
-<br>
-  say &quot;<font color=#000080>There is a faint noise from behind the door and a small cloud of
-<br>
-</font><font color=#000080>dust rises from beneath it.</font>&quot;;
-<br>
-  now the rusty iron key is on the mat;
-<br>
-  now the rusty iron key is touched;
-<br>
-else;
-<br>
-continue the action;
-<br>
-end if.
-<br>
+<div class = "links">
+<ul>
+<li><a href="index.html">Home page</a></li><li><a href="source.html">Beginning</a></li><li><a href="source_4.html">Previous</a></li><li><a href="source_6.html">Next</a></li>
+</ul>
+</div>
 
-<br>
-The massive wooden door is a door.  North of Tiny Room is the massive wooden door.  North of the massive wooden door is a dungeon called Dreary Room.  The description of Dreary Room is  &quot;<font color=#000080>This is a small and rather dreary room, which is eerily illuminated
-<br>
-</font><font color=#000080>by a red glow emanating from a crack in one of the walls.  The light 
-<br>
-</font><font color=#000080>appears to focus on a dusty wooden table in the center of the room.</font>&quot;
-<br>
-The massive wooden door is closed,openable, locked, and lockable.
-<br>
+<div class = "source">
+<p class="indent0"><span class="heading">Part 6 -  Deep Ravine, Rocky Crawl, Egyptian Area</span></p><p class="indent0">West of Deep Ravine is west of a dungeon called Rocky Crawl.</p><p class="indent0">The description of Rocky Crawl is &quot;<span class="quote">This is a crawlway with a three-foot high ceiling.  Your footing is very unsure here due to the assortment of rocks underfoot.  Passages can be seen in the east, west, and northwest corners of the passage.</span>&quot;</p><p class="indent0">East of a dungeon called Dome Room is east of Rocky Crawl. &quot;<span class="quote">You are at the periphery of a large dome, which forms the ceiling of another room below.  Protecting you from a precipitous drop is a wooden railing which circles the dome.</span>&quot;</p><p class="indent0">Check jumping while the location is Dome Room:</p><p class="indent0">fatally leap instead.</p><p class="indent0">A dungeon called Torch Room is down from Dome Room. &quot;<span class="quote">This is a large room with a prominent doorway leading to a down staircase. To the west is a narrow twisting tunnel, covered with a thin layer of dust.  Above you is a large dome painted with scenes depicting elfin hacking rites. Up around the edge of the dome (20 feet up) is a wooden railing. In the center of the room there is a white marble pedestal.</span>&quot;</p><p class="indent0">The railing is unevenly shaped.</p><p class="indent0">The railing is a thing in Dome Room. After tying the rope to the railing: say &quot;<span class="quote">The rope drops over the side and comes within ten feet of the floor.</span>&quot;; move the coil of rope to Dome Room.</p><p class="indent0">Check climbing the rope when the coil of rope is attached to the railing:</p><p class="indent0">try going down instead.</p><p class="indent0">The railing is scenery. </p><p class="indent0">Check going down from Dome Room when the coil of rope is not attached to the railing:</p><p class="indent0">say &quot;<span class="quote">You cannot go down without breaking many bones.</span>&quot; instead.</p><p class="indent0">Up from Torch Room is nowhere.</p><p class="indent0">Check going up from Torch Room: say &quot;<span class="quote">You cannot reach the rope.</span>&quot; instead.</p><p class="indent0">An ivory torch is in Torch Room.  The initial appearance of the ivory torch is &quot;<span class="quote">Sitting on the pedestal is a flaming torch, made of ivory.</span>&quot;</p><p class="indent0">The ivory torch is flaming.</p><p class="indent0">The size of the ivory torch is 20.</p><p class="indent0">The case-points of the ivory torch is 14.</p><p class="indent0">After taking the ivory torch for the first time:</p><p class="indent0">  award 6 points; continue the action.</p><p class="indent0">The ivory torch is lit.</p><p class="indent0">Down from Torch Room is North-South Crawlway. Up from North-South Crawlway is nowhere.</p><p class="indent0">Up from Torch Room is nowhere.</p><p class="indent0">Rule for writing a paragraph about a rope (called the coil) when the coil is attached to something:</p><p class="indent0"> if the coil is attached to the railing begin;</p><p class="indent0">  say &quot;<span class="quote">Hanging down from the railing is a rope which ends about ten feet from the floor below.</span>&quot;;</p><p class="indent0">else;</p><p class="indent0"> say &quot;<span class="quote">There is [</span><span class="substitution">a coil</span><span class="quote">] here[</span><span class="substitution">if the coil is attached to a visible nonrope thing</span><span class="quote">], tied to [</span><span class="substitution">the list of nonrope visible things which are attached to the coil</span><span class="quote">][</span><span class="substitution">end if</span><span class="quote">].</span>&quot;;</p><p class="indent0">end if.</p><p class="indent0">West of Torch Room is a dungeon called Tiny Room.  The description of Tiny Room is &quot;<span class="quote">This is a tiny room, which has an exit to the east.</span>&quot;</p><p class="indent0">The initial appearance of the massive wooden door is  &quot;<span class="quote">On the [</span><span class="substitution">way through the massive wooden door</span><span class="quote">] side of the room is a massive wooden door, near the top of which, in the center, is a window barred with iron.  A formidable bolt lock is set within the door frame.  A keyhole lies within the lock[</span><span class="substitution">if the keyhole is closed</span><span class="quote">]covered by a thin metal lid lies within the lock.[</span><span class="substitution">otherwise</span><span class="quote">].[</span><span class="substitution">end if</span><span class="quote">]</span>&quot;</p><p class="indent0">A container called a keyhole is a thing. The keyhole is closed and openable. </p><p class="indent0">When play begins:</p><p class="indent0">now the keyhole is part of the massive wooden door.</p><p class="indent0">To decide what direction is the way through (frame - a door): </p><p class="indent0">    let far side be the other side of frame; </p><p class="indent0">    let way be the best route from the location to the far side, using even locked doors; </p><p class="indent0">    if way is a direction, decide on the way; </p><p class="indent0">    decide on inside. </p><p class="indent0">Understand &quot;<span class="quote">lid</span>&quot; as the keyhole.</p><p class="indent0">After closing the keyhole:</p><p class="indent0">say &quot;<span class="quote">The lid falls to cover the keyhole.</span>&quot;</p><p class="indent0">After opening the keyhole:</p><p class="indent0">say &quot;<span class="quote">The lid opens.</span>&quot;</p><p class="indent0">Check inserting something into the keyhole when something is in the keyhole:</p><p class="indent0">  say &quot;<span class="quote">The keyhole is occupied.</span>&quot; instead.</p><p class="indent0">Before locking or unlocking the massive wooden door with something:</p><p class="indent0">if something is in the keyhole, say &quot;<span class="quote">The keyhole is blocked.</span>&quot; instead.</p><p class="indent0">The capacity of the keyhole is 12.</p><p class="indent0">A rusty iron key is a thing. The rusty iron key unlocks the massive door.</p><p class="indent0">Before turning the rusty iron key:</p><p class="indent0">if the iron key is in the massive door, try unlocking the massive door with the iron key instead.</p><p class="indent0">Check going inside while the location is Tiny Room: try going north instead.</p><p class="indent0">Check exiting while the location is Dreary Room:  try going south instead.</p><p class="indent0">After inserting something into the keyhole:</p><p class="indent0">if the noun is the stick or the noun is the screwdriver or the noun is the set of keys and the rusty key is in Moby Lossage begin;</p><p class="indent0">  say &quot;<span class="quote">There is a faint noise from behind the door and a small cloud of</span></p><p class="indent0"><span class="quote">dust rises from beneath it.</span>&quot;;</p><p class="indent0">  now the rusty iron key is on the mat;</p><p class="indent0">  now the rusty iron key is touched;</p><p class="indent0">else;</p><p class="indent0">continue the action;</p><p class="indent0">end if.</p><p class="indent0">The massive wooden door is a door.  North of Tiny Room is the massive wooden door.  North of the massive wooden door is a dungeon called Dreary Room.  The description of Dreary Room is  &quot;<span class="quote">This is a small and rather dreary room, which is eerily illuminated</span></p><p class="indent0"><span class="quote">by a red glow emanating from a crack in one of the walls.  The light </span></p><p class="indent0"><span class="quote">appears to focus on a dusty wooden table in the center of the room.</span>&quot;</p><p class="indent0">The massive wooden door is closed,openable, locked, and lockable.</p><p class="indent0">A blue crystal sphere is a thing in Dreary Room.</p><p class="indent0">The description of the blue crystal sphere is &quot;<span class="quote">[</span><span class="substitution">blue sphere text</span><span class="quote">]</span>&quot;.</p><p class="indent0">The case-points of the blue crystal sphere is 10.</p><p class="indent0">After taking the blue crystal sphere for the first time:</p><p class="indent0">award 5 points; continue the action.</p><p class="indent0">Definition: a thing is hiding if it is closed and it is opaque.</p><p class="indent0">To say blue sphere text:</p><p class="indent0">if the red crystal sphere is in something which is hiding begin;</p><p class="indent0">  say &quot;<span class="quote">You see only darkness.</span>&quot;;</p><p class="indent0">else;</p><p class="indent0">  say &quot;<span class="quote">As you peer into the sphere, a strange vision takes shape of</span></p><p class="indent0"><span class="quote">a distant room, which can be described clearly....[</span><span class="substitution">paragraph break</span><span class="quote">]</span>&quot;;</p><p class="indent0">  say &quot;<span class="quote">[</span><span class="substitution">description of the location of the red crystal sphere</span><span class="quote">][</span><span class="substitution">paragraph break</span><span class="quote">]</span>&quot;;</p><p class="indent0">  say &quot;<span class="quote">The vision fades, revealing only an ordinary crystal sphere.</span>&quot;;</p><p class="indent0">end if.</p><p class="indent0">Understand &quot;<span class="quote">PALANTHIR</span>&quot; and &quot;<span class="quote">STONE</span>&quot; and &quot;<span class="quote">SEEING</span>&quot; and &quot;<span class="quote">GLASS</span>&quot; and &quot;<span class="quote">BALL</span>&quot; as the white crystal sphere.</p><p class="indent0">After reading a command:</p><p class="indent0">  if the player's command includes &quot;<span class="quote">BALLS/PALANTHIRI/PALANTHIRS/SPHERES</span>&quot;, replace the matched text with &quot;<span class="quote">BOTH SPHERE</span>&quot;.</p><p class="indent0">Northwest of Low Crawl is east of a dungeon called Egyptian Room.</p><p class="indent0">The description of Egyptian Room is &quot;<span class="quote">This is a room which looks like an Egyptian tomb.  There is an ascending staircase in the room as well as doors east and south.</span>&quot;</p><p class="indent0">A closed openable container called a gold coffin is in Egyptian Room.</p><p class="indent0">The later appearance of the gold coffin is &quot;<span class="quote">The solid-gold coffin used for the burial of Ramses II is here.</span>&quot;</p><p class="indent0">The size of the coffin is 55. The capacity of the coffin is 35.</p><p class="indent0">After taking the coffin for the first time: award 3 points; continue the action.</p><p class="indent0">The case-points of the coffin is 7.</p><p class="indent0">Check going east from Egyptian Room when the player is carrying the coffin:</p><p class="indent0">say &quot;<span class="quote">The passage is too narrow to accomodate coffins.</span>&quot; instead.</p><p class="indent0">Check going northwest from Rocky Crawl when the player is carrying the coffin:</p><p class="indent0">say &quot;<span class="quote">The passage is too narrow to accomodate coffins.</span>&quot; instead.</p><p class="indent0">Check going south from Reservoir South when the player is carrying the coffin:</p><p class="indent0">say &quot;<span class="quote">The coffin will not fit through this passage.</span>&quot; instead.</p>
+</div>
 
-<br>
-A blue crystal sphere is a thing in Dreary Room.
-<br>
-The description of the blue crystal sphere is &quot;<font color=#000080>[blue sphere text]</font>&quot;.
-<br>
-The case-points of the blue crystal sphere is 10.
-<br>
-After taking the blue crystal sphere for the first time:
-<br>
-award 5 points; continue the action.
-<br>
-Definition: a thing is hiding if it is closed and it is opaque.
-<br>
-To say blue sphere text:
-<br>
-if the red crystal sphere is in something which is hiding begin;
-<br>
-  say &quot;<font color=#000080>You see only darkness.</font>&quot;;
-<br>
-else;
-<br>
-  say &quot;<font color=#000080>As you peer into the sphere, a strange vision takes shape of
-<br>
-</font><font color=#000080>a distant room, which can be described clearly....[paragraph break]</font>&quot;;
-<br>
-  say &quot;<font color=#000080>[description of the location of the red crystal sphere][paragraph break]</font>&quot;;
-<br>
-  say &quot;<font color=#000080>The vision fades, revealing only an ordinary crystal sphere.</font>&quot;;
-<br>
-end if.
-<br>
-Understand &quot;<font color=#000080>PALANTHIR</font>&quot; and &quot;<font color=#000080>STONE</font>&quot; and &quot;<font color=#000080>SEEING</font>&quot; and &quot;<font color=#000080>GLASS</font>&quot; and &quot;<font color=#000080>BALL</font>&quot; as the white crystal sphere.
-<br>
-After reading a command:
-<br>
-  if the player's command includes &quot;<font color=#000080>BALLS/PALANTHIRI/PALANTHIRS/SPHERES</font>&quot;, replace the matched text with &quot;<font color=#000080>BOTH SPHERE</font>&quot;.
-<br>
+<div class ="notes">
 
-<br>
+</div>
 
-<br>
-Northwest of Low Crawl is east of a dungeon called Egyptian Room.
-<br>
-The description of Egyptian Room is &quot;<font color=#000080>This is a room which looks like an Egyptian tomb.  There is an ascending staircase in the room as well as doors east and south.</font>&quot;
-<br>
-A closed openable container called a gold coffin is in Egyptian Room.
-<br>
-The later appearance of the gold coffin is &quot;<font color=#000080>The solid-gold coffin used for the burial of Ramses II is here.</font>&quot;
-<br>
-The size of the coffin is 55. The capacity of the coffin is 35.
-<br>
-After taking the coffin for the first time: award 3 points; continue the action.
-<br>
-The case-points of the coffin is 7.
-<br>
-Check going east from Egyptian Room when the player is carrying the coffin:
-<br>
-say &quot;<font color=#000080>The passage is too narrow to accomodate coffins.</font>&quot; instead.
-<br>
-Check going northwest from Rocky Crawl when the player is carrying the coffin:
-<br>
-say &quot;<font color=#000080>The passage is too narrow to accomodate coffins.</font>&quot; instead.
-<br>
-Check going south from Reservoir South when the player is carrying the coffin:
-<br>
-say &quot;<font color=#000080>The coffin will not fit through this passage.</font>&quot; instead.
-<br>
+</div>
 
-<br>
-
-<br>
-</font>
-					<p><font size="-1" face="Trebuchet MS, Geneva, Arial, Helvetica, SunSans-Regular, sans-serif"></font></p>
-					<p></p>
-				</td></tr></table>
-	</body>
+</body>
 
 </html>
