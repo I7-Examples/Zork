@@ -1,8 +1,5 @@
 "Zork" by Infocom -- Ported by Dean Menezes
 
-Include (- Serial "230228"; -).
-
-
 [Copyright (c) 2008 Dean Menezes
 
 Permission is hereby granted, free of charge, to any person
